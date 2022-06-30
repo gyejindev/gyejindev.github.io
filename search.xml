@@ -4,7 +4,7 @@
     <entry>
       <title><![CDATA[RAID 정의 및 구성]]></title>
       <url>/debian/2022/06/30/RAID/</url>
-      <content type="text"><![CDATA[RAID 정의  Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다RAID 종류RAID 0RAID 1RAID 4RAID 5RAID 6]]></content>
+      <content type="text"><![CDATA[RAID 정의  Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다RAID 0(스트라이핑)  RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,여러 환경에서의 읽기 및 쓰기 처리량이 개선된다. RAID 0을 위해서는 최소한 2개의 드라이브가 필요하며, 데이터가 분산되는 방식 때문에 배열 드라이브의 전체 용량이 하나로 통합된다. 예를 들어 스트라이프 RAID 0 구성에서 쌍을 이룬 2개의 1TB 드라이브는 하나의 2TB 볼륨으로 인식된다. 하지만 RAID 0 는 패리티(Parity) 데이터를 미러링(Mirroring) 처리하거나 저장하지 않기 때문에, 하나의 디스크에 문제가 발생하면 나머지 디스크에 저장된 데이터가 무용지물이 된다.RAID 1(미러링)  RAID 0 과의 반대로 안정성에 방향을 둔 레벨로 데이터 저장소를 서로 복제형태로 하나의 데이터를 양쪽에 디스크에 동일하게 기록 한다, 데이터의 저장용량은 줄어들지만 데이터를 양쪽에 각각 보관함으로써 안정성을 높였다.RAID 4RAID 5(패리티 스트라이핑)RAID 6]]></content>
       <categories>
         
           <category> debian </category>
