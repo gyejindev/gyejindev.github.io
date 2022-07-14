@@ -400,7 +400,7 @@ pre .k, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt, pre .javascript .function {
 
 .menu .menu-item { display: inline-block; margin: 0 10px; list-style: none; }
 @media screen and (max-width: 767px) { .menu .menu-item { margin-top: 10px; } }
-.menu .menu-item a { display: block; font-size: 13px; line-height: inherit; border-bottom: 1px solid transparent; transition-property: border-color; transition-duration: 0.2s; transition-timing-function: ease-in-out; transition-delay: 0s; }
+.menu .menu-item a { display: block; font-size: 16px; line-height: inherit; border-bottom: 1px solid transparent; transition-property: border-color; transition-duration: 0.2s; transition-timing-function: ease-in-out; transition-delay: 0s; }
 .menu .menu-item a:hover { border-bottom-color: #222; }
 .menu .menu-item .fa { margin-right: 5px; }
 
@@ -467,7 +467,7 @@ pre .k, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt, pre .javascript .function {
 .posts-expand .post-meta { margin: 3px 0 60px 0; color: #999; font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 12px; text-align: center; }
 .posts-expand .post-meta .post-category-list { display: inline-block; margin: 0; padding: 3px; }
 .posts-expand .post-meta .post-category-list-link { color: #999; }
-.posts-expand .post-meta .post-description { font-size: 14px; margin-top: 2px; }
+.posts-expand .post-meta .post-description { font-size: 14px; margin-top: 2px; text-align: center; }
 
 .post-wordcount { display: inline-block; }
 
@@ -559,7 +559,7 @@ pre .k, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt, pre .javascript .function {
 .links-of-author { margin-top: 20px; }
 
 .links-of-author a { display: inline-block; vertical-align: middle; margin-right: 10px; margin-bottom: 10px; border-bottom-color: #555; font-size: 13px; }
-.links-of-author a:before { display: inline-block; vertical-align: middle; margin-right: 3px; content: " "; width: 4px; height: 4px; border-radius: 50%; background: #2b08d4; }
+.links-of-author a:before { display: inline-block; vertical-align: middle; margin-right: 3px; content: " "; width: 4px; height: 4px; border-radius: 50%; background: #002600; }
 
 .links-of-blogroll { font-size: 13px; }
 
@@ -790,7 +790,7 @@ embed { display: block; margin: 0px auto 25px auto; }
 
 @media (max-width: 767px) { .menu { text-align: left; } }
 
-@media (max-width: 767px) { .menu .menu-item { display: block; margin: 0 10px; vertical-align: top; } }
+@media (max-width: 767px) { .menu .menu-item { display: block; margin: 0 14px; vertical-align: top; } }
 @media (max-width: 767px) { .menu .menu-item br { display: none; } }
 @media (max-width: 767px) { .menu .menu-item a { padding: 5px 10px; } }
 .menu .menu-item .fa { margin-right: 0; }
