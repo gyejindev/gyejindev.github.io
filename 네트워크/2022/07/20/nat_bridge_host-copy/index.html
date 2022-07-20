@@ -83,6 +83,8 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="" />
+
 
 
 
@@ -109,16 +111,20 @@
 
 
 
-<meta name="description" content="This is a Chinese test post. 善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。 以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？ 就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。 國新故。 &amp;gt; 工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？ *From [亂數假文產生器 - Chinese Lorem Ipsum](http://www.richyli.com/tool/loremipsum/)*">
-<meta property="og:type" content="website">
-<meta property="og:title" content="中文測試">
-<meta property="og:url" content="http://localhost:1234/backup_post/2013-12-24-%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/">
+<meta name="description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAT,Bridge,Host-Only 정의">
+<meta property="og:url" content="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/">
 <meta property="og:site_name" content="기술블로그">
-<meta property="og:description" content="This is a Chinese test post. 善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。 以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？ 就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。 國新故。 &amp;gt; 工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？ *From [亂數假文產生器 - Chinese Lorem Ipsum](http://www.richyli.com/tool/loremipsum/)*">
+<meta property="og:description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="/assets/images/nat.png">
+<meta property="og:image" content="/assets/images/bridged.png">
+<meta property="og:image" content="/assets/images/hostonly.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中文測試">
-<meta name="twitter:description" content="This is a Chinese test post. 善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。 以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？ 就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。 國新故。 &amp;gt; 工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？ *From [亂數假文產生器 - Chinese Lorem Ipsum](http://www.richyli.com/tool/loremipsum/)*">
+<meta name="twitter:title" content="NAT,Bridge,Host-Only 정의">
+<meta name="twitter:description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
+<meta name="twitter:image" content="/assets/images/nat.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -151,7 +157,7 @@
 
 
 
-  <title>              中文測試 | 기술블로그      </title>
+  <title>NAT,Bridge,Host-Only 정의 | 기술블로그</title>
   
 
 
@@ -299,38 +305,219 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
 <div id="posts" class="posts-expand">
-<header class="post-header">
+  
+  
 
-	<h1 class="post-title" itemprop="name headline">
-    
-      中文測試
-    
-  </h1>
-
-
-
-</header>
+  
 
   
   
-    <p>This is a Chinese test post.</p>
+  
 
-<p>善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。</p>
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/">
 
-<p>以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？</p>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jo GyeJin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.jpg">
+    </span>
 
-<p>就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。</p>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기술블로그">
+    </span>
 
-<p>國新故。</p>
+    
+      <header class="post-header">
 
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            NAT,Bridge,Host-Only 정의
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-20T00:00:00+09:00">
+                2022-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" itemprop="url" rel="index">
+                    <span itemprop="name">네트워크</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div aline="center" class="post-description" >
+                     네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다 
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr />
+<h2 id="natnetwork-address-translation">NAT(Network Address Translation)</h2>
 <blockquote>
-  <p>工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？</p>
+  <p>NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</p>
 </blockquote>
 
-<p><em>From <a href="http://www.richyli.com/tool/loremipsum/">亂數假文產生器 - Chinese Lorem Ipsum</a></em></p>
+<p><img src="/assets/images/nat.png" alt="onealog" /></p>
 
-  
+<hr />
+
+<h2 id="bridged">Bridged</h2>
+<blockquote>
+  <p>Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.</p>
+</blockquote>
+
+<p><img src="/assets/images/bridged.png" alt="onealog" /></p>
+
+<hr />
+
+<h2 id="host-only">Host-Only</h2>
+<blockquote>
+  <p>Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다
+NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다</p>
+</blockquote>
+
+<p><img src="/assets/images/hostonly.png" alt="onealog" /></p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/" rel="prev" title="vpn 정의">
+                vpn 정의 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
 </div>
 
 
@@ -339,6 +526,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -356,10 +547,30 @@
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            프로필
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/avatar.jpg"
@@ -421,6 +632,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#natnetwork-address-translation"> <span class="nav-number">1</span> <span class="nav-text">NAT(Network Address Translation)</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#bridged"> <span class="nav-number">2</span> <span class="nav-text">Bridged</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#host-only"> <span class="nav-number">3</span> <span class="nav-text">Host-Only</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

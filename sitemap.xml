@@ -13,7 +13,11 @@
 <lastmod>2022-07-13T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host/</loc>
+<loc>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/</loc>
+<lastmod>2022-07-14T00:00:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/</loc>
 <lastmod>2022-07-20T00:00:00+09:00</lastmod>
 </url>
 <url>
@@ -96,5 +100,8 @@
 </url>
 <url>
 <loc>http://localhost:1234/assets/lib/jquery_lazyload/</loc>
+</url>
+<url>
+<loc>http://localhost:1234/page2/</loc>
 </url>
 </urlset>

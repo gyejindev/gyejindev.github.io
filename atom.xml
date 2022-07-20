@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-20T23:32:56+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-21T01:09:15+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host%20copy</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/">&lt;hr /&gt;
 &lt;h2 id=&quot;natnetwork-address-translation&quot;&gt;NAT(Network Address Translation)&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)&lt;/p&gt;
@@ -23,7 +23,54 @@
 NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/hostonly.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html">NAT(Network Address Translation) NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</summary></entry><entry><title type="html">본딩의 정의와 설정방법(centos7)</title><link href="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="alternate" type="text/html" title="본딩의 정의와 설정방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding</id><content type="html" xml:base="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/">&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/hostonly.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html">NAT(Network Address Translation) NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</summary></entry><entry><title type="html">vpn 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/" rel="alternate" type="text/html" title="vpn 정의" /><published>2022-07-14T00:00:00+09:00</published><updated>2022-07-14T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/">&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpn을-이해하기-위한-사설망과-공중망의-개념&quot;&gt;vpn을 이해하기 위한 사설망과 공중망의 개념&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;p&gt;사설망(Private Network) : 사설 ip를 사용하여 별도 네트워크를 구성하며 외부 인터넷과 내부 네트워크를 분리한다 즉 외부 인터넷의 접근으로부터 내부 네트워크를 보호할 수 있다 기업의 예로 본사 사설망과 지사 사설망을 따로 구성하여 전용 회선으로만 연결하여 사용한다.&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;공중망(public Network) : 사설망과 대칭되는 내용으로 불특정 다수의 사용자들이 사용되는 일반적인 네트워크망이다 
+전화망이나 인터넷처럼 모두에게 공개되며 어느 누구와 언제든 정보 및 데이터 교환이 가능함에 따라 보안성이 취약하다&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpnvirtual-private-network-정의&quot;&gt;vpn(Virtual Private Network) 정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;vpn은 공중망 인터넷을 사이에 둔 사설망과 사설망간 공인 IP로 NAT와 같은 제약 없이 사설 IP를 사용하여 통신 할 수 있도록 Routing을 지원하며 데이터의 암호화 기능을 제공한다. 따라서 vpn은 공인 인터넷에서 캡슐화 및 데이터 암호화를 사용하며 패킷 탈취를 방어하기 위해 터널링(Tunneling) 기술을 사용한다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;vpn-사용-목적&quot;&gt;vpn 사용 목적&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 장거리 전용망 구축 비용 대비 네트워크 운영비용 절감 및 변경에 대한 유연성을 확보 가능
+2. 두 호스트 간 데이터 유출 없이 통신이 가능하며 보안 관리가 효율적이다
+3. 네트워크 이동성 및 확장성이 보장되어 재택 및 원격지 사용에 부담이 적다
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpn의-기술-정의&quot;&gt;vpn의 기술 정의&lt;/h2&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;p&gt;터널링(Tunneling): 공중망상에서 사설 전용망과 같은 보안효과를 주기 위한 기술이며 vpn 내의 두 네트워크 간에 가상경로(Routing)를 사용하여 사용자에게 투명한 통신 제공&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;터널링(Tunneling)을 지원하는 프로토콜: PPTP(Point-to-Point), L2TP(Layer2 Tunneling Protocol), L2F(Layer2 Fowarding Protocol), IPsec&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html"></summary></entry><entry><title type="html">본딩의 정의와 설정방법(centos7)</title><link href="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="alternate" type="text/html" title="본딩의 정의와 설정방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding</id><content type="html" xml:base="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/">&lt;hr /&gt;
 &lt;h2 id=&quot;본딩이란bonding&quot;&gt;본딩이란(Bonding)&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능&lt;/p&gt;
