@@ -1,152 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-14T22:20:39+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">프로세스 서비스 등록방법(centos7)</title><link href="http://localhost:1234/centos/linux/2022/07/13/Service_centos/" rel="alternate" type="text/html" title="프로세스 서비스 등록방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/linux/2022/07/13/Service_centos</id><content type="html" xml:base="http://localhost:1234/centos/linux/2022/07/13/Service_centos/">&lt;hr /&gt;
-&lt;h2 id=&quot;서비스-설정centos&quot;&gt;서비스 설정(CentOS)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-20T23:32:56+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host/">&lt;hr /&gt;
+&lt;h2 id=&quot;natnetwork-address-translation&quot;&gt;NAT(Network Address Translation)&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능&lt;/p&gt;
+  &lt;p&gt;NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/bonding_main.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/nat.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;본딩-설정방법centos&quot;&gt;본딩 설정방법(centos)&lt;/h2&gt;
+&lt;h2 id=&quot;bridged&quot;&gt;Bridged&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Redhat에서의 네트워크 본딩 설정방법을 정의합니다.&lt;/p&gt;
+  &lt;p&gt;Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;1-현재os-확인&quot;&gt;&lt;strong&gt;1. 현재OS 확인&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/bridged.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# cat /etc/redhat-release
-CentOS Linux release 7.9.2009 (Core)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;2-네트워크-인터페이스명-확인&quot;&gt;&lt;strong&gt;2. 네트워크 인터페이스명 확인&lt;/strong&gt;&lt;/h3&gt;
+&lt;hr /&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# ip a
-ens33: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
-        inet 192.168.91.128  netmask 255.255.255.0  broadcast 192.168.91.255
-        inet6 fe80::20c:29ff:fe87:b70e  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
-        ether 00:0c:29:87:b7:0e  txqueuelen 1000  (Ethernet)
-        RX packets 226  bytes 22388 (21.8 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 172  bytes 26838 (26.2 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+&lt;h2 id=&quot;host-only&quot;&gt;Host-Only&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다
+NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다&lt;/p&gt;
+&lt;/blockquote&gt;
 
-ens36: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
-        inet 192.168.91.129  netmask 255.255.255.0  broadcast 192.168.91.255
-        inet6 fe80::20c:29ff:fe87:b718  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
-        ether 00:0c:29:87:b7:18  txqueuelen 1000  (Ethernet)
-        RX packets 9  bytes 1104 (1.0 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 22  bytes 2236 (2.1 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10&amp;lt;host&amp;gt;
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 10  bytes 1010 (1010.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 10  bytes 1010 (1010.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-[root@localhost ~]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;3네트워크-인터페이스를-설정하는-곳으로-이동&quot;&gt;&lt;strong&gt;3.네트워크 인터페이스를 설정하는 곳으로 이동&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# cd /etc/sysconfig/network-scripts/
-[root@localhost network-scripts]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;4본딩-할-인터페이스-파일-수정&quot;&gt;&lt;strong&gt;4.본딩 할 인터페이스 파일 수정&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# vi ifcfg-ens33
-BOOTPROTO=none
-NAME=ens33
-DEVICE=ens33
-ONBOOT=yes
-MASTER=bond0
-SLAVE=yes
-
-[root@localhost network-scripts]# vi ifcfg-ens36
-BOOTPROTO=dhcp
-NAME=ens36
-DEVICE=ens36
-ONBOOT=yes
-MASTER=bond0
-SLAVE=yes
-[root@localhost network-scripts]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;5본딩-설정-파일을-생성하고-설정&quot;&gt;&lt;strong&gt;5.본딩 설정 파일을 생성하고 설정&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;[본딩모드 옵션]&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/bonding0.jpg&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# vi ifcfg-bond0
-BOOTPROTO=none
-NAME=bond0
-DEVICE=bond0
-ONBOOT=yes
-TYPE=Bond
-IPADDR=192.168.91.110 # 서비스 사용 할 IP
-NETMASK=255.255.255.0
-GATEWAY=192.168.91.2
-BONDING_OPTS=mode=1 miimon=10 primary=ens33 fail_over_mac=1 #본딩모드 옵션
-[root@localhost network-scripts]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;6네트워크-이슈를-예방하기-위한-네트워크관리자-중지&quot;&gt;&lt;strong&gt;6.네트워크 이슈를 예방하기 위한 네트워크관리자 중지&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# sudo systemctl stop NetworkManager
-[root@localhost network-scripts]# sudo systemctl disable NetworkManager
-[root@localhost network-scripts]# sudo systemctl status NetworkManager #종료 상태확인
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;7본딩-모듈-적재&quot;&gt;&lt;strong&gt;7.본딩 모듈 적재&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# modprobe --first-time bonding
-[root@localhost network-scripts]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;8네트워크-서비스-재시작&quot;&gt;&lt;strong&gt;8.네트워크 서비스 재시작&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# sudo systemctl restart network
-[root@localhost network-scripts]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;9본딩이-정상-동작하는지-확인&quot;&gt;&lt;strong&gt;9.본딩이 정상 동작하는지 확인&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# cat /proc/net/bonding/bond0
-Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
-
-Bonding Mode: fault-tolerance (active-backup) (fail_over_mac active)
-Primary Slave: ens33 (primary_reselect always)
-Currently Active Slave: ens33
-MII Status: up
-MII Polling Interval (ms): 10
-Up Delay (ms): 0
-Down Delay (ms): 0
-
-Slave Interface: ens33
-MII Status: up
-Speed: 1000 Mbps
-Duplex: full
-Link Failure Count: 0
-Permanent HW addr: 00:0c:29:87:b7:0e
-Slave queue ID: 0
-
-Slave Interface: ens36
-MII Status: up
-Speed: 1000 Mbps
-Duplex: full
-Link Failure Count: 0
-Permanent HW addr: 00:0c:29:87:b7:18
-Slave queue ID: 0
-[root@localhost ~]#
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;</content><author><name>Jo GyeJin</name></author><category term="centos" /><category term="linux" /><summary type="html">서비스 설정(CentOS) 본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능</summary></entry><entry><title type="html">본딩의 정의와 설정방법(centos7)</title><link href="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="alternate" type="text/html" title="본딩의 정의와 설정방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding</id><content type="html" xml:base="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/">&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/hostonly.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html">NAT(Network Address Translation) NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</summary></entry><entry><title type="html">본딩의 정의와 설정방법(centos7)</title><link href="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="alternate" type="text/html" title="본딩의 정의와 설정방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding</id><content type="html" xml:base="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/">&lt;hr /&gt;
 &lt;h2 id=&quot;본딩이란bonding&quot;&gt;본딩이란(Bonding)&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능&lt;/p&gt;
