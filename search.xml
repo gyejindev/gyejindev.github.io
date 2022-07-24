@@ -2,8 +2,27 @@
 <search>
   
     <entry>
+      <title><![CDATA[Mariadb 이중화 정의]]></title>
+      <url>/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/</url>
+      <content type="text"><![CDATA[HA(High Availability, 고가용성)이란  이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.HA 방식1. Active-Standby  Active-Standby 구성은 하나의 Master서버와 여러대의 Slave 서버로 구성된다.Master는 Read-Write를 제공하며 Slave 서버는 Master의 데이터만 동기화하며 서비스 제공은 하지 않는다.평상시에는 Master서버가 Active상태로 서비스를 제공하다가 Master 서버에서 장애요소가 발생시 Slave 서버가 Master 서버로 승격하여 Active상태로 서비스를 제공한다.2. Active-Active  Active-Active 구성은 여러대의 서버가 동기화하며 서비스를 제공한다.Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데 까지의 소요시간(Faill over time)이 필요하지만 Active-Active는 해당 소요시간이 발생하지 않는다.]]></content>
+      <categories>
+        
+          <category> 이중화 </category>
+        
+          <category> linux </category>
+        
+          <category> db </category>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
       <title><![CDATA[NAT,Bridge,Host-Only 정의]]></title>
-      <url>/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/</url>
+      <url>/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/</url>
       <content type="text"><![CDATA[NAT(Network Address Translation)  NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)Bridged(브릿지)  Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.Host-Only  Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다]]></content>
       <categories>
         

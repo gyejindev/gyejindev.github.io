@@ -111,16 +111,20 @@
 
 
 
-<meta name="description" content="vpn의 개념과 사용 목적을 정리한다">
+<meta name="description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vpn 정의">
-<meta property="og:url" content="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/">
+<meta property="og:title" content="NAT,Bridge,Host-Only 정의">
+<meta property="og:url" content="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/">
 <meta property="og:site_name" content="기술블로그">
-<meta property="og:description" content="vpn의 개념과 사용 목적을 정리한다">
+<meta property="og:description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="/assets/images/nat.png">
+<meta property="og:image" content="/assets/images/bridged.png">
+<meta property="og:image" content="/assets/images/hostonly.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vpn 정의">
-<meta name="twitter:description" content="vpn의 개념과 사용 목적을 정리한다">
+<meta name="twitter:title" content="NAT,Bridge,Host-Only 정의">
+<meta name="twitter:description" content="네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다">
+<meta name="twitter:image" content="/assets/images/nat.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -153,7 +157,7 @@
 
 
 
-  <title>vpn 정의 | 기술블로그</title>
+  <title>NAT,Bridge,Host-Only 정의 | 기술블로그</title>
   
 
 
@@ -313,7 +317,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jo GyeJin">
@@ -333,7 +337,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            vpn 정의
+            NAT,Bridge,Host-Only 정의
           
         </h1>
         
@@ -347,8 +351,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-14T00:00:00+09:00">
-                2022-07-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-20T00:00:00+09:00">
+                2022-07-20
               </time>
             
 
@@ -396,7 +400,7 @@
           
             
                 <div aline="center" class="post-description" >
-                     vpn의 개념과 사용 목적을 정리한다 
+                     네트워크의 기본 구성인 NAT, Bridge, Host-Only방식의 개념을 정리한다 
                 </div>
             
           
@@ -427,53 +431,31 @@
 
 
   <hr />
-
-<h2 id="vpn을-이해하기-위한-사설망과-공중망의-개념">vpn을 이해하기 위한 사설망과 공중망의 개념</h2>
-
+<h2 id="natnetwork-address-translation">NAT(Network Address Translation)</h2>
 <blockquote>
-  <ul>
-    <li>
-      <p>사설망(Private Network) : 사설 ip를 사용하여 별도 네트워크를 구성하며 외부 인터넷과 내부 네트워크를 분리한다 즉 외부 인터넷의 접근으로부터 내부 네트워크를 보호할 수 있다 기업의 예로 본사 사설망과 지사 사설망을 따로 구성하여 전용 회선으로만 연결하여 사용한다.</p>
-    </li>
-    <li>
-      <p>공중망(public Network) : 사설망과 대칭되는 내용으로 불특정 다수의 사용자들이 사용되는 일반적인 네트워크망이다 
-전화망이나 인터넷처럼 모두에게 공개되며 어느 누구와 언제든 정보 및 데이터 교환이 가능함에 따라 보안성이 취약하다</p>
-    </li>
-  </ul>
+  <p>NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</p>
 </blockquote>
+
+<p><img src="/assets/images/nat.png" alt="onealog" /></p>
 
 <hr />
 
-<h2 id="vpnvirtual-private-network-정의">vpn(Virtual Private Network) 정의</h2>
-
+<h2 id="bridged브릿지">Bridged(브릿지)</h2>
 <blockquote>
-  <ul>
-    <li>vpn은 공중망 인터넷을 사이에 둔 사설망과 사설망간 공인 IP로 NAT와 같은 제약 없이 사설 IP를 사용하여 통신 할 수 있도록 Routing을 지원하며 데이터의 암호화 기능을 제공한다. 따라서 vpn은 공인 인터넷에서 캡슐화 및 데이터 암호화를 사용하며 패킷 탈취를 방어하기 위해 터널링(Tunneling) 기술을 사용한다.</li>
-  </ul>
+  <p>Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.</p>
 </blockquote>
 
-<hr />
-<h2 id="vpn-사용-목적">vpn 사용 목적</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>1. 장거리 전용망 구축 비용 대비 네트워크 운영비용 절감 및 변경에 대한 유연성을 확보 가능
-2. 두 호스트 간 데이터 유출 없이 통신이 가능하며 보안 관리가 효율적이다
-3. 네트워크 이동성 및 확장성이 보장되어 재택 및 원격지 사용에 부담이 적다
-</code></pre></td></tr></tbody></table></div></div>
+<p><img src="/assets/images/bridged.png" alt="onealog" /></p>
 
 <hr />
 
-<h2 id="vpn의-기술-정의">vpn의 기술 정의</h2>
+<h2 id="host-only">Host-Only</h2>
 <blockquote>
-
-  <ul>
-    <li>
-      <p>터널링(Tunneling): 공중망상에서 사설 전용망과 같은 보안효과를 주기 위한 기술이며 vpn 내의 두 네트워크 간에 가상경로(Routing)를 사용하여 사용자에게 투명한 통신 제공</p>
-    </li>
-    <li>
-      <p>터널링(Tunneling)을 지원하는 프로토콜: PPTP(Point-to-Point), L2TP(Layer2 Tunneling Protocol), L2F(Layer2 Fowarding Protocol), IPsec</p>
-    </li>
-  </ul>
+  <p>Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다
+NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다</p>
 </blockquote>
+
+<p><img src="/assets/images/hostonly.png" alt="onealog" /></p>
 
 
       
@@ -514,8 +496,8 @@
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/" rel="next" title="NAT,Bridge,Host-Only 정의">
-                <i class="fa fa-chevron-left"></i> NAT,Bridge,Host-Only 정의
+              <a href="/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/" rel="next" title="Mariadb 이중화 정의">
+                <i class="fa fa-chevron-left"></i> Mariadb 이중화 정의
               </a>
             
           </div>
@@ -524,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="prev" title="본딩의 정의와 설정방법(centos7)">
-                본딩의 정의와 설정방법(centos7) <i class="fa fa-chevron-right"></i>
+              <a href="/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/" rel="prev" title="vpn 정의">
+                vpn 정의 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -674,7 +656,7 @@
             
               <div class="post-toc-content">
     <ol class=nav>
-      <li class="nav-item nav-level-2"> <a class="nav-link" href="#vpn을-이해하기-위한-사설망과-공중망의-개념"> <span class="nav-number">1</span> <span class="nav-text">vpn을 이해하기 위한 사설망과 공중망의 개념</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#vpnvirtual-private-network-정의"> <span class="nav-number">2</span> <span class="nav-text">vpn(Virtual Private Network) 정의</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#vpn-사용-목적"> <span class="nav-number">3</span> <span class="nav-text">vpn 사용 목적</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#vpn의-기술-정의"> <span class="nav-number">4</span> <span class="nav-text">vpn의 기술 정의</span> </a> </li>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#natnetwork-address-translation"> <span class="nav-number">1</span> <span class="nav-text">NAT(Network Address Translation)</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#bridged브릿지"> <span class="nav-number">2</span> <span class="nav-text">Bridged(브릿지)</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#host-only"> <span class="nav-number">3</span> <span class="nav-text">Host-Only</span> </a> </li>
     </ol>
   </div>
             
