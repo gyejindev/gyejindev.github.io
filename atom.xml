@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-23T23:00:38+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host%20copy</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-24T16:33:12+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host%20copy</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/">&lt;hr /&gt;
 &lt;h2 id=&quot;natnetwork-address-translation&quot;&gt;NAT(Network Address Translation)&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)&lt;/p&gt;
@@ -8,7 +8,7 @@
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;bridged&quot;&gt;Bridged&lt;/h2&gt;
+&lt;h2 id=&quot;bridged브릿지&quot;&gt;Bridged(브릿지)&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.&lt;/p&gt;
 &lt;/blockquote&gt;

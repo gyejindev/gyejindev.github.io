@@ -4,7 +4,7 @@
     <entry>
       <title><![CDATA[NAT,Bridge,Host-Only 정의]]></title>
       <url>/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy/</url>
-      <content type="text"><![CDATA[NAT(Network Address Translation)  NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)Bridged  Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.Host-Only  Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다]]></content>
+      <content type="text"><![CDATA[NAT(Network Address Translation)  NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)Bridged(브릿지)  Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.Host-Only  Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다]]></content>
       <categories>
         
           <category> 네트워크 </category>
