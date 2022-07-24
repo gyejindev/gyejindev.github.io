@@ -118,12 +118,12 @@
 <meta property="og:site_name" content="기술블로그">
 <meta property="og:description" content="Mariadb 이중화 개념을 정리한다">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="/assets/images/db_ha_as.png">
-<meta property="og:image" content="/assets/images/db_ha_aa.png">
+<meta property="og:image" content="/assets/images/dbhaas.png">
+<meta property="og:image" content="/assets/images/dbhaaa.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mariadb 이중화 정의">
 <meta name="twitter:description" content="Mariadb 이중화 개념을 정리한다">
-<meta name="twitter:image" content="/assets/images/db_ha_as.png">
+<meta name="twitter:image" content="/assets/images/dbhaas.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -470,7 +470,7 @@ Master는 Read-Write를 제공하며 Slave 서버는 Master의 데이터만 동�
 평상시에는 Master서버가 Active상태로 서비스를 제공하다가 Master 서버에서 장애요소가 발생시 Slave 서버가 Master 서버로 승격하여 Active상태로 서비스를 제공한다.</p>
 </blockquote>
 
-<p><img src="/assets/images/db_ha_as.png" alt="onealog" /></p>
+<p><img src="/assets/images/dbhaas.png" alt="onealog" /></p>
 
 <h3 id="2-active-active">2. Active-Active</h3>
 <blockquote>
@@ -478,7 +478,7 @@ Master는 Read-Write를 제공하며 Slave 서버는 Master의 데이터만 동�
 Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데 까지의 소요시간(Faill over time)이 필요하지만 Active-Active는 해당 소요시간이 발생하지 않는다.</p>
 </blockquote>
 
-<p><img src="/assets/images/db_ha_aa.png" alt="onealog" /></p>
+<p><img src="/assets/images/dbhaaa.png" alt="onealog" /></p>
 
 
       
