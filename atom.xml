@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:1234/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:1234/" rel="alternate" type="text/html" /><updated>2022-07-26T14:02:26+09:00</updated><id>http://localhost:1234/atom.xml</id><title type="html">기술블로그</title><subtitle>조계진</subtitle><author><name>Jo GyeJin</name></author><entry><title type="html">Mariadb 이중화 정의</title><link href="http://localhost:1234/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/" rel="alternate" type="text/html" title="Mariadb 이중화 정의" /><published>2022-07-24T00:00:00+09:00</published><updated>2022-07-24T00:00:00+09:00</updated><id>http://localhost:1234/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb</id><content type="html" xml:base="http://localhost:1234/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/">&lt;hr /&gt;
+&lt;h2 id=&quot;hahigh-availability-고가용성이란&quot;&gt;HA(High Availability, 고가용성)이란&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;ha-방식&quot;&gt;HA 방식&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-active-standby&quot;&gt;1. Active-Standby&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Active-Standby 구성은 하나의 Master서버와 여러대의 Slave 서버로 구성된다.
+Master는 Read-Write를 제공하며 Slave 서버는 Master의 데이터만 동기화하며 서비스 제공은 하지 않는다.&lt;br /&gt;
+평상시에는 Master서버가 Active상태로 서비스를 제공하다가 Master 서버에서 장애요소가 발생시 Slave 서버가 Master 서버로 승격하여 Active상태로 서비스를 제공한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dbhaas.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-active-active&quot;&gt;2. Active-Active&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Active-Active 구성은 여러대의 서버가 동기화하며 서비스를 제공한다.&lt;br /&gt;
+Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데 까지의 소요시간(Faill over time)이 필요하지만 Active-Active는 해당 소요시간이 발생하지 않는다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dbhaaa.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="이중화" /><category term="linux" /><category term="db" /><summary type="html">HA(High Availability, 고가용성)이란 이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.</summary></entry><entry><title type="html">NAT,Bridge,Host-Only 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/" rel="alternate" type="text/html" title="NAT,Bridge,Host-Only 정의" /><published>2022-07-20T00:00:00+09:00</published><updated>2022-07-20T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host%20copy%202</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/">&lt;hr /&gt;
+&lt;h2 id=&quot;natnetwork-address-translation&quot;&gt;NAT(Network Address Translation)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/nat.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;bridged브릿지&quot;&gt;Bridged(브릿지)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Bridged 방식으로 네트워크를 구성하게 되면 Host가 가상pc의 다리(Bridge)역할을 한다 가상pc는 Host와 동일한 공인ip 대역을 부여 받아 사용가능하며 따라서 외부에서도 가상pc로 접근이 가능하게 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/bridged.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;host-only&quot;&gt;Host-Only&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Host-Only 방식으로 네트워크를 구성하게 되면 가상pc는 외부 인터넷을 사용 할 수 없으며 host하고만 통신이 가능하다
+NAT 구성과의 차이는 NAT는 외부 인터넷까지는 사용이 가능하고 외부PC에서 가상pc로 통신을 할 수 없었지만 Host-Only는 외부pc접근 불가는 물론 외부 인터넷까지 사용이 불가능하다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/hostonly.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html">NAT(Network Address Translation) NAT방식으로 네트워크를 구성하게 되면 호스트 PC로부터 IP를 할당 받아 가상머신 프로그램이 자체 DHCP서버를 만들어 내부 네트워크에 대역 할당 및 통신을 한다 Host 공인 IP를 통해 외부 네트워크와 통신이 가능하다 (단 외부에서는 내부 네트워크 대역을 알 수 없기 때문에 내부에서 외부로만 나가는 단방향 통신이 가능하다)</summary></entry><entry><title type="html">vpn 정의</title><link href="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/" rel="alternate" type="text/html" title="vpn 정의" /><published>2022-07-14T00:00:00+09:00</published><updated>2022-07-14T00:00:00+09:00</updated><id>http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn</id><content type="html" xml:base="http://localhost:1234/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/14/vpn/">&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpn을-이해하기-위한-사설망과-공중망의-개념&quot;&gt;vpn을 이해하기 위한 사설망과 공중망의 개념&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;p&gt;사설망(Private Network) : 사설 ip를 사용하여 별도 네트워크를 구성하며 외부 인터넷과 내부 네트워크를 분리한다 즉 외부 인터넷의 접근으로부터 내부 네트워크를 보호할 수 있다 기업의 예로 본사 사설망과 지사 사설망을 따로 구성하여 전용 회선으로만 연결하여 사용한다.&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;공중망(public Network) : 사설망과 대칭되는 내용으로 불특정 다수의 사용자들이 사용되는 일반적인 네트워크망이다 
+전화망이나 인터넷처럼 모두에게 공개되며 어느 누구와 언제든 정보 및 데이터 교환이 가능함에 따라 보안성이 취약하다&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpnvirtual-private-network-정의&quot;&gt;vpn(Virtual Private Network) 정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;vpn은 공중망 인터넷을 사이에 둔 사설망과 사설망간 공인 IP로 NAT와 같은 제약 없이 사설 IP를 사용하여 통신 할 수 있도록 Routing을 지원하며 데이터의 암호화 기능을 제공한다. 따라서 vpn은 공인 인터넷에서 캡슐화 및 데이터 암호화를 사용하며 패킷 탈취를 방어하기 위해 터널링(Tunneling) 기술을 사용한다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;vpn-사용-목적&quot;&gt;vpn 사용 목적&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 장거리 전용망 구축 비용 대비 네트워크 운영비용 절감 및 변경에 대한 유연성을 확보 가능
+2. 두 호스트 간 데이터 유출 없이 통신이 가능하며 보안 관리가 효율적이다
+3. 네트워크 이동성 및 확장성이 보장되어 재택 및 원격지 사용에 부담이 적다
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vpn의-기술-정의&quot;&gt;vpn의 기술 정의&lt;/h2&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;p&gt;터널링(Tunneling): 공중망상에서 사설 전용망과 같은 보안효과를 주기 위한 기술이며 vpn 내의 두 네트워크 간에 가상경로(Routing)를 사용하여 사용자에게 투명한 통신 제공&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;터널링(Tunneling)을 지원하는 프로토콜: PPTP(Point-to-Point), L2TP(Layer2 Tunneling Protocol), L2F(Layer2 Fowarding Protocol), IPsec&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;</content><author><name>Jo GyeJin</name></author><category term="네트워크" /><summary type="html"></summary></entry><entry><title type="html">본딩의 정의와 설정방법(centos7)</title><link href="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/" rel="alternate" type="text/html" title="본딩의 정의와 설정방법(centos7)" /><published>2022-07-13T00:00:00+09:00</published><updated>2022-07-13T00:00:00+09:00</updated><id>http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding</id><content type="html" xml:base="http://localhost:1234/centos/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/13/Bonding/">&lt;hr /&gt;
+&lt;h2 id=&quot;본딩이란bonding&quot;&gt;본딩이란(Bonding)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/bonding_main.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;본딩-설정방법centos&quot;&gt;본딩 설정방법(centos)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Redhat에서의 네트워크 본딩 설정방법을 정의합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;1-현재os-확인&quot;&gt;&lt;strong&gt;1. 현재OS 확인&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# cat /etc/redhat-release
+CentOS Linux release 7.9.2009 (Core)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;2-네트워크-인터페이스명-확인&quot;&gt;&lt;strong&gt;2. 네트워크 인터페이스명 확인&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# ip a
+ens33: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.91.128  netmask 255.255.255.0  broadcast 192.168.91.255
+        inet6 fe80::20c:29ff:fe87:b70e  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
+        ether 00:0c:29:87:b7:0e  txqueuelen 1000  (Ethernet)
+        RX packets 226  bytes 22388 (21.8 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 172  bytes 26838 (26.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens36: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.91.129  netmask 255.255.255.0  broadcast 192.168.91.255
+        inet6 fe80::20c:29ff:fe87:b718  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
+        ether 00:0c:29:87:b7:18  txqueuelen 1000  (Ethernet)
+        RX packets 9  bytes 1104 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 22  bytes 2236 (2.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&amp;lt;host&amp;gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 10  bytes 1010 (1010.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10  bytes 1010 (1010.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@localhost ~]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;3네트워크-인터페이스를-설정하는-곳으로-이동&quot;&gt;&lt;strong&gt;3.네트워크 인터페이스를 설정하는 곳으로 이동&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# cd /etc/sysconfig/network-scripts/
+[root@localhost network-scripts]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;4본딩-할-인터페이스-파일-수정&quot;&gt;&lt;strong&gt;4.본딩 할 인터페이스 파일 수정&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# vi ifcfg-ens33
+BOOTPROTO=none
+NAME=ens33
+DEVICE=ens33
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+
+[root@localhost network-scripts]# vi ifcfg-ens36
+BOOTPROTO=dhcp
+NAME=ens36
+DEVICE=ens36
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+[root@localhost network-scripts]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;5본딩-설정-파일을-생성하고-설정&quot;&gt;&lt;strong&gt;5.본딩 설정 파일을 생성하고 설정&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;[본딩모드 옵션]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/bonding0.jpg&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# vi ifcfg-bond0
+BOOTPROTO=none
+NAME=bond0
+DEVICE=bond0
+ONBOOT=yes
+TYPE=Bond
+IPADDR=192.168.91.110 # 서비스 사용 할 IP
+NETMASK=255.255.255.0
+GATEWAY=192.168.91.2
+BONDING_OPTS=mode=1 miimon=10 primary=ens33 fail_over_mac=1 #본딩모드 옵션
+[root@localhost network-scripts]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;6네트워크-이슈를-예방하기-위한-네트워크관리자-중지&quot;&gt;&lt;strong&gt;6.네트워크 이슈를 예방하기 위한 네트워크관리자 중지&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# sudo systemctl stop NetworkManager
+[root@localhost network-scripts]# sudo systemctl disable NetworkManager
+[root@localhost network-scripts]# sudo systemctl status NetworkManager #종료 상태확인
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;7본딩-모듈-적재&quot;&gt;&lt;strong&gt;7.본딩 모듈 적재&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# modprobe --first-time bonding
+[root@localhost network-scripts]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;8네트워크-서비스-재시작&quot;&gt;&lt;strong&gt;8.네트워크 서비스 재시작&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost network-scripts]# sudo systemctl restart network
+[root@localhost network-scripts]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;9본딩이-정상-동작하는지-확인&quot;&gt;&lt;strong&gt;9.본딩이 정상 동작하는지 확인&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;[root@localhost ~]# cat /proc/net/bonding/bond0
+Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+
+Bonding Mode: fault-tolerance (active-backup) (fail_over_mac active)
+Primary Slave: ens33 (primary_reselect always)
+Currently Active Slave: ens33
+MII Status: up
+MII Polling Interval (ms): 10
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: ens33
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 00:0c:29:87:b7:0e
+Slave queue ID: 0
+
+Slave Interface: ens36
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 00:0c:29:87:b7:18
+Slave queue ID: 0
+[root@localhost ~]#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;</content><author><name>Jo GyeJin</name></author><category term="centos" /><category term="네트워크" /><summary type="html">본딩이란(Bonding) 본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능</summary></entry><entry><title type="html">클라우드 서비스의 종류(DaaS/SaaS/PaaS)</title><link href="http://localhost:1234/linux/2022/07/02/DaaS_SaaS/" rel="alternate" type="text/html" title="클라우드 서비스의 종류(DaaS/SaaS/PaaS)" /><published>2022-07-02T00:00:00+09:00</published><updated>2022-07-02T00:00:00+09:00</updated><id>http://localhost:1234/linux/2022/07/02/DaaS_SaaS</id><content type="html" xml:base="http://localhost:1234/linux/2022/07/02/DaaS_SaaS/">&lt;p&gt;&lt;img src=&quot;/assets/images/cloud.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;daasdesktop-as-a-service&quot;&gt;DaaS(Desktop as a Service)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;DaaS는 클라우드 인프라를 이용해 사용자가 개인용 컴퓨터가 없어도 원격 인프라에 구축된 서비스를 이용할 수 있는것&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;saassoftware-as-a-service&quot;&gt;SaaS(Software as a Service)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;DaaS는 클라우드 인프라를 이용해 사용자가 개인용 컴퓨터가 없어도 원격 인프라에 구축된 서비스를 이용할 수 있는것&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;paasplatform-as-a-service&quot;&gt;PaaS(Platform as a Service)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;DaaS는 클라우드 인프라를 이용해 사용자가 개인용 컴퓨터가 없어도 원격 인프라에 구축된 서비스를 이용할 수 있는것&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vdi와-daas의-차이점&quot;&gt;VDI와 DaaS의 차이점&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;VDI와 DaaS 모두 사용자가 가상 ​​데스크톱에 액세스할 수 있도록 하고 관리자가 회사 내의 각 개별 장치에 운영 체제를 설치 및 관리하지 않아도 된다.&lt;/p&gt;
+
+  &lt;p&gt;그러나 이러한 두 가지 유형의 가상화에는 주요 차이점이 존재한다.&lt;/p&gt;
+
+  &lt;p&gt;VDI를 통해 조직은 자체 온프레미스 데이터 센터에서 가상 데스크톱을 배포한다. 
+사내 IT 팀은 가상 데스크톱 배포와 인프라 구매, 관리 및 업그레이드를 담당하지만 DaaS 솔루션을 구독하는 조직은 자체 하드웨어를 관리할 필요가 없으며 사용자당 지불 구독 모델을 사용하여 필요에 따라 확장하거나 축소한다.&lt;/p&gt;
+
+  &lt;p&gt;즉 VDI와 DaaS의 큰 차이점은 해당 인프라 구축 및 관리를 누가하냐에 따라 달라지는 형태이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;</content><author><name>Jo GyeJin</name></author><category term="linux" /><summary type="html"></summary></entry><entry><title type="html">RAID 정의 및 구성</title><link href="http://localhost:1234/linux/2022/06/30/RAID/" rel="alternate" type="text/html" title="RAID 정의 및 구성" /><published>2022-06-30T00:00:00+09:00</published><updated>2022-06-30T00:00:00+09:00</updated><id>http://localhost:1234/linux/2022/06/30/RAID</id><content type="html" xml:base="http://localhost:1234/linux/2022/06/30/RAID/">&lt;h2 id=&quot;raid-정의&quot;&gt;RAID 정의&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;raid-0스트라이핑&quot;&gt;RAID 0(스트라이핑)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/raid0.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.
+작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,
+여러 환경에서의 읽기 및 쓰기 처리량이 개선된다. RAID 0을 위해서는 최소한 2개의 드라이브가 필요하며, 데이터가 분산되는 방식 때문에 배열 드라이브의 전체 용량이 하나로 통합된다. 예를 들어 스트라이프 RAID 0 구성에서 쌍을 이룬 2개의 1TB 드라이브는 하나의 2TB 볼륨으로 인식된다. 하지만 RAID 0 는 패리티(Parity) 데이터를 미러링(Mirroring) 처리하거나 저장하지 않기 때문에, 하나의 디스크에 문제가 발생하면 나머지 디스크에 저장된 데이터가 무용지물이 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;raid-1미러링&quot;&gt;RAID 1(미러링)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/raid1.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RAID 0 과의 반대로 안정성에 방향을 둔 레벨로 데이터 저장소를 서로 복제형태로 하나의 데이터를 양쪽에 디스크에 동일하게 기록 한다, 데이터의 저장용량은 줄어들지만 데이터를 양쪽에 각각 보관함으로써 안정성을 높였다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;raid-4&quot;&gt;RAID 4&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/raid4.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;raid-5패리티-스트라이핑&quot;&gt;RAID 5(패리티 스트라이핑)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/raid5.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;raid-6&quot;&gt;RAID 6&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/raid6.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/raidgra.png&quot; alt=&quot;onealog&quot; /&gt;&lt;/p&gt;</content><author><name>Jo GyeJin</name></author><category term="linux" /><summary type="html">RAID 정의 Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다</summary></entry></feed>
