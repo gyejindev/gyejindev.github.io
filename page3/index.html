@@ -83,8 +83,6 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="" />
-
 
 
 
@@ -111,19 +109,16 @@
 
 
 
-<meta name="description" content="Mariadb 이중화 개념을 정리한다">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mariadb 이중화 정의">
-<meta property="og:url" content="http://localhost:1234/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/">
+<meta name="description" content="조계진">
+<meta property="og:type" content="website">
+<meta property="og:title" content="기술블로그">
+<meta property="og:url" content="http://localhost:1234/page3/">
 <meta property="og:site_name" content="기술블로그">
-<meta property="og:description" content="Mariadb 이중화 개념을 정리한다">
+<meta property="og:description" content="조계진">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="/assets/images/dbhaas.png">
-<meta property="og:image" content="/assets/images/dbhaaa.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mariadb 이중화 정의">
-<meta name="twitter:description" content="Mariadb 이중화 개념을 정리한다">
-<meta name="twitter:image" content="/assets/images/dbhaas.png">
+<meta name="twitter:title" content="기술블로그">
+<meta name="twitter:description" content="조계진">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -156,7 +151,7 @@
 
 
 
-  <title>Mariadb 이중화 정의 | 기술블로그</title>
+  <title>기술블로그</title>
   
 
 
@@ -181,7 +176,7 @@
   
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-home ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -305,9 +300,12 @@
           <div id="content" class="content">
             
 
-<div id="posts" class="posts-expand">
+
+
+<section id="posts" class="posts-expand">
   
-  
+    
+    
 
   
 
@@ -316,7 +314,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:1234/%EC%9D%B4%EC%A4%91%ED%99%94/linux/db/2022/07/24/ha_mariadb/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:1234/linux/2022/06/30/RAID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jo GyeJin">
@@ -336,7 +334,12 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            Mariadb 이중화 정의
+            
+                
+                <a class="post-title-link" href="/linux/2022/06/30/RAID/" itemprop="url">
+                RAID 정의 및 구성
+              </a>
+            
           
         </h1>
         
@@ -350,8 +353,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-24T00:00:00+09:00">
-                2022-07-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-06-30T00:00:00+09:00">
+                2022-06-30
               </time>
             
 
@@ -374,32 +377,8 @@
               
                 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/%EC%9D%B4%EC%A4%91%ED%99%94" itemprop="url" rel="index">
-                    <span itemprop="name">이중화</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/category/#/linux" itemprop="url" rel="index">
                     <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/db" itemprop="url" rel="index">
-                    <span itemprop="name">db</span>
                   </a>
                 </span>
 
@@ -421,12 +400,6 @@
           
 
           
-            
-                <div aline="center" class="post-description" >
-                     Mariadb 이중화 개념을 정리한다 
-                </div>
-            
-          
 
         </div>
       </header>
@@ -439,69 +412,27 @@
 
       
         
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <hr />
-<h2 id="hahigh-availability-고가용성이란">HA(High Availability, 고가용성)이란</h2>
-<blockquote>
-  <p>이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="ha-방식">HA 방식</h2>
-
-<h3 id="1-active-standby">1. Active-Standby</h3>
-<blockquote>
-  <p>Active-Standby 구성은 하나의 Master서버와 여러대의 Slave 서버로 구성된다.
-Master는 Read-Write를 제공하며 Slave 서버는 Master의 데이터만 동기화하며 서비스 제공은 하지 않는다.<br />
-평상시에는 Master서버가 Active상태로 서비스를 제공하다가 Master 서버에서 장애요소가 발생시 Slave 서버가 Master 서버로 승격하여 Active상태로 서비스를 제공한다.</p>
-</blockquote>
-
-<p><img src="/assets/images/dbhaas.png" alt="onealog" /></p>
-
-<h3 id="2-active-active">2. Active-Active</h3>
-<blockquote>
-  <p>Active-Active 구성은 여러대의 서버가 동기화하며 서비스를 제공한다.<br />
-Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데 까지의 소요시간(Faill over time)이 필요하지만 Active-Active는 해당 소요시간이 발생하지 않는다.</p>
-</blockquote>
-
-<p><img src="/assets/images/dbhaaa.png" alt="onealog" /></p>
-
-
+          <!-- 디스크의 RAID구성에 대해 알아보고 구성방법에 대해 기술합니다 -->
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/linux/2022/06/30/RAID/">
+              자세히 보기 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -509,39 +440,35 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
       
 
       
-      
-      
-      
+
       
 
       
-      
-        <div class="post-nav" id="post-nav-id">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/2022/07/20/nat_bridge_host-copy-2/" rel="prev" title="NAT,Bridge,Host-Only 정의">
-                NAT,Bridge,Host-Only 정의 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-      
-
+        
+        
+        
+        
+          <div class="post-eof"></div>
+        
       
     </footer>
   </article>
 
-  <div class="post-spread">
+  
+</section>
+
+
+  <nav class="pagination">
     
-  </div>
-</div>
+    
+    
+
+
+
+    <a class="extend prev" rel="prev" href="/page2/"><i class="fa fa-angle-left"></i></a> <a class="page-number" href="/">1</a> <a class="page-number" href="/page2/">2</a> <span class="page-number current">3</span>
+  </nav>
+
+
 
 
           </div>
@@ -549,10 +476,6 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -570,30 +493,10 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
     <div class="sidebar-inner">
 
       
-        
-        
-        
-
-
-
-
-
-
 
       
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            목차
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            프로필
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/avatar.jpg"
@@ -608,7 +511,7 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -619,7 +522,7 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -655,34 +558,6 @@ Active-Standby는 Master서버의 장애요소를 Slave서버가 파악하는데
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-
-
-
-
-
-
-
-            
-              <div class="post-toc-content">
-    <ol class=nav>
-      <li class="nav-item nav-level-2"> <a class="nav-link" href="#hahigh-availability-고가용성이란"> <span class="nav-number">1</span> <span class="nav-text">HA(High Availability, 고가용성)이란</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#ha-방식"> <span class="nav-number">2</span> <span class="nav-text">HA 방식</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#1-active-standby"> <span class="nav-number">2.1</span> <span class="nav-text">1. Active-Standby</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#2-active-active"> <span class="nav-number">2.2</span> <span class="nav-text">2. Active-Active</span> </a> </li> </ol> </li>
-    </ol>
-  </div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
