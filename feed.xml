@@ -1,42 +1,86 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://0.0.0.0:4000/</id>
+  <id>http://localhost:4000/</id>
   <title>기술블로그</title>
-  <subtitle>IT 기술을 모두 담은 블로그</subtitle>
-  <updated>2023-07-11T22:50:38+09:00</updated>
+  <subtitle>경험에서 습득한 기술공유</subtitle>
+  <updated>2023-07-13T09:51:24+08:00</updated>
   <author>
-    <name>조계진</name>
-    <uri>http://0.0.0.0:4000/</uri>
+    <name>Jogyejin</name>
+    <uri>http://localhost:4000/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4000/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="http://0.0.0.0:4000/"/>
+    href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
-  <rights> © 2023 조계진 </rights>
+  <rights> © 2023 Jogyejin </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
 
   
   <entry>
-    <title>Debian suspend설정</title>
-    <link href="http://0.0.0.0:4000/posts/debian_suspend_set-copy/" rel="alternate" type="text/html" title="Debian suspend설정" />
-    <published>2022-11-07T00:00:00+09:00</published>
+    <title>(Debian) NTP와 systemd-timesyncd</title>
+    <link href="http://localhost:4000/posts/debian_ntp/" rel="alternate" type="text/html" title="(Debian) NTP와 systemd-timesyncd" />
+    <published>2023-07-09T11:33:00+08:00</published>
   
-    <updated>2022-11-07T00:00:00+09:00</updated>
+    <updated>2023-07-09T11:33:00+08:00</updated>
   
-    <id>http://0.0.0.0:4000/posts/debian_suspend_set-copy/</id>
-    <content src="http://0.0.0.0:4000/posts/debian_suspend_set-copy/" />
+    <id>http://localhost:4000/posts/debian_ntp/</id>
+    <content src="http://localhost:4000/posts/debian_ntp/" />
     <author>
-      <name>조계진</name>
+      <name>Jogyejin</name>
     </author>
 
   
     
-    <category term="linux" />
+    <category term="Linux" />
     
-    <category term="debian" />
+    <category term="Debian" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      systemd-timesyncd란
+
+Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 ntp(network time protocol) 서비스를 수행한다.
+
+동작 확인은 timedatectl -a 명령어로 확인이 가능하며 systemd-timesyncd의 수정은 /etc/systemd/timesyncd.conf 파일로 수정하여 사용한다
+
+NTP 설치와 설정 (서버와 클라이언트)
+
+설치하여 사용하는 NTP 패키지는 NTP서버를 구성할 수 있어서 systemd-timesyncd는 클라이언트로만 동작하여 시간을 가져오는 기능만 수행 할 수 있지만 NTP 패키지는 서버로써의 동작 및 클라이언트 동작 수행이 가능하다. systemd-timesyncd와 같이 설치 될 수 없어...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(Debian) 잠금 설정</title>
+    <link href="http://localhost:4000/posts/debian_suspend_set-copy/" rel="alternate" type="text/html" title="(Debian) 잠금 설정" />
+    <published>2023-06-15T11:33:00+08:00</published>
+  
+    <updated>2023-06-15T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/debian_suspend_set-copy/</id>
+    <content src="http://localhost:4000/posts/debian_suspend_set-copy/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Linux" />
+    
+    <category term="Debian" />
     
   
 
@@ -75,77 +119,25 @@ gsettings set org.gnome.desktop.session idle-delay 1800 #30분으로 설정 단 
 
   
   <entry>
-    <title>Debian 한글 설정</title>
-    <link href="http://0.0.0.0:4000/posts/debian_hangul_set/" rel="alternate" type="text/html" title="Debian 한글 설정" />
-    <published>2022-11-06T00:00:00+09:00</published>
+    <title>(Nodejs) 설치 및 구동</title>
+    <link href="http://localhost:4000/posts/nodejs2/" rel="alternate" type="text/html" title="(Nodejs) 설치 및 구동" />
+    <published>2023-06-11T11:33:00+08:00</published>
   
-    <updated>2022-11-06T00:00:00+09:00</updated>
+    <updated>2023-06-11T11:33:00+08:00</updated>
   
-    <id>http://0.0.0.0:4000/posts/debian_hangul_set/</id>
-    <content src="http://0.0.0.0:4000/posts/debian_hangul_set/" />
+    <id>http://localhost:4000/posts/nodejs2/</id>
+    <content src="http://localhost:4000/posts/nodejs2/" />
     <author>
-      <name>조계진</name>
+      <name>Jogyejin</name>
     </author>
 
   
     
-    <category term="linux" />
+    <category term="Web" />
     
-    <category term="debian" />
+    <category term="Backend" />
     
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-데비안 환경
-
-  Debian 11.5
-
-
-1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
-$sudo apt update
-$sudo apt install ibus ibus-hangul fonts-nanum 
-
-
-2. locale 설정 확인 및 설정
-#locale은 언어 설정 파일
-$sudo dpkg-reconfigure locales #locales 설정 프로그램 열기
-en_US.UTF-8 #선택 되어있는지 확인(선택안되어있으면 선택), 페이지내리는 키는 page down, 선택은 스페이스바 , Tab키로 ok선택
-en_US.UTF-8 지정후 Enter 
-$gnome-session-quit # 그놈 세션 빠져나오기 (로그아웃과 동일)
-$sudo reboot # 정...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>nodejs 2장</title>
-    <link href="http://0.0.0.0:4000/posts/nodejs2/" rel="alternate" type="text/html" title="nodejs 2장" />
-    <published>2022-08-04T00:00:00+09:00</published>
-  
-    <updated>2022-08-04T00:00:00+09:00</updated>
-  
-    <id>http://0.0.0.0:4000/posts/nodejs2/</id>
-    <content src="http://0.0.0.0:4000/posts/nodejs2/" />
-    <author>
-      <name>조계진</name>
-    </author>
-
-  
-    
-    <category term="웹개발" />
-    
-    <category term="nodejs" />
+    <category term="Nodejs" />
     
   
 
@@ -186,23 +178,79 @@ server.listen(port, hostname, () =&amp;gt; {
 
   
   <entry>
-    <title>nodejs 1장</title>
-    <link href="http://0.0.0.0:4000/posts/nodejs1/" rel="alternate" type="text/html" title="nodejs 1장" />
-    <published>2022-08-03T00:00:00+09:00</published>
+    <title>(Debian) 한글 설정</title>
+    <link href="http://localhost:4000/posts/debian_hangul_set/" rel="alternate" type="text/html" title="(Debian) 한글 설정" />
+    <published>2023-06-11T11:33:00+08:00</published>
   
-    <updated>2022-08-03T00:00:00+09:00</updated>
+    <updated>2023-06-11T11:33:00+08:00</updated>
   
-    <id>http://0.0.0.0:4000/posts/nodejs1/</id>
-    <content src="http://0.0.0.0:4000/posts/nodejs1/" />
+    <id>http://localhost:4000/posts/debian_hangul_set/</id>
+    <content src="http://localhost:4000/posts/debian_hangul_set/" />
     <author>
-      <name>조계진</name>
+      <name>Jogyejin</name>
     </author>
 
   
     
-    <category term="웹개발" />
+    <category term="Linux" />
     
-    <category term="nodejs" />
+    <category term="Debian" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+데비안 환경
+
+  Debian 11.5
+
+
+1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
+$sudo apt update
+$sudo apt install ibus ibus-hangul fonts-nanum 
+
+
+2. locale 설정 확인 및 설정
+#locale은 언어 설정 파일
+$sudo dpkg-reconfigure locales #locales 설정 프로그램 열기
+en_US.UTF-8 #선택 되어있는지 확인(선택안되어있으면 선택), 페이지내리는 키는 page down, 선택은 스페이스바 , Tab키로 ok선택
+en_US.UTF-8 지정후 Enter 
+$gnome-session-quit # 그놈 세션 빠져나오기 (로그아웃과 동일)
+$sudo reboot # 정...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(Nodejs) Nodejs란</title>
+    <link href="http://localhost:4000/posts/nodejs1/" rel="alternate" type="text/html" title="(Nodejs) Nodejs란" />
+    <published>2023-06-10T11:33:00+08:00</published>
+  
+    <updated>2023-06-10T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/nodejs1/</id>
+    <content src="http://localhost:4000/posts/nodejs1/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Backend" />
+    
+    <category term="Nodejs" />
     
   
 
@@ -228,51 +276,6 @@ NodeJS 특징
 
 
 NodeJS ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>flutter 제2장</title>
-    <link href="http://0.0.0.0:4000/posts/flutter_2/" rel="alternate" type="text/html" title="flutter 제2장" />
-    <published>2022-08-02T00:00:00+09:00</published>
-  
-    <updated>2022-08-02T00:00:00+09:00</updated>
-  
-    <id>http://0.0.0.0:4000/posts/flutter_2/</id>
-    <content src="http://0.0.0.0:4000/posts/flutter_2/" />
-    <author>
-      <name>조계진</name>
-    </author>
-
-  
-    
-    <category term="앱개발" />
-    
-    <category term="flutter" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-안드로이드 스튜디오
-안드로이드 스튜디오는 안드로이드 앱 개발을 위한 IDE이다.
-
-- /*네이티브 방식*/ : 안드로이드나 IOS 같은 플랫폼 자체에서 제공하는 개발 환경으로 개발하는 방식 안드로이드는 개발 도구로 안드로이드 스튜디오를 사용하며 개발 언어로는 자바 또는 코틀린을 사용한다 ios는 맥os 환경에서만 개발이 가능하며 개발 도구로 엑스코드를 사용한다 사용언어로는 스위프트 또는 오브젝티브를 사용한다
-
-- /*하이브리드 방식*/ : 웹 기술로 앱 화면을 만들고 네이티브 기술로 포장하여 앱 형태로 가공한다. 기존의 웹 기술을 활용하여 빠르게 앱을 개발 할 수 있다는 장점을 가지고 있지만, 네이티브 성능을 따라 갈 수 없으며 UI 또한 별도로 만든다.
-
-- /*크로스 플랫폼 방식*/ : 안드로이...
     </summary>
   
 
