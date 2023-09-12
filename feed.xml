@@ -2,9 +2,9 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://localhost:4000/</id>
-  <title>기술블로그</title>
+  <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-07-13T10:12:43+08:00</updated>
+  <updated>2023-09-12T12:59:56+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,102 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Web) Html의 모든것</title>
+    <link href="http://localhost:4000/posts/html/" rel="alternate" type="text/html" title="(Web) Html의 모든것" />
+    <published>2023-07-14T11:33:00+08:00</published>
+  
+    <updated>2023-07-14T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/html/</id>
+    <content src="http://localhost:4000/posts/html/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Frontend" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+HTML란
+
+  HTML은 HyperText Markup Language의 약자
+웹 페이지는 HTML 문서라고도 불리며, HTML 태그들로 구성된다
+각각의 HTML 태그는 웹 페이지의 디자인이나 기능을 결정하는데 사용된다
+
+
+HTML 기본 구조
+- &amp;lt;!DOCTYPE html&amp;gt; : 현재 문서가 HTML5 문서임을 명시한다
+
+- &amp;lt;html&amp;gt; : HTML 문서의 루트(root) 요소를 정의한다
+
+- &amp;lt;head&amp;gt; : HTML 문서의 메타데이터(metadata)를 정의한다
+
+- 메타데이터(metadata)란 HTML 문서에 대한 정보(data)로 웹 브라우저에는 직접적으로 표현되지 않는 정보를 의미한다
+- 이러한 메타데이터는 &amp;lt;title&amp;gt;, &amp;lt;style&amp;gt;...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(Network) Subnet과 Subnetting</title>
+    <link href="http://localhost:4000/posts/subnet/" rel="alternate" type="text/html" title="(Network) Subnet과 Subnetting" />
+    <published>2023-07-14T11:33:00+08:00</published>
+  
+    <updated>2023-07-14T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/subnet/</id>
+    <content src="http://localhost:4000/posts/subnet/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Network" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+서브넷의 등장 배경
+
+  IPv4는 초기에 클래스로 나누어서 할당을 방법을 사용하였지만 이 방식은 크게 비효율적이었다 예로들어 클래스 B를 어느 중소기업체에게 할당했을 경우 65000여개의 아이피를 다 쓰는 것이 아닌 10000개 정도만 쓴다고 가정하면 10000개가 아닌 나머지 50000여개의 IP는 쓰이지 않은 채 이 기업체는 클래스 B의 하나를 점유하고 있는 상태가 된다 그렇다고 이 기업체에게 클래스 C를 IP를 할당하자니 IP자원이 너무 부족하였고, 결국 큰 네트워크를 작게 쪼개는 작업이 필요했다
+이러한 문제를 해결하기 위해 IP를 사용하는 네트워크 장치 수에 따라 효율적으로 사용할 수 있는 서브넷(Subnet)이 등장하게 된다.
+
+
+서브넷(Subnet)
+네트워크의 규모가 크면 클수록 네트워...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -171,111 +267,6 @@ const server = http.createServer((req, res) =&amp;gt; {
 
 server.listen(port, hostname, () =&amp;gt; {
   console.log(`Server running at http:...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Debian) 한글 설정</title>
-    <link href="http://localhost:4000/posts/debian_hangul_set/" rel="alternate" type="text/html" title="(Debian) 한글 설정" />
-    <published>2023-06-11T11:33:00+08:00</published>
-  
-    <updated>2023-06-11T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/debian_hangul_set/</id>
-    <content src="http://localhost:4000/posts/debian_hangul_set/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Linux" />
-    
-    <category term="Debian" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-데비안 환경
-
-  Debian 11.5
-
-
-1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
-$sudo apt update
-$sudo apt install ibus ibus-hangul fonts-nanum 
-
-
-2. locale 설정 확인 및 설정
-#locale은 언어 설정 파일
-$sudo dpkg-reconfigure locales #locales 설정 프로그램 열기
-en_US.UTF-8 #선택 되어있는지 확인(선택안되어있으면 선택), 페이지내리는 키는 page down, 선택은 스페이스바 , Tab키로 ok선택
-en_US.UTF-8 지정후 Enter 
-$gnome-session-quit # 그놈 세션 빠져나오기 (로그아웃과 동일)
-$sudo reboot # 정...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Nodejs) Nodejs란</title>
-    <link href="http://localhost:4000/posts/nodejs1/" rel="alternate" type="text/html" title="(Nodejs) Nodejs란" />
-    <published>2023-06-10T11:33:00+08:00</published>
-  
-    <updated>2023-06-10T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/nodejs1/</id>
-    <content src="http://localhost:4000/posts/nodejs1/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Backend" />
-    
-    <category term="Nodejs" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-NodeJS란
-Chrome V8 Javascript 엔진으로 빌드 된 JavaScript 런타임이다.
-
-NodeJS 특징
-- Node.js는 JavaScript를 서버에서도 사용할 수 있도록 만든 프로그램이다.
-- Node.js는 V8이라는 JavaScript 엔진 위에서 동작하는 자바스크립트 런타임(환경)이다.
-- Node.js는 서버사이트 스크립트 언어가 아니다. 프로그램(환경)이다.
-- Node.js는 웹서버와 같이 확장성 있는 네트워크 프로그램을 제작하기 위해 만들어졌다.
-- NOde.js는 단일쓰레드 기반 비동기방식으로 기존 업무 처리가 완료되기 전에 또 다른 요청이 있으면 다음 처리에 요청을 보내고 다른 작업을 처리하다가 끝나고 다음꺼를 처리하기 때문에 서버 부하가 적다
-
-
-NodeJS ...
     </summary>
   
 
