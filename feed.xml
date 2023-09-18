@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-09-12T12:59:56+08:00</updated>
+  <updated>2023-09-18T21:19:48+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,62 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(인터랙티브 웹 페이지 만들기) Chapter1</title>
+    <link href="http://localhost:4000/posts/chap1/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter1" />
+    <published>2023-09-12T11:33:00+08:00</published>
+  
+    <updated>2023-09-12T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/chap1/</id>
+    <content src="http://localhost:4000/posts/chap1/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+UI &amp;amp; UX
+
+
+  
+    UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등)
+    UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분)
+  
+
+
+HTML, CSS, 자바스크립트란
+
+  예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다
+
+
+웹 개발에 있어서 필요한 도구
+
+  웹 브라우저
+    
+      웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -208,65 +264,6 @@ gsettings set org.gnome.desktop.session idle-delay 1800 #30분으로 설정 단 
 - gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 
 - gsettings ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Nodejs) 설치 및 구동</title>
-    <link href="http://localhost:4000/posts/nodejs2/" rel="alternate" type="text/html" title="(Nodejs) 설치 및 구동" />
-    <published>2023-06-11T11:33:00+08:00</published>
-  
-    <updated>2023-06-11T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/nodejs2/</id>
-    <content src="http://localhost:4000/posts/nodejs2/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Backend" />
-    
-    <category term="Nodejs" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-NodeJS 설치
-
-  다운로드 주소
-  설치 후 터미널에서 node –version 명령어를 통해 확인 할 수 있다
-
-
-NodeJS 기본 구동
-const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) =&amp;gt; {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
-
-server.listen(port, hostname, () =&amp;gt; {
-  console.log(`Server running at http:...
     </summary>
   
 
