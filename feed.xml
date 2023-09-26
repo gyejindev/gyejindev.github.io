@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-09-19T14:30:48+08:00</updated>
+  <updated>2023-09-26T18:34:29+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,58 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(인터랙티브 웹 페이지 만들기) Chapter2</title>
+    <link href="http://localhost:4000/posts/chap2/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter2" />
+    <published>2023-09-24T11:33:00+08:00</published>
+  
+    <updated>2023-09-24T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/chap2/</id>
+    <content src="http://localhost:4000/posts/chap2/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+css란
+
+   CSS는 Cascading Style Sheets 약자이며
+HTML, XHTML, XML 같은 문서의 스타일를 꾸밀 때 사용하는 스타일 시트 언어이다
+HTML로 문서의 뼈대를 만들면
+CSS는 이 문서의 색칠을 담당하고 있다
+글꼴이나, 배경색, 너비와 높이, 위치 등을 지정하거나,
+웹 브라우저, 스크린 크기, 장치에 따라서 화면을 다르게  표시될 수 있도록 지정할 수도 있다.
+
+
+
+  CSS는 1996는 12월 W3C(웹 문서 표준을 만드는 기관)가 도입 했는데
+그 전엔 HTML언어 하나로 문서의 뼈대도 만들고, 꾸밈도 같이 했다.
+그러다 보니 HTML 문서를 수정할 때 모든 문서를 하나씩 수정해야 하는 번거로움이 있었으며,
+CSS는 문서의 내용(content)과 표현(presenta...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -209,61 +261,6 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
 NTP 설치와 설정 (서버와 클라이언트)
 
 설치하여 사용하는 NTP 패키지는 NTP서버를 구성할 수 있어서 systemd-timesyncd는 클라이언트로만 동작하여 시간을 가져오는 기능만 수행 할 수 있지만 NTP 패키지는 서버로써의 동작 및 클라이언트 동작 수행이 가능하다. systemd-timesyncd와 같이 설치 될 수 없어...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Debian) 잠금 설정</title>
-    <link href="http://localhost:4000/posts/debian_suspend_set-copy/" rel="alternate" type="text/html" title="(Debian) 잠금 설정" />
-    <published>2023-06-15T11:33:00+08:00</published>
-  
-    <updated>2023-06-15T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/debian_suspend_set-copy/</id>
-    <content src="http://localhost:4000/posts/debian_suspend_set-copy/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Linux" />
-    
-    <category term="Debian" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-데비안 환경
-
-  Debian 11.5
-
-
-자동 밝기를 비활성화
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-
-
-블랙스크린 비활성화
-gsettings set org.gnome.desktop.session idle-delay 0 #비활성화
-gsettings set org.gnome.desktop.session idle-delay 1800 #30분으로 설정 단 gui에서는 30분 항목이없어서 Never로 표시
-
-
-자동 절전모드 해제
-- gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-
-- gsettings ...
     </summary>
   
 
