@@ -14,6 +14,8 @@
 
 <html lang="en"
   
+    data-mode="dark"
+  
 >
 
   <!--
@@ -111,137 +113,6 @@
 
 
   
-    <!--
-  Switch the mode between dark and light.
--->
-
-<script type="text/javascript">
-  class ModeToggle {
-    static get MODE_KEY() { return "mode"; }
-    static get MODE_ATTR() { return "data-mode"; }
-    static get DARK_MODE() { return "dark"; }
-    static get LIGHT_MODE() { return "light"; }
-    static get ID() { return "mode-toggle"; }
-
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener("change", () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-
-        self.notify();
-
-      });
-
-    } /* constructor() */
-
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
-
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
-
-    get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; }
-
-    get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; }
-
-    get hasMode() { return this.mode != null; }
-
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode
-        || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    setDark() {
-      $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
-
-    setLight() {
-      $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
-
-    clearMode() {
-      $('html').removeAttr(ModeToggle.MODE_ATTR);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
-      window.postMessage({
-        direction: ModeToggle.ID,
-        message: this.modeStatus
-      }, "*");
-    }
-
-  } /* ModeToggle */
-
-  const toggle = new ModeToggle();
-
-  function flipMode() {
-    if (toggle.hasMode) {
-      if (toggle.isSysDarkPrefer) {
-        if (toggle.isLightMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setLight();
-        }
-
-      } else {
-        if (toggle.isDarkMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setDark();
-        }
-      }
-
-    } else {
-      if (toggle.isSysDarkPrefer) {
-        toggle.setLight();
-      } else {
-        toggle.setDark();
-      }
-    }
-
-    toggle.notify();
-
-  } /* flipMode() */
-
-</script>
-
-  
 
   <body data-spy="scroll" data-target="#toc" data-topbar-visible="true">
 
@@ -323,14 +194,6 @@
 
   <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center">
 
-    
-      <button class="mode-toggle btn" aria-label="Switch Mode">
-        <i class="fas fa-adjust"></i>
-      </button>
-
-      
-        <span class="icon-border"></span>
-      
     
 
     
@@ -456,9 +319,17 @@
   <h1 class="pl-lg-2">
     <i class="fa fa-tag fa-fw text-muted"></i>
     Backend
-    <span class="lead text-muted pl-2">4</span>
+    <span class="lead text-muted pl-2">5</span>
   </h1>
   <ul class="post-content pl-0">
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/chap3/">(인터랙티브 웹 페이지 만들기) Chapter3</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small" data-ts="1696649580" data-df="ll">
+        2023-10-07
+      </span>
+    </li>
     
     <li class="d-flex justify-content-between pl-md-3 pr-md-3">
       <a href="/posts/chap2/">(인터랙티브 웹 페이지 만들기) Chapter2</a>
@@ -682,6 +553,269 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -761,172 +895,10 @@
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -962,94 +934,6 @@
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1096,13 +980,13 @@
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
       <a class="post-tag" href="/tags/web/">Web</a>
     
       
       <a class="post-tag" href="/tags/backend/">Backend</a>
+    
+      
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
@@ -1114,13 +998,13 @@
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
       <a class="post-tag" href="/tags/app/">App</a>
     
       
       <a class="post-tag" href="/tags/flutter/">Flutter</a>
-    
-      
-      <a class="post-tag" href="/tags/nodejs/">Nodejs</a>
     
 
     </div>
@@ -1342,6 +1226,269 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1421,172 +1568,10 @@
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1622,94 +1607,6 @@
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1756,13 +1653,13 @@
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
       <a class="post-tag" href="/tags/web/">Web</a>
     
       
       <a class="post-tag" href="/tags/backend/">Backend</a>
+    
+      
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
@@ -1774,13 +1671,13 @@
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
       <a class="post-tag" href="/tags/app/">App</a>
     
       
       <a class="post-tag" href="/tags/flutter/">Flutter</a>
-    
-      
-      <a class="post-tag" href="/tags/nodejs/">Nodejs</a>
     
 
     </div>

@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-09-26T18:35:37+08:00</updated>
+  <updated>2023-10-10T15:29:15+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,83 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(인터랙티브 웹 페이지 만들기) Chapter3</title>
+    <link href="http://localhost:4000/posts/chap3/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter3" />
+    <published>2023-10-07T11:33:00+08:00</published>
+  
+    <updated>2023-10-07T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/chap3/</id>
+    <content src="http://localhost:4000/posts/chap3/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+Chap1. 웹 페이지의 배경 꾸미기
+
+   태그 영역마다 배경색과 이미지를 넣을 수 있다
+
+
+Chap1-1. 배경색 지정하기
+배경색은 background-color 속성을 사용해서 태그에 직접 지정할 수 있다
+
+
+  
+    
+      속성명
+      속성값
+      설명
+    
+  
+  
+    
+      background-color
+      영문명rgb(0,0,0)#000000
+      배경색을 영어 색상명으로 적용배경색을 RGB 표기법으로 적용배경색을 16진수 표기법으로 적용
+    
+  
+
+
+
+  See the Pen 
+  background-color by mon node (@mon-node)
+  on CodePen.
+
+
+
+
+
+Chap1-2. 배경 이미지 적용하기
+
+
+ ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -217,50 +294,6 @@ HTML 기본 구조
 
 서브넷(Subnet)
 네트워크의 규모가 크면 클수록 네트워...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Debian) NTP와 systemd-timesyncd</title>
-    <link href="http://localhost:4000/posts/debian_ntp/" rel="alternate" type="text/html" title="(Debian) NTP와 systemd-timesyncd" />
-    <published>2023-07-09T11:33:00+08:00</published>
-  
-    <updated>2023-07-09T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/debian_ntp/</id>
-    <content src="http://localhost:4000/posts/debian_ntp/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Linux" />
-    
-    <category term="Debian" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      systemd-timesyncd란
-
-Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 ntp(network time protocol) 서비스를 수행한다.
-
-동작 확인은 timedatectl -a 명령어로 확인이 가능하며 systemd-timesyncd의 수정은 /etc/systemd/timesyncd.conf 파일로 수정하여 사용한다
-
-NTP 설치와 설정 (서버와 클라이언트)
-
-설치하여 사용하는 NTP 패키지는 NTP서버를 구성할 수 있어서 systemd-timesyncd는 클라이언트로만 동작하여 시간을 가져오는 기능만 수행 할 수 있지만 NTP 패키지는 서버로써의 동작 및 클라이언트 동작 수행이 가능하다. systemd-timesyncd와 같이 설치 될 수 없어...
     </summary>
   
 

@@ -14,6 +14,8 @@
 
 <html lang="en"
   
+    data-mode="dark"
+  
 >
 
   <!--
@@ -119,137 +121,6 @@
 
 
   
-    <!--
-  Switch the mode between dark and light.
--->
-
-<script type="text/javascript">
-  class ModeToggle {
-    static get MODE_KEY() { return "mode"; }
-    static get MODE_ATTR() { return "data-mode"; }
-    static get DARK_MODE() { return "dark"; }
-    static get LIGHT_MODE() { return "light"; }
-    static get ID() { return "mode-toggle"; }
-
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener("change", () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-
-        self.notify();
-
-      });
-
-    } /* constructor() */
-
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
-
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
-
-    get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; }
-
-    get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; }
-
-    get hasMode() { return this.mode != null; }
-
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode
-        || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    setDark() {
-      $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
-
-    setLight() {
-      $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
-
-    clearMode() {
-      $('html').removeAttr(ModeToggle.MODE_ATTR);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
-      window.postMessage({
-        direction: ModeToggle.ID,
-        message: this.modeStatus
-      }, "*");
-    }
-
-  } /* ModeToggle */
-
-  const toggle = new ModeToggle();
-
-  function flipMode() {
-    if (toggle.hasMode) {
-      if (toggle.isSysDarkPrefer) {
-        if (toggle.isLightMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setLight();
-        }
-
-      } else {
-        if (toggle.isDarkMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setDark();
-        }
-      }
-
-    } else {
-      if (toggle.isSysDarkPrefer) {
-        toggle.setLight();
-      } else {
-        toggle.setDark();
-      }
-    }
-
-    toggle.notify();
-
-  } /* flipMode() */
-
-</script>
-
-  
 
   <body data-spy="scroll" data-target="#toc" data-topbar-visible="true">
 
@@ -331,14 +202,6 @@
 
   <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center">
 
-    
-      <button class="mode-toggle btn" aria-label="Switch Mode">
-        <i class="fas fa-adjust"></i>
-      </button>
-
-      
-        <span class="icon-border"></span>
-      
     
 
     
@@ -458,6 +321,103 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/debian_hangul_set/">(Debian) 한글 설정</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+데비안 환경
+
+  Debian 11.5
+
+
+1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
+$sudo apt update
+$sudo apt install ibus ibus-hangul fonts-nanum 
+
+
+2. locale 설정 확인 및 설정
+#locale은 언어 설정 파일
+$sudo dpkg-reconfi...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1686454380"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-06-11
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="194 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Linux,
+            Debian
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1299,102 +1259,6 @@ SaaS(Software as a Service)
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/ha_mariadb/">(Mariadb) 이중화란</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-HA(High Availability, 고가용성)이란
-
-  이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.
-
-
-
-
-HA 방식
-
-1. Active-Standby
-
-  Active-Standby 구성은 하나의 Master서버와 여러대의 Sla...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1683948780"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-05-13
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="277 words">
-  <em>1 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            DB,
-            Mariadb
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1675,6 +1539,269 @@ HA 방식
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1754,172 +1881,10 @@ HA 방식
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1955,94 +1920,6 @@ HA 방식
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2089,13 +1966,13 @@ HA 방식
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
       <a class="post-tag" href="/tags/web/">Web</a>
     
       
       <a class="post-tag" href="/tags/backend/">Backend</a>
+    
+      
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
@@ -2107,13 +1984,13 @@ HA 방식
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
       <a class="post-tag" href="/tags/app/">App</a>
     
       
       <a class="post-tag" href="/tags/flutter/">Flutter</a>
-    
-      
-      <a class="post-tag" href="/tags/nodejs/">Nodejs</a>
     
 
     </div>
@@ -2335,6 +2212,269 @@ HA 방식
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2414,172 +2554,10 @@ HA 방식
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2615,94 +2593,6 @@ HA 방식
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2749,13 +2639,13 @@ HA 방식
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
       <a class="post-tag" href="/tags/web/">Web</a>
     
       
       <a class="post-tag" href="/tags/backend/">Backend</a>
+    
+      
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
@@ -2767,13 +2657,13 @@ HA 방식
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
       <a class="post-tag" href="/tags/app/">App</a>
     
       
       <a class="post-tag" href="/tags/flutter/">Flutter</a>
-    
-      
-      <a class="post-tag" href="/tags/nodejs/">Nodejs</a>
     
 
     </div>
