@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Jogyejin의 시맨틱 태그 연습</title>
+    <style>
+      /* 전체 스타일링 */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: skyblue;
+      }
+
+      /* 헤더 스타일링 */
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      header h1 {
+        margin: 0;
+      }
+
+      /* 네비게이션 스타일링 */
+      nav {
+        background-color: orange;
+        padding: 0.5em;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      nav li {
+        margin-right: 1em;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 0.5em;
+      }
+
+      nav a:hover {
+        background-color: #333;
+        color: #fff;
+      }
+
+      /* 메인 스타일링 */
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1em;
+      }
+
+      section {
+        margin-right: 1em;
+        flex: 1 1 300px;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1em;
+        padding: 1em;
+      }
+
+      section:last-child {
+        margin-right: 0;
+      }
+
+      section h2 {
+        margin: 0;
+      }
+
+      article {
+        margin-top: 1em;
+      }
+
+      article h3 {
+        margin: 0;
+      }
+
+      /* 사이드바 스타일링 */
+      aside {
+        background-color: #fab1a0;
+        padding: 1em;
+        margin-right: 1em;
+        flex: 0 0 300px;
+      }
+
+      aside h3 {
+        margin: 0;
+      }
+
+      /* 바닥글 스타일링 */
+      footer {
+        background-color: #1abc9c;
+        color: #fff;
+        padding: 1em;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 0;
+        padding: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Jogyejin의 시맨틱 태그 연습</h1>
+      <img src="https://i.ibb.co/bb7kRP4/default-avatar.jpg" alt="default-avatar" border="0" width="100">
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">홈</a></li>
+        <li><a href="#">상품정보</a></li>
+        <li><a href="#">내정보</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section>
+        <h2>상품정보</h2>
+        <p>향이 좋은 향초</p>
+        <ul>
+          <li>라벤더 향초</li>
+          <li>파우더 향초</li>
+          <li>바디솜 향초</li>
+        </ul>
+      </section>
+      <section>
+        <h2>내정보</h2>
+        <article>
+          <h3>사용자정보</h3>
+          <p>ID/PW</p>
+        </article>
+        <article>
+          <h3>배송지주소</h3>
+          <p>경기도 성남시</p>
+        </article>
+      </section>
+    </main>
+    <aside>
+      <h3>광고</h3>
+      <p>광고 내용</p>
+    </aside>
+    <footer>
+      <p>상호명</p>
+      <p>고객센터 전화번호</p>
+    </footer>
+  </body>
+</html>

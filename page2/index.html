@@ -326,6 +326,287 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/debian_ntp/">(Debian) NTP와 systemd-timesyncd</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        systemd-timesyncd란
+
+Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 ntp(network time protocol) 서비스를 수행한다.
+
+동작 확인은 timedatectl -a 명령어로 확인이 가능하며 systemd-timesyncd의 수정은 /etc/systemd/timesyncd.conf 파...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1688873580"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-07-09
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="858 words">
+  <em>4 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Linux,
+            Debian
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/debian_suspend_set-copy/">(Debian) 잠금 설정</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+데비안 환경
+
+  Debian 11.5
+
+
+자동 밝기를 비활성화
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+
+
+블랙스크린 비활성화
+gsettings set org.gnome.desktop.session idle-delay 0 #비활성화
+gsettings s...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1686799980"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-06-15
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="94 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Linux,
+            Debian
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/nodejs2/">(Nodejs) 설치 및 구동</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+NodeJS 설치
+
+  다운로드 주소
+  설치 후 터미널에서 node –version 명령어를 통해 확인 할 수 있다
+
+
+NodeJS 기본 구동
+const http = require(&#39;http&#39;);
+
+const hostname = &#39;127.0.0.1&#39;;
+const port = 3000;
+
+const server = http.createServer(...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1686454380"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-06-11
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="152 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Backend,
+            Nodejs
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/debian_hangul_set/">(Debian) 한글 설정</a>
     </h1>
 
@@ -971,294 +1252,6 @@ vi 명령어
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/RAID/">(Raid) Raid의 정의와 구성</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        RAID 정의
-
-  Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다
-
-
-
-
-RAID 0(스트라이핑)
-
-
-
-  RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.
-작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1684553580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-05-20
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="398 words">
-  <em>2 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Linux,
-            Raid
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/Bonding/">(Network) 본딩의 정의와 설정방법</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-본딩이란(Bonding)
-
-  본딩(Bonding)이란 여러개의 물리적인 NIC카드를 논리적으로 묶어서 대역폭을 확장하거나 NIC카드 장애가 발생 할 경우 정상적인 NIC카드로 네트워크 서비스를 자동으로 변경해주는 기능
-
-
-
-
-본딩 설정방법(centos)
-
-  Redhat에서의 네트워크 본딩 설정방법을 정의합니다.
-
-
-1. 현재OS 확인
-
-[roo...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1684294380"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-05-17
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="603 words">
-  <em>3 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Network
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/DaaS_SaaS/">(Network) 클라우드 서비스의 종류(DaaS/SaaS/PaaS)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-DaaS(Desktop as a Service)
-
-  DaaS는 클라우드 인프라를 이용해 사용자가 개인용 컴퓨터가 없어도 원격 인프라에 구축된 서비스를 이용할 수 있는것
-
-
-
-
-SaaS(Software as a Service)
-
-  DaaS는 클라우드 인프라를 이용해 사용자가 개인용 컴퓨터가 없어도 원격 인프라에 구축된 서비스를 이용할 수 있는것
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1684294380"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-05-17
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="409 words">
-  <em>2 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Network
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1333,10 +1326,27 @@ SaaS(Software as a Service)
 
   
 
+    
+    
+    
+    
+    
+
+    
+
+    
+      <!-- show number -->
+      <li class="page-item ">
+        <a class="page-link btn-box-shadow" href="/page4/">4</a>
+      </li>
+    
+
+  
+
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>2</span>
-    <span class="text-muted">/ 3</span>
+    <span class="text-muted">/ 4</span>
   </li>
 
   <!-- right arrow -->
@@ -1460,115 +1470,6 @@ SaaS(Software as a Service)
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1588,10 +1489,56 @@ SaaS(Software as a Service)
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1603,26 +1550,6 @@ SaaS(Software as a Service)
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1688,6 +1615,50 @@ SaaS(Software as a Service)
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1717,53 +1688,10 @@ SaaS(Software as a Service)
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1886,6 +1814,97 @@ SaaS(Software as a Service)
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1910,10 +1929,49 @@ SaaS(Software as a Service)
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1972,19 +2030,19 @@ SaaS(Software as a Service)
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>
@@ -2133,115 +2191,6 @@ SaaS(Software as a Service)
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2261,10 +2210,56 @@ SaaS(Software as a Service)
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2276,26 +2271,6 @@ SaaS(Software as a Service)
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2361,6 +2336,50 @@ SaaS(Software as a Service)
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2390,53 +2409,10 @@ SaaS(Software as a Service)
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2559,6 +2535,97 @@ SaaS(Software as a Service)
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2583,10 +2650,49 @@ SaaS(Software as a Service)
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -2645,19 +2751,19 @@ SaaS(Software as a Service)
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>

@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-10-10T15:29:15+08:00</updated>
+  <updated>2023-10-26T18:28:03+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,182 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(인터랙티브 웹 페이지 만들기) Chapter5</title>
+    <link href="http://localhost:4000/posts/chap5/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter5" />
+    <published>2023-10-22T11:33:00+08:00</published>
+  
+    <updated>2023-10-22T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/chap5/</id>
+    <content src="http://localhost:4000/posts/chap5/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+Chap1. 자바 스크립트 시작하기
+
+  자바 스크립트를 사용하기 위해서는 HTML 파일 내부에 스크립트 코드를 작성하거나, 외부의 자바스크립트 파일을 만들어서 HTML 파일과 연동해야 한다
+
+
+자바와 자바스크립트의 차이는 무엇일까?
+
+
+  
+    
+      구분
+      자바
+      자바스크립트
+    
+  
+  
+    
+      객체지향
+      자바는 객체지향 프로그래밍 언어이며 객체들 사이의 관계를 기반으로 특정한 행동들이 이루어진다
+      자바스크립트는 객체지향 스크립트 언어이다 객체를 이용한다는 부분은 자바와 동일하다
+    
+    
+      실행환경
+      자바 애플리케이션이나 프로그램은 자바 가상기계(JVM) 위에서 실행된다 JVM환경을 생성하기 위해서는 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(인터랙티브 웹 페이지 만들기) Chapter4</title>
+    <link href="http://localhost:4000/posts/chap4/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter4" />
+    <published>2023-10-15T11:33:00+08:00</published>
+  
+    <updated>2023-10-15T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/chap4/</id>
+    <content src="http://localhost:4000/posts/chap4/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+Chap1. flex 방식으로 레이아웃 만들기
+
+  앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다
+Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다
+
+
+flex의 기본
+
+[Flex의 기본 레이아웃]
+
+&amp;lt;div class="container"&amp;gt;
+	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+부모 요소의 div.container를 Flex Container라고 부르며 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(Debian12) apache 멀티 포트 서비스 설정</title>
+    <link href="http://localhost:4000/posts/apache_port_set/" rel="alternate" type="text/html" title="(Debian12) apache 멀티 포트 서비스 설정" />
+    <published>2023-10-15T11:33:00+08:00</published>
+  
+    <updated>2023-10-15T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/apache_port_set/</id>
+    <content src="http://localhost:4000/posts/apache_port_set/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Apache" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+  해당 문서는 Debian12에서 테스트하여 작성된 문서이며 타OS에서는 설정 및 구동방식이 다를 수 있음
+
+
+/etc/apache2/ports.conf 수정
+/etc/apache2/ports.conf 수정 서비스할 포트들 Listen 추가
+# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 80
+Listen 8080
+
+&amp;lt;IfModule ssl_module&amp;gt;
+        Listen 443
+&amp;lt;/IfModule&amp;gt;
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -142,158 +318,6 @@ CSS는 이 문서의 색칠을 담당하고 있다
 그 전엔 HTML언어 하나로 문서의 뼈대도 만들고, 꾸밈도 같이 했다.
 그러다 보니 HTML 문서를 수정할 때 모든 문서를 하나씩 수정해야 하는 번거로움이 있었으며,
 CSS는 문서의 내용(content)과 표현(presenta...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(인터랙티브 웹 페이지 만들기) Chapter1</title>
-    <link href="http://localhost:4000/posts/chap1/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter1" />
-    <published>2023-09-12T11:33:00+08:00</published>
-  
-    <updated>2023-09-12T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/chap1/</id>
-    <content src="http://localhost:4000/posts/chap1/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-UI &amp;amp; UX
-
-
-  
-    UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등)
-    UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분)
-  
-
-
-HTML, CSS, 자바스크립트란
-
-  예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다
-
-
-웹 개발에 있어서 필요한 도구
-
-  웹 브라우저
-    
-      웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Web) Html의 모든것</title>
-    <link href="http://localhost:4000/posts/html/" rel="alternate" type="text/html" title="(Web) Html의 모든것" />
-    <published>2023-07-14T11:33:00+08:00</published>
-  
-    <updated>2023-07-14T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/html/</id>
-    <content src="http://localhost:4000/posts/html/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Frontend" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-HTML란
-
-  HTML은 HyperText Markup Language의 약자
-웹 페이지는 HTML 문서라고도 불리며, HTML 태그들로 구성된다
-각각의 HTML 태그는 웹 페이지의 디자인이나 기능을 결정하는데 사용된다
-
-
-HTML 기본 구조
-- &amp;lt;!DOCTYPE html&amp;gt; : 현재 문서가 HTML5 문서임을 명시한다
-
-- &amp;lt;html&amp;gt; : HTML 문서의 루트(root) 요소를 정의한다
-
-- &amp;lt;head&amp;gt; : HTML 문서의 메타데이터(metadata)를 정의한다
-
-- 메타데이터(metadata)란 HTML 문서에 대한 정보(data)로 웹 브라우저에는 직접적으로 표현되지 않는 정보를 의미한다
-- 이러한 메타데이터는 &amp;lt;title&amp;gt;, &amp;lt;style&amp;gt;...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Network) Subnet과 Subnetting</title>
-    <link href="http://localhost:4000/posts/subnet/" rel="alternate" type="text/html" title="(Network) Subnet과 Subnetting" />
-    <published>2023-07-14T11:33:00+08:00</published>
-  
-    <updated>2023-07-14T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/subnet/</id>
-    <content src="http://localhost:4000/posts/subnet/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Network" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-서브넷의 등장 배경
-
-  IPv4는 초기에 클래스로 나누어서 할당을 방법을 사용하였지만 이 방식은 크게 비효율적이었다 예로들어 클래스 B를 어느 중소기업체에게 할당했을 경우 65000여개의 아이피를 다 쓰는 것이 아닌 10000개 정도만 쓴다고 가정하면 10000개가 아닌 나머지 50000여개의 IP는 쓰이지 않은 채 이 기업체는 클래스 B의 하나를 점유하고 있는 상태가 된다 그렇다고 이 기업체에게 클래스 C를 IP를 할당하자니 IP자원이 너무 부족하였고, 결국 큰 네트워크를 작게 쪼개는 작업이 필요했다
-이러한 문제를 해결하기 위해 IP를 사용하는 네트워크 장치 수에 따라 효율적으로 사용할 수 있는 서브넷(Subnet)이 등장하게 된다.
-
-
-서브넷(Subnet)
-네트워크의 규모가 크면 클수록 네트워...
     </summary>
   
 

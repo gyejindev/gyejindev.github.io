@@ -634,188 +634,7 @@
 <!-- return -->
 
 <!-- gyejin_우클릭 방지 시작 -->
-<!---------------------------------------------------------------
-    저작권 안내 메세지, <span> 내의 글을 원하는 대로 수정하세요.
----------------------------------------------------------------->
-<div>
-    <div class="cm-overlay cm-no-js"></div>
-    <div id="Copyright_Message" class="cm-overlay cm-hide">
-        <span>
-            복제를 금지하는 사이트에서 콘텐츠를 복사해 사용하려 하고 있습니다. <br>
-            이 콘텐츠를 블로그나 웹사이트의 콘텐츠로 사용하면 저작권 문제로 처벌 받을 수 있습니다.
-        </span>
-        <noscript class="cm-no-js">
-            <!-- 자바스크립트 비활성화 시에 보여지는 메세지 -->
-            <span>
-                이 페이지를 보기 위해서는 자바스크립트가 필요합니다. <br>
-                사이트 설정에서 자바스크립트를 사용하도록 설정해주세요.
-            </span>
-        </noscript>
-    </div>
-    <!---------------------------------------------------------------
-        아래 CSS를 수정하여 메세지의 스타일을 변경하세요.
-    ---------------------------------------------------------------->
-    <style>
-        #Copyright_Message span {
-            font-size: 15px;
-            font-family: sans-serif;
-            position: fixed;
-            width: 500px;
-            max-width: 90%;
-            top: 50%;
-            left: 50%;
-            margin-left: -250px;
-            margin-top: -100px;
 
-            border-radius: 10px;
-            box-shadow: 0px 0px 34px 2px rgba(242, 191, 191, 1);
-            padding: 10px 10px 10px 35px;
-
-            line-height: 1.5;
-            color: #555;
-
-            background: #ffecec url('https://tistory4.daumcdn.net/tistory/770263/skin/images/warning.png') no-repeat 10px 50%;
-            border: 1px solid #f5aca6;
-        }
-    </style>
-</div>
-<script>
-    (function () {
-        //=================================================================================
-        // 우클릭, 드래그, 복사 차단
-        //=================================================================================
-        var events = ["contextmenu", "selectstart", "dragstart", "copy", "cut"];
-
-        events.forEach(function (event) {
-            window.addEventListener(event, blockEvent, true);
-        })
-
-        function blockEvent(e) { e.preventDefault(); }
-        //=================================================================================
-        // 개발자 메뉴 (F12) 차단
-        //=================================================================================
-        window.addEventListener('keydown', blockDeveloperMenu, true);
-
-        function blockDeveloperMenu(e) {
-            if (e.keyCode === 123) { // F12
-                blockEvent(e);
-            }
-            if (e.ctrlKey && e.shiftKey) {
-                var code = e.keyCode;
-                // 개발자 도구를 여는 Ctrl + Shift + 키 조합
-                if (code === 67 || code === 69 || code === 73 || code === 74 || code === 75 || code === 77 || code === 83) {
-                    blockEvent(e);
-                }
-            }
-        }
-
-        setInterval(function () { debugger; }, 200);
-        //=================================================================================
-        // 애드온 (pig toolbox 등) 차단
-        //=================================================================================
-        var event, received = false;
-
-        refreshEvent();
-
-        window.addEventListener("contextmenu", function (e) {
-            if (e === event) { received = true; }
-        }, true);
-
-        setInterval(function () {
-            received = false;
-            window.dispatchEvent(event);
-            received ? hideMessage() : showMessage();
-            refreshEvent();
-        }, 200);
-
-        function refreshEvent() {
-            if (event && !event.cancelBubble) { return; }
-            event = document.createEvent("MouseEvents");
-            event.initMouseEvent("contextmenu", true, true, window, 1, 50, 121, 50, 50, false, false, false, false, 2, null);
-        }
-        //=================================================================================
-        // 자바스크립트 비활성화 (Disable Javascript) 시 메세지 띄우기
-        //=================================================================================
-        var timer = null;
-        function showMessage() {
-            clearInterval(timer); timer = null;
-        }
-        function hideMessage() {
-            if (timer === null) { timer = setInterval(reveal, 450); }
-        }
-        function reveal() {
-            cl().toggle("cm-hide");
-            cl().toggle("cm-hide-2");
-        }
-        function cl() { return Copyright_Message.classList; }
-
-        window.addEventListener('visibilitychange', function() {
-            // 페이지가 숨겨질 시 animation을 정지함
-            if (document.visibilityState === "hidden") {
-                cl().remove("cm-hide", "cm-hide-2");
-                void Copyright_Message.offsetWidth;
-                showMessage();
-            } else {
-                cl().add("cm-hide");
-                cl().remove("cm-hide-2");
-                hideMessage();
-            }
-        }, true);
-
-        hideMessage();
-    })();
-</script>
-<!---------------------------------------------------------------
-    자바스크립트 비활성화 후 새로고침 시 메세지 띄우기
----------------------------------------------------------------->
-<noscript>
-    <style>
-        #Copyright_Message>span { display: none; }
-        .cm-no-js { background: white; visibility: visible!important; }
-    </style>
-</noscript>
-<!---------------------------------------------------------------
-    드래그 차단
----------------------------------------------------------------->
-<style>
-    *:not(input):not(textarea):not(code):not(blockquote):not(pre) {
-        user-select: none !important;
-        -webkit-user-select: none !important;
-        -webkit-touch-callout: none !important;
-    }
-</style>
-<!-- 저작권 메세지 CSS -->
-<style>
-    .cm-overlay {
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        overflow-x: hidden;
-        z-index: 2147483647;
-    }
-
-    #Copyright_Message, .cm-no-js { visibility: hidden; }
-
-    #Copyright_Message.cm-hide {
-        animation: 1s cm-reveal 500ms forwards;
-    }
-    #Copyright_Message.cm-hide-2 {
-        animation: 1s cm-reveal-2 500ms forwards;
-    }
-
-    @keyframes cm-reveal {
-        from { opacity: 0; visibility: visible; }
-        to { opacity: 1; visibility: visible; }
-    }
-    @keyframes cm-reveal-2 {
-        from { opacity: 0; visibility: visible; }
-        to { opacity: 1; visibility: visible; }
-    }
-
-    @media print { noscript { display: none; } }
-</style>
 
 <!--gyejin_우클릭방지 끝 -->
 
@@ -1454,115 +1273,6 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1582,10 +1292,56 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1597,26 +1353,6 @@ font-family: “적용할 폰트체명”;</p>
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1682,6 +1418,50 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1711,53 +1491,10 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1880,6 +1617,97 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1904,10 +1732,49 @@ font-family: “적용할 폰트체명”;</p>
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1966,19 +1833,19 @@ font-family: “적용할 폰트체명”;</p>
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>
@@ -2038,6 +1905,45 @@ font-family: “적용할 폰트체명”;</p>
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2511,7 +2417,7 @@ Chap1-1. 배경색 지정하기
       
       
       <div class="card">
-        <a href="/posts/html/">
+        <a href="/posts/chap4/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2519,13 +2425,13 @@ Chap1-1. 배경색 지정하기
 -->
 
 <em class="timeago small"
-    data-ts="1689305580"
+    data-ts="1697340780"
     
     >
-  2023-07-14
+  2023-10-15
 </em>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Web) Html의 모든것</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(인터랙티브 웹 페이지 만들기) Chapter4</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2536,17 +2442,24 @@ Chap1-1. 배경색 지정하기
 
                 
 
-HTML란
-
-  HTML은 HyperText Markup Language의 약자
-웹 페이지는 HTML 문서라고도 불리며, HTML 태그들로 구성된다
-각각의 HTML 태그는 웹 페이지의 디자인이나 기능을 결정하는데 사용된다
 
 
-HTML 기본 구조
-- &amp;lt;!DOCTYPE html&amp;gt; : 현재 문서가 HTML5 문서임을 명시한다
+Chap1. flex 방식으로 레이아웃 만들기
 
-- &amp;lt;ht...
+  앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다
+Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다
+
+
+flex의 기본
+
+[Flex의 기본 레이아웃]
+
+1
+2
+3
+4
+5
+&amp;lt;div class=&quot;cont...
               </p>
             </div>
           </div>
@@ -2717,115 +2630,6 @@ HTML 기본 구조
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2845,10 +2649,56 @@ HTML 기본 구조
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2860,26 +2710,6 @@ HTML 기본 구조
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2945,6 +2775,50 @@ HTML 기본 구조
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2974,53 +2848,10 @@ HTML 기본 구조
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3143,6 +2974,97 @@ HTML 기본 구조
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3167,10 +3089,49 @@ HTML 기본 구조
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -3229,19 +3190,19 @@ HTML 기본 구조
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>

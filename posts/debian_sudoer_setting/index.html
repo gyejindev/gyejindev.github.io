@@ -507,188 +507,7 @@
 <!-- return -->
 
 <!-- gyejin_우클릭 방지 시작 -->
-<!---------------------------------------------------------------
-    저작권 안내 메세지, <span> 내의 글을 원하는 대로 수정하세요.
----------------------------------------------------------------->
-<div>
-    <div class="cm-overlay cm-no-js"></div>
-    <div id="Copyright_Message" class="cm-overlay cm-hide">
-        <span>
-            복제를 금지하는 사이트에서 콘텐츠를 복사해 사용하려 하고 있습니다. <br>
-            이 콘텐츠를 블로그나 웹사이트의 콘텐츠로 사용하면 저작권 문제로 처벌 받을 수 있습니다.
-        </span>
-        <noscript class="cm-no-js">
-            <!-- 자바스크립트 비활성화 시에 보여지는 메세지 -->
-            <span>
-                이 페이지를 보기 위해서는 자바스크립트가 필요합니다. <br>
-                사이트 설정에서 자바스크립트를 사용하도록 설정해주세요.
-            </span>
-        </noscript>
-    </div>
-    <!---------------------------------------------------------------
-        아래 CSS를 수정하여 메세지의 스타일을 변경하세요.
-    ---------------------------------------------------------------->
-    <style>
-        #Copyright_Message span {
-            font-size: 15px;
-            font-family: sans-serif;
-            position: fixed;
-            width: 500px;
-            max-width: 90%;
-            top: 50%;
-            left: 50%;
-            margin-left: -250px;
-            margin-top: -100px;
 
-            border-radius: 10px;
-            box-shadow: 0px 0px 34px 2px rgba(242, 191, 191, 1);
-            padding: 10px 10px 10px 35px;
-
-            line-height: 1.5;
-            color: #555;
-
-            background: #ffecec url('https://tistory4.daumcdn.net/tistory/770263/skin/images/warning.png') no-repeat 10px 50%;
-            border: 1px solid #f5aca6;
-        }
-    </style>
-</div>
-<script>
-    (function () {
-        //=================================================================================
-        // 우클릭, 드래그, 복사 차단
-        //=================================================================================
-        var events = ["contextmenu", "selectstart", "dragstart", "copy", "cut"];
-
-        events.forEach(function (event) {
-            window.addEventListener(event, blockEvent, true);
-        })
-
-        function blockEvent(e) { e.preventDefault(); }
-        //=================================================================================
-        // 개발자 메뉴 (F12) 차단
-        //=================================================================================
-        window.addEventListener('keydown', blockDeveloperMenu, true);
-
-        function blockDeveloperMenu(e) {
-            if (e.keyCode === 123) { // F12
-                blockEvent(e);
-            }
-            if (e.ctrlKey && e.shiftKey) {
-                var code = e.keyCode;
-                // 개발자 도구를 여는 Ctrl + Shift + 키 조합
-                if (code === 67 || code === 69 || code === 73 || code === 74 || code === 75 || code === 77 || code === 83) {
-                    blockEvent(e);
-                }
-            }
-        }
-
-        setInterval(function () { debugger; }, 200);
-        //=================================================================================
-        // 애드온 (pig toolbox 등) 차단
-        //=================================================================================
-        var event, received = false;
-
-        refreshEvent();
-
-        window.addEventListener("contextmenu", function (e) {
-            if (e === event) { received = true; }
-        }, true);
-
-        setInterval(function () {
-            received = false;
-            window.dispatchEvent(event);
-            received ? hideMessage() : showMessage();
-            refreshEvent();
-        }, 200);
-
-        function refreshEvent() {
-            if (event && !event.cancelBubble) { return; }
-            event = document.createEvent("MouseEvents");
-            event.initMouseEvent("contextmenu", true, true, window, 1, 50, 121, 50, 50, false, false, false, false, 2, null);
-        }
-        //=================================================================================
-        // 자바스크립트 비활성화 (Disable Javascript) 시 메세지 띄우기
-        //=================================================================================
-        var timer = null;
-        function showMessage() {
-            clearInterval(timer); timer = null;
-        }
-        function hideMessage() {
-            if (timer === null) { timer = setInterval(reveal, 450); }
-        }
-        function reveal() {
-            cl().toggle("cm-hide");
-            cl().toggle("cm-hide-2");
-        }
-        function cl() { return Copyright_Message.classList; }
-
-        window.addEventListener('visibilitychange', function() {
-            // 페이지가 숨겨질 시 animation을 정지함
-            if (document.visibilityState === "hidden") {
-                cl().remove("cm-hide", "cm-hide-2");
-                void Copyright_Message.offsetWidth;
-                showMessage();
-            } else {
-                cl().add("cm-hide");
-                cl().remove("cm-hide-2");
-                hideMessage();
-            }
-        }, true);
-
-        hideMessage();
-    })();
-</script>
-<!---------------------------------------------------------------
-    자바스크립트 비활성화 후 새로고침 시 메세지 띄우기
----------------------------------------------------------------->
-<noscript>
-    <style>
-        #Copyright_Message>span { display: none; }
-        .cm-no-js { background: white; visibility: visible!important; }
-    </style>
-</noscript>
-<!---------------------------------------------------------------
-    드래그 차단
----------------------------------------------------------------->
-<style>
-    *:not(input):not(textarea):not(code):not(blockquote):not(pre) {
-        user-select: none !important;
-        -webkit-user-select: none !important;
-        -webkit-touch-callout: none !important;
-    }
-</style>
-<!-- 저작권 메세지 CSS -->
-<style>
-    .cm-overlay {
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        overflow-x: hidden;
-        z-index: 2147483647;
-    }
-
-    #Copyright_Message, .cm-no-js { visibility: hidden; }
-
-    #Copyright_Message.cm-hide {
-        animation: 1s cm-reveal 500ms forwards;
-    }
-    #Copyright_Message.cm-hide-2 {
-        animation: 1s cm-reveal-2 500ms forwards;
-    }
-
-    @keyframes cm-reveal {
-        from { opacity: 0; visibility: visible; }
-        to { opacity: 1; visibility: visible; }
-    }
-    @keyframes cm-reveal-2 {
-        from { opacity: 0; visibility: visible; }
-        to { opacity: 1; visibility: visible; }
-    }
-
-    @media print { noscript { display: none; } }
-</style>
 
 <!--gyejin_우클릭방지 끝 -->
 
@@ -976,115 +795,6 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1104,10 +814,56 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1119,26 +875,6 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1204,6 +940,50 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1233,53 +1013,10 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1402,6 +1139,97 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1426,10 +1254,49 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1488,19 +1355,19 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>
@@ -1560,6 +1427,45 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1938,61 +1844,6 @@ sudoers파일은 sudo명령어에 대한 설정을 다루는 파일이고 이곳
       
       
       <div class="card">
-        <a href="/posts/debian_hangul_set/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago small"
-    data-ts="1686454380"
-    
-    >
-  2023-06-11
-</em>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Debian) 한글 설정</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-
-데비안 환경
-
-  Debian 11.5
-
-
-1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
-1
-2
-$sudo apt update
-$sudo apt install ibus ibus-hangul fonts-nanum 
-
-
-2. locale 설정 확인 및 설정
-1
-2
-3
-4
-5
-6
-#locale은 언어 설정 파일
-$s...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/debian_suspend_set-copy/">
           <div class="card-body">
             <!--
@@ -2070,6 +1921,61 @@ gsett...
 Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 ntp(network time protocol) 서비스를 수행한다.
 
 동작 확인은 timedatectl -a 명령어로 확인이 가능하며 systemd-timesyncd의 수정은 /etc/systemd/timesyncd.conf 파...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/debian_hangul_set/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago small"
+    data-ts="1686454380"
+    
+    >
+  2023-06-11
+</em>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Debian) 한글 설정</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+
+데비안 환경
+
+  Debian 11.5
+
+
+1. 한글폰트 및 ibus 한글입력기 설치 (해당 폰트가 있어야 한글 출력 안깨짐)
+1
+2
+$sudo apt update
+$sudo apt install ibus ibus-hangul fonts-nanum 
+
+
+2. locale 설정 확인 및 설정
+1
+2
+3
+4
+5
+6
+#locale은 언어 설정 파일
+$s...
               </p>
             </div>
           </div>
@@ -2240,115 +2146,6 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2368,10 +2165,56 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2383,26 +2226,6 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2468,6 +2291,50 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2497,53 +2364,10 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
-      
-    
   
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2666,6 +2490,97 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2690,10 +2605,49 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -2752,19 +2706,19 @@ Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 nt
       <a class="post-tag" href="/tags/backend/">Backend</a>
     
       
-      <a class="post-tag" href="/tags/network/">Network</a>
-    
-      
-      <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
     
       
+      <a class="post-tag" href="/tags/network/">Network</a>
+    
+      
       <a class="post-tag" href="/tags/study/">Study</a>
+    
+      
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
       <a class="post-tag" href="/tags/app/">App</a>
