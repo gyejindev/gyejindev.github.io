@@ -325,188 +325,6 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/getting-started/">Getting Started</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Prerequisites
-
-Follow the instructions in the Jekyll Docs to complete the installation of Ruby, RubyGems, Jekyll, and Bundler. In addition, Git is also required to be installed.
-
-Installation
-
-Crea...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1565355300"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2019-08-09
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1081 words">
-  <em>6 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Blogging,
-            Tutorial
-          </span>
-        
-      </div>
-
-      
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>Pinned</span>
-      </div>
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/write-a-new-post/">Writing a New Post</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        This post will guide you how to write a post on Chirpy theme. Even if you have previous experience with Jekyll, this article is worth reading, because many features require specific variables to be...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1565244600"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2019-08-08
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1293 words">
-  <em>7 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Blogging,
-            Tutorial
-          </span>
-        
-      </div>
-
-      
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>Pinned</span>
-      </div>
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
       <a href="/posts/chap5/">(인터랙티브 웹 페이지 만들기) Chapter5</a>
     </h1>
 
@@ -586,7 +404,7 @@ Chap1. 자바 스크립트 시작하기
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="4007 words">
+  title="4005 words">
   <em>22 min</em></span>
 
 
@@ -683,7 +501,7 @@ flex의 기본
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1456 words">
+  title="1455 words">
   <em>8 min</em></span>
 
 
@@ -814,8 +632,6 @@ flex의 기본
 
         
 
-
-
 Chap1. 웹 페이지의 배경 꾸미기
 
    태그 영역마다 배경색과 이미지를 넣을 수 있다
@@ -834,7 +650,7 @@ Chap1-1. 배경색 지정하기
   
   
     
-      background-col...
+      background-color...
       </p>
     </div>
 
@@ -1267,6 +1083,189 @@ HTML 기본 구조
 
 
 
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/debian_ntp/">(Debian) NTP와 systemd-timesyncd</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        systemd-timesyncd란
+
+Ubuntu는 설치가 되면 systemd-timesyncd 라는 daemon이 기본적으로 ntp(network time protocol) 서비스를 수행한다.
+
+동작 확인은 timedatectl -a 명령어로 확인이 가능하며 systemd-timesyncd의 수정은 /etc/systemd/timesyncd.conf 파...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1688873580"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-07-09
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="858 words">
+  <em>4 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Linux,
+            Debian
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/debian_suspend_set-copy/">(Debian) 잠금 설정</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+데비안 환경
+
+  Debian 11.5
+
+
+자동 밝기를 비활성화
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+
+
+블랙스크린 비활성화
+gsettings set org.gnome.desktop.session idle-delay 0 #비활성화
+gsettings s...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1686799980"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-06-15
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="94 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Linux,
+            Debian
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
 </div> <!-- #post-list -->
 
 
@@ -1341,27 +1340,10 @@ HTML 기본 구조
 
   
 
-    
-    
-    
-    
-    
-
-    
-
-    
-      <!-- show number -->
-      <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page4/">4</a>
-      </li>
-    
-
-  
-
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>1</span>
-    <span class="text-muted">/ 4</span>
+    <span class="text-muted">/ 3</span>
   </li>
 
   <!-- right arrow -->
@@ -1475,21 +1457,6 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1549,32 +1516,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1674,11 +1616,6 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1723,22 +1660,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1749,21 +1671,6 @@ HTML 기본 구조
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1898,27 +1805,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
     
   
     
@@ -1993,11 +1880,6 @@ HTML 기본 구조
     
     
       
-    
-  
-    
-    
-    
     
   
     
@@ -2196,21 +2078,6 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2270,32 +2137,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2395,11 +2237,6 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -2444,22 +2281,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2470,21 +2292,6 @@ HTML 기본 구조
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2619,27 +2426,7 @@ HTML 기본 구조
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
     
   
     
@@ -2714,11 +2501,6 @@ HTML 기본 구조
     
     
       
-    
-  
-    
-    
-    
     
   
     

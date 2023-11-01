@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-10-26T18:28:03+08:00</updated>
+  <updated>2023-11-01T13:14:16+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -126,13 +126,13 @@ flex의 기본
 [Flex의 기본 레이아웃]
 
 &amp;lt;div class="container"&amp;gt;
-	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
-	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
-	&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
+&amp;lt;div class="item"&amp;gt;flex item&amp;lt;/div&amp;gt;
 &amp;lt;/div&amp;gt;
 
 
-부모 요소의 div.container를 Flex Container라고 부르며 ...
+부모 요소의 div.container를 Flex Container라고 부르며 자식 ...
     </summary>
   
 
@@ -226,8 +226,6 @@ Listen 8080
 
       
 
-
-
 Chap1. 웹 페이지의 배경 꾸미기
 
    태그 영역마다 배경색과 이미지를 넣을 수 있다
@@ -265,7 +263,8 @@ Chap1-1. 배경색 지정하기
 Chap1-2. 배경 이미지 적용하기
 
 
- ...
+  
+...
     </summary>
   
 
