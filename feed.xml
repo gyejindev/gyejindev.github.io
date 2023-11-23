@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-11-23T10:07:46+08:00</updated>
+  <updated>2023-11-23T13:32:30+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -20,8 +20,8 @@
 
   
   <entry>
-    <title>(코딩 자율학습 스프링 부트3) Part4</title>
-    <link href="http://localhost:4000/posts/spring4/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) Part4" />
+    <title>(코딩 자율학습 스프링 부트3) 4장</title>
+    <link href="http://localhost:4000/posts/spring4/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 4장" />
     <published>2023-11-20T11:33:00+08:00</published>
   
     <updated>2023-11-20T11:33:00+08:00</updated>
@@ -73,8 +73,8 @@ Part4. 스프링 부트 시작
 
   
   <entry>
-    <title>(코딩 자율학습 스프링 부트3) Part2</title>
-    <link href="http://localhost:4000/posts/spring2/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) Part2" />
+    <title>(코딩 자율학습 스프링 부트3) 3장</title>
+    <link href="http://localhost:4000/posts/spring2/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 3장" />
     <published>2023-11-16T11:33:00+08:00</published>
   
     <updated>2023-11-16T11:33:00+08:00</updated>
@@ -126,8 +126,8 @@ Part2. 스프링 부트 시작
 
   
   <entry>
-    <title>(코딩 자율학습 스프링 부트3) Part1</title>
-    <link href="http://localhost:4000/posts/spring1/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) Part1" />
+    <title>(코딩 자율학습 스프링 부트3) 1,2장</title>
+    <link href="http://localhost:4000/posts/spring1/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 1,2장" />
     <published>2023-11-11T11:33:00+08:00</published>
   
     <updated>2023-11-11T11:33:00+08:00</updated>

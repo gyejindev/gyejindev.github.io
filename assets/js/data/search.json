@@ -1,7 +1,7 @@
 [
   
   {
-    "title": "(코딩 자율학습 스프링 부트3) Part4",
+    "title": "(코딩 자율학습 스프링 부트3) 4장",
     "url": "/posts/spring4/",
     "categories": "Web, Study",
     "tags": "Web, Backend, SpringBoot, Study",
@@ -16,7 +16,7 @@
   },
   
   {
-    "title": "(코딩 자율학습 스프링 부트3) Part2",
+    "title": "(코딩 자율학습 스프링 부트3) 3장",
     "url": "/posts/spring2/",
     "categories": "Web, Study",
     "tags": "Web, Backend, SpringBoot, Study",
@@ -27,11 +27,11 @@
 
 
 
-    "snippet": "Part2. 스프링 부트 시작게시판 만들고 새 글 작성하기: Create폼 데이터  폼 데이터는 HTML 요소인 &amp;lt;form&amp;gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &amp;lt;form&amp;gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다[FORM 태그 속성]폼 태그 속성에는 name, action, method, target 등이 있다1. action- 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다- 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다1. name- 전송될 데이터의 이름1. accept-charset- 폼 전송에 사용할 문자 인코딩을 지정한다1. target- action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다1. method (디폴트 값 = get)- 서버로 데이터를 전송하는 방식입니다.- get 방식 or post 방식이 존재한다    1) get 방식    - &amp;lt;form method = &quot;get&quot;&amp;gt; &amp;amp; 링크 &amp;amp;  URL 직접 &amp;amp; 자바스크립트 등등    - URL의 끝에 데이터를 첨부해서 전송하는 방식        문제점    - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지)    - URL 최대 256자까지 (오버플로우 : 데이터 잘림)    - URL은 인코딩 방식이 base64(한글포함x)    - 되도록 영문과 숫자 정도만 전송     1) post 방식    - post 방식 : &amp;lt;form method = &quot;post&quot;&amp;gt; 유일    - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식)    - 데이터 노출이 없음(보안상 조금 더 안전)    - 제한 크기 무제한    - 한글 상관없이 전송[Form데이터를 DTO객체로 저장하는 과정]graph LRA(01.뷰 페이지 만들기)--&amp;gt;B[02.컨트롤러 만들기]B--&amp;gt;CC(03.DTO 만들기)--&amp;gt;D[04.전송 받은 폼 데이터로 DTO 객체에 담기]뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache]컨트롤러 만들기[/src/main/java/controller/ArticleController][사용자에게 폼 데이터 입력할 수 있는 페이지 제공][사용자가 입력한 폼 데이터를 처리하는 라우트]DTO 만들기[/src/main/java/dto/ArticleForm][사용자에게 폼 데이터 입력할 수 있는 페이지 제공]전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController][사용자에게 폼 데이터 입력할 수 있는 페이지 제공]폼 데이터와 DTO 필드 매핑하기  JPA(Java Persistence API)는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 JPA의 핵심 도구로는 엔티티(entity)와 리파지터리(repository)가 있다      엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다    리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다  [DTO를 DB에 저장하는 과정]graph LRA(클라이언트에서 데이터 생성)--&amp;gt;B[컨트롤러에서 DTO에 담음]B--&amp;gt;CC(DTO객체를 DB엔티티로 변환)--&amp;gt;D[리파지터리에서 DB엔티티를 DB에 저장]"
+    "snippet": "Part2. 스프링 부트 시작게시판 만들고 새 글 작성하기: Create폼 데이터  폼 데이터는 HTML 요소인 &amp;lt;form&amp;gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &amp;lt;form&amp;gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다[FORM 태그 속성]폼 태그 속성에는 name, action, method, target 등이 있다1. action- 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다- 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다1. name- 전송될 데이터의 이름1. accept-charset- 폼 전송에 사용할 문자 인코딩을 지정한다1. target- action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다1. method (디폴트 값 = get)- 서버로 데이터를 전송하는 방식입니다.- get 방식 or post 방식이 존재한다    1) get 방식    - &amp;lt;form method = &quot;get&quot;&amp;gt; &amp;amp; 링크 &amp;amp;  URL 직접 &amp;amp; 자바스크립트 등등    - URL의 끝에 데이터를 첨부해서 전송하는 방식        문제점    - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지)    - URL 최대 256자까지 (오버플로우 : 데이터 잘림)    - URL은 인코딩 방식이 base64(한글포함x)    - 되도록 영문과 숫자 정도만 전송     1) post 방식    - post 방식 : &amp;lt;form method = &quot;post&quot;&amp;gt; 유일    - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식)    - 데이터 노출이 없음(보안상 조금 더 안전)    - 제한 크기 무제한    - 한글 상관없이 전송[Form데이터를 DTO객체로 저장하는 과정]graph LRA(01.뷰 페이지 만들기)--&amp;gt;B[02.컨트롤러 만들기]B--&amp;gt;C(03.DTO 만들기)graph LRD[04.전송 받은 폼 데이터로 DTO 객체에 담기]D--&amp;gt;E(05.DTO를 엔티티로 변환하기)--&amp;gt;F(06.리파지터리로 엔티티를 DB에 저장하기)뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache]컨트롤러 만들기[/src/main/java/controller/ArticleController][사용자에게 폼 데이터 입력할 수 있는 페이지 제공][사용자가 입력한 폼 데이터를 처리하는 라우트]DTO 만들기[/src/main/java/dto/ArticleForm][사용자에게 폼 데이터 입력할 수 있는 페이지 제공]전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController][사용자에게 폼 데이터 입력할 수 있는 페이지 제공]폼 데이터와 DTO 필드 매핑하기DTO를 엔티티로 변환하기[엔티티 클래스 생성 /src/main/java/entity/Article]  DTO의 데이터를 받아서 처리하기 위해 엔티티 클래스를 생성한다  DTO 코드를 작성할 때와 같이 title, content 필드를 선언한다 두 필드도 DB에서 인식할 수 있게 @Column 어노테이션을 붙인다 두 필드가 DB 테이블의 각 열(column)과 연결된다  엔티티 클래스에 @Entity이 선언되어있는데 JPA에서 제공하는 어노테이션으로, 이 어노테이션이 붙은 클래스를 기반으로 DB에 테이블이 생성된다 테이블 이름은 클래스 이름과 동일하게 Article로 생성된다  엔티티의 대푯값을 넣는다 대푯값을 id로 선언하고 @Id 어노테이션을 붙입니다. 이어서 @GeneratedValue 어노테이션도 붙여서 대푯값을 자동으로 생성하게 한다(예: 1, 2, 3, …)리파지터리로 엔티티를 DB에 저장하기[리파지터리 인터페이스 생성하기 /src/main/java/repository/ArticleRepository][리파지터리로 엔티티를 DB에 저장하기 /src/main/java/controller/ArticleController]  JPA(Java Persistence API)는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 JPA의 핵심 도구로는 엔티티(entity)와 리파지터리(repository)가 있다      엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다    리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다  [DTO를 DB에 저장하는 과정]graph LRA(클라이언트에서 데이터 생성)--&amp;gt;B[컨트롤러에서 DTO에 담음]B--&amp;gt;CC(DTO객체를 DB엔티티로 변환)--&amp;gt;D[리파지터리에서 DB엔티티를 DB에 저장]"
   },
   
   {
-    "title": "(코딩 자율학습 스프링 부트3) Part1",
+    "title": "(코딩 자율학습 스프링 부트3) 1,2장",
     "url": "/posts/spring1/",
     "categories": "Web, Study",
     "tags": "Web, Backend, SpringBoot, Study",
