@@ -1,21 +1,6 @@
 [
   
   {
-    "title": "(코딩 자율학습 스프링 부트3) 4장",
-    "url": "/posts/spring4/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
-    "date": "2023-11-20 11:33:00 +0800",
-    
-
-
-
-
-
-    "snippet": "Part4. 스프링 부트 시작룸복과 리팩터링  롬복(lombok)이란 코드를 간소화해 주는 라이브러리이다 롬복을 사용하면 필수 코드를 간편하게 작성할 수 있다 또, 로깅 기능을 사용할 수 있다  코드 반복 최소화  로깅 기능 지원롬복 설치여기서는 인텔리제이 IDE에서 롬복 설치를 진행한다"
-  },
-  
-  {
     "title": "(코딩 자율학습 스프링 부트3) 3장",
     "url": "/posts/spring2/",
     "categories": "Web, Study",
