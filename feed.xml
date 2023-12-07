@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-11-23T17:49:22+08:00</updated>
+  <updated>2023-12-07T19:36:46+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,62 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(코딩 자율학습 스프링 부트3) 4장</title>
+    <link href="http://localhost:4000/posts/spring4/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 4장" />
+    <published>2023-11-20T11:33:00+08:00</published>
+  
+    <updated>2023-11-20T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/spring4/</id>
+    <content src="http://localhost:4000/posts/spring4/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+
+graph LR
+A(클라이언트에서 서버로 요청)--&amp;gt;B[서버에서 클라이언트로 재요청 지시]
+B--&amp;gt;C
+C(클라이언트가 서버에게 재요청)--&amp;gt;D[서버가 클라이언트에게 결과 응답]
+
+
+
+게시글 Update
+게시판에 작성한 글을 수정하기 위해서는 해당 글을 불러와 수정할 수 있는 입력 상태로 만들어야 한다 이후 내용을 입력하고 다시 전송하면 DB에 반영돼 최종적으로 수정된다
+
+[수정 단계]
+
+  &amp;lt;상세 페이지&amp;gt;에서 [Edit] 버튼을 클릭한다
+  요청을 받은 컨트롤러는 해당 글의 id로 DB에서 데이터를 찾아 가져온다
+  컨트롤러는 가져온 데이터를 뷰에서 사용할 수 있도록 모델에 등록한다
+  모델에 등록된 데이터를 &amp;lt;수정 페이지&amp;gt;에서 보여 준다 그러면 사용자가 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -251,69 +307,6 @@ class human {
     String sex;
     String name; 
     in...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(인터랙티브 웹 페이지 만들기) Chapter5</title>
-    <link href="http://localhost:4000/posts/chap5/" rel="alternate" type="text/html" title="(인터랙티브 웹 페이지 만들기) Chapter5" />
-    <published>2023-10-22T11:33:00+08:00</published>
-  
-    <updated>2023-10-22T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/chap5/</id>
-    <content src="http://localhost:4000/posts/chap5/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-
-
-Chap1. 자바 스크립트 시작하기
-
-  자바 스크립트를 사용하기 위해서는 HTML 파일 내부에 스크립트 코드를 작성하거나, 외부의 자바스크립트 파일을 만들어서 HTML 파일과 연동해야 한다
-
-
-자바와 자바스크립트의 차이는 무엇일까?
-
-
-  
-    
-      구분
-      자바
-      자바스크립트
-    
-  
-  
-    
-      객체지향
-      자바는 객체지향 프로그래밍 언어이며 객체들 사이의 관계를 기반으로 특정한 행동들이 이루어진다
-      자바스크립트는 객체지향 스크립트 언어이다 객체를 이용한다는 부분은 자바와 동일하다
-    
-    
-      실행환경
-      자바 애플리케이션이나 프로그램은 자바 가상기계(JVM) 위에서 실행된다 JVM환경을 생성하기 위해서는 ...
     </summary>
   
 
