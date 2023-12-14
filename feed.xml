@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-12-07T19:39:34+08:00</updated>
+  <updated>2023-12-14T18:47:19+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -20,14 +20,115 @@
 
   
   <entry>
+    <title>(코딩 자율학습 스프링 부트3) 12장</title>
+    <link href="http://localhost:4000/posts/spring12/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 12장" />
+    <published>2023-12-12T11:33:00+08:00</published>
+  
+    <updated>2023-12-12T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/spring12/</id>
+    <content src="http://localhost:4000/posts/spring12/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+서비스와 트랜잭션의 개념
+서비스란 컨트롤러와 리파지터리 사이에 위치하는 계층으로, 서버의 핵심 기능(비지니스 로직)을 처리하는 순서를 총괄한다 모두 성공해야 하는 일련의 과정을 트랜잭션이라고 하며 트랜잭션이 실패로 돌아갈 경우 진행 초기 단계로 돌리는 것을 롤백이라고 한다
+
+서비스 계층 만들기
+서비스 계층을 추가해서 컨트롤러, 서비스, 리파지터리의 역할을 분업해보도록 한다
+
+[기존의 컨트롤러에서 서비스와 분업하게 변경됨 –11장 참고]
+
+// FirstApiController 파일
+
+    @GetMapping("/api/articles")
+    public List&amp;lt;Article&amp;gt; index() {
+//        return articleRepository.findAll();
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(코딩 자율학습 스프링 부트3) 11장</title>
+    <link href="http://localhost:4000/posts/spring11/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 11장" />
+    <published>2023-12-11T11:33:00+08:00</published>
+  
+    <updated>2023-12-11T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/spring11/</id>
+    <content src="http://localhost:4000/posts/spring11/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+REST API와 JSAON의 등장 배경
+웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
+REST API 방식에서는 HTTP 요청에 대한 응답으로 서버의 자원을 반환한다
+버는 클라이언트의 요청에 대한 응답으로 화면(view)이 아닌 데이터(data)를 전송한다 이때 사용하는 응답 데이터는 JSON(JavaScript Object Notation)이다
+과거에는 응답 데이터로 XML을 많이 사용했지만, 최근에는 JSON으로 통일되는 추세이다
+
+[XML 예시]
+
+&amp;lt;artic...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>(코딩 자율학습 스프링 부트3) 4장</title>
-    <link href="http://localhost:4000/posts/spring4/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 4장" />
-    <published>2023-11-20T11:33:00+08:00</published>
+    <link href="http://localhost:4000/posts/spring9/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 4장" />
+    <published>2023-11-26T11:33:00+08:00</published>
   
-    <updated>2023-11-20T11:33:00+08:00</updated>
+    <updated>2023-11-26T11:33:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/spring4/</id>
-    <content src="http://localhost:4000/posts/spring4/" />
+    <id>http://localhost:4000/posts/spring9/</id>
+    <content src="http://localhost:4000/posts/spring9/" />
     <author>
       <name>Jogyejin</name>
     </author>
@@ -175,134 +276,6 @@ JDK 다운로드 및 설치버전 확인하기
 JDK 다운로드 페이지
   
   버전확인: CMD 터미...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>생성자와 this</title>
-    <link href="http://localhost:4000/posts/constructor/" rel="alternate" type="text/html" title="생성자와 this" />
-    <published>2023-11-10T11:33:00+08:00</published>
-  
-    <updated>2023-11-10T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/constructor/</id>
-    <content src="http://localhost:4000/posts/constructor/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-생성자(constructor)
-
-  
-    인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드
-    인스턴스 초기화란 인스턴스 변수들을 초기화하는 것
-    대부분 객체의 초기화를 목적으로 사용한다
-  
-
-
-인스턴스 생성 과정
-graph LR
-A(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&amp;gt;B(생성자가 호출되어 실행)--&amp;gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다)
-
-
-생성자의 제약조건
-
-
-  
-    생성자의 이름은 클래스의 이름과 같아야한다
-    생성자는 다른 함수와는 다르게 리턴 값이 없다
-    생성자는 객체가 생성될때 자동으로 한번 호출된다
-    생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩)
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>클래스와 인스턴스</title>
-    <link href="http://localhost:4000/posts/class/" rel="alternate" type="text/html" title="클래스와 인스턴스" />
-    <published>2023-11-10T11:33:00+08:00</published>
-  
-    <updated>2023-11-10T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/class/</id>
-    <content src="http://localhost:4000/posts/class/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-Class
-
-  Class란
-  
-    객체를 정의해 놓은 것
-    객체의 설계도 또는 툴
-    객체를 생성하는데 사용됨
-  
-
-
-Class를 사용하는 이유
-
-  Class란
-  
-    코드의 재사용성이 높다 (새로운 코드를 작성할 때 기존의 코드를 이용하여 쉽게 작성할 수 있다)
-    코드의 관리가 용이하다 (코드간의 관계를 이용해서 쉽게 코드를 변경할 수 있다)
-    신뢰성이 높은 프로그래밍을 가능하게 한다
-  
-
-
-Class 정의 방법
-
-  Class는 객체를 정의하는 과정으로 클래스에는 객체의 모든 속성과 기능이 정의되어 있다
-
-
-class human {
-    // 속성(변수)
-    String job; 
-    String sex;
-    String name; 
-    in...
     </summary>
   
 
