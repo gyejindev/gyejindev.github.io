@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2023-12-14T18:47:19+08:00</updated>
+  <updated>2023-12-21T14:07:08+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,114 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(코딩 자율학습 스프링 부트3) 14장</title>
+    <link href="http://localhost:4000/posts/spring14/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 14장" />
+    <published>2023-12-18T11:33:00+08:00</published>
+  
+    <updated>2023-12-18T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/spring14/</id>
+    <content src="http://localhost:4000/posts/spring14/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+댓글 엔티티와 리파지터리 만들기
+
+게시판에 댓글 생성, 조회, 수정, 삭제하는 댓글 CRUD 기능을 구현한다
+
+댓글 기능
+
+일반적인 게시판을 보면 하나의 게시글에 수많은 댓글이 달린다, 이러한 관계를 one-to-many(1:n) 일대다 라고 부른다
+
+DB에 값을 저장할때는 해당 게시글과 댓글간의 연결관계가 있어야하는데 테이블마다 자신을 대표하는 id가 존재하는데 id와 같이 자신을 대표하는 속성을 대표키(PK, Primary Key)라고 부른다, 대표키는 동일 테이블 내에서 절대 중복된 값이 없어야 한다 PK로 관계를 맺고 연관 대상을 가리키는 속성을 외래키(FK, Foreign Key)라 부른다
+
+댓글 엔티티와 리파지터리의 설계
+
+JPA(Java Persistence API)
+
+
+  엔티티:...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(코딩 자율학습 스프링 부트3) 13장</title>
+    <link href="http://localhost:4000/posts/spring13/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 13장" />
+    <published>2023-12-18T11:33:00+08:00</published>
+  
+    <updated>2023-12-18T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/spring13/</id>
+    <content src="http://localhost:4000/posts/spring13/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+
+코딩에서의 테스트란
+
+테스트란 프로그램의 품질을 검증하는 절차로 코딩한대로 프로그램이 잘 동작하는지를 확인하는 과정이다
+테스트 도구를 활용해 코드를 검증한다는 것은 테스트 코드를 작성해 실행한다는것으로 테스트 코드는 아래와 같다
+
+작성한 코드가 테스트를 통과하면 지속적인 리팩터링으로 코드를 개선한다 그러나 테스트를 통과하지 못하면 잘못된 부분을 찾아 고치는 디버깅(debugging)을 해야 한다
+
+
+  ‘테스트 주도 개발(TDD, Test Driven Development)’이란 일단 테스트 코드를 만든 후 이를 통과하는 최소한의 코드부터 시작해 점진적으로 코드를 개선 및 확장해 나가는 개발 방식
+
+
+테스트코드 작성
+
+[검증하고자 하는 메서드(함수) 마우스 우클릭 -&amp;gt; Generate -&amp;...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -62,10 +170,10 @@
 
 // FirstApiController 파일
 
-    @GetMapping("/api/articles")
-    public List&amp;lt;Article&amp;gt; index() {
+@GetMapping("/api/articles")
+public List&amp;lt;Article&amp;gt; index() {
 //        return articleRepository.findAll();
-...
+return a...
     </summary>
   
 
@@ -166,116 +274,6 @@ REST API 방식에서는 HTTP 요청에 대한 응답으로 서버의 자원을 
   DTO를 엔티티로 변환한다
   DB에서 기존 데이터를 수정 데이터로 갱신한다
   수정 데이터...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 3장</title>
-    <link href="http://localhost:4000/posts/spring2/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 3장" />
-    <published>2023-11-16T11:33:00+08:00</published>
-  
-    <updated>2023-11-16T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring2/</id>
-    <content src="http://localhost:4000/posts/spring2/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-Part2. 스프링 부트 시작
-
-게시판 만들고 새 글 작성하기: Create
-폼 데이터
-
-  폼 데이터는 HTML 요소인 &amp;lt;form&amp;gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &amp;lt;form&amp;gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다
-
-
-[FORM 태그 속성]
-폼 태그 속성에는 name, action, method, target 등이 있다
-
-1. action
-- 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다
-- 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다
-
-1. ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 1,2장</title>
-    <link href="http://localhost:4000/posts/spring1/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 1,2장" />
-    <published>2023-11-11T11:33:00+08:00</published>
-  
-    <updated>2023-11-11T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring1/</id>
-    <content src="http://localhost:4000/posts/spring1/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-Part1. 스프링 부트 시작
-
-스프링 부트란?
-
-  스프링 부트(Spring Boot)는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다
-스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다
-
-
-스프링 부트 개발 환경 설정하기
-스프링 부트 개발 환경 설정에는 3단계로 이루어진다
-1단계 : JDK설치하기2단계 : IDE설치하기3단계 : 스프링 부트 프로젝트 만들기
-
-JDK 다운로드 및 설치버전 확인하기
-
-  JDK란: 자바 개발 키드(Java Development Kit, JDK)는 개발자들이 JVM과 JRE에 의해 실행되고 구동될 수 있는 자바 프로그램을 생성할 수 있게 해준다
-  
-    JDK 17버전 설치:
-JDK 다운로드 페이지
-  
-  버전확인: CMD 터미...
     </summary>
   
 

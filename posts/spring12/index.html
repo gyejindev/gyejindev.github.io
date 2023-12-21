@@ -590,47 +590,47 @@
 </pre></td><td class="rouge-code"><pre>
 <span class="c1">// FirstApiController 파일</span>
 
-    <span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
-    <span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
+<span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
 <span class="c1">//        return articleRepository.findAll();</span>
-        <span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">index</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">index</span><span class="p">();</span>
+<span class="p">}</span>
 
-    <span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-    <span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
+<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
 <span class="c1">//        return articleRepository.findById(id).orElse(null);</span>
-        <span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">show</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">show</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <span class="c1">// POST</span>
-    <span class="p">@</span><span class="nd">PostMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
-    <span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">create</span><span class="p">(@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// POST</span>
+<span class="p">@</span><span class="nd">PostMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
+<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">create</span><span class="p">(@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
 <span class="c1">//    public Article create(@RequestBody ArticleForm dto) {</span>
 <span class="c1">//        Article article = dto.toEntity();</span>
 <span class="c1">//        return articleRepository.save(article);</span>
-        <span class="nx">Article</span> <span class="nx">created</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">dto</span><span class="p">);</span>
-        <span class="k">return </span><span class="p">(</span><span class="nx">created</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span> <span class="c1">// 생성하면 정상, 실패하면 오류 응답</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span> <span class="p">:</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="nx">Article</span> <span class="nx">created</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">dto</span><span class="p">);</span>
+<span class="k">return </span><span class="p">(</span><span class="nx">created</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span> <span class="c1">// 생성하면 정상, 실패하면 오류 응답</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span> <span class="p">:</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
+<span class="p">}</span>
 
-    <span class="c1">// PATCH</span>
-    <span class="p">@</span><span class="nd">PatchMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-    <span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">update</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="p">@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">dto</span><span class="p">);</span>
-        <span class="k">return </span><span class="p">(</span><span class="nx">updated</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">updated</span><span class="p">)</span> <span class="p">:</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="c1">// PATCH</span>
+<span class="p">@</span><span class="nd">PatchMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
+<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">update</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="p">@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">dto</span><span class="p">);</span>
+<span class="k">return </span><span class="p">(</span><span class="nx">updated</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">updated</span><span class="p">)</span> <span class="p">:</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
+<span class="p">}</span>
 
-    <span class="c1">//    //DELETE</span>
-    <span class="p">@</span><span class="nd">DeleteMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-    <span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="k">delete</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">Article</span> <span class="nx">deleted</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-        <span class="k">return </span><span class="p">(</span><span class="nx">deleted</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">NO_CONTENT</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span> <span class="p">:</span>
-                <span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="c1">//    //DELETE</span>
+<span class="p">@</span><span class="nd">DeleteMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
+<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="k">delete</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Article</span> <span class="nx">deleted</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="k">return </span><span class="p">(</span><span class="nx">deleted</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">NO_CONTENT</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span> <span class="p">:</span>
+<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
+<span class="p">}</span>
 
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -691,55 +691,55 @@
 52
 </pre></td><td class="rouge-code"><pre>
 <span class="c1">// ArticleService 파일</span>
-    <span class="p">@</span><span class="nd">Autowired</span>
-    <span class="kr">private</span> <span class="nx">ArticleRepository</span> <span class="nx">articleRepository</span><span class="p">;</span> <span class="c1">// 게시글 리파지터리 객체 주입</span>
+<span class="p">@</span><span class="nd">Autowired</span>
+<span class="kr">private</span> <span class="nx">ArticleRepository</span> <span class="nx">articleRepository</span><span class="p">;</span> <span class="c1">// 게시글 리파지터리 객체 주입</span>
 
-    <span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findAll</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findAll</span><span class="p">();</span>
+<span class="p">}</span>
 
-    <span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <span class="kr">public</span> <span class="nx">Article</span> <span class="nf">create</span><span class="p">(</span><span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span> <span class="c1">// dto를 엔티티로 변환한후 article에 저장</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span><span class="o">!=</span><span class="kc">null</span><span class="p">){</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span> <span class="c1">// article을 db에 저장</span>
-    <span class="p">}</span>
+<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">create</span><span class="p">(</span><span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span> <span class="c1">// dto를 엔티티로 변환한후 article에 저장</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span><span class="o">!=</span><span class="kc">null</span><span class="p">){</span>
+<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span> <span class="c1">// article을 db에 저장</span>
+<span class="p">}</span>
 
-    <span class="kr">public</span> <span class="nx">Article</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 1. DTO -&gt; 엔티티 변환하기</span>
-        <span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span>
-        <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">id: {}, article: {}</span><span class="dl">"</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
-        <span class="c1">// 2. 타깃 조회하기</span>
-        <span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-        <span class="c1">// 3. 잘못된 요청 처리하기</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">id</span> <span class="o">!=</span> <span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()){</span>
-            <span class="c1">//400. 잘못된 요청 응답!</span>
-            <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">잘못된 요청! id:{}, article:{}</span><span class="dl">"</span><span class="p">,</span><span class="nx">id</span><span class="p">,</span><span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="c1">// 4. 업데이트 및 정상 응답(200)하기</span>
-        <span class="c1">// 기존 데이터에 새 데이터 붙이기</span>
-        <span class="nx">target</span><span class="p">.</span><span class="nf">patch</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
-        <span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
-        <span class="k">return</span> <span class="nx">updated</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// 1. DTO -&gt; 엔티티 변환하기</span>
+<span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span>
+<span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">id: {}, article: {}</span><span class="dl">"</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
+<span class="c1">// 2. 타깃 조회하기</span>
+<span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="c1">// 3. 잘못된 요청 처리하기</span>
+<span class="k">if </span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">id</span> <span class="o">!=</span> <span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()){</span>
+<span class="c1">//400. 잘못된 요청 응답!</span>
+<span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">잘못된 요청! id:{}, article:{}</span><span class="dl">"</span><span class="p">,</span><span class="nx">id</span><span class="p">,</span><span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
+<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 4. 업데이트 및 정상 응답(200)하기</span>
+<span class="c1">// 기존 데이터에 새 데이터 붙이기</span>
+<span class="nx">target</span><span class="p">.</span><span class="nf">patch</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+<span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+<span class="k">return</span> <span class="nx">updated</span><span class="p">;</span>
+<span class="p">}</span>
 
-    <span class="kr">public</span> <span class="nx">Article</span> <span class="k">delete</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 1. 대상 찾기</span>
-        <span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-        <span class="c1">// 2. 잘못된 요청 처리하기</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="c1">// 3. 대상 삭제하기</span>
-        <span class="nx">articleRepository</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
-        <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="kr">public</span> <span class="nx">Article</span> <span class="k">delete</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// 1. 대상 찾기</span>
+<span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="c1">// 2. 잘못된 요청 처리하기</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 3. 대상 삭제하기</span>
+<span class="nx">articleRepository</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+<span class="p">}</span>
 
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -762,10 +762,10 @@
 </pre></td><td class="rouge-code"><pre>
 <span class="kr">public</span> <span class="kd">class</span> <span class="nc">HttpEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
 
-	<span class="kr">private</span> <span class="nx">final</span> <span class="nx">HttpHeaders</span> <span class="nx">headers</span><span class="p">;</span>
+<span class="kr">private</span> <span class="nx">final</span> <span class="nx">HttpHeaders</span> <span class="nx">headers</span><span class="p">;</span>
 
-	<span class="p">@</span><span class="nd">Nullable</span>
-	<span class="kr">private</span> <span class="nx">final</span> <span class="nx">T</span> <span class="nx">body</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">Nullable</span>
+<span class="kr">private</span> <span class="nx">final</span> <span class="nx">T</span> <span class="nx">body</span><span class="p">;</span>
 
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
@@ -1213,6 +1213,48 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1258,13 +1300,6 @@
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
@@ -1309,43 +1344,6 @@
     
     
       
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1488,13 +1486,13 @@
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
+      <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
+    
+      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
-    
-      
-      <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
       <a class="post-tag" href="/tags/network/">Network</a>
@@ -1557,6 +1555,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2157,10 +2181,10 @@ Part1. 스프링 부트 시작
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/spring13/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>(코딩 자율학습 스프링 부트3) 13장</p>
+  </a>
   
 
 </div>
@@ -2543,6 +2567,48 @@ Part1. 스프링 부트 시작
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2588,13 +2654,6 @@ Part1. 스프링 부트 시작
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
@@ -2639,43 +2698,6 @@ Part1. 스프링 부트 시작
     
     
       
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2818,13 +2840,13 @@ Part1. 스프링 부트 시작
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
+      <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
+    
+      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
-    
-      
-      <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
       <a class="post-tag" href="/tags/network/">Network</a>
