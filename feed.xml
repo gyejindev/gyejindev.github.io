@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-05T12:40:33+08:00</updated>
+  <updated>2024-01-09T12:37:42+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,42 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>S3YZNB0M553014V2</title>
+    <link href="http://localhost:4000/posts/S3YZNB0M553014V2/" rel="alternate" type="text/html" title="S3YZNB0M553014V2" />
+    <published>2024-01-08T10:30:00+08:00</published>
+  
+    <updated>2024-01-08T10:30:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/S3YZNB0M553014V2/</id>
+    <content src="http://localhost:4000/posts/S3YZNB0M553014V2/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="access" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+access
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -223,54 +259,6 @@ JPA(Java Persistence API)
 public List&amp;lt;Article&amp;gt; index() {
 //        return articleRepository.findAll();
 return a...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 11장</title>
-    <link href="http://localhost:4000/posts/spring11/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 11장" />
-    <published>2023-12-11T11:33:00+08:00</published>
-  
-    <updated>2023-12-11T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring11/</id>
-    <content src="http://localhost:4000/posts/spring11/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-
-
-REST API와 JSAON의 등장 배경
-웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
-REST API 방식에서는 HTTP 요청에 대한 응답으로 서버의 자원을 반환한다
-버는 클라이언트의 요청에 대한 응답으로 화면(view)이 아닌 데이터(data)를 전송한다 이때 사용하는 응답 데이터는 JSON(JavaScript Object Notation)이다
-과거에는 응답 데이터로 XML을 많이 사용했지만, 최근에는 JSON으로 통일되는 추세이다
-
-[XML 예시]
-
-&amp;lt;artic...
     </summary>
   
 
