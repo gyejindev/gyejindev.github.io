@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-09T15:55:40+08:00</updated>
+  <updated>2024-01-09T16:44:50+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -28,6 +28,42 @@
   
     <id>http://localhost:4000/posts/S3YZNB0M553014V/</id>
     <content src="http://localhost:4000/posts/S3YZNB0M553014V/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="access" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+access
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>33LW2SNMS</title>
+    <link href="http://localhost:4000/posts/33LW2SNMS/" rel="alternate" type="text/html" title="33LW2SNMS" />
+    <published>2024-01-08T10:30:00+08:00</published>
+  
+    <updated>2024-01-08T10:30:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/33LW2SNMS/</id>
+    <content src="http://localhost:4000/posts/33LW2SNMS/" />
     <author>
       <name>Jogyejin</name>
     </author>
@@ -189,59 +225,6 @@ JPA(Java Persistence API)
 
 
   엔티티:...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 13장</title>
-    <link href="http://localhost:4000/posts/spring13/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 13장" />
-    <published>2023-12-18T11:33:00+08:00</published>
-  
-    <updated>2023-12-18T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring13/</id>
-    <content src="http://localhost:4000/posts/spring13/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-
-
-코딩에서의 테스트란
-
-테스트란 프로그램의 품질을 검증하는 절차로 코딩한대로 프로그램이 잘 동작하는지를 확인하는 과정이다
-테스트 도구를 활용해 코드를 검증한다는 것은 테스트 코드를 작성해 실행한다는것으로 테스트 코드는 아래와 같다
-
-작성한 코드가 테스트를 통과하면 지속적인 리팩터링으로 코드를 개선한다 그러나 테스트를 통과하지 못하면 잘못된 부분을 찾아 고치는 디버깅(debugging)을 해야 한다
-
-
-  ‘테스트 주도 개발(TDD, Test Driven Development)’이란 일단 테스트 코드를 만든 후 이를 통과하는 최소한의 코드부터 시작해 점진적으로 코드를 개선 및 확장해 나가는 개발 방식
-
-
-테스트코드 작성
-
-[검증하고자 하는 메서드(함수) 마우스 우클릭 -&amp;gt; Generate -&amp;...
     </summary>
   
 
