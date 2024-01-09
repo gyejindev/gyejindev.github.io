@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-09T12:42:57+08:00</updated>
+  <updated>2024-01-09T15:55:40+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -28,6 +28,42 @@
   
     <id>http://localhost:4000/posts/S3YZNB0M553014V/</id>
     <content src="http://localhost:4000/posts/S3YZNB0M553014V/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="access" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+access
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>058F011111B1</title>
+    <link href="http://localhost:4000/posts/058F011111B1/" rel="alternate" type="text/html" title="058F011111B1" />
+    <published>2024-01-08T10:30:00+08:00</published>
+  
+    <updated>2024-01-08T10:30:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/058F011111B1/</id>
+    <content src="http://localhost:4000/posts/058F011111B1/" />
     <author>
       <name>Jogyejin</name>
     </author>
@@ -206,59 +242,6 @@ JPA(Java Persistence API)
 테스트코드 작성
 
 [검증하고자 하는 메서드(함수) 마우스 우클릭 -&amp;gt; Generate -&amp;...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 12장</title>
-    <link href="http://localhost:4000/posts/spring12/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 12장" />
-    <published>2023-12-12T11:33:00+08:00</published>
-  
-    <updated>2023-12-12T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring12/</id>
-    <content src="http://localhost:4000/posts/spring12/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-
-
-서비스와 트랜잭션의 개념
-서비스란 컨트롤러와 리파지터리 사이에 위치하는 계층으로, 서버의 핵심 기능(비지니스 로직)을 처리하는 순서를 총괄한다 모두 성공해야 하는 일련의 과정을 트랜잭션이라고 하며 트랜잭션이 실패로 돌아갈 경우 진행 초기 단계로 돌리는 것을 롤백이라고 한다
-
-서비스 계층 만들기
-서비스 계층을 추가해서 컨트롤러, 서비스, 리파지터리의 역할을 분업해보도록 한다
-
-[기존의 컨트롤러에서 서비스와 분업하게 변경됨 –11장 참고]
-
-// FirstApiController 파일
-
-@GetMapping("/api/articles")
-public List&amp;lt;Article&amp;gt; index() {
-//        return articleRepository.findAll();
-return a...
     </summary>
   
 
