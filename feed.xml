@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-09T16:44:50+08:00</updated>
+  <updated>2024-01-10T15:23:49+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -28,6 +28,42 @@
   
     <id>http://localhost:4000/posts/S3YZNB0M553014V/</id>
     <content src="http://localhost:4000/posts/S3YZNB0M553014V/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="access" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+access
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>MDC1HFAL</title>
+    <link href="http://localhost:4000/posts/MDC1HFAL/" rel="alternate" type="text/html" title="MDC1HFAL" />
+    <published>2024-01-08T10:30:00+08:00</published>
+  
+    <updated>2024-01-08T10:30:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/MDC1HFAL/</id>
+    <content src="http://localhost:4000/posts/MDC1HFAL/" />
     <author>
       <name>Jogyejin</name>
     </author>
@@ -170,61 +206,6 @@ REST API를 진행하기전 복습
   DTO :  사용자에게 보여 줄 댓글 정보를 담은 것, 단순히 클라이언트와 서버 간에 댓글 JSON 데이터 전송
   엔티티 : DB 데이터를 담는 자바 객체로 엔티티를 기반으로 테이블을 생성, 리파지터리가 DB속 데이터를 조회하거나 전달할 때 사용
   리파지터리 : 엔티티를 관리하는 인터페이스로 데이터 CRUD...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(코딩 자율학습 스프링 부트3) 14장</title>
-    <link href="http://localhost:4000/posts/spring14/" rel="alternate" type="text/html" title="(코딩 자율학습 스프링 부트3) 14장" />
-    <published>2023-12-18T11:33:00+08:00</published>
-  
-    <updated>2023-12-18T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/spring14/</id>
-    <content src="http://localhost:4000/posts/spring14/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-
-
-댓글 엔티티와 리파지터리 만들기
-
-게시판에 댓글 생성, 조회, 수정, 삭제하는 댓글 CRUD 기능을 구현한다
-
-댓글 기능
-
-일반적인 게시판을 보면 하나의 게시글에 수많은 댓글이 달린다, 이러한 관계를 one-to-many(1:n) 일대다 라고 부른다
-
-DB에 값을 저장할때는 해당 게시글과 댓글간의 연결관계가 있어야하는데 테이블마다 자신을 대표하는 id가 존재하는데 id와 같이 자신을 대표하는 속성을 대표키(PK, Primary Key)라고 부른다, 대표키는 동일 테이블 내에서 절대 중복된 값이 없어야 한다 PK로 관계를 맺고 연관 대상을 가리키는 속성을 외래키(FK, Foreign Key)라 부른다
-
-댓글 엔티티와 리파지터리의 설계
-
-JPA(Java Persistence API)
-
-
-  엔티티:...
     </summary>
   
 
