@@ -39,23 +39,23 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="(코딩 자율학습 스프링 부트3) 12장" />
+<meta property="og:title" content="workspace_v3.3" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="경험에서 습득한 기술공유" />
-<meta property="og:description" content="경험에서 습득한 기술공유" />
-<link rel="canonical" href="http://localhost:4000/posts/spring12/" />
-<meta property="og:url" content="http://localhost:4000/posts/spring12/" />
+<meta name="description" content="version" />
+<meta property="og:description" content="version" />
+<link rel="canonical" href="http://localhost:4000/posts/workspace_version/" />
+<meta property="og:url" content="http://localhost:4000/posts/workspace_version/" />
 <meta property="og:site_name" content="Jogyejin" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-12-12T11:33:00+08:00" />
+<meta property="article:published_time" content="2024-01-08T10:30:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="(코딩 자율학습 스프링 부트3) 12장" />
+<meta property="twitter:title" content="workspace_v3.3" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-12T11:33:00+08:00","datePublished":"2023-12-12T11:33:00+08:00","description":"경험에서 습득한 기술공유","headline":"(코딩 자율학습 스프링 부트3) 12장","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/spring12/"},"url":"http://localhost:4000/posts/spring12/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-08T10:30:00+08:00","datePublished":"2024-01-08T10:30:00+08:00","description":"version","headline":"workspace_v3.3","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/workspace_version/"},"url":"http://localhost:4000/posts/workspace_version/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>(코딩 자율학습 스프링 부트3) 12장 | Jogyejin
+  <title>workspace_v3.3 | Jogyejin
   </title>
 
   <!--
@@ -268,7 +268,7 @@
         
 
           
-            <span>(코딩 자율학습 스프링 부트3) 12장</span>
+            <span>workspace_v3.3</span>
           
 
         
@@ -385,30 +385,6 @@
       
 
     
-      
-
-      
-      
-
-      
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-      
-
-      
-
-    
 
     
 
@@ -453,7 +429,7 @@
 
 
 
-<h1 data-toc-skip>(코딩 자율학습 스프링 부트3) 12장</h1>
+<h1 data-toc-skip>workspace_v3.3</h1>
 
 <div class="post-meta text-muted">
 
@@ -483,12 +459,12 @@
 -->
 
 <em class="timeago"
-    data-ts="1702351980"
+    data-ts="1704681000"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     >
-  2023-12-12
+  2024-01-08
 </em>
 
       </span>
@@ -516,8 +492,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="853 words">
-  <em>4 min</em> read</span>
+  title="1 words">
+  <em>1 min</em> read</span>
 
 
       <!-- page views -->
@@ -529,262 +505,8 @@
 </div> <!-- .post-meta -->
 
 <div class="post-content">
-  <script type="text/javascript" src="http://localhost:4000/assets/js/mermaid/mermaid.js"></script>
-
-<hr />
-
-<h2 id="서비스와-트랜잭션의-개념"><span class="mr-2">서비스와 트랜잭션의 개념</span><a href="#서비스와-트랜잭션의-개념" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2>
-<p><code class="language-plaintext highlighter-rouge">서비스란 컨트롤러와 리파지터리 사이에 위치하는 계층</code>으로, <code class="language-plaintext highlighter-rouge">서버의 핵심 기능(비지니스 로직)을 처리하는 순서를 총괄한다</code> 모두 성공해야 하는 일련의 과정을 <code class="language-plaintext highlighter-rouge">트랜잭션</code>이라고 하며 트랜잭션이 실패로 돌아갈 경우 진행 초기 단계로 돌리는 것을 <code class="language-plaintext highlighter-rouge">롤백</code>이라고 한다</p>
-
-<h2 id="서비스-계층-만들기"><span class="mr-2">서비스 계층 만들기</span><a href="#서비스-계층-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2>
-<p><strong>서비스 계층을 추가해서 컨트롤러, 서비스, 리파지터리의 역할을 분업해보도록 한다</strong></p>
-
-<p>[기존의 컨트롤러에서 서비스와 분업하게 변경됨 –11장 참고]</p>
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-</pre></td><td class="rouge-code"><pre>
-<span class="c1">// FirstApiController 파일</span>
-
-<span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
-<span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
-<span class="c1">//        return articleRepository.findAll();</span>
-<span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">index</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="p">@</span><span class="nd">GetMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">//        return articleRepository.findById(id).orElse(null);</span>
-<span class="k">return</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">show</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// POST</span>
-<span class="p">@</span><span class="nd">PostMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles</span><span class="dl">"</span><span class="p">)</span>
-<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">create</span><span class="p">(@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">//    public Article create(@RequestBody ArticleForm dto) {</span>
-<span class="c1">//        Article article = dto.toEntity();</span>
-<span class="c1">//        return articleRepository.save(article);</span>
-<span class="nx">Article</span> <span class="nx">created</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">dto</span><span class="p">);</span>
-<span class="k">return </span><span class="p">(</span><span class="nx">created</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span> <span class="c1">// 생성하면 정상, 실패하면 오류 응답</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span> <span class="p">:</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="c1">// PATCH</span>
-<span class="p">@</span><span class="nd">PatchMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">update</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="p">@</span><span class="nd">RequestBody</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-<span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">dto</span><span class="p">);</span>
-<span class="k">return </span><span class="p">(</span><span class="nx">updated</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">OK</span><span class="p">).</span><span class="nf">body</span><span class="p">(</span><span class="nx">updated</span><span class="p">)</span> <span class="p">:</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="c1">//    //DELETE</span>
-<span class="p">@</span><span class="nd">DeleteMapping</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/articles/{id}</span><span class="dl">"</span><span class="p">)</span>
-<span class="kr">public</span> <span class="nx">ResponseEntity</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="k">delete</span><span class="p">(@</span><span class="nd">PathVariable</span> <span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="nx">Article</span> <span class="nx">deleted</span> <span class="o">=</span> <span class="nx">articleService</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-<span class="k">return </span><span class="p">(</span><span class="nx">deleted</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">?</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">NO_CONTENT</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span> <span class="p">:</span>
-<span class="nx">ResponseEntity</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">HttpStatus</span><span class="p">.</span><span class="nx">BAD_REQUEST</span><span class="p">).</span><span class="nf">build</span><span class="p">();</span>
-<span class="p">}</span>
-
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>[서비스를 생성하여 기존의 컨트롤러에서 처리한 부분을 서비스가 처리]</p>
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-</pre></td><td class="rouge-code"><pre>
-<span class="c1">// ArticleService 파일</span>
-<span class="p">@</span><span class="nd">Autowired</span>
-<span class="kr">private</span> <span class="nx">ArticleRepository</span> <span class="nx">articleRepository</span><span class="p">;</span> <span class="c1">// 게시글 리파지터리 객체 주입</span>
-
-<span class="kr">public</span> <span class="nx">List</span><span class="o">&lt;</span><span class="nx">Article</span><span class="o">&gt;</span> <span class="nf">index</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findAll</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">show</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">create</span><span class="p">(</span><span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-<span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span> <span class="c1">// dto를 엔티티로 변환한후 article에 저장</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span><span class="o">!=</span><span class="kc">null</span><span class="p">){</span>
-<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">return</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span> <span class="c1">// article을 db에 저장</span>
-<span class="p">}</span>
-
-<span class="kr">public</span> <span class="nx">Article</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">ArticleForm</span> <span class="nx">dto</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">// 1. DTO -&gt; 엔티티 변환하기</span>
-<span class="nx">Article</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">dto</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">();</span>
-<span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">id: {}, article: {}</span><span class="dl">"</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
-<span class="c1">// 2. 타깃 조회하기</span>
-<span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="c1">// 3. 잘못된 요청 처리하기</span>
-<span class="k">if </span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">id</span> <span class="o">!=</span> <span class="nx">article</span><span class="p">.</span><span class="nf">getId</span><span class="p">()){</span>
-<span class="c1">//400. 잘못된 요청 응답!</span>
-<span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">잘못된 요청! id:{}, article:{}</span><span class="dl">"</span><span class="p">,</span><span class="nx">id</span><span class="p">,</span><span class="nx">article</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
-<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// 4. 업데이트 및 정상 응답(200)하기</span>
-<span class="c1">// 기존 데이터에 새 데이터 붙이기</span>
-<span class="nx">target</span><span class="p">.</span><span class="nf">patch</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
-<span class="nx">Article</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
-<span class="k">return</span> <span class="nx">updated</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kr">public</span> <span class="nx">Article</span> <span class="k">delete</span><span class="p">(</span><span class="nx">Long</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">// 1. 대상 찾기</span>
-<span class="nx">Article</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">articleRepository</span><span class="p">.</span><span class="nf">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">orElse</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="c1">// 2. 잘못된 요청 처리하기</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
-<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// 3. 대상 삭제하기</span>
-<span class="nx">articleRepository</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
-<span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
-<span class="p">}</span>
-
-</pre></td></tr></tbody></table></code></div></div>
-
-<h2 id="responseentity란"><span class="mr-2">ResponseEntity란</span><a href="#responseentity란" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2>
-<p>Spring Framework에서 제공하는 클래스 중 <code class="language-plaintext highlighter-rouge">HttpEntity</code>라는 클래스가 존재한다. 이것은 <code class="language-plaintext highlighter-rouge">HTTP 요청(Request)</code> 또는 <code class="language-plaintext highlighter-rouge">응답(Response)</code>에 해당하는 HttpHeader와 HttpBody를 포함하는 클래스이다</p>
-
-<p><strong>[HttpEntity 클래스]</strong></p>
-
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nc">HttpEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
-
-<span class="kr">private</span> <span class="nx">final</span> <span class="nx">HttpHeaders</span> <span class="nx">headers</span><span class="p">;</span>
-
-<span class="p">@</span><span class="nd">Nullable</span>
-<span class="kr">private</span> <span class="nx">final</span> <span class="nx">T</span> <span class="nx">body</span><span class="p">;</span>
-
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><strong>[HttpEntity 클래스를 상속받은 클래스들]</strong></p>
-
-<p><code class="language-plaintext highlighter-rouge">HttpEntity 클래스</code>를 상속받아 구현한 클래스가 <code class="language-plaintext highlighter-rouge">RequestEntity</code>, <code class="language-plaintext highlighter-rouge">ResponseEntity</code> 클래스이다. ResponseEntity는 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스이다. 따라서 HttpStatus, HttpHeaders, HttpBody를 포함한다</p>
-
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nc">RequestEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nx">HttpEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nx">HttpEntity</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span>
-
-</pre></td></tr></tbody></table></code></div></div>
+  <hr />
+<h2 id="version"><span class="mr-2">version</span><a href="#version" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2>
 
 </div>
 
@@ -795,8 +517,7 @@
   <div class="post-meta mb-3">
     <i class="far fa-folder-open fa-fw mr-1"></i>
     
-      <a href='/categories/web/'>Web</a>,
-      <a href='/categories/study/'>Study</a>
+      <a href='/categories/update/'>update</a>
   </div>
   
 
@@ -805,17 +526,8 @@
   <div class="post-tags">
     <i class="fa fa-tags fa-fw mr-1"></i>
       
-      <a href="/tags/web/"
-          class="post-tag no-text-decoration" >Web</a>
-      
-      <a href="/tags/backend/"
-          class="post-tag no-text-decoration" >Backend</a>
-      
-      <a href="/tags/springboot/"
-          class="post-tag no-text-decoration" >SpringBoot</a>
-      
-      <a href="/tags/study/"
-          class="post-tag no-text-decoration" >Study</a>
+      <a href="/tags/update/"
+          class="post-tag no-text-decoration" >update</a>
       
   </div>
   
@@ -1605,111 +1317,111 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2137,6 +1849,41 @@
 
 
 
+  
+    
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
 
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
@@ -2147,7 +1894,7 @@
       
       
       <div class="card">
-        <a href="/posts/spring11/">
+        <a href="/posts/S3YZNB0M553014V/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2155,13 +1902,13 @@
 -->
 
 <em class="timeago small"
-    data-ts="1702265580"
+    data-ts="1704681000"
     
     >
-  2023-12-11
+  2024-01-08
 </em>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(코딩 자율학습 스프링 부트3) 11장</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>S3YZNB0M553014V</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2172,11 +1919,8 @@
 
                 
 
+access
 
-
-REST API와 JSAON의 등장 배경
-웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
-REST API 방식에서는 HT...
               </p>
             </div>
           </div>
@@ -2186,7 +1930,7 @@ REST API 방식에서는 HT...
       
       
       <div class="card">
-        <a href="/posts/spring13/">
+        <a href="/posts/MDC1HFAL/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2194,13 +1938,13 @@ REST API 방식에서는 HT...
 -->
 
 <em class="timeago small"
-    data-ts="1702870380"
+    data-ts="1704681000"
     
     >
-  2023-12-18
+  2024-01-08
 </em>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(코딩 자율학습 스프링 부트3) 13장</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MDC1HFAL</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2211,14 +1955,8 @@ REST API 방식에서는 HT...
 
                 
 
+access
 
-
-코딩에서의 테스트란
-
-테스트란 프로그램의 품질을 검증하는 절차로 코딩한대로 프로그램이 잘 동작하는지를 확인하는 과정이다
-테스트 도구를 활용해 코드를 검증한다는 것은 테스트 코드를 작성해 실행한다는것으로 테스트 코드는 아래와 같다
-
-작성한 코드가 테스트를 통과하면 지속적인 리팩터링으로 코드를 개선한다 그러나 테스트를 통과하지 못하면 잘못된 부분을...
               </p>
             </div>
           </div>
@@ -2228,7 +1966,7 @@ REST API 방식에서는 HT...
       
       
       <div class="card">
-        <a href="/posts/spring14/">
+        <a href="/posts/33LW2SNMS/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2236,13 +1974,13 @@ REST API 방식에서는 HT...
 -->
 
 <em class="timeago small"
-    data-ts="1702870380"
+    data-ts="1704681000"
     
     >
-  2023-12-18
+  2024-01-08
 </em>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(코딩 자율학습 스프링 부트3) 14장</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>33LW2SNMS</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2253,17 +1991,8 @@ REST API 방식에서는 HT...
 
                 
 
+access
 
-
-댓글 엔티티와 리파지터리 만들기
-
-게시판에 댓글 생성, 조회, 수정, 삭제하는 댓글 CRUD 기능을 구현한다
-
-댓글 기능
-
-일반적인 게시판을 보면 하나의 게시글에 수많은 댓글이 달린다, 이러한 관계를 one-to-many(1:n) 일대다 라고 부른다
-
-DB에 값을 저장할때는 해당 게시글과 댓글간의 연결관계가 있어야하는데 테이블마다 자신을 대표하...
               </p>
             </div>
           </div>
@@ -2282,17 +2011,17 @@ DB에 값을 저장할때는 해당 게시글과 댓글간의 연결관계가 �
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/spring11/" class="btn btn-outline-primary"
+  <a href="/posts/S3YZNB0M553014V/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>(코딩 자율학습 스프링 부트3) 11장</p>
+    <p>S3YZNB0M553014V</p>
   </a>
   
 
   
-  <a href="/posts/spring13/" class="btn btn-outline-primary"
+  <span class="btn btn-outline-primary disabled"
     prompt="Newer">
-    <p>(코딩 자율학습 스프링 부트3) 13장</p>
-  </a>
+    <p>-</p>
+  </span>
   
 
 </div>
