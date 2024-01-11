@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-11T13:22:55+08:00</updated>
+  <updated>2024-01-11T13:30:39+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -164,14 +164,14 @@ access
 
   
   <entry>
-    <title>058F011111B1</title>
-    <link href="http://localhost:4000/posts/058F011111B1/" rel="alternate" type="text/html" title="058F011111B1" />
+    <title>33HVSNPMS</title>
+    <link href="http://localhost:4000/posts/33HVSNPMS/" rel="alternate" type="text/html" title="33HVSNPMS" />
     <published>2024-01-08T10:30:00+08:00</published>
   
     <updated>2024-01-08T10:30:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/058F011111B1/</id>
-    <content src="http://localhost:4000/posts/058F011111B1/" />
+    <id>http://localhost:4000/posts/33HVSNPMS/</id>
+    <content src="http://localhost:4000/posts/33HVSNPMS/" />
     <author>
       <name>Jogyejin</name>
     </author>
