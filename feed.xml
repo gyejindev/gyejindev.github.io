@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-11T08:35:31+08:00</updated>
+  <updated>2024-01-11T08:56:42+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -20,14 +20,14 @@
 
   
   <entry>
-    <title>workspace_v3.3</title>
-    <link href="http://localhost:4000/posts/workspace_v3.3/" rel="alternate" type="text/html" title="workspace_v3.3" />
+    <title>workspace</title>
+    <link href="http://localhost:4000/posts/workspace_v3.4/" rel="alternate" type="text/html" title="workspace" />
     <published>2024-01-08T10:30:00+08:00</published>
   
     <updated>2024-01-08T10:30:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/workspace_v3.3/</id>
-    <content src="http://localhost:4000/posts/workspace_v3.3/" />
+    <id>http://localhost:4000/posts/workspace_v3.4/</id>
+    <content src="http://localhost:4000/posts/workspace_v3.4/" />
     <author>
       <name>Jogyejin</name>
     </author>
