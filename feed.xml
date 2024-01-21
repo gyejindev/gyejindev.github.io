@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-21T21:52:10+08:00</updated>
+  <updated>2024-01-21T23:44:56+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -165,13 +165,25 @@ Axios 설치
 
 필요한 프로그램 설치
 
-[Eclipse 설치]
+Eclipse 설치
 
 이클립스 설치 페이지
 
 
 
+[이클립스에서 Spring Boot 설치]
 
+메뉴 툴팁 =&amp;gt; Help =&amp;gt; Eclipse Marketplace 선택
+
+
+
+spring 으로 검색 =&amp;gt; Spring Tools 4 (aka Spring Tool Suite 4) 설치
+
+
+
+vue 설치 - Nodejs
+
+vue를 편하고 효율적으로 사용하기 위해서는 npm(nodejs package manager)이라는 라이브러리를 사용해야하는데 npm은 기본적으로 Nodejs를 설치할 때 같이 설치되는 라이브러리...
     </summary>
   
 
