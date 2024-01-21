@@ -1,6 +1,81 @@
 [
   
   {
+    "title": "Vue Route 기능 사용하기",
+    "url": "/posts/vue_route/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, apache, Study, Vue, Route",
+    "date": "2024-01-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Route란Route(라우트)는 길, 방향의 의미로 웹 서비스를 이용해보면 로그인시 URL이 /login 회원가입시에는 /create 이런식으로 URL을 보내게되는데각 서비스마다 URL을 다르게하여 처리하는 방법을 Route기능이라고 한다Vue에서 Route기능 사용하기Route 설치프롬프트로 npm install vue-router/@4 를 입력하여 설치한다vue 라우터의 경우 버전에 따라 사용방법이 조금씩 상이할 수 있으므로 공식 홈페이지에서 각 버전별 사용법을 참고하자 =&amp;gt; Vue Router 공식 페이지vue 샘플 라우터 추가라우터를 설치한 후 처음부터 라우터를 전부 타이핑하여 만들 수 있지만 vue에서 기본으로 제공하는 샘플 라우터를 사용하여 본인에 맞게 수정 및 추가하여 사용할 수 있다추가하는 방법은 프롬프트에서 vue 프로젝트 폴더로 이동후 vue add router 명령어를 프롬프트에서 수행한다수행 후 vue 프로젝트 폴더 -&amp;gt; src -&amp;gt; router라는 샘플 폴더가 생성된다"
+  },
+  
+  {
+    "title": "Vue Axios 라이브러리 사용하기",
+    "url": "/posts/vue_axios/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, apache, Study, Vue, Axios",
+    "date": "2024-01-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Axios란Axios는 Vue에서 Ajax전송을 도와주는 Http 클라이언트 라이브러리이다Ajax를 사용하다보면 발생할 수 있는 불편함을 보완해주는 기능들을 제공한다  [Ajax]Ajax는 Asynchronous JavaScript and XML의 약자로 빠르게 동작하는 동적인 웹 페이지를 만들기 위해 개발 기법의 하나이다Ajax는 웹 페이지 전체를 다시 로딩하지 않고도 웹 페이지의 일부분만 갱신이 가능하며 Ajax를 이용하여 백그라운드 영역에서 백엔드 서버와 통신하여 결과를 웹페이지 일부에만 표시할 수 있다Ajax 는 아래와 같은 다양 형태의 데이터를 주고받을 수 있다      JSON    XML    HTML    텍스트 파일등  Axios 설치프롬프트에서 npm install axios 를 입력하여 설치한다Axios 사용 예제"
+  },
+  
+  {
+    "title": "Vue Chap2",
+    "url": "/posts/vue02/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, apache, Study",
+    "date": "2024-01-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "프로젝트 구성  Backend : SpringBoot  Frontend : Vue  IDE : Eclipse IDE  Database : MySQL필요한 프로그램 설치[Eclipse 설치]이클립스 설치 페이지"
+  },
+  
+  {
+    "title": "Vue Chap1",
+    "url": "/posts/vue01/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, apache, Study",
+    "date": "2024-01-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "[Vue.js란]vue 는 Evan You가 개인 프로젝트로 시작해서 2014년에 배포한 자바스크립트 프레임워크이다뷰는 다음과 같은 이유로 인기가 많다[Vue의 장점]  진입 장벽이 낮고 학습 비용이 적음  스케일의 유연성  한국어 문서뷰에서 화면을 렌더링하는 구조 자체는 DOM이 아니라 자바스크립트 데이터이다 데이터를 기반으로 적절한 DOM을 구축하는 방식이다 이처럼 데이터를 중심으로 하는 애플리케이션 설계를 데이터 지향이라고한다[뷰의 템플릿]뷰는 DOM을 구축하는 방법으로 템플릿이라는 것을 주로 사용한다 템플릿 구문은 HMTL을 기반으로 하기 때문에 텍스트 에디터와 함께 쉽게 사용이 가능하다[데이터 바인딩]데이터와 렌더링을 동기화하는 구조를 데이터 바인딩이라고 한다다양한 데이터 바인딩 형태의 라이브러리와 프레임워크가 존재하는데 자바스크립트 데이터와 이를 사용하는 위치를 연결해서 데이터에 변경이 있을 때 자동으로 DOM을 업데이트하는 기능으로 대부분 사용한다Vue.js또한 데이터 바인딩과 관련된 수많은 기능을 가지고 있으며 디렉티브라는 것을 기반으로 이러한 기능을 HTML과 비슷한 형태로 사용할 수 있다[Vue 컴포넌트]사이트의 규모가 커지면 자바스크립,HMTL,CSS의 소스코드가 난잡해지며 자바스크립트가 어느 CSS 어떤 부분에 구현되어있는지 등을 알기가 쉽지 않다Vue.js 컴포넌트는 기능별로 자바스크립트와 템블릿을 하나의 세트로 묶어서 다른 기능과 분리하여 개발할 수 있도록 해주는 기능이다"
+  },
+  
+  {
+    "title": "JSP 자바 웹 프로그래밍 Chap1",
+    "url": "/posts/jsp01/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, apache, Study",
+    "date": "2024-01-17 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "[실습을 위한 도구들]  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)  Oracle 21c Express Edition : 데이터 베이스 관리 시스템  SQL Developer : 그래픽 기반(GUI)의 Oracle 관리 도구[JSP(JavaServer Pages)란]  HTML 코드에 JAVA 코드를 넣어 동적웹페이지를 생성하는 웹어플리케이션 도구  JSP 가 실행되면 자바 서블릿(Servlet) 으로 변환되며 웹 어플리케이션 서버에서 동작되면서 필요한 기능을 수행[웹 서버(Web Server)란]  사용자로부터 HTTP를 통해 요청을 받거나 웹 컨테이너가 전달해준 결과물을 정적인 페이지로 생성하여 사용자에게 응답해주는 소프트웨어를 뜻하며 웹 페이지는 주로 HTML, CSS, 자바스크립트 등으로 구성된다[웹 컨테이너(Web Container)란]  웹 서버가 전송해준 요청을 기초로 동적인 페이지를 생성하여 웹 서버로 돌려준다[WAS(Web Application Server)란]  WAS는 웹 서버(정적인 페이지) + 웹 컨테이너(동적 페이지)를 포함한 개념이며 톰캣이 대표적인 제품이며 외에 웹로직, 웹스피어 등의 제품이 있다[HTTP(Hyper Text Transfer Protocol)와 HTTPS(HTTP Secure) 차이]  HTTP는 웹 서버와 사용자 사이의 통신을 위해 사용하는 통신 프로토콜이며 HTTPS는 HTTP의 보안 요소를 강화하기 위해 만들어진 HTTP의 암호화된 버전 프로토콜이다[프로토콜(Protocol)이란]네트워크를 통해 컴퓨터들이 정보를 주고받는 절차 혹은 통신 규약을 말한다 예를들어 한국인과 미국인이 각자의 모국어로만 말을 한다면 소통을할 수 없다 컴퓨터도 마찬가지이며 서로 다른 컴퓨터들이 대화하는 데 필요한 공통 언어 역할을 해주는게 프로토콜이다 HTTP또한 프로토콜의 한 종류이며 FTP, SMTP등 다양한 프로토콜이 존재한다[포트(Port)란]  컴퓨터 사이에서 데이터를 주고받을 수 있는 통로를 말한다 예를 들어 IP가 주소지와 건물명이라면 Port는 몇호인지를 뜻한다  우리가 이용하는 인터넷상의 모든 서비스는 IP 주소와 함께 포트 번호까지 지정해야 제대로 요청을 전달할 수 있으며 대표적으로 HTTP는 80, HTTPS는 443 포트를 사용한다[정적 웹 페이지와 동적 웹 페이지]  정적 웹 페이지(Static Web Page)란 웹 서버에 저장되어 있는 파일을 그대로 웹 브라우저에 전송해 출력하는 가장 기본적인 웹 페이지를 말한다  동적 웹 페이지(Dynamic Web Page)란 그때그때 내용이 달라질 수 있는 웹 페이지이며 클라이언트의 요청을 해석하여 가장 적절한 웹 페이지를 그때 그때 생성해 보내주는 기술이다대표적으로는 JSP와 서블릿이 있고 다른 기술로는 ASP와 PHP등이있다[Java EE란]"
+  },
+  
+  {
     "title": "workspace",
     "url": "/posts/workspace_v3.4/",
     "categories": "update",
