@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-21T23:44:56+08:00</updated>
+  <updated>2024-01-24T00:18:48+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,107 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Vue Chap3</title>
+    <link href="http://localhost:4000/posts/vue03/" rel="alternate" type="text/html" title="Vue Chap3" />
+    <published>2024-01-21T11:33:00+08:00</published>
+  
+    <updated>2024-01-21T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/vue03/</id>
+    <content src="http://localhost:4000/posts/vue03/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Git(깃) 사용방법</title>
+    <link href="http://localhost:4000/posts/git/" rel="alternate" type="text/html" title="Git(깃) 사용방법" />
+    <published>2024-01-20T11:33:00+08:00</published>
+  
+    <updated>2024-01-20T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/git/</id>
+    <content src="http://localhost:4000/posts/git/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Git은 무엇일까?
+
+
+  
+    깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다
+
+    깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다
+
+    분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다
+  
+
+
+Github는 무엇일까?
+
+
+  깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다
+
+
+Git 설치
+
+깃 설치 페이지 에서 설치를 진행한다
+
+
+
+쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천
+
+
+
+에디...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -184,120 +285,6 @@ spring 으로 검색 =&amp;gt; Spring Tools 4 (aka Spring Tool Suite 4) 설치
 vue 설치 - Nodejs
 
 vue를 편하고 효율적으로 사용하기 위해서는 npm(nodejs package manager)이라는 라이브러리를 사용해야하는데 npm은 기본적으로 Nodejs를 설치할 때 같이 설치되는 라이브러리...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vue Chap1</title>
-    <link href="http://localhost:4000/posts/vue01/" rel="alternate" type="text/html" title="Vue Chap1" />
-    <published>2024-01-20T11:33:00+08:00</published>
-  
-    <updated>2024-01-20T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/vue01/</id>
-    <content src="http://localhost:4000/posts/vue01/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      [Vue.js란]
-
-vue 는 Evan You가 개인 프로젝트로 시작해서 2014년에 배포한 자바스크립트 프레임워크이다
-
-뷰는 다음과 같은 이유로 인기가 많다
-
-[Vue의 장점]
-
-
-  진입 장벽이 낮고 학습 비용이 적음
-  스케일의 유연성
-  한국어 문서
-
-
-뷰에서 화면을 렌더링하는 구조 자체는 DOM이 아니라 자바스크립트 데이터이다 데이터를 기반으로 적절한 DOM을 구축하는 방식이다 이처럼 데이터를 중심으로 하는 애플리케이션 설계를 데이터 지향이라고한다
-
-[뷰의 템플릿]
-
-뷰는 DOM을 구축하는 방법으로 템플릿이라는 것을 주로 사용한다 템플릿 구문은 HMTL을 기반으로 하기 때문에 텍스트 에디터와 함께 쉽게 사용이 가능하다
-
-[데이터 바인딩]
-
-데이터와 렌더링을 동기화하는 구조를 데이터 바인딩이라고...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>JSP 자바 웹 프로그래밍 Chap1</title>
-    <link href="http://localhost:4000/posts/jsp01/" rel="alternate" type="text/html" title="JSP 자바 웹 프로그래밍 Chap1" />
-    <published>2024-01-17T11:33:00+08:00</published>
-  
-    <updated>2024-01-17T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/jsp01/</id>
-    <content src="http://localhost:4000/posts/jsp01/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      [실습을 위한 도구들]
-
-
-  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구
-  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버
-  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)
-  Oracle 21c Express Edition : 데이터 베이스 관리 시스템
-  SQL Developer : 그래픽 기반(GUI)의 Oracle 관리 도구
-
-
-[JSP(JavaServer Pages)란]
-
-
-  HTML 코드에 JAVA 코드를 넣어 동적웹페이지를 생성하는 웹어플리케이션 도구
-  JSP 가 실행되면 자바 서블릿(Servlet) 으로 변환되며 웹 어플리케이션 서버에서 동작되면서 필요한 기능을 수행
-
-
-[웹 서버(Web Server)란]
-
-
-  사용자로...
     </summary>
   
 
