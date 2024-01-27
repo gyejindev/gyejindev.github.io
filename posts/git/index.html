@@ -1763,8 +1763,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1103 words">
-  <em>6 min</em> read</span>
+  title="1334 words">
+  <em>7 min</em> read</span>
 
 
       <!-- page views -->
@@ -1920,6 +1920,33 @@
 31
 32
 33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
 </pre></td><td class="rouge-code"><pre><span class="c">#유저 설정</span>
 git config <span class="nt">--global</span> user.name <span class="s2">"사용자이름"</span>
 git config <span class="nt">--global</span> user.email <span class="s2">"사용자이메일"</span>
@@ -1936,8 +1963,6 @@ Github Repositories → New → Repository name 등 작성 후 Create Repository
 작업 중인 서버의 프로젝트 디렉토리로 이동하여 <span class="nv">$git</span> init
 <span class="o">(</span>현재 디렉토리를 기준으로 Git 저장소 생성, .git 디렉토리 생성됨<span class="o">)</span>
 <span class="nv">$git</span> remote add origin <span class="o">[</span>Git 주소]
-<span class="nv">$git</span> branch <span class="nt">-M</span> main <span class="o">(</span>브랜치를 master에서 main으로 변경<span class="o">)</span>
-<span class="nv">$git</span> branch <span class="o">(</span>현재 branch 확인<span class="o">)</span>
 <span class="nv">$git</span> add <span class="nt">-A</span> <span class="o">(</span>수정된 파일 전부를 스테이징 영역에 추가, <span class="nv">$git</span> add <span class="nb">.</span> 으로 현 디렉토리만으로 제한 가능<span class="o">)</span>
 <span class="nv">$git</span> status <span class="o">(</span>현재 add 내역 확인<span class="o">)</span>
 <span class="nv">$git</span> commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span> <span class="o">(</span>스테이지 영역 → 로컬 repository<span class="o">)</span>
@@ -1953,6 +1978,35 @@ Github Repositories → New → Repository name 등 작성 후 Create Repository
 
 <span class="c">#원격 연결을 삭제</span>
 <span class="nv">$git</span> remote remove &lt;remote-name&gt;
+
+<span class="c">#현재 브랜치 이름 변경</span>
+<span class="nv">$git</span> branch <span class="nt">-M</span> main <span class="o">(</span>브랜치명을 main으로 변경<span class="o">)</span>
+
+<span class="c">#등록된 브랜치의 상세한 정보 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-v</span>
+
+<span class="c">#현재 연결된 원격 저장소의 브랜치 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-r</span>
+
+<span class="c"># 브랜치 생성하기</span>
+<span class="nv">$git</span> branch <span class="o">[</span>브랜치명]
+<span class="nv">$git</span> push <span class="c">#push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음</span>
+
+<span class="c"># 브랜치 이동하기</span>
+<span class="nv">$git</span> switch <span class="o">[</span>이동할 브랜치명]
+
+<span class="c"># 브랜치 삭제</span>
+<span class="nv">$git</span> branch <span class="nt">-d</span> <span class="o">[</span>삭제할 브랜치명]
+
+<span class="c"># 원격저장소의 브랜치를 삭제</span>
+<span class="nv">$git</span> push <span class="o">[</span>romote_name] <span class="nt">--delete</span> <span class="o">[</span>삭제할 브랜치명]
+
+<span class="c"># 로그 </span>
+<span class="nv">$ </span>git log <span class="nt">--all</span> <span class="nt">--graph</span> <span class="nt">--oneline</span>
+<span class="c">##### --all 로그 전체를 보여준다</span>
+<span class="c">##### --graph 그래프형식을 이용해 표현해준다</span>
+<span class="c">##### --oneline 한 커밋당 한줄로 표현해준다.</span>
+
 </pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="git-주요용어"><span class="mr-2">Git 주요용어</span><a href="#git-주요용어" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2>
