@@ -1763,7 +1763,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1334 words">
+  title="1418 words">
   <em>7 min</em> read</span>
 
 
@@ -1947,6 +1947,16 @@
 58
 59
 60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
 </pre></td><td class="rouge-code"><pre><span class="c">#유저 설정</span>
 git config <span class="nt">--global</span> user.name <span class="s2">"사용자이름"</span>
 git config <span class="nt">--global</span> user.email <span class="s2">"사용자이메일"</span>
@@ -1989,11 +1999,21 @@ Github Repositories → New → Repository name 등 작성 후 Create Repository
 <span class="nv">$git</span> branch <span class="nt">-r</span>
 
 <span class="c"># 브랜치 생성하기</span>
-<span class="nv">$git</span> branch <span class="o">[</span>브랜치명]
-<span class="nv">$git</span> push <span class="c">#push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음</span>
+<span class="nv">$git</span> branch <span class="o">[</span>생성할 branch_name]
+<span class="nv">$git</span> push <span class="o">[</span>remote_name] <span class="o">[</span>생성할 branch_name] <span class="c">#push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음</span>
 
 <span class="c"># 브랜치 이동하기</span>
 <span class="nv">$git</span> switch <span class="o">[</span>이동할 브랜치명]
+
+<span class="c"># 로컬에서 원격의 브랜치를 찾을 수 있도록 갱신</span>
+<span class="nv">$git</span> remote update
+
+<span class="c"># 원격 + 로컬 저장소 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-a</span>
+
+<span class="c"># 원격 저장소의 브랜치 가져오기</span>
+<span class="nv">$git</span> branch <span class="nt">-a</span> 로 브랜치 확인 
+<span class="nv">$git</span> checkout <span class="nt">-t</span> origin/[브랜치명]
 
 <span class="c"># 브랜치 삭제</span>
 <span class="nv">$git</span> branch <span class="nt">-d</span> <span class="o">[</span>삭제할 브랜치명]
