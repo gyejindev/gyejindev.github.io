@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-01-27T22:29:04+08:00</updated>
+  <updated>2024-02-20T20:02:42+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,213 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>IntelliJ Springboot 한글 인코딩</title>
+    <link href="http://localhost:4000/posts/IntelliJspring_encoding/" rel="alternate" type="text/html" title="IntelliJ Springboot 한글 인코딩" />
+    <published>2024-02-15T11:33:00+08:00</published>
+  
+    <updated>2024-02-15T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/IntelliJspring_encoding/</id>
+    <content src="http://localhost:4000/posts/IntelliJspring_encoding/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      문제
+
+
+  IntelliJ에서 Springboot를 작업하다보면 콘솔에 하기 그림과 같이 한글이 깨져 출력되는 경우
+
+
+
+
+
+  API호출에 따른 Response에서 한글이 깨져서 응답되는경우
+
+
+해결방법
+
+Step01 IntelliJ설정 변경
+
+하기 사진과 같이
+
+메뉴 -&amp;gt; Settings -&amp;gt; File Encodings -&amp;gt; 모두 UTF-8로 변경 후 저장
+
+
+
+Step02 VM Options 변경
+
+메뉴 -&amp;gt; Help -&amp;gt; Edit Custom VM Options 를 클릭하여 설정파일을 열고 최하단에 하기 사진과 같이 2개의 내용 추가
+
+-Dfile.encoding=UTF-8
+-Dconsole.encoding=UTF-8
+
+
+
+Step03 Gradle Rebuild
+
+화...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Vue vite란</title>
+    <link href="http://localhost:4000/posts/vue_vite/" rel="alternate" type="text/html" title="Vue vite란" />
+    <published>2024-02-07T11:33:00+08:00</published>
+  
+    <updated>2024-02-07T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/vue_vite/</id>
+    <content src="http://localhost:4000/posts/vue_vite/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      vite(비트)란?
+비트는 자바스크립트 네이티브 모듈 (opens new window)을 기반으로 한 데브 서버이다, 이미 현대 프런트엔드 개발 생태계는 웹팩을 중심으로 개발 환경과 배포 시스템이 구축되어 있다 그런데 왜 비트와 같은 도구들이 나왔을까? 그 이유는 웹팩을 사용할 때보다 훨씬 더 빠르게 개발하고 배포할 수 있기 때문이다 왜 빠른지 이해하기 위해서는 먼저 번들링과 자바스크립트 네이티브 모듈을 이해해야 한다
+
+번들링이란?
+브라우저에서 ESM(ES Modules)을 지원하기 전까지는 자바스크립트 모듈화를 네이티브 레벨에서 진행할 수 없었다. 따라서 개발자들은 웹팩, Rollup, Parcel과 같은 도구를 이용하여 번들링(Bundling)이라는 우회적인 방법을 사용해야 했다
+
+[ESM이란]
+
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>pinia란</title>
+    <link href="http://localhost:4000/posts/vue_pinia/" rel="alternate" type="text/html" title="pinia란" />
+    <published>2024-02-07T11:33:00+08:00</published>
+  
+    <updated>2024-02-07T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/vue_pinia/</id>
+    <content src="http://localhost:4000/posts/vue_pinia/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      pinia란
+Pinia는 Composition API 기반에서 동작하는 상태 관리자이다
+여태까지 Vue에서 사용되던 가장 보편적이고 유명한 상태 관리자는 Vuex였습니다.
+그런데 Vue의 개발자, Even You는 본인의 트위터에서 Vuex 5와 Pinia는 사실상 완전 동일한 프로젝트로 생각해야 한다고 말한 바 있습니다.
+
+Vuex 5에서 원하던 기능들의 대부분을 이미 Pinia에서 지원하고 있었기에, Vuex 프로젝트를 유지하는 대신 Pinia를 공식적으로 지원한다고 Pinia의 공식 문서에 적혀 있습니다.
+
+번들링이란?
+브라우저에서 ESM(ES Modules)을 지원하기 전까지는 자바스크립트 모듈화를 네이티브 레벨에서 진행할 수 없었다. 따라서 개발자들은 웹팩, Rollup, Parcel과 같은 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>LangChain이란</title>
+    <link href="http://localhost:4000/posts/langchain/" rel="alternate" type="text/html" title="LangChain이란" />
+    <published>2024-01-31T11:33:00+08:00</published>
+  
+    <updated>2024-01-31T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/langchain/</id>
+    <content src="http://localhost:4000/posts/langchain/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="python" />
+    
+    <category term="langchain" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      LangChain 이란
+
+LangChain을 알기위해선 먼저 LLM(대형 언어 모델)에 대해 알아야한다
+LLM은 방대한 양의 데이터를 기반으로 사전에 학습이 되어진 초대형 딥 러닝 모델이다
+
+
+  LM (언어 모델, Language Model) 이란, 인간의 언어를 이해하고 생성하도록 훈련된 일종의 인공지능 모델
+
+
+LNP vs LLM
+
+NLP는 인간의 언어를 이해하고 처리하는 데 초점을 맞춘 인공지능 분야이며 컴퓨터가 자연어 텍스트를 이해하고 분석하는 기술을 개발하는 것을 목표로 한다 활용 분야는 “문장 구문 분석, 텍스트 분류, 기계 번역, 질의 응답 시스템, 감정 분석” 등과 같은 다양한 작업에 활용
+
+LLM은 LNP의 한 부분으로 그 안에서 특정한 접근 방식과 모델을 가리키는 한 가지 형태이다
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -50,241 +257,6 @@
 
       
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git(깃) 사용방법</title>
-    <link href="http://localhost:4000/posts/git/" rel="alternate" type="text/html" title="Git(깃) 사용방법" />
-    <published>2024-01-20T11:33:00+08:00</published>
-  
-    <updated>2024-01-20T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/git/</id>
-    <content src="http://localhost:4000/posts/git/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Git은 무엇일까?
-
-
-  
-    깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다
-
-    깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다
-
-    분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다
-  
-
-
-Github는 무엇일까?
-
-
-  깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다
-
-
-Git 설치
-
-깃 설치 페이지 에서 설치를 진행한다
-
-
-
-쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천
-
-
-
-에디...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vue Route 기능 사용하기</title>
-    <link href="http://localhost:4000/posts/vue_route/" rel="alternate" type="text/html" title="Vue Route 기능 사용하기" />
-    <published>2024-01-20T11:33:00+08:00</published>
-  
-    <updated>2024-01-20T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/vue_route/</id>
-    <content src="http://localhost:4000/posts/vue_route/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Route란
-
-Route(라우트)는 길, 방향의 의미로 웹 서비스를 이용해보면 로그인시 URL이 /login 회원가입시에는 /create 이런식으로 URL을 보내게되는데
-각 서비스마다 URL을 다르게하여 처리하는 방법을 Route기능이라고 한다
-
-Vue에서 Route기능 사용하기
-
-Route 설치
-
-프롬프트로 npm install vue-router/@4 를 입력하여 설치한다
-vue 라우터의 경우 버전에 따라 사용방법이 조금씩 상이할 수 있으므로 공식 홈페이지에서 각 버전별 사용법을 참고하자 =&amp;gt; Vue Router 공식 페이지
-
-vue 샘플 라우터 추가
-
-라우터를 설치한 후 처음부터 라우터를 전부 타이핑하여 만들 수 있지만 vue에서 기본으로 제공하는 샘플 라우터를 사용하여 본인에 맞게 수정 및...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vue Axios 라이브러리 사용하기</title>
-    <link href="http://localhost:4000/posts/vue_axios/" rel="alternate" type="text/html" title="Vue Axios 라이브러리 사용하기" />
-    <published>2024-01-20T11:33:00+08:00</published>
-  
-    <updated>2024-01-20T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/vue_axios/</id>
-    <content src="http://localhost:4000/posts/vue_axios/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Axios란
-
-Axios는 Vue에서 Ajax전송을 도와주는 Http 클라이언트 라이브러리이다
-Ajax를 사용하다보면 발생할 수 있는 불편함을 보완해주는 기능들을 제공한다
-
-
-  [Ajax]
-Ajax는 Asynchronous JavaScript and XML의 약자로 빠르게 동작하는 동적인 웹 페이지를 만들기 위해 개발 기법의 하나이다
-Ajax는 웹 페이지 전체를 다시 로딩하지 않고도 웹 페이지의 일부분만 갱신이 가능하며 Ajax를 이용하여 백그라운드 영역에서 백엔드 서버와 통신하여 결과를 웹페이지 일부에만 표시할 수 있다
-Ajax 는 아래와 같은 다양 형태의 데이터를 주고받을 수 있다
-  
-    JSON
-    XML
-    HTML
-    텍스트 파일등
-  
-
-
-Axios 설치
-
-프롬프트에서 np...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vue Chap2</title>
-    <link href="http://localhost:4000/posts/vue02/" rel="alternate" type="text/html" title="Vue Chap2" />
-    <published>2024-01-20T11:33:00+08:00</published>
-  
-    <updated>2024-01-20T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/vue02/</id>
-    <content src="http://localhost:4000/posts/vue02/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      프로젝트 구성
-
-
-  Backend : SpringBoot
-  Frontend : Vue
-  IDE : Eclipse IDE
-  Database : MySQL
-
-
-필요한 프로그램 설치
-
-Eclipse 설치
-
-이클립스 설치 페이지
-
-
-
-[이클립스에서 Spring Boot 설치]
-
-메뉴 툴팁 =&amp;gt; Help =&amp;gt; Eclipse Marketplace 선택
-
-
-
-spring 으로 검색 =&amp;gt; Spring Tools 4 (aka Spring Tool Suite 4) 설치
-
-
-
-vue 설치 - Nodejs
-
-vue를 편하고 효율적으로 사용하기 위해서는 npm(nodejs package manager)이라는 라이브러리를 사용해야하는데 npm은 기본적으로 Nodejs를 설치할 때 같이 설치되는 라이브러리...
     </summary>
   
 

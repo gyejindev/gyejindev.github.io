@@ -208,7 +208,7 @@
       
 
       
-      <a href="https://github.com/gyejindev" aria-label="github"
+      <a href="https://github.com/" aria-label="github"
         target="_blank" rel="noopener">
         <i class="fab fa-github"></i>
       </a>
@@ -321,6 +321,466 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/spring14/">(코딩 자율학습 스프링 부트3) 14장</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+
+
+댓글 엔티티와 리파지터리 만들기
+
+게시판에 댓글 생성, 조회, 수정, 삭제하는 댓글 CRUD 기능을 구현한다
+
+댓글 기능
+
+일반적인 게시판을 보면 하나의 게시글에 수많은 댓글이 달린다, 이러한 관계를 one-to-many(1:n) 일대다 라고 부른다
+
+DB에 값을 저장할때는 해당 게시글과 댓글간의 연결관계가 있어야하는데 테이블마다 자신을 대표하...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1702870380"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-12-18
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="368 words">
+  <em>2 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Study
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/spring13/">(코딩 자율학습 스프링 부트3) 13장</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+
+
+코딩에서의 테스트란
+
+테스트란 프로그램의 품질을 검증하는 절차로 코딩한대로 프로그램이 잘 동작하는지를 확인하는 과정이다
+테스트 도구를 활용해 코드를 검증한다는 것은 테스트 코드를 작성해 실행한다는것으로 테스트 코드는 아래와 같다
+
+작성한 코드가 테스트를 통과하면 지속적인 리팩터링으로 코드를 개선한다 그러나 테스트를 통과하지 못하면 잘못된 부분을...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1702870380"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-12-18
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="1395 words">
+  <em>7 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Study
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/spring12/">(코딩 자율학습 스프링 부트3) 12장</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+
+
+서비스와 트랜잭션의 개념
+서비스란 컨트롤러와 리파지터리 사이에 위치하는 계층으로, 서버의 핵심 기능(비지니스 로직)을 처리하는 순서를 총괄한다 모두 성공해야 하는 일련의 과정을 트랜잭션이라고 하며 트랜잭션이 실패로 돌아갈 경우 진행 초기 단계로 돌리는 것을 롤백이라고 한다
+
+서비스 계층 만들기
+서비스 계층을 추가해서 컨트롤러, 서비스, 리파지터...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1702351980"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-12-12
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="853 words">
+  <em>4 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Study
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/spring11/">(코딩 자율학습 스프링 부트3) 11장</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+
+
+REST API와 JSAON의 등장 배경
+웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
+REST API 방식에서는 HT...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1702265580"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-12-11
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="1885 words">
+  <em>10 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Study
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/spring9/">(코딩 자율학습 스프링 부트3) 4장</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+
+
+게시글 Update
+게시판에 작성한 글을 수정하기 위해서는 해당 글을 불러와 수정할 수 있는 입력 상태로 만들어야 한다 이후 내용을 입력하고 다시 전송하면 DB에 반영돼 최종적으로 수정된다
+
+[수정 단계]
+
+  &amp;lt;상세 페이지&amp;gt;에서 [Edit] 버튼을 클릭한다
+  요청을 받은 컨트롤러는 해당 글의 id로 DB에서 데이터를 찾아 가져온다...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1700969580"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2023-11-26
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="1749 words">
+  <em>9 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Web,
+            Study
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -809,481 +1269,6 @@ Chap1. 자바 스크립트 시작하기
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/chap4/">(인터랙티브 웹 페이지 만들기) Chapter4</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-
-
-Chap1. flex 방식으로 레이아웃 만들기
-
-  앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다
-Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다
-
-
-flex의 기본
-
-[Flex의 기본 레이아웃]
-
-&amp;lt;div class=&quot;container&quot;&amp;gt;...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1697340780"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-10-15
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1455 words">
-  <em>8 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Web,
-            Study
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/apache_port_set/">(Debian12) apache 멀티 포트 서비스 설정</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-
-
-
-  해당 문서는 Debian12에서 테스트하여 작성된 문서이며 타OS에서는 설정 및 구동방식이 다를 수 있음
-
-
-/etc/apache2/ports.conf 수정
-/etc/apache2/ports.conf 수정 서비스할 포트들 Listen 추가
-# If you just change the port or add more ports here, yo...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1697340780"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-10-15
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="372 words">
-  <em>2 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Web,
-            Apache
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/chap3/">(인터랙티브 웹 페이지 만들기) Chapter3</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-Chap1. 웹 페이지의 배경 꾸미기
-
-   태그 영역마다 배경색과 이미지를 넣을 수 있다
-
-
-Chap1-1. 배경색 지정하기
-배경색은 background-color 속성을 사용해서 태그에 직접 지정할 수 있다
-
-
-  
-    
-      속성명
-      속성값
-      설명
-    
-  
-  
-    
-      background-color...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1696649580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-10-07
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="2826 words">
-  <em>15 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Web,
-            Study
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/chap2/">(인터랙티브 웹 페이지 만들기) Chapter2</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-css란
-
-   CSS는 Cascading Style Sheets 약자이며
-HTML, XHTML, XML 같은 문서의 스타일를 꾸밀 때 사용하는 스타일 시트 언어이다
-HTML로 문서의 뼈대를 만들면
-CSS는 이 문서의 색칠을 담당하고 있다
-글꼴이나, 배경색, 너비와 높이, 위치 등을 지정하거나,
-웹 브라우저, 스크린 크기, 장치에 따라서 화면을 다...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1695526380"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-09-24
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="2422 words">
-  <em>13 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Web,
-            Study
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/chap1/">(인터랙티브 웹 페이지 만들기) Chapter1</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-
-UI &amp;amp; UX
-
-
-  
-    UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등)
-    UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1694489580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2023-09-12
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="3165 words">
-  <em>17 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Web,
-            Study
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1384,9 +1369,29 @@ UI &amp;amp; UX
     
 
     
+      <!-- hide number -->
+      
+        <li class="page-item disabled">
+          <span class="page-link btn-box-shadow">...</span>
+        </li>
+        
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page5/">5</a>
+        <a class="page-link btn-box-shadow" href="/page6/">6</a>
       </li>
     
 
@@ -1395,7 +1400,7 @@ UI &amp;amp; UX
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>3</span>
-    <span class="text-muted">/ 5</span>
+    <span class="text-muted">/ 6</span>
   </li>
 
   <!-- right arrow -->
@@ -1594,25 +1599,6 @@ UI &amp;amp; UX
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1657,71 +1643,10 @@ UI &amp;amp; UX
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -1748,13 +1673,6 @@ UI &amp;amp; UX
     
     
       
-        
-        
-
-  
-    
-    
-    
     
   
     
@@ -1945,6 +1863,51 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2004,6 +1967,201 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2058,17 +2216,61 @@ UI &amp;amp; UX
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
-    
-  
-    
-    
-    
     
   
     
@@ -2089,16 +2291,52 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
-        
-        
-
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2111,57 +2349,6 @@ UI &amp;amp; UX
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2265,16 +2452,16 @@ UI &amp;amp; UX
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
+      <a class="post-tag" href="/tags/apache/">Apache</a>
+    
+      
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
-    
-      
-      <a class="post-tag" href="/tags/access/">access</a>
-    
-      
-      <a class="post-tag" href="/tags/apache/">apache</a>
     
       
       <a class="post-tag" href="/tags/tomcat/">tomcat</a>
@@ -2495,25 +2682,6 @@ UI &amp;amp; UX
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2558,71 +2726,10 @@ UI &amp;amp; UX
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -2649,13 +2756,6 @@ UI &amp;amp; UX
     
     
       
-        
-        
-
-  
-    
-    
-    
     
   
     
@@ -2846,6 +2946,51 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2905,6 +3050,201 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2959,17 +3299,61 @@ UI &amp;amp; UX
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
-    
-  
-    
-    
-    
     
   
     
@@ -2990,16 +3374,52 @@ UI &amp;amp; UX
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
-        
-        
-
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3012,57 +3432,6 @@ UI &amp;amp; UX
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -3166,16 +3535,16 @@ UI &amp;amp; UX
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
+      <a class="post-tag" href="/tags/apache/">Apache</a>
+    
+      
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
       <a class="post-tag" href="/tags/frontend/">Frontend</a>
     
       
       <a class="post-tag" href="/tags/html/">Html</a>
-    
-      
-      <a class="post-tag" href="/tags/access/">access</a>
-    
-      
-      <a class="post-tag" href="/tags/apache/">apache</a>
     
       
       <a class="post-tag" href="/tags/tomcat/">tomcat</a>

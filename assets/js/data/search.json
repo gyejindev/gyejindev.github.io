@@ -1,10 +1,70 @@
 [
   
   {
+    "title": "IntelliJ Springboot 한글 인코딩",
+    "url": "/posts/IntelliJspring_encoding/",
+    "categories": "Web, Study",
+    "tags": "Web, Study, Springboot, IntelliJ",
+    "date": "2024-02-15 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "문제  IntelliJ에서 Springboot를 작업하다보면 콘솔에 하기 그림과 같이 한글이 깨져 출력되는 경우  API호출에 따른 Response에서 한글이 깨져서 응답되는경우해결방법Step01 IntelliJ설정 변경하기 사진과 같이메뉴 -&amp;gt; Settings -&amp;gt; File Encodings -&amp;gt; 모두 UTF-8로 변경 후 저장Step02 VM Options 변경메뉴 -&amp;gt; Help -&amp;gt; Edit Custom VM Options 를 클릭하여 설정파일을 열고 최하단에 하기 사진과 같이 2개의 내용 추가-Dfile.encoding=UTF-8-Dconsole.encoding=UTF-8Step03 Gradle Rebuild화면 맨 오른편에 Gradle 메뉴를 선택하여 하기 그림과 같이 순서대로 Rebuild를 진행한다우측 Gradle메뉴 -&amp;gt; Tasks -&amp;gt; build -&amp;gt; clean우측 Gradle메뉴 -&amp;gt; Tasks -&amp;gt; build -&amp;gt; buildStep04 프로젝트 재시작해당 프로젝트를 재구동하여 한글이 정상 출력되는지 확인한다"
+  },
+  
+  {
+    "title": "Vue vite란",
+    "url": "/posts/vue_vite/",
+    "categories": "Web, Study",
+    "tags": "Web, Study, Vue",
+    "date": "2024-02-07 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "vite(비트)란?비트는 자바스크립트 네이티브 모듈 (opens new window)을 기반으로 한 데브 서버이다, 이미 현대 프런트엔드 개발 생태계는 웹팩을 중심으로 개발 환경과 배포 시스템이 구축되어 있다 그런데 왜 비트와 같은 도구들이 나왔을까? 그 이유는 웹팩을 사용할 때보다 훨씬 더 빠르게 개발하고 배포할 수 있기 때문이다 왜 빠른지 이해하기 위해서는 먼저 번들링과 자바스크립트 네이티브 모듈을 이해해야 한다번들링이란?브라우저에서 ESM(ES Modules)을 지원하기 전까지는 자바스크립트 모듈화를 네이티브 레벨에서 진행할 수 없었다. 따라서 개발자들은 웹팩, Rollup, Parcel과 같은 도구를 이용하여 번들링(Bundling)이라는 우회적인 방법을 사용해야 했다[ESM이란]      ESM : 모듈화 문법인 import, export를 별도의 도구 없이 브라우저 자체에서 소화해 낼 수 있는 모듈 방식을 의미한다 만약 아래와 같은 코드를 웹팩과 같은 번들러 없이 브라우저에서 실행하면 에러가 발생한다      // app.jsimport { sum } from &#39;./math.js&#39;;console.log(sum(10, 20));&amp;lt;script src=&quot;./app.js&quot;&amp;gt;&amp;lt;/script&amp;gt;            하지만, 이제는 script 태그에 아래와 같이 type=”module” 속성을 추가하면 정상 동작하는 것을 볼 수 있다      &amp;lt;script type=&quot;module&quot; src=&quot;./app.js&quot;&amp;gt;&amp;lt;/script&amp;gt;            이렇게 브라우저에서 import와 export를 소화할 수 있는 능력이 바로 ESM이다      Vite의 특징비트는 로컬에서 개발할 때 번들링을 하지 않고 ESM 방식을 사용하기 때문에 로컬 서버 구동 속도가 매우 빠르다 500개 정도 되는 모듈을 갖고 있는 웹 서비스를 웹팩 데브 서버 (opens new window)와 비트로 비교해 본다면 실행 시간이 20 ~ 30배 이상 차이가 난다. 웹팩 데브 서버는 처음 로컬 서버를 시작할 때 관련 있는 모듈들을 번들링 해서 메모리에 적재하는 시간이 필요하기 때문에 당연히 어느 정도의 시간이 필요하지만 비트는 번들링을 하지 않고 바로 서버를 실행하기 때문에 명령어를 실행함과 동시에 서버가 바로 구동된다"
+  },
+  
+  {
+    "title": "pinia란",
+    "url": "/posts/vue_pinia/",
+    "categories": "Web, Study",
+    "tags": "Web, Study, pinia, Vue",
+    "date": "2024-02-07 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "pinia란Pinia는 Composition API 기반에서 동작하는 상태 관리자이다여태까지 Vue에서 사용되던 가장 보편적이고 유명한 상태 관리자는 Vuex였습니다.그런데 Vue의 개발자, Even You는 본인의 트위터에서 Vuex 5와 Pinia는 사실상 완전 동일한 프로젝트로 생각해야 한다고 말한 바 있습니다.Vuex 5에서 원하던 기능들의 대부분을 이미 Pinia에서 지원하고 있었기에, Vuex 프로젝트를 유지하는 대신 Pinia를 공식적으로 지원한다고 Pinia의 공식 문서에 적혀 있습니다.번들링이란?브라우저에서 ESM(ES Modules)을 지원하기 전까지는 자바스크립트 모듈화를 네이티브 레벨에서 진행할 수 없었다. 따라서 개발자들은 웹팩, Rollup, Parcel과 같은 도구를 이용하여 번들링(Bundling)이라는 우회적인 방법을 사용해야 했다[ESM이란]      ESM : 모듈화 문법인 import, export를 별도의 도구 없이 브라우저 자체에서 소화해 낼 수 있는 모듈 방식을 의미한다 만약 아래와 같은 코드를 웹팩과 같은 번들러 없이 브라우저에서 실행하면 에러가 발생한다      // app.jsimport { sum } from &#39;./math.js&#39;;console.log(sum(10, 20));&amp;lt;script src=&quot;./app.js&quot;&amp;gt;&amp;lt;/script&amp;gt;            하지만, 이제는 script 태그에 아래와 같이 type=”module” 속성을 추가하면 정상 동작하는 것을 볼 수 있다      &amp;lt;script type=&quot;module&quot; src=&quot;./app.js&quot;&amp;gt;&amp;lt;/script&amp;gt;            이렇게 브라우저에서 import와 export를 소화할 수 있는 능력이 바로 ESM이다      Vite의 특징비트는 로컬에서 개발할 때 번들링을 하지 않고 ESM 방식을 사용하기 때문에 로컬 서버 구동 속도가 매우 빠르다 500개 정도 되는 모듈을 갖고 있는 웹 서비스를 웹팩 데브 서버 (opens new window)와 비트로 비교해 본다면 실행 시간이 20 ~ 30배 이상 차이가 난다. 웹팩 데브 서버는 처음 로컬 서버를 시작할 때 관련 있는 모듈들을 번들링 해서 메모리에 적재하는 시간이 필요하기 때문에 당연히 어느 정도의 시간이 필요하지만 비트는 번들링을 하지 않고 바로 서버를 실행하기 때문에 명령어를 실행함과 동시에 서버가 바로 구동된다"
+  },
+  
+  {
+    "title": "LangChain이란",
+    "url": "/posts/langchain/",
+    "categories": "python, langchain",
+    "tags": "python, langchain, 딥러닝",
+    "date": "2024-01-31 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "LangChain 이란LangChain을 알기위해선 먼저 LLM(대형 언어 모델)에 대해 알아야한다LLM은 방대한 양의 데이터를 기반으로 사전에 학습이 되어진 초대형 딥 러닝 모델이다  LM (언어 모델, Language Model) 이란, 인간의 언어를 이해하고 생성하도록 훈련된 일종의 인공지능 모델LNP vs LLMNLP는 인간의 언어를 이해하고 처리하는 데 초점을 맞춘 인공지능 분야이며 컴퓨터가 자연어 텍스트를 이해하고 분석하는 기술을 개발하는 것을 목표로 한다 활용 분야는 “문장 구문 분석, 텍스트 분류, 기계 번역, 질의 응답 시스템, 감정 분석” 등과 같은 다양한 작업에 활용LLM은 LNP의 한 부분으로 그 안에서 특정한 접근 방식과 모델을 가리키는 한 가지 형태이다프로젝트 구성  Backend : SpringBoot  Frontend : Vue  IDE : Eclipse IDE  Database : MySQL필요한 프로그램 설치Eclipse 설치이클립스 설치 페이지[이클립스에서 Spring Boot 설치]메뉴 툴팁 =&amp;gt; Help =&amp;gt; Eclipse Marketplace 선택spring 으로 검색 =&amp;gt; Spring Tools 4 (aka Spring Tool Suite 4) 설치"
+  },
+  
+  {
     "title": "Vue Chap3",
     "url": "/posts/vue03/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study, Vue",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
     "date": "2024-01-21 11:33:00 +0800",
     
 
@@ -17,9 +77,9 @@
   
   {
     "title": "Git(깃) 사용방법",
-    "url": "/posts/git/",
+    "url": "/posts/usegit/",
     "categories": "Web, Study",
-    "tags": "Git, git",
+    "tags": "git",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -34,7 +94,7 @@
     "title": "Vue Route 기능 사용하기",
     "url": "/posts/vue_route/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study, Vue, Route",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue, Route",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -49,7 +109,7 @@
     "title": "Vue Axios 라이브러리 사용하기",
     "url": "/posts/vue_axios/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study, Vue, Axios",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue, Axios",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -64,7 +124,22 @@
     "title": "Vue Chap2",
     "url": "/posts/vue02/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study, Vue",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "date": "2024-01-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "프로젝트 구성  Backend : SpringBoot  Frontend : Vue  IDE : Eclipse IDE  Database : MySQL필요한 프로그램 설치Eclipse 설치이클립스 설치 페이지[이클립스에서 Spring Boot 설치]메뉴 툴팁 =&amp;gt; Help =&amp;gt; Eclipse Marketplace 선택spring 으로 검색 =&amp;gt; Spring Tools 4 (aka Spring Tool Suite 4) 설치vue 설치 - Nodejsvue를 편하고 효율적으로 사용하기 위해서는 npm(nodejs package manager)이라는 라이브러리를 사용해야하는데 npm은 기본적으로 Nodejs를 설치할 때 같이 설치되는 라이브러리이다 따라서 Nodejs를 먼저 설치하도록 한다Nodejs 설치 페이지vue 설치nodejs 설치가 완료된 후 cmd(프롬프트)를 열어서 npm install -g @vue/cli 명령어를 수행하여 vue를 설치한다설치가 완료되면 npm ls -g 명령어로 설치 완료를 확인한다프로젝트 생성 (Spring Boot / Vue 각각)Spring Boot 프로젝트 생성이클립스 IDE를 실행 후file =&amp;gt; new =&amp;gt; Other =&amp;gt; Spring Boot =&amp;gt; Spring Starter Project 선택하고 Next프로젝트로 사용할 프로젝트명 입력 후 Next프로젝트에 필요한 라이브러리 및 의존성 패키지를 미리 설치하는 것으로 저자는 하기 4개의 라이브러리를 선택하였다  Spring Boot DevTools : 라우터로 전송되는 내용들에 대한 코드가 변경되면, 자동으로 어플리케이션을 재시작하여 브라우저에도 업데이트를 해주는 역할  Lombok : 어노테이션 기반으로 코드를 자동완성 해주는 라이브러리이다. Lombok을 이용하면 Getter, Setter, Equlas, ToString 등과 다양한 방면의 코드를 자동완성 시킬 수 있다  Thymeleaf : 흔히 View Template(뷰 템플릿)이라고 부르며 뷰 템플릿은 컨트롤러가 전달하는 데이터를 이용하여 동적으로 화면을 구성할 수 있게 해준다 기존 JSP에서는 많은 기능을 제공하고 전체적인 화면을 디자인하는데 부족하였지만 타임리프는 스프링 프레임워크외에 노드JS나 다른 웹 서버에서도 뷰 템플릿을 사용할 수 있도록한다  spring web : 스프링으로 웹페이지를 만들 때 필수적인 것들이 들어있다Vue 프로젝트 생성cmd(프롬프트)를 실행해서 cd명령어로 위에서 생성한 Spring Boot 프로젝트 폴더로 이동한다 이렇게 하는 이유는 다음에 진행할 Spring Boot와 Vue를 연동하기 위해서이다이동이 완료되었다면 vue create [프로젝트명] 을 입력하여 프로젝트를 생성한다생성한 프로젝트 폴더로 이동후 npm run serve명령어를 수행하면 기본 예제코드로 vue 서버가 open된다 http://localhost:8080 로 접속하여 정상적으로 프로젝트가 생성되었는지 확인한다[Spring Boot 프로젝트 생성한 위치 복사][해당 위치에서 vue 프로젝트 생성]생성시 나오는 질문에서는 기본 Default 로 선택[해당 URL 접속화면]프로젝트 연동(Spring Boot / Vue)위에서 진행한 내용만 봐도 Spring Boot와 Vue는 각각 실행되는 환경인것을 알 수 있다하지만 지금 진행하는 프로젝트는 Spring Boot만 실행시켰을때 Vue도 같이 구동되어 사용할 수 있도록 하고자하기 때문에 연동 작업을 진행한다먼저 Vue에서 빌드하여 배포되는 폴더를 Spring Boot 프로젝트 내로 떨어지도록 수정한다[생성된 vue 프로젝트 폴더내의 vue.config.js파일 수정]module.exports = defineConfig({  ...  // npm run build 타겟 디렉토리 (백엔드쪽!)  outputDir: &quot;../src/main/resources/static&quot;,    // npm run server 개발 진행시 포트가 다르기 때문에 프록시 설정해줘야 함  // target : 백엔드 port가 들어감  // changeOrigin -&amp;gt; true로 해야 cros 문제 해결할 수 있음  devServer: {    proxy: {      &#39;/&#39;: {        target: &quot;http://localhost:8080&quot;,        changeOrigin: true,      }    }  }[생성된 vue 프로젝트 폴더내의 package.json 파일 수정]  “serve” : “vue-cli-service serve –port 3000”  “build” : “vue-cli-service build –watch”[위 작업이 모두 완료되었다면 재빌드를 진행한다]cmd(프롬프트)를 실행후 vue프로젝트 폴더로 이동하여 npm run build 명령어를 수행하여 빌드를 진행한다빌드 후 아래와 같이 이클립스에서 F5 새로고침 후 /src/main/resources/static 폴더가 생성되었다면 성공이다[이클립스에서 Spring Boot를 실행해보자]프로젝트명 우클릭 =&amp;gt; Run AS =&amp;gt; Spring Boot App브라우저에서 127.0.0.1:8080 스프링부트 포트로 접속했을때 vue 페이지가 나온다면 연동 성공이다"
+  },
+  
+  {
+    "title": "Vue Chap2",
+    "url": "/posts/vue02-(copy)/",
+    "categories": "Web, Study",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -79,7 +154,7 @@
     "title": "Vue Chap1",
     "url": "/posts/vue01/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study, Vue",
+    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -87,14 +162,14 @@
 
 
 
-    "snippet": "[Vue.js란]vue 는 Evan You가 개인 프로젝트로 시작해서 2014년에 배포한 자바스크립트 프레임워크이다뷰는 다음과 같은 이유로 인기가 많다[Vue의 장점]  진입 장벽이 낮고 학습 비용이 적음  스케일의 유연성  한국어 문서뷰에서 화면을 렌더링하는 구조 자체는 DOM이 아니라 자바스크립트 데이터이다 데이터를 기반으로 적절한 DOM을 구축하는 방식이다 이처럼 데이터를 중심으로 하는 애플리케이션 설계를 데이터 지향이라고한다[뷰의 템플릿]뷰는 DOM을 구축하는 방법으로 템플릿이라는 것을 주로 사용한다 템플릿 구문은 HMTL을 기반으로 하기 때문에 텍스트 에디터와 함께 쉽게 사용이 가능하다[데이터 바인딩]데이터와 렌더링을 동기화하는 구조를 데이터 바인딩이라고 한다다양한 데이터 바인딩 형태의 라이브러리와 프레임워크가 존재하는데 자바스크립트 데이터와 이를 사용하는 위치를 연결해서 데이터에 변경이 있을 때 자동으로 DOM을 업데이트하는 기능으로 대부분 사용한다Vue.js또한 데이터 바인딩과 관련된 수많은 기능을 가지고 있으며 디렉티브라는 것을 기반으로 이러한 기능을 HTML과 비슷한 형태로 사용할 수 있다[Vue 컴포넌트]사이트의 규모가 커지면 자바스크립,HMTL,CSS의 소스코드가 난잡해지며 자바스크립트가 어느 CSS 어떤 부분에 구현되어있는지 등을 알기가 쉽지 않다Vue.js 컴포넌트는 기능별로 자바스크립트와 템블릿을 하나의 세트로 묶어서 다른 기능과 분리하여 개발할 수 있도록 해주는 기능이다"
+    "snippet": "[Vue.js란]vue 는 Evan You가 개인 프로젝트로 시작해서 2014년에 배포한 자바스크립트 프레임워크이다뷰는 다음과 같은 이유로 인기가 많다[Vue의 장점]  진입 장벽이 낮고 학습 비용이 적음  스케일의 유연성  한국어 문서뷰에서 화면을 렌더링하는 구조 자체는 DOM이 아니라 자바스크립트 데이터이다 데이터를 기반으로 적절한 DOM을 구축하는 방식이다 이처럼 데이터를 중심으로 하는 애플리케이션 설계를 데이터 지향이라고한다[뷰의 템플릿]뷰는 DOM을 구축하는 방법으로 템플릿이라는 것을 주로 사용한다 템플릿 구문은 HMTL을 기반으로 하기 때문에 텍스트 에디터와 함께 쉽게 사용이 가능하다[데이터 바인딩]데이터와 렌더링을 동기화하는 구조를 데이터 바인딩이라고 한다다양한 데이터 바인딩 형태의 라이브러리와 프레임워크가 존재하는데 자바스크립트 데이터와 이를 사용하는 위치를 연결해서 데이터에 변경이 있을 때 자동으로 DOM을 업데이트하는 기능으로 대부분 사용한다Vue.js또한 데이터 바인딩과 관련된 수많은 기능을 가지고 있으며 디렉티브라는 것을 기반으로 이러한 기능을 HTML과 비슷한 형태로 사용할 수 있다[Vue 컴포넌트]사이트의 규모가 커지면 자바스크립,HMTL,CSS의 소스코드가 난잡해지며 자바스크립트가 어느 CSS 어떤 부분에 구현되어있는지 등을 알기가 쉽지 않다Vue.js 컴포넌트는 기능별로 자바스크립트와 템블릿을 하나의 세트로 묶어서 다른 기능과 분리하여 개발할 수 있도록 해주는 기능이다[v-로 시작하는 디렉티브란]vus.js를 사용하다보면 템플릿에 v-if, v-bind등 익숙하지 않은 속성들을 볼 수 있는데 이는 모두 특별한 역할을 가지고 있는 속성들이다 이처럼 v-로 시작하는 속성을 디렉티브라고 부르며 주로 데이터 바인딩과 관련된 처리를 한다"
   },
   
   {
     "title": "JSP 자바 웹 프로그래밍 Chap1",
     "url": "/posts/jsp01/",
     "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, apache, Study",
+    "tags": "Web, Backend, tomcat, Apache, Study",
     "date": "2024-01-17 11:33:00 +0800",
     
 
