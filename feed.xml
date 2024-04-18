@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Jogyejin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-02-20T20:02:42+08:00</updated>
+  <updated>2024-04-18T22:30:20+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,50 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>vue 입문 Level01</title>
+    <link href="http://localhost:4000/posts/vue_level01/" rel="alternate" type="text/html" title="vue 입문 Level01" />
+    <published>2024-03-04T11:33:00+08:00</published>
+  
+    <updated>2024-03-04T11:33:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/vue_level01/</id>
+    <content src="http://localhost:4000/posts/vue_level01/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Web" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      vue의 기본 구조
+
+SPA와 Router
+
+Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면으로 구성된 애플리케이션을 말한다)로 구성되는데, 이때 한 페이지 내에서도 다른 페이지로 이동할 필요 없이 마치 여러 개의 페이지가 있는 듯한 방식으로 작동하게 해 주는 것이 바로 Vue Router이다.
+
+이는 보통 사이트의 큰 틀 안에 &amp;lt;router-view&amp;gt; 태그를 삽입하고, 라우터가 보여 줄 컴포넌트를 이 태그 안에 렌더링한다. 라우터가 보여 줄 컴포넌트는 &amp;lt;router-link&amp;gt;의 클릭이나 JS 함수 호출 등으로 변경할 수 있다.
+
+간단한 예를 들어보자면 블로그를 만들 때 MainPage 컴포넌트와 Profile 컴포넌트, Posts 컴포...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -220,43 +264,6 @@ NLP는 인간의 언어를 이해하고 처리하는 데 초점을 맞춘 인공
 
 LLM은 LNP의 한 부분으로 그 안에서 특정한 접근 방식과 모델을 가리키는 한 가지 형태이다
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vue Chap3</title>
-    <link href="http://localhost:4000/posts/vue03/" rel="alternate" type="text/html" title="Vue Chap3" />
-    <published>2024-01-21T11:33:00+08:00</published>
-  
-    <updated>2024-01-21T11:33:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/vue03/</id>
-    <content src="http://localhost:4000/posts/vue03/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Web" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
     </summary>
   
 
