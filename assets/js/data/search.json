@@ -1,10 +1,160 @@
 [
   
   {
+    "title": "React State와 Lifecycle",
+    "url": "/posts/react05/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-05 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "State개요      React에서의 State는 단언 뜻 그대로 상태를 뜻하며 Props처럼 JavaScript의 객체로 구성되어있다. 두 객체 모두 렌더링 결과물에 영향을 주는 정보를 갖고 있는데 중요한 차이가 있다 Props는 함수의 매개변수처럼 컴포넌트에 전달되는 반면에 state는 함수 내의 선언된 변수처럼 컴포넌트 안에서 관리된다는 점이다.        React는 지역변수, 전역변수의 값이 변경된다해서 컴포넌트를 다시 렌더링 하지 않는다 state를 사용하여 데이터를 관리하는 이유이다 (state 값이 변하면 관련 있는 컴포넌트들이 재렌더링되어 화면이 바뀐다)        일반적으로 리액트에서는 유동적인 데이터는 변수에 담아서 사용하지 않고 useState()라는 리액트 함수를 사용하여 state라는 저장 공간에 담아 사용한다        State를 공부하기전에 중요한 부분이있는데 바로 Constructor 즉 생성자이다          생성자는 다른 프로그래밍 언어에서도 사용되며 객체를 만드는 역할을 하는 함수이다 객체를 만들기위해 Class를 생성하며 Class안에 생성자는 해당 Class의 초기값을 설정해 주는데 사용된다          class Lion {  // class의 초기값 설정. 생성자와 비슷하다고 보면 된다.  constructor( name ){      this.name = name;  }  getName( ){      console.log(&quot;내 이름은 &quot;+this.name);  }  }  myLion = new Lion(&quot;Hon&quot;);  myLion.getName();    //결과로 내 이름은 Hon이 출력된다      setstate는 뭘까위에서 state는 어플리케이션 각 페이지(컴포넌트)에서 사용되는 데이터 즉 state데이터에 대해 알아보았는데,해당 state의 값은 어떻게 바꾸는것일까?this.state = {date: new Date()};위처럼 this.state에 값을 바로 넣어주면 된다고 생각할 수 있지만 state에 직접 값을 넣는것은 해당 컴포넌트의 생성자에서만 가능하다!(state값을 직접 변경해도 render() 함수는 새로 호출되지 않는다)그럼 생성자 이후에 state값을 바꾸기 위해서는 어떻게할까?바로 아래에서 처럼 setstate함수를 사용하는것이다setstate를 호출했을때에만 렌더링 함수가 호출되어 화면에 변경사항을 반영할 수 있다this.setState({date: new Date()});State가 필요한 상황은 어떤 경우일까리액트 공식문서의 예제를 예로들어보자웹상에 실시간 시계를 구현하려고한다면 어떻게 해야 할까?단순하게 생각했을때 실시간 시간을 초마다 받아와서 변수에 넣고 해당 변수를 화면에 렌더링을 해줘야할 것 같다 class Clock extends React.Component {   constructor(props) {     super(props);     this.state = {date: new Date()};   }    componentDidMount() {     this.timerID = setInterval(       () =&amp;gt; this.tick(),       1000     );   }    componentWillUnmount() {     clearInterval(this.timerID);   }    tick() {     this.setState({       date: new Date()     });   }    render() {     return (       &amp;lt;div&amp;gt;         &amp;lt;h1&amp;gt;Hello, world!&amp;lt;/h1&amp;gt;         &amp;lt;h2&amp;gt;It is {this.state.date.toLocaleTimeString()}.&amp;lt;/h2&amp;gt;       &amp;lt;/div&amp;gt;     );   } }  const root = ReactDOM.createRoot(document.getElementById(&#39;root&#39;)); root.render(&amp;lt;Clock /&amp;gt;);위 코드의 과정을 분석해보자  (1)  root.render(&amp;lt;Clock /&amp;gt;); 부분이 제일먼저 실행되어 React는 Clock 컴포넌트의 생성자(constructor)를 호출한다, 클래스 컴포넌트는 항상 props로 기본 constructor를 호출해야 한다 여기서 super키워드는 부모클래스 생성자의 참조 명령어이다 즉, super는 React.component의 생성자(constructor)를 가리킨다, 이작업을 하는 이유는 class Clock extends React.Component 에 의해서 Clock이라는 컴포넌트는 React.Component라는 부모 클래스에의해서 컴포넌트로 만들 수 있었는데 부모 클래스인 React.Component와 Clock 컴포넌트의 데이터 충돌(함수나 변수명이 같음)을 막기위해  상위 컴포넌트에서 전달해주는 속성값이다 해당 supuer(props)를한 이후에 this 접근이가능하다 이후 Clock이 현재 시각을 표시해야 하기 때문에 현재 시각이 포함된 객체로 this.state를 초기화한다  React에서 Component를 생성할 때 state 값을 초기화하거나 메서드를 바인딩할 때 construcotr()를 사용한다 React의 Component의 생성자는 해당 Component가 마운트 되기 전 호출되며 React.Component를 상속한 컴포넌트의 생성자를 구현할 때는 super(props)를 선언을 권고하고 있다. 이유는 this.props 사용 시 생성자 내에서 정의되지 않아 버그 발생 가능성이 생기기 때문이다.  (2) React는 Clock 컴포넌트의 render함수를 호출한다, 이를 통해 React는 화면에 표시되어야 할 내용을 구분하게되고 React는 Clock의 렌더링 출력값을 일치시키기 위해 DOM을 업데이트한다  (3) Clock 출력값이 DOM에 삽입되면, React는 componentDidMount() 생명주기 메서드를 호출한다 그 안에서 Clock 컴포넌트는 매초 컴포넌트의 tick() 메서드를 호출하기 위한 타이머를 설정하도록 브라우저에 요청한다  (4) 매초 브라우저가 tick() 메서드를 호출하며 그 안에서 Clock 컴포넌트는 setState()에 현재 시각을 포함하는 객체를 호출하면서 UI 업데이트를 진행한다  setState() 호출 덕분에 React는 state가 변경된 것을 인지하고 화면에 표시될 내용을 알아내기 위해 render() 메서드를 다시 호출한다 이 때 render() 메서드 안의 this.state.date가 달라지고 렌더링 출력값은 업데이트된 시각을 포함하며 React는 이에 따라 DOM을 업데이트한다.  (5) Clock 컴포넌트가 DOM으로부터 한 번이라도 삭제된 적이 있다면 React는 타이머를 멈추기 위해 componentWillUnmount() 생명주기 메서드를 호출한다"
+  },
+  
+  {
+    "title": "React Components 와 Props",
+    "url": "/posts/react04/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-04 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Component 개요React는 모든 페이지가 Component로 구성되어있고 하나의 Component는 여러개의 Component로 구성될 수 있다 (블록을 생각하면 이해하기 쉽다)Component는 JavaScript함수와 유사하며 Props라고 하는 임의의 값을 받은 후 화면에 어떻게 표시되는지를 기술하는 React Element를 반환한다Component 생성 function Welcome(props) {   return &amp;lt;h1&amp;gt;Hello, {props.name}&amp;lt;/h1&amp;gt;; }위 함수는 Props 객체 인자를 받은 후 React Element를 return 즉 반환하는 컴포넌트이다이러한 컴포넌트는 JavaScript 함수이기 때문에 말 그대로 함수 컴포넌트라고도 호칭한다최근에 나온 ES6 Class를 사용해서도 컴포넌트를 정의할 수 있다class Welcome extends React.Component {  render() {    return &amp;lt;h1&amp;gt;Hello, {this.props.name}&amp;lt;/h1&amp;gt;;  }}Component 렌더링 예시function Welcome(props) {  return &amp;lt;h1&amp;gt;Hello, {props.name}&amp;lt;/h1&amp;gt;;}const root = ReactDOM.createRoot(document.getElementById(&#39;root&#39;));// &amp;lt;Welcome name=&quot;Sara&quot; /&amp;gt; 엘리먼트로 root.render()를 호출합니다.// React는 {name: &#39;Sara&#39;}를 props로 하여 Welcome 컴포넌트를 호출합니다.const element = &amp;lt;Welcome name=&quot;Sara&quot; /&amp;gt;;// Welcome 컴포넌트는 결과적으로 &amp;lt;h1&amp;gt;Hello, Sara&amp;lt;/h1&amp;gt; 엘리먼트를 반환합니다.root.render(element);// React DOM은 &amp;lt;h1&amp;gt;Hello, Sara&amp;lt;/h1&amp;gt; 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트합니다.Props 개요Props는 Property의 약어로 속성이라는 뜻을 갖는다React의 Props는 Component의 속성을 뜻하며 위에서 Component는 페이지를 만들 수 있는 하나의 틀이라고 정의했는데 Component로 페이지를 만들때 어떤 Props(속성)을 주느냐에 따라 페이지를 다르게 만들 수 있다Props의 주요 특징Read-Only 로써 읽을 수 밖에 없다 즉 변경이 불가능하다는 특징을 가지고 있다"
+  },
+  
+  {
+    "title": "React Elements",
+    "url": "/posts/react03/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-04 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Elements 개요Elements는 요소, 성분의 뜻으로 React앱 또는 기존 웹을 구성하는 가장 작은 블록이다많은 Elemnets들을 관리하는 주최를 DOM이라 하며 기존 웹에도 DOM이 당연히 존재한다기존 웹을 React에서 관리하기 위해 기존 웹 HTML 파일 어딘가에 div태그 있다고 가정했을때 이 안에 들어가는 모든 엘리먼트들을 React DOM에서 관리하기 위해 ROOT DOM노드를 생성한다Element RenderingReact로 구현된 애플리케이션의 경우 대부분 하나의 ROOT DOM 노드가 있으며 React Element를 렌더링 하기 위해서는 우선 DOM Element를 ReactDOM.createRoot()에 전달한 다음, React Element를 root.render()에 전달해야 한다$ node --version$ npm --versionRendering 된 Element 업데이트하기React의 Element는 불변객체이다 즉, Element를 생성한 이후에는 해당 Element의 자식이나 속성을 변경할 수없다 따라서 Element 요소의 내용을 바꾸고 싶을때는 새로운 Element를 생성하고 이를 다시 root.render()로 다시 Rendering하는 방법뿐이다.매번 다시 렌더링을하지만 ReactDom은 내용이 변경된 Element만 업데이트를한다예시) 초시계"
+  },
+  
+  {
+    "title": "React 개발환경 설정 방법",
+    "url": "/posts/react02/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-04 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Node.js와 npm설치  nodejs는 자바스크립트로 네트워크 어플리케이션을 개발할 수 있도록 환경구성을 도와주는 라이브러리  npm는 node package manager 의 약자로 프로젝트에서 필요하는 외부 라이브러리 버전등을 관리해주는 라이브러리이며 nodejs설치시 npm은 자동으로 설치된다      (1) nodejs 다운로드 페이지 에서 운영체제에 맞게 설치하기        (2) 터미널을 열어 하기 명령어로 설치확인 (각 버전명이 나오면 정상)    $ node --version$ npm --version      React 프로젝트 만들기(1) cmd 명령프롬프트 혹은 vscode의 터미널을 열어서 하기 명령어를 수행###### 프로젝트 생성 명령어 ######$ npx create-react-app &amp;lt;만들고자하는 프로젝트 이름&amp;gt;(2) cmd 명령프롬프트 혹은 vscode의 터미널을 열어서 하기 명령어를 수행###### 프로젝트 폴더로 이동후 프로젝트 실행 명령어 ######$ cd &amp;lt;위에서 생성한 프로젝트 이름&amp;gt;$ npm start(3) 웹을 열어서 접속되는지 확인하기"
+  },
+  
+  {
+    "title": "React란",
+    "url": "/posts/react01/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-01 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "React란React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브러리이며 컴포넌트라는 작은 조각들로 UI를 구성한다 또한 Virtual Dom이라는 개념을 사용하여 성능을 최적화한다주요 특징      가독성과 유지보수성: JSX 문법을 사용하여 컴포넌트 기반으로 UI를 작성할 수 있으므로 가독성이 높고 유지보수가 용이하며 각 컴포넌트는 독립적으로 작성되어 관련 로직이나 스타일이 캡슐화되어 있다        재사용 가능한 컴포넌트: React는 컴포넌트 기반의 아키텍처를 채택하고 있어, 재사용 가능한 UI 요소를 쉽게 작성할 수 있다 이로써 개발 속도를 높이고 일관된 UI를 유지할 수 있다        가상 DOM과 성능 최적화: React는 Virtual DOM을 사용하여 실제 DOM과의 차이를 최소화하여 성능을 향상시킨다, 변경된 부분만 업데이트되므로 불필요한 렌더링이나 DOM 조작을 최소화 가능        배우기 쉬운 문법: React의 문법은 간단하고 직관적이며, 자바스크립트와 JSX를 사용하여 작성되며 이는 새로운 개발자들이 빠르게 학습하고 프로젝트에 참여할 수 있도록 도와준다        라이브러리와 생태계의 풍부함: React는 다양한 라이브러리와 플러그인이 존재하며, 이러한 생태계는 개발 생산성을 높이고 다양한 기능을 추가할 수 있는 환경을 제공한다        커뮤니티와 지원: React는 매우 큰 개발자 커뮤니티를 보유하고 있으며, 많은 문제에 대한 해결책과 도움을 얻을 수 있다. 또한 페이스북과 다른 기업들이 백업을 제공하고 있어 안정적인 지원을 받을 수 있다  장점(1) 빠른 업데이트와 렌더링 속도 : Virtual DOM을 사용하여 사용자에게 빠른 렌더링 속도를 보여준다(2) 리액트는 Component로 구성되어있기 때문에 재사용성이 높게 개발하기가 쉽다(3) 든든한 지원군 Meta…(4) 활발한 지식공유와 방대한 커뮤니티단점(1) 방대한 학습량 (새로운 개념들이 많기에..)(2) 잦은 업데이트에 따른 학습 난이도가 높다(3) 높은 상태관리 복잡도"
+  },
+  
+  {
+    "title": "JSX란",
+    "url": "/posts/jsx/",
+    "categories": "Framework, React",
+    "tags": "React",
+    "date": "2024-05-01 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "개요      JSX 는 JavaScript 문법을 확장한것으로 JavaScript + XML/HTML로 볼 수 있다        JSX는 리액트로 프로젝트를 개발할 때 사용되므로 공식적인 자바스크립트 문법은 아니다        JSX는 React “엘리먼트(element)”를 생성한다. React 엘리먼트는 브라우저 DOM 엘리먼트와 달리 일반 객체이다.        React는 JSX 사용이 필수가 아니지만, JS 코드 안에서 UI관련 작업을 할 수 있기 때문에 시각적으로 더 도움이 된다. 또한 JSX를 사용하면 React가 더욱 도움이 되는 에러 및 경고 메시지를 표시할 수 있게 해준다      [JSX를 사용하면 아래와 같이 XML, HTML코드를 변수에 넣는것도 가능하다]JSX를 사용하는 이유(1) JSX에는 div, span 같은 HTML 태그를 사용할 수 있으며, 개발자가 만든 컴포넌트도 JSX 안에서 작성할 수 있다(2) JSX는 HTML 코드와 비슷하기 때문에 일반 자바스크립만 사용한 코드보다 더 익숙하며 가독성이 좋다"
+  },
+  
+  {
+    "title": "Typescript 인터페이스(Interface)",
+    "url": "/posts/typescript03/",
+    "categories": "Develop, Typescript",
+    "tags": "Typescript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Typescript 인터페이스인터페이스는 상호 간에 정의한 약속 혹은 규칙을 의미한다.타입스크립트에서의 인터페이스는 보통 다음과 같은 범주에 대해 약속을 정의할 수 있다  객체의 스펙(속성과 속성의 타입)  함수의 파라미터  함수의 스펙(파라미터 타입, 반환 타입 등)  배열과 객체를 접근하는 방식  클래스인터페이스 사용해보기먼저 인터페이스를 사용하지 않은 경우와 해당 코드를 인터페이스로 정의한 코드로 예를 들어보자//함수에 전달할 24살 홍길동이라는 person객체를 만들었다const person = {    name : &#39;홍길동&#39;,    age : 24}// obj라는 매개변수로 받고 해당 매개변수의 속성중 age라는 특정 속성의 타입이 number지정되어있다function helloMsg(obj: {age: number}){    console.log(obj.age);}// 맨위에서 만든 홍길동 객체를 helloMsg 전달하여 호출한다helloMsg(person)대표적인 데이터 타입들을 알아보자      String : 자바스크립트 변수의 타입이 문자열인 경우 하기 코드와 같이 선언한다    let name: string = &quot;bts&quot;; // 문자열의 값을 갖는다            Number:  자바스크립트 변수의 타입이 숫자인 경우 하기 코드와 같이 선언한다    let count: number = 5; // 정수중 값을 갖는다            Boolean:  자바스크립트 변수의 타입이 진위값인 경우 하기 코드와 같이 선언한다    let isLoggedIn: boolean = true; // true, false 중 값을 갖는다            Array:  자바스크립트 변수의 타입이 배열인 경우 하기 코드와 같이 선언한다    let arr: number[] = [1,2,3];            Tuple:  자바스크립트 변수의 타입이 배열이며 길이가 고정되고 각 요소의 타입이 지정되어 있는 배열인 경우 하기 코드와 같이 선언한다    let arr: [string, number] = [&#39;bts&#39;, 14];            Any:  기존에 자바스크립트로 구현되어 있는 웹 서비스 코드에 타입스크립트를 점진적으로 적용할 때 활용하면 좋은 타입, 단어 의미 그대로 모든 타입에 대해서 허용한다    let str: any = &#39;hi&#39;;let num: any = 10;let arr: any = [&#39;a&#39;, 2, true];            Void:  반환 값이 없는 함수의 반환 타입, 아래와 같이 return이 없거나 return이 있더라도 반환하는 값이 없으면 함수의 반환 타입을 void로 지정한다    function printSomething(): void {  console.log(&#39;sth&#39;);}  function returnNothing(): void {  return;}      Typescript 함수[함수 기본타입] 기존의 자바스크립트에 타입만 추가되는 형태로 아래와 같다// a와 b라는 파라미터를 받으며 해당 파라미터는 number 데이터 타입만 들어올 수 있다// 리턴값 역시 타입이 number로 리턴하는 값은 number 데이터 타입이어야한다function sum(a: number, b: number): number {  return a + b;}  타입스크립트는 함수의 파라미터를 모두 필수 값으로 간주한다  따라서 기본적으로 함수의 매개변수를 설정하면 undefined, null 타입이라도 파라미터로 넘겨야하며 컴파일러에서 정의된 매개변수 값이 넘어 왔는지 확인한다  매개변수는 존재하지만 안넘기고 싶은 파라미터라면 아래와 같이 ? 키워드를 사용할 수 있다  function sum(a: number, b?: number): number {  return a + b;}sum(10, 20); // 30sum(10, 20, 30); // error, too many parameterssum(10); // 타입 에러 없음  [ES6 Rest문법이 적용된 함수]Rest문법을 모른다면 👉🏻ES6 공식DOC 에서 자바스크립트의 Rest문법을 참고하자  function sum(a: number, ...nums: number[]): number {    const totalOfNums = 0;    for (let key in nums) {      totalOfNums += nums[key];    }    return a + totalOfNums;  }"
+  },
+  
+  {
+    "title": "Typescript 문법",
+    "url": "/posts/typescript02/",
+    "categories": "Develop, Typescript",
+    "tags": "Typescript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Typescript 데이터 타입타입스크립트로 변수나 함수와 같은 자바스크립트 코드에 타입을 정의할 수 있다대표적인 데이터 타입들을 알아보자      String : 자바스크립트 변수의 타입이 문자열인 경우 하기 코드와 같이 선언한다    let name: string = &quot;bts&quot;; // 문자열의 값을 갖는다            Number:  자바스크립트 변수의 타입이 숫자인 경우 하기 코드와 같이 선언한다    let count: number = 5; // 정수중 값을 갖는다            Boolean:  자바스크립트 변수의 타입이 진위값인 경우 하기 코드와 같이 선언한다    let isLoggedIn: boolean = true; // true, false 중 값을 갖는다            Array:  자바스크립트 변수의 타입이 배열인 경우 하기 코드와 같이 선언한다    let arr: number[] = [1,2,3];            Tuple:  자바스크립트 변수의 타입이 배열이며 길이가 고정되고 각 요소의 타입이 지정되어 있는 배열인 경우 하기 코드와 같이 선언한다    let arr: [string, number] = [&#39;bts&#39;, 14];            Any:  기존에 자바스크립트로 구현되어 있는 웹 서비스 코드에 타입스크립트를 점진적으로 적용할 때 활용하면 좋은 타입, 단어 의미 그대로 모든 타입에 대해서 허용한다    let str: any = &#39;hi&#39;;let num: any = 10;let arr: any = [&#39;a&#39;, 2, true];            Void:  반환 값이 없는 함수의 반환 타입, 아래와 같이 return이 없거나 return이 있더라도 반환하는 값이 없으면 함수의 반환 타입을 void로 지정한다    function printSomething(): void {  console.log(&#39;sth&#39;);}  function returnNothing(): void {  return;}      Typescript 함수[함수 기본타입] 기존의 자바스크립트에 타입만 추가되는 형태로 아래와 같다// a와 b라는 파라미터를 받으며 해당 파라미터는 number 데이터 타입만 들어올 수 있다// 리턴값 역시 타입이 number로 리턴하는 값은 number 데이터 타입이어야한다function sum(a: number, b: number): number {  return a + b;}  타입스크립트는 함수의 파라미터를 모두 필수 값으로 간주한다  따라서 기본적으로 함수의 매개변수를 설정하면 undefined, null 타입이라도 파라미터로 넘겨야하며 컴파일러에서 정의된 매개변수 값이 넘어 왔는지 확인한다  매개변수는 존재하지만 안넘기고 싶은 파라미터라면 아래와 같이 ? 키워드를 사용할 수 있다  function sum(a: number, b?: number): number {  return a + b;}sum(10, 20); // 30sum(10, 20, 30); // error, too many parameterssum(10); // 타입 에러 없음  [ES6 Rest문법이 적용된 함수]Rest문법을 모른다면 👉🏻ES6 공식DOC 에서 자바스크립트의 Rest문법을 참고하자  function sum(a: number, ...nums: number[]): number {    const totalOfNums = 0;    for (let key in nums) {      totalOfNums += nums[key];    }    return a + totalOfNums;  }"
+  },
+  
+  {
+    "title": "Javascript 함수의 Call &amp; Apply &amp; Bind",
+    "url": "/posts/javascript_call_apply_bind/",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Call 함수란먼저 Call을 사용하기전에 왜 사용하는지를 알아보자모든 함수는 실행할때 함수 앞에 작성한 오브젝트를 this로 참조한다 하기 코드를 보자위 코드처럼 현재 함수를 실행하는곳이 어느 위치(오브젝트)냐가 즉 this가 되고 this에 따라 함수 결과값이 달라진다그럼 어떻게 해야 데이터 중심적인 결과를 도출할 수 있을까?바로 모든 Javascript 함수에 내장되어있는 Call함수를 사용하면 된다.위에 코드를 Call함수를 사용하여 정상적인 결과를 만들어보자Call 함수를 사용하여 현재 this가 hello라는 객체라고 알려주어 messg라는 값을 잘 출력하는것을 볼 수 있다.Call 함수 사용법은 func.call(thisArg[, arg1[, arg2[, ...]]]) 로 사용하면 된다Apply 함수란apply()는 위에서 배운 Call()과 동일하지만 뒤에 받는 함수의 파라미터가 배열인 경우에 사용된다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}// 첫번째 인수인 this를 korea객체로 주어서 오브젝트를 지정하고 두번째 인수를 배열로주었다// 배열이 아니었으면 위에서 배운 call을 사용할 수 있지만 인자가 배열이기 때문에 apply를 사용한다updateName.apply(korea, [&quot;대한민국&quot;,150]); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);만약 call로 배열 인자를 처리하고 싶다면 ES6문법인 Spread 문법을 사용할 수 있다하기 코드는 위 코드 apply에서 call로 변경한 코드이다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}const updateData = [&quot;대한민국&quot;, 150];// 첫번째 인수인 this를 korea객체로 주어서 오브젝트를 지정하고 두번째 인수는 위에 배열 변수를 만든 후 // Spread문법으로 나열하였다// call로도 배열을 처리할 수 있다updateName.call(korea, ...updateData); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);Bind 함수란Bind 키워드를 사용하면 this의 값을 영구적으로 바꿀 수 있다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}// bind 키워드를 사용하여 updateKorea함수를 사용하면 항상 this가 korea이게 만들 수 있다const updateKorea = updateName.bind(korea);// call이나 apply를 사용하지 않아도 updateKorea가 this를 korea로 갖고있기 때문에 // 바로 파라미터만 전달하여 업데이트할 수 있다updateKorea(&quot;대한민국&quot;, 150); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);"
+  },
+  
+  {
+    "title": "Typescript 개요",
+    "url": "/posts/typescript01/",
+    "categories": "Develop, Typescript",
+    "tags": "Typescript",
+    "date": "2024-04-01 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Typescript개요  타입스크립트는 자바스크립트의 슈퍼셋인 오픈소스 프로그래밍 언어이다. 마이크로소프트에서 개발, 유지하고 있으며 엄격한 문법을 지원한다. C#의 리드 아키텍트이자 델파이, 터보 파스칼의 창시자인 Anders Hejlsberg가 개발에 참여한다. 클라이언트 사이드와 서버 사이드를 위한 개발에 사용할 수 있다. 타입스크립트는 자바스크립트 엔진을 사용하면서 커다란 애플리케이션을 개발할 수 있게 설계된 언어이다.자바스크립트의 슈퍼셋이기 때문에 자바스크립트로 작성된 프로그램이 타입스크립트 프로그램으로도 동작한다. 타입스크립트에서 자신이 원하는 타입을 정의하고 프로그래밍을 하면 자바스크립트로 컴파일되어 실행할 수 있다. 타입스크립트는 모든 운영 체제, 모든 브라우저, 모든 호스트에서 사용 가능한 오픈 소스이다.  -위키 백과 -위의 위키내용과 같이 타입스크립트는 자바스크립트와 다른점이 많지 않다자바스크립트의 모든 단점을 보완하여 만든 언어이며 동적인 자바스크립트 언어에 타입을 미리 부여함으로써 컴파일 시 에러를 잡을 수 있다.Javascript와 Typescript의 차이(1) 자바스크립트 언어는 동적 타입 언어로 변수의 타입이 런타임 즉 실행 시간에 결정된다(2) 타입스크립트 언어는 정적 타입 언어로 변수의 타입이 컴파일 단계에서 타입 체크를 진행한다Typescript의 장점타입스크립트를 사용해야하는 가장 큰 이유로 자바스크립트의 단점을 이해 해야 한다자바스크립트는 클래스 기반 객체지향 언어로 유연성이 뛰어나다 장점으로는 자유도가 높으나 단점으로는 코드가 복잡해질 수 있고 디버그가 증가하는 문제를 일으킨다.  타입스크립트는 정적 타입 언어로 컴파일 단계에서 오류를 포착하여 사전에 에러를 잡을 수 있고 명시적인 정적 타입의 지정은 개발자의 의도를 명확하게 코드로 기술할 수 있게 한다 이는 코드의 가독성을 높이고 컴파일 시 안정적이고 예측할 수 있게 하며 디버깅을 쉽게할 수 있다  타입스크립트는 높은 생산성을 자랑한다. 자바스크립트의 경우 코드를 작성할 때, 객체의 필드 또는 함수, 매개변수등으로 들어오는 값이 무엇인지 알기 위해 시간을 소모했지만 타입스크립트는 변수 이름뿐만 아니라 그 데이터의 자료형까지 알 수 있게되어 소모 시간을 줄여준다 즉 생산성을 높인다Typescript의 단점  타입스크립트는 초기 설정이 어렵다, 타입스크립트는 독자적인 언어가 아니므로 기존에 존재하는 자바스크립트 엔진에서 실행된다 즉 타입스크립트언어로 코드를 작성하여도 컴파일시 자바스크립트언어로 컴파일된다  타입스크립트의 장점인 타입지정 규칙으로 때로는 생산성이 떨어지기도 한다. 매번 변수등 타입을 개발자가 직접 지정해야하므로 생산성이 저하되는 경우가 발생한다."
+  },
+  
+  {
     "title": "vue 입문 Level01",
     "url": "/posts/vue_level01/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-03-04 11:33:00 +0800",
     
 
@@ -16,10 +166,25 @@
   },
   
   {
+    "title": "Javascript Spread와 Rest Parameters",
+    "url": "/posts/javascript_spread_rest/",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
+    "date": "2024-02-25 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Spread Operator전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 배열 복사라고도 부른다사용방법은 전개하고자하는 배열 앞에 ... 기호를 붙인다여러 예제를 통해 사용법을 익혀보자(1)배열 전개 연산자  const fruits = [&#39;사과&#39;, &#39;바나나&#39;, &#39;망고&#39;];  const newFruits = [&#39;포도&#39;, ...fruits];    console.log(fruits); // 결과 : [&#39;사과&#39;, &#39;바나나&#39;, &#39;망고&#39;]  console.log(newFruits); // 결과 :[&#39;포도&#39;, &#39;사과&#39;, &#39;바나나&#39;, &#39;망고&#39;](2) 객체 전개 연산자   const person = {       name: &#39;홍길동&#39;,       age: 20,       city: &quot;서울&quot;   }   // person 객체를 전개연산자로 객체복사를하고 job을 추가하여 newPerson을 만든다   const newPerson = {...person, job: &#39;개발자&#39;};      console.log(person); // 결과 : {name: &#39;홍길동&#39;, age: 20, city: &#39;서울&#39;}   console.log(newPerson); // 결과 : {name: &#39;홍길동&#39;, age: 20, city: &#39;서울&#39;, job : &#39;개발자&#39;}(3) 문자열 전개 연산자  const msg = &quot;Hello&quot;;  const newMsg = &#39;${msg} I am Javascript&#39;;    console.log(msg); // 결과 : Hello  cosnole.log(newMsg); // 결과 : Hello I am Javascript Rest ParametersRest Parameters는 위의 스프레드 연산자와 사용방법은 동일하다차이점은 스프레드 연산자의 경우 객체, 배열 복사등에 사용하지만 Rest의 경우 함수의 파라미터로 사용된다Rest Parameter도 예제를 보면서 사용법을 익혀보자(1) Rest 파라미터만 함수에 전달하는 경우function addFun(a, b, c){  console.log(a, b, c);}const numbers = [1, 2, 3];addFun(numbers); // 결과 : [1, 2, 3] undefined undefinedaddFun(numbers[0], numbers[1], numbers[2]); // 결과 :  1 2 3addFun(...numbers); // 결과 : 1 2 3(2) Rest 파라미터외에 여러 파라미터를 함수에 전달하는 경우  const numbers = [1, 2, 3];    function addFun(a, b, c, d, e, f){    console.log(a, b, c, d, e, f);  }    addFun(...numbers, 10, ...numbers);  // 결과 : 1 2 3 10 1 2"
+  },
+  
+  {
     "title": "IntelliJ Springboot 한글 인코딩",
     "url": "/posts/IntelliJspring_encoding/",
-    "categories": "Web, Study",
-    "tags": "Web, Study, Springboot, IntelliJ",
+    "categories": "Utils, IntelliJ",
+    "tags": "IntelliJ",
     "date": "2024-02-15 11:33:00 +0800",
     
 
@@ -33,8 +198,8 @@
   {
     "title": "Vue vite란",
     "url": "/posts/vue_vite/",
-    "categories": "Web, Study",
-    "tags": "Web, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-02-07 11:33:00 +0800",
     
 
@@ -48,8 +213,8 @@
   {
     "title": "pinia란",
     "url": "/posts/vue_pinia/",
-    "categories": "Web, Study",
-    "tags": "Web, Study, pinia, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-02-07 11:33:00 +0800",
     
 
@@ -63,8 +228,8 @@
   {
     "title": "LangChain이란",
     "url": "/posts/langchain/",
-    "categories": "python, langchain",
-    "tags": "python, langchain, 딥러닝",
+    "categories": "Develop, Python",
+    "tags": "Python",
     "date": "2024-01-31 11:33:00 +0800",
     
 
@@ -78,8 +243,8 @@
   {
     "title": "Vue Chap3",
     "url": "/posts/vue03/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-21 11:33:00 +0800",
     
 
@@ -93,8 +258,8 @@
   {
     "title": "Git(깃) 사용방법",
     "url": "/posts/usegit/",
-    "categories": "Web, Study",
-    "tags": "git",
+    "categories": "Utils, Git",
+    "tags": "Git",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -108,8 +273,8 @@
   {
     "title": "Vue Route 기능 사용하기",
     "url": "/posts/vue_route/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue, Route",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -123,8 +288,8 @@
   {
     "title": "Vue Axios 라이브러리 사용하기",
     "url": "/posts/vue_axios/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue, Axios",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -138,8 +303,8 @@
   {
     "title": "Vue Chap2",
     "url": "/posts/vue02/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -153,8 +318,8 @@
   {
     "title": "Vue Chap2",
     "url": "/posts/vue02-(copy)/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -168,8 +333,8 @@
   {
     "title": "Vue Chap1",
     "url": "/posts/vue01/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study, Vue",
+    "categories": "Framework, Vue",
+    "tags": "Vue",
     "date": "2024-01-20 11:33:00 +0800",
     
 
@@ -183,8 +348,8 @@
   {
     "title": "JSP 자바 웹 프로그래밍 Chap1",
     "url": "/posts/jsp01/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, tomcat, Apache, Study",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2024-01-17 11:33:00 +0800",
     
 
@@ -303,8 +468,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 15장",
     "url": "/posts/spring15/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-12-25 11:33:00 +0800",
     
 
@@ -318,8 +483,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 14장",
     "url": "/posts/spring14/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-12-18 11:33:00 +0800",
     
 
@@ -333,8 +498,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 13장",
     "url": "/posts/spring13/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-12-18 11:33:00 +0800",
     
 
@@ -348,8 +513,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 12장",
     "url": "/posts/spring12/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-12-12 11:33:00 +0800",
     
 
@@ -363,8 +528,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 11장",
     "url": "/posts/spring11/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-12-11 11:33:00 +0800",
     
 
@@ -378,8 +543,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 4장",
     "url": "/posts/spring9/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-11-26 11:33:00 +0800",
     
 
@@ -391,10 +556,25 @@
   },
   
   {
+    "title": "(코딩 자율학습 스프링 부트3) 4장",
+    "url": "/posts/spring4/",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
+    "date": "2023-11-20 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Part4. 스프링 부트 시작룸복과 리팩터링  롬복(lombok)이란 코드를 간소화해 주는 라이브러리이다 롬복을 사용하면 필수 코드를 간편하게 작성할 수 있다 또, 로깅 기능을 사용할 수 있다  코드 반복 최소화  로깅 기능 지원롬복 설치여기서는 인텔리제이 IDE에서 롬복 설치를 진행한다"
+  },
+  
+  {
     "title": "(코딩 자율학습 스프링 부트3) 3장",
     "url": "/posts/spring2/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-11-16 11:33:00 +0800",
     
 
@@ -408,8 +588,8 @@
   {
     "title": "(코딩 자율학습 스프링 부트3) 1,2장",
     "url": "/posts/spring1/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Framework, SpringBoot",
+    "tags": "SpringBoot",
     "date": "2023-11-11 11:33:00 +0800",
     
 
@@ -421,25 +601,10 @@
   },
   
   {
-    "title": "생성자와 this",
-    "url": "/posts/constructor/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
-    "date": "2023-11-10 11:33:00 +0800",
-    
-
-
-
-
-
-    "snippet": "생성자(constructor)      인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드    인스턴스 초기화란 인스턴스 변수들을 초기화하는 것    대부분 객체의 초기화를 목적으로 사용한다  인스턴스 생성 과정graph LRA(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&amp;gt;B(생성자가 호출되어 실행)--&amp;gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다)생성자의 제약조건      생성자의 이름은 클래스의 이름과 같아야한다    생성자는 다른 함수와는 다르게 리턴 값이 없다    생성자는 객체가 생성될때 자동으로 한번 호출된다    생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩)  생성자의 종류매개변수가 있는 생성자class human {    String name;    String job;    int age;     Car() {} // 기본 생성자    Car(String c, String g, int d) { // 생성자            name = c;        job = g;        age = d;    }}생성자를 사용하지 않고 객체에 데이터를 직접 넣을때// 생성자를 사용하지 않았을 때human h = new human();h.name = &quot;parkdongwon&quot;;h.job = &quot;student&quot;;h.age = 16;        생성자를 사용하여 객체에 데이터를 직접 넣을때human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);this  this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우)  아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다// this를 사용하지 않아서 이슈된 코드public class human {    public String name;    public String job;    public int age;    public human(String name, String job, int age) {        name = name;        job = job;        age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: null        System.out.println(&quot;job: &quot; + h.job); // job: null        System.out.println(&quot;age: &quot; + h.age); // age: 0    }}// this를 사용해서 정상화된 코드public class human {    public String name;    public String job;    public int age;    public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon        System.out.println(&quot;job: &quot; + h.job); // job: student        System.out.println(&quot;age: &quot; + h.age); // age: 16    }}this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출)  아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다  오버로딩 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다// this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출)public class human {    public String name;    public String job;    public int age;    public human(String name, int age) {        // human(String name, String job, int age)를 호출        this(name, &quot;student&quot;, age);    }        public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon        System.out.println(&quot;job: &quot; + h.job); // job: student        System.out.println(&quot;age: &quot; + h.age); // age: 16    }}객체 자신의 참조값을 전달하고 싶을 때// this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때)public class human {    public String name;    public String job;    public int age;        public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    //  어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우    public human getHumanInstance() {            return this;        }   }"
-  },
-  
-  {
     "title": "클래스와 인스턴스",
     "url": "/posts/class/",
-    "categories": "Web, Study",
-    "tags": "Web, Backend, SpringBoot, Study",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2023-11-10 11:33:00 +0800",
     
 
@@ -451,10 +616,25 @@
   },
   
   {
+    "title": "생성자와 this",
+    "url": "/posts/constructor/",
+    "categories": "Develop, Java",
+    "tags": "Java",
+    "date": "2023-11-10 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "생성자(constructor)      인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드    인스턴스 초기화란 인스턴스 변수들을 초기화하는 것    대부분 객체의 초기화를 목적으로 사용한다  인스턴스 생성 과정graph LRA(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&amp;gt;B(생성자가 호출되어 실행)--&amp;gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다)생성자의 제약조건      생성자의 이름은 클래스의 이름과 같아야한다    생성자는 다른 함수와는 다르게 리턴 값이 없다    생성자는 객체가 생성될때 자동으로 한번 호출된다    생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩)  생성자의 종류매개변수가 있는 생성자class human {    String name;    String job;    int age;     Car() {} // 기본 생성자    Car(String c, String g, int d) { // 생성자            name = c;        job = g;        age = d;    }}생성자를 사용하지 않고 객체에 데이터를 직접 넣을때// 생성자를 사용하지 않았을 때human h = new human();h.name = &quot;parkdongwon&quot;;h.job = &quot;student&quot;;h.age = 16;        생성자를 사용하여 객체에 데이터를 직접 넣을때human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);this  this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우)  아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다// this를 사용하지 않아서 이슈된 코드public class human {    public String name;    public String job;    public int age;    public human(String name, String job, int age) {        name = name;        job = job;        age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: null        System.out.println(&quot;job: &quot; + h.job); // job: null        System.out.println(&quot;age: &quot; + h.age); // age: 0    }}// this를 사용해서 정상화된 코드public class human {    public String name;    public String job;    public int age;    public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon        System.out.println(&quot;job: &quot; + h.job); // job: student        System.out.println(&quot;age: &quot; + h.age); // age: 16    }}this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출)  아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다  오버로딩 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다// this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출)public class human {    public String name;    public String job;    public int age;    public human(String name, int age) {        // human(String name, String job, int age)를 호출        this(name, &quot;student&quot;, age);    }        public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    public static void main(String[] args) {        human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16);        System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon        System.out.println(&quot;job: &quot; + h.job); // job: student        System.out.println(&quot;age: &quot; + h.age); // age: 16    }}객체 자신의 참조값을 전달하고 싶을 때// this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때)public class human {    public String name;    public String job;    public int age;        public human(String name, String job, int age) {        this.name = name;        this.job = job;        this.age = age;    }    //  어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우    public human getHumanInstance() {            return this;        }   }"
+  },
+  
+  {
     "title": "(인터랙티브 웹 페이지 만들기) Chapter5",
     "url": "/posts/chap5/",
-    "categories": "Web, Study",
-    "tags": "Web, Frontend, Html, Study, Backend",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2023-10-22 11:33:00 +0800",
     
 
@@ -466,25 +646,10 @@
   },
   
   {
-    "title": "(인터랙티브 웹 페이지 만들기) Chapter4",
-    "url": "/posts/chap4/",
-    "categories": "Web, Study",
-    "tags": "Web, Frontend, Html, Study, Backend",
-    "date": "2023-10-15 11:33:00 +0800",
-    
-
-
-
-
-
-    "snippet": "Chap1. flex 방식으로 레이아웃 만들기  앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다flex의 기본[Flex의 기본 레이아웃]&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;부모 요소의 div.container를 Flex Container라고 부르며 자식 요소인 div.item들을 Flex Item이라고 부른다[속성]  display : flex container를 정의한다  flex-flow : flex-direction와 flex-wrap의 단축 속성  flex-direction : flex items의 주 축을 설정한다  flex-wrap : flex items의 여러 줄 묶음 설정  justify-content : 주 축의 정렬 방법을 설정한다  align-content : 교차 축의 정렬 방법을 설정한다  align-items : 교차 축에서 items의 정렬 방법을 설정한다display 속성 사용하기  자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 display: flex 혹은 display: inline-flex 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다&amp;lt;style&amp;gt;.container { display: flex;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;3&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;4&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;5&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;flex-direction 속성 사용하기  자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;justify-content 속성 사용하기  기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다.만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다.&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;align-items 속성 사용하기  기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다.만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다.여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다.&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;align-items: stretch;}  /* baseline 이해를 돕기 위한 가시성 선언 */.container div:nth-child(1) { padding: 10px 40px 0 40px }.container div:nth-child(2) { padding: 20px 40px }.container div:nth-child(3) { padding: 10px 40px 80px 40px }.container div:nth-child(4) { padding: 40px 40px 20px 40px }.container div:nth-child(5) { padding: 20px 40px 10px 40px }&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;align-content 속성 사용하기  flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다.justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다.&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;align-content: stretch;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;flex-wrap 속성 사용하기  자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다.값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데,100px 크기의 자식 요소가 10개 있다(총 1000px)부모 요소의 크기는 700px이다.부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다.&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;flex-wrap: nowrap;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;  ...&amp;lt;/div&amp;gt;자식 요소의 순서 지정하기  컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다.order 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 order에 선언된 값에 의해서만 순서가 정해진다&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;}    /* 화면 크기가 768px 이하면 끝으로 */@media screen and (max-width: 768px) {.container { flex-direction : column }.last-with-mobile { order: 1 }}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div class=&quot;last-with-mobile&quot;&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;요소의 여백 비율 지정하기"
-  },
-  
-  {
     "title": "(Debian12) apache 멀티 포트 서비스 설정",
     "url": "/posts/apache_port_set/",
-    "categories": "Web, Apache",
-    "tags": "Web, Frontend, Html, Apache, Backend",
+    "categories": "Framework, Apache",
+    "tags": "Apache",
     "date": "2023-10-15 11:33:00 +0800",
     
 
@@ -496,10 +661,25 @@
   },
   
   {
+    "title": "(인터랙티브 웹 페이지 만들기) Chapter4",
+    "url": "/posts/chap4/",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
+    "date": "2023-10-15 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chap1. flex 방식으로 레이아웃 만들기  앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다flex의 기본[Flex의 기본 레이아웃]&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;item&quot;&amp;gt;flex item&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;부모 요소의 div.container를 Flex Container라고 부르며 자식 요소인 div.item들을 Flex Item이라고 부른다[속성]  display : flex container를 정의한다  flex-flow : flex-direction와 flex-wrap의 단축 속성  flex-direction : flex items의 주 축을 설정한다  flex-wrap : flex items의 여러 줄 묶음 설정  justify-content : 주 축의 정렬 방법을 설정한다  align-content : 교차 축의 정렬 방법을 설정한다  align-items : 교차 축에서 items의 정렬 방법을 설정한다display 속성 사용하기  자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 display: flex 혹은 display: inline-flex 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다&amp;lt;style&amp;gt;.container { display: flex;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;3&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;4&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;5&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;flex-direction 속성 사용하기  자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;justify-content 속성 사용하기  기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다.만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다.&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;align-items 속성 사용하기  기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다.만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다.여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다.&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;align-items: stretch;}  /* baseline 이해를 돕기 위한 가시성 선언 */.container div:nth-child(1) { padding: 10px 40px 0 40px }.container div:nth-child(2) { padding: 20px 40px }.container div:nth-child(3) { padding: 10px 40px 80px 40px }.container div:nth-child(4) { padding: 40px 40px 20px 40px }.container div:nth-child(5) { padding: 20px 40px 10px 40px }&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;align-content 속성 사용하기  flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다.justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다.&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;align-content: stretch;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;flex-wrap 속성 사용하기  자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다.값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데,100px 크기의 자식 요소가 10개 있다(총 1000px)부모 요소의 크기는 700px이다.부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다.&amp;lt;style&amp;gt;.container { display: flex;flex-direction: row;flex-wrap: nowrap;}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;  ...&amp;lt;/div&amp;gt;자식 요소의 순서 지정하기  컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다.order 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 order에 선언된 값에 의해서만 순서가 정해진다&amp;lt;style&amp;gt;.container { display: flex;flex-flow: row nowrap;}    /* 화면 크기가 768px 이하면 끝으로 */@media screen and (max-width: 768px) {.container { flex-direction : column }.last-with-mobile { order: 1 }}&amp;lt;/style&amp;gt;&amp;lt;div class=&quot;container&quot;&amp;gt;&amp;lt;div class=&quot;last-with-mobile&quot;&amp;gt;1&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;...&amp;lt;/div&amp;gt;요소의 여백 비율 지정하기"
+  },
+  
+  {
     "title": "(인터랙티브 웹 페이지 만들기) Chapter3",
     "url": "/posts/chap3/",
-    "categories": "Web, Study",
-    "tags": "Web, Frontend, Html, Study, Backend",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2023-10-07 11:33:00 +0800",
     
 
@@ -513,8 +693,8 @@
   {
     "title": "(인터랙티브 웹 페이지 만들기) Chapter2",
     "url": "/posts/chap2/",
-    "categories": "Web, Study",
-    "tags": "Web, Frontend, Html, Study, Backend",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2023-09-24 11:33:00 +0800",
     
 
@@ -528,8 +708,8 @@
   {
     "title": "(인터랙티브 웹 페이지 만들기) Chapter1",
     "url": "/posts/chap1/",
-    "categories": "Web, Study",
-    "tags": "Web, Frontend, Html, Study, Backend",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
     "date": "2023-09-12 11:33:00 +0800",
     
 
@@ -538,21 +718,6 @@
 
 
     "snippet": "UI &amp;amp; UX      UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등)    UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분)  HTML, CSS, 자바스크립트란  예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다웹 개발에 있어서 필요한 도구  웹 브라우저          웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한다 웹 브라우저는 다양하며 현재 Chrome 브라우저가 점유율 최상위를 차지하고 있다              Chrome 설치 : https://www.google.co.kr/chrome/        웹 에디터          웹 개발을 위해 효율적인 코드를 작성 할 수 있도록 도와주는 웹 에디터 (IDE)가 필요하다 종류가 다양하며 대표적으로 Editplus, Notepad++, ATOM Editor, VisualStudio등이 존재한다              VisualStudio설치 : https://code.visualstudio.com      태그란 [태그는 브라우저가 웹 문서를 잘 이해할 수 있도록 콘텐츠를 목적에 맞게 분류한 규칙]부모 태그와 자식 태그 : 태그의 기본 문법은 부모 태그 안에 자식태그가 존재하는 형태이며 Tab으로 들여쓰기를 하여 자식 태그를 분리한다[Ex]&amp;lt;html&amp;gt; =&amp;gt; 부모 태그    &amp;lt;head&amp;gt; =&amp;gt; 자식 태그    &amp;lt;/head&amp;gt; =&amp;gt; 자식 태그        &amp;lt;body&amp;gt; =&amp;gt; 자식 태그    &amp;lt;/body&amp;gt; =&amp;gt; 자식 태그&amp;lt;/html&amp;gt; =&amp;gt; 부모 태그HTML의 기본 구조HTML의 구성은 문서 타입을 지정해 주는 &amp;lt;!DOCTYPE&amp;gt;, &amp;lt;html&amp;gt;태그로 구성되며 &amp;lt;html&amp;gt; 태그 안에는 다시 &amp;lt;head&amp;gt; 와 &amp;lt;body&amp;gt;태그 영역으로 분리된다[TCP School 참고]  &amp;lt;!DOCTYPE html&amp;gt; : 현재 웹 문서가 HTML5 문서임을 명시하는 영역&amp;lt;html&amp;gt; : HTML 문서의 루트 요소(주요 핵심) 내용을 담고 있는 영역&amp;lt;head&amp;gt; : HTML 문서의 메타데이터(metadata)를 갖고있는 영역이며 페이지에서 보이지 않는 문서 설정 또는 css, 자바스크립트와 같은 외부 파일을 연결하는 영역이다&amp;lt;body&amp;gt;: 웹 브라우저에 출력 할 주요 콘텐츠를 갖고있는 영역시맨틱 태그  HTML에서의 body안에 기본 구조를 형식에 맞게 구현해주는 형식 태그시맨틱(semantic)이라는 ‘의미의’, ‘의미론적인’라는 뜻을 가진 형용사  즉 시맨틱 태그는 의미를 부여한 태그라는 뜻이되며&amp;lt;header&amp;gt;나 &amp;lt;footer&amp;gt;  같은 태그들이 있다 이 태그들은 이름만 봐도 상단과 하단이라는 것을 알 수 있으며 이렇게 시맨틱 태그의 등장으로 인해 태그만 보고도 문서를 더 쉽게 이해할 수 있게 된다            시맨틱Tag      설명                         &amp;lt;header&amp;gt;      사이트의 머리부분에 사용                     &amp;lt;main&amp;gt;      메인 콘텐츠를 나타내는데 사용                     &amp;lt;section&amp;gt;      제목별로 나눌 수 있는 문서의 콘텐츠 영역을 구성하는 요소                     &amp;lt;article&amp;gt;      개별 콘텐츠를 나타내는 요소                     &amp;lt;aside&amp;gt;      좌우측의 사이드 영역                     &amp;lt;footer&amp;gt;      사이트의 바닥부분, 주로 연락처나 제작자 정보등을 기술하는 부분                     &amp;lt;hgroup&amp;gt;      제목과 부제목을 묶어서 나타내는 요소                     &amp;lt;nav&amp;gt;      웹 페이지 메뉴를 만들 때 사용             시맨틱 태그 예제&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Jogyejin의 시맨틱 태그 연습&amp;lt;/title&amp;gt;    &amp;lt;style&amp;gt;      /* 전체 스타일링 */      body {        font-family: sans-serif;        margin: 0;        padding: 0;        background-color: skyblue;      }      /* 헤더 스타일링 */      header {        background-color: #333;        color: #fff;        padding: 1em;        display: flex;        align-items: center;        justify-content: space-between;      }      header h1 {        margin: 0;      }      /* 네비게이션 스타일링 */      nav {        background-color: orange;        padding: 0.5em;      }      nav ul {        list-style: none;        margin: 0;        padding: 0;        display: flex;      }      nav li {        margin-right: 1em;      }      nav a {        color: #333;        text-decoration: none;        padding: 0.5em;      }      nav a:hover {        background-color: #333;        color: #fff;      }      /* 메인 스타일링 */      main {        display: flex;        flex-wrap: wrap;        margin: 1em;      }      section {        margin-right: 1em;        flex: 1 1 300px;        background-color: #fff;        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);        margin-bottom: 1em;        padding: 1em;      }      section:last-child {        margin-right: 0;      }      section h2 {        margin: 0;      }      article {        margin-top: 1em;      }      article h3 {        margin: 0;      }      /* 사이드바 스타일링 */      aside {        background-color: #fab1a0;        padding: 1em;        margin-right: 1em;        flex: 0 0 300px;      }      aside h3 {        margin: 0;      }      /* 바닥글 스타일링 */      footer {        background-color: #1abc9c;        color: #fff;        padding: 1em;        text-align: center;      }      footer p {        margin: 0;        padding: 0.5em;      }    &amp;lt;/style&amp;gt;  &amp;lt;/head&amp;gt;  &amp;lt;body&amp;gt;    &amp;lt;header&amp;gt;      &amp;lt;h1&amp;gt;Jogyejin의 시맨틱 태그 연습&amp;lt;/h1&amp;gt;      &amp;lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;default-avatar&quot; border=&quot;0&quot; width=&quot;100&quot;&amp;gt;    &amp;lt;/header&amp;gt;    &amp;lt;nav&amp;gt;      &amp;lt;ul&amp;gt;        &amp;lt;li&amp;gt;&amp;lt;a href=&quot;#&quot;&amp;gt;홈&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;&amp;lt;a href=&quot;#&quot;&amp;gt;상품정보&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;&amp;lt;a href=&quot;#&quot;&amp;gt;내정보&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;      &amp;lt;/ul&amp;gt;    &amp;lt;/nav&amp;gt;    &amp;lt;main&amp;gt;      &amp;lt;section&amp;gt;        &amp;lt;h2&amp;gt;상품정보&amp;lt;/h2&amp;gt;        &amp;lt;p&amp;gt;향이 좋은 향초&amp;lt;/p&amp;gt;        &amp;lt;ul&amp;gt;          &amp;lt;li&amp;gt;라벤더 향초&amp;lt;/li&amp;gt;          &amp;lt;li&amp;gt;파우더 향초&amp;lt;/li&amp;gt;          &amp;lt;li&amp;gt;바디솜 향초&amp;lt;/li&amp;gt;        &amp;lt;/ul&amp;gt;      &amp;lt;/section&amp;gt;      &amp;lt;section&amp;gt;        &amp;lt;h2&amp;gt;내정보&amp;lt;/h2&amp;gt;        &amp;lt;article&amp;gt;          &amp;lt;h3&amp;gt;사용자정보&amp;lt;/h3&amp;gt;          &amp;lt;p&amp;gt;ID/PW&amp;lt;/p&amp;gt;        &amp;lt;/article&amp;gt;        &amp;lt;article&amp;gt;          &amp;lt;h3&amp;gt;배송지주소&amp;lt;/h3&amp;gt;          &amp;lt;p&amp;gt;경기도 성남시&amp;lt;/p&amp;gt;        &amp;lt;/article&amp;gt;      &amp;lt;/section&amp;gt;    &amp;lt;/main&amp;gt;    &amp;lt;aside&amp;gt;      &amp;lt;h3&amp;gt;광고&amp;lt;/h3&amp;gt;      &amp;lt;p&amp;gt;광고 내용&amp;lt;/p&amp;gt;    &amp;lt;/aside&amp;gt;    &amp;lt;footer&amp;gt;      &amp;lt;p&amp;gt;상호명&amp;lt;/p&amp;gt;      &amp;lt;p&amp;gt;고객센터 전화번호&amp;lt;/p&amp;gt;    &amp;lt;/footer&amp;gt;  &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;시맨틱 태그 예제 출력물  See the Pen   시맨틱 태그 by mon node (@mon-node)  on CodePen.서식태그  서식태그는 단어나 문자의 서식을 결정하며 다양한 태그를 활용하여 가독성을 높일 수 있다서식태그의 종류서식태그 예제&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt;     &amp;lt;head&amp;gt;        &amp;lt;title&amp;gt;서식태그 예제&amp;lt;/title&amp;gt;        &amp;lt;style type=text/css&amp;gt;           .leftdiv           {             background-color:yellow;             float: left;           }           .middlediv           {             float: left;             background-color:gray           }           .rightdiv           {             float: left;           }           div{             padding : 1%;             color: black;             background-color: 009900;             width: 30%;             border: solid black;           }         &amp;lt;/style&amp;gt;     &amp;lt;/head&amp;gt;    &amp;lt;body&amp;gt;      &amp;lt;hr&amp;gt;      &amp;lt;!--제목태그 --&amp;gt;      &amp;lt;h1&amp;gt;제목 1&amp;lt;/h1&amp;gt;       &amp;lt;h2&amp;gt;제목 2&amp;lt;/h2&amp;gt;      &amp;lt;h3&amp;gt;제목 3&amp;lt;/h3&amp;gt;      &amp;lt;h4&amp;gt;제목 4&amp;lt;/h4&amp;gt;      &amp;lt;h5&amp;gt;제목 5&amp;lt;/h5&amp;gt;      &amp;lt;h6&amp;gt;제목 6&amp;lt;/h6&amp;gt;            &amp;lt;hr&amp;gt;            &amp;lt;!-- 문단태그 --&amp;gt;      &amp;lt;p style=&quot;background-color:powderblue;&quot;&amp;gt;p 문단 1&amp;lt;/p&amp;gt;      &amp;lt;p style=&quot;background-color:#D2E556;&quot;&amp;gt;p 문단 2&amp;lt;/p&amp;gt;         &amp;lt;hr&amp;gt;            &amp;lt;!-- 그룹지정태그 --&amp;gt;      &amp;lt;div class=&quot;leftdiv&quot;&amp;gt;         &amp;lt;h1&amp;gt;div 1&amp;lt;/h1&amp;gt;         &amp;lt;p&amp;gt;p 문단 1&amp;lt;/p&amp;gt;       &amp;lt;/div&amp;gt;       &amp;lt;div class=&quot;middlediv&quot;&amp;gt;         &amp;lt;h1&amp;gt;div 2&amp;lt;/h1&amp;gt;         &amp;lt;p&amp;gt;p 문단 2&amp;lt;/p&amp;gt;       &amp;lt;/div&amp;gt;       &amp;lt;div class=&quot;rightdiv&quot;&amp;gt;         &amp;lt;h1&amp;gt;div 3&amp;lt;/h1&amp;gt;         &amp;lt;p&amp;gt;p 문단 3&amp;lt;/p&amp;gt;       &amp;lt;/div&amp;gt;             &amp;lt;!-- 강조 태그 예제 --&amp;gt;            &amp;lt;hr&amp;gt;      &amp;lt;strong&amp;gt;강력한 strong!&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;      &amp;lt;em&amp;gt;최근에는 안쓰는 em!&amp;lt;/em&amp;gt;&amp;lt;br&amp;gt;      &amp;lt;hr&amp;gt;            &amp;lt;!-- a 태그 예제 --&amp;gt;      &amp;lt;a href=&quot;http://www.naver.com&quot;&amp;gt;나는야 하이퍼링크(클릭시 네이버이동)&amp;lt;/a&amp;gt;      &amp;lt;hr&amp;gt;      &amp;lt;!-- 두꺼운 글씨체 태그 --&amp;gt;      &amp;lt;b&amp;gt;bold text&amp;lt;/b&amp;gt;      &amp;lt;hr&amp;gt;            &amp;lt;!-- span 예제 --&amp;gt;      &amp;lt;span style=&quot;background-color:red&quot;&amp;gt;span1&amp;lt;/span&amp;gt;      &amp;lt;span style=&quot;background-color:blue&quot;&amp;gt;span2&amp;lt;/span&amp;gt;      &amp;lt;span style=&quot;background-color:green&quot;&amp;gt;span3&amp;lt;/span&amp;gt;      &amp;lt;hr&amp;gt;            &amp;lt;!-- img 태그 --&amp;gt;      &amp;lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;이미지 태그&quot; border=&quot;0&quot; width=&quot;100&quot;/&amp;gt;      이미지 태그            &amp;lt;hr&amp;gt;      &amp;lt;!-- 줄바꿈 태그 --&amp;gt;      고생했어,&amp;lt;br&amp;gt;      오늘 하루도            &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;  See the Pen   Untitled by mon node (@mon-node)  on CodePen.목록 태그텍스트나 이미지등을 목록화 및 리스트화하여 카테고리 등을 표현하기 위해 사용되는 태그            목록Tag      설명                  &amp;lt;ul&amp;gt;,&amp;lt;li&amp;gt;      순서가 없는 목록(unorder list)을 만들 때 사용              &amp;lt;ol&amp;gt;,&amp;lt;li&amp;gt;      순서가 있는 목록을 만들 때 사용              &amp;lt;dl&amp;gt;,&amp;lt;dt&amp;gt;,&amp;lt;dd&amp;gt;      제목과 설명이 한 쌍인 설명 목록을 만들 때 사용      목록 태그 예제&amp;lt;!DOCTYPE&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;    &amp;lt;/head&amp;gt;    &amp;lt;body&amp;gt;       &amp;lt;ul&amp;gt; &amp;lt;순서가 없는 목록&amp;gt;           &amp;lt;li&amp;gt;HTML&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;CSS&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;JAVASCRIPT&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;JAVA&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;JSP&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;ORACLE&amp;lt;/li&amp;gt;       &amp;lt;/ul&amp;gt;       &amp;lt;hr&amp;gt;       &amp;lt;ol type=&quot;A&quot;&amp;gt;&amp;lt;순서가 있는 목록&amp;gt;           &amp;lt;li&amp;gt;variable&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;operator&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;data type&amp;lt;/li&amp;gt;           &amp;lt;li&amp;gt;control statement&amp;lt;/li&amp;gt;       &amp;lt;/ol&amp;gt;        &amp;lt;hr&amp;gt;            &amp;lt;정의형 목록&amp;gt;       &amp;lt;dl&amp;gt;           &amp;lt;dt&amp;gt;HTML&amp;lt;/dt&amp;gt;           &amp;lt;dd&amp;gt;HyperText Markup Language&amp;lt;/dd&amp;gt;           &amp;lt;dd&amp;gt;웹페이지를 위한 지배적 마크업 언어&amp;lt;/dd&amp;gt;           &amp;lt;dt&amp;gt;JAVA&amp;lt;/dt&amp;gt;           &amp;lt;dd&amp;gt;객체지향 프로그래밍 언어&amp;lt;/dd&amp;gt;           &amp;lt;dd&amp;gt;웹 애플리케이션 등 가장 많이 사용되는 언어&amp;lt;/dd&amp;gt;           &amp;lt;dt&amp;gt;Python&amp;lt;/dt&amp;gt;         &amp;lt;dd&amp;gt; 파이썬(Python)은 1990년 암스테르담의 귀도 반 로섬(Guido Van Rossum)이 개발한 인터프리터 언어&amp;lt;/dd&amp;gt;         &amp;lt;/dl&amp;gt;         &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;  See the Pen   Untitled by mon node (@mon-node)  on CodePen.폼(Form) 태그폼은 사용자로부터 데이터를 입력받아 서버로 전송한다 전송한 데이터는 웹 서버가 처리하고 결과에 따른 또 다른 웹 페이지를 출력한다input 태그      input 태그는 type 속성을 다르게 지정하여 다양하게 사용자로부터 데이터를 입력 받을 수 있다        input 태그에서 사용가능한 속성 [TCP School 참고]  input 예제  See the Pen   Untitled by mon node (@mon-node)  on CodePen.멀티미디어 태그HTML5에서 추가된 멀티미디어 요소인 video와 audio등을 말하며 현재에 웹에서 동영상을 시청하고 음악을 듣는데 지장이 없다고 생각할 수 있다 하지만 각종 플러그인과 ActiveX라는 불편함과 보안위협에 노출되어 있으며 그런 이유로 브라우저 자체에서 동영상을 재생하게끔 멀티미디어 태그가 필요하게 된 것이다Audio 태그  음악 컨텐츠를 사용하기 위해 구현 가능한 태그[Audio 태그에서 사용 가능한 파일]             확장자      설명                  wav      IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식              mp3      대부분의 음원에서 사용되며 Moving Picture Experts Group에 의해 개발됨, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식이다              ogg      Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식, 라이센스 없이 무료이므로 게임등에서 많이 사용한다      [Audio 태그에서 사용할 수 있는 속성]             속성      설명                  controls      웹 화면에 컨트롤 막대를 표시하고 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다              autoplay      오디오를 자동 재생한다              loop      오디오를 반복해서 재생한다              muted      오디오는 재생하지만 소리는 자동 음소거된다              preload      재생 버튼을 눌러 재생하기 전에 오디오 파일을 다운로드해서 준비한다      Audio 태그 예제&amp;lt;!--일반 재생--&amp;gt;[일반 재생]&amp;lt;br&amp;gt;&amp;lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls&amp;gt;&amp;lt;/audio&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;!--자동 재생--&amp;gt;[자동 재생]&amp;lt;br&amp;gt;&amp;lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls autoplay&amp;gt;&amp;lt;/audio&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;!--반복 재생--&amp;gt;[반복 재생]&amp;lt;br&amp;gt;&amp;lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls loop&amp;gt;&amp;lt;/audio&amp;gt;  See the Pen   Untitled by mon node (@mon-node)  on CodePen.Video 태그  비디오 컨텐츠를 사용하기 위해 구현 가능한 태그[video 태그에서 사용 가능한 속성]             속성      설명                  controls      영상 컨트롤 막대를 표시하며 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다              width, height      화면에 표시되는 영상의 크기를 조절한다              autoplay      영상을 자동 재생              loop      영상을 반복해서 재생              muted      영상은 재생하지만 소리는 음소거됨              preload      영상을 재생하기 전에 미디어 파일을 다운로드 함              poster      브라우저나 인터넷 문제등으로 영상을 재생못하는 경우 표시함      video 태그 예제&amp;lt;!--일반 재생--&amp;gt;[일반 재생]&amp;lt;br&amp;gt;&amp;lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; controls width=&quot;300&quot; height=&quot;200&quot;&amp;gt;&amp;lt;/video&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;!--자동 재생--&amp;gt;[자동 재생]&amp;lt;br&amp;gt;&amp;lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls autoplay&amp;gt;&amp;lt;/video&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;!--반복 재생--&amp;gt;[반복 재생]&amp;lt;br&amp;gt;&amp;lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls loop&amp;gt;&amp;lt;/video&amp;gt;  See the Pen   video 태그 by mon node (@mon-node)  on CodePen.###웹"
-  },
-  
-  {
-    "title": "(Web) Html의 모든것",
-    "url": "/posts/html/",
-    "categories": "Web, Frontend",
-    "tags": "Web, Frontend, Html",
-    "date": "2023-07-14 11:33:00 +0800",
-    
-
-
-
-
-
-    "snippet": "HTML란  HTML은 HyperText Markup Language의 약자웹 페이지는 HTML 문서라고도 불리며, HTML 태그들로 구성된다각각의 HTML 태그는 웹 페이지의 디자인이나 기능을 결정하는데 사용된다HTML 기본 구조- &amp;lt;!DOCTYPE html&amp;gt; : 현재 문서가 HTML5 문서임을 명시한다- &amp;lt;html&amp;gt; : HTML 문서의 루트(root) 요소를 정의한다- &amp;lt;head&amp;gt; : HTML 문서의 메타데이터(metadata)를 정의한다- 메타데이터(metadata)란 HTML 문서에 대한 정보(data)로 웹 브라우저에는 직접적으로 표현되지 않는 정보를 의미한다- 이러한 메타데이터는 &amp;lt;title&amp;gt;, &amp;lt;style&amp;gt;, &amp;lt;meta&amp;gt;, &amp;lt;link&amp;gt;, &amp;lt;script&amp;gt;, &amp;lt;base&amp;gt;태그 등을 이용하여 표현할 수 있다- &amp;lt;title&amp;gt; : HTML 문서의 제목(title)을 정의하며, 다음과 같은 용도로 사용된다    &amp;gt; 웹 브라우저의 툴바(toolbar)에 표시    &amp;gt; 웹 브라우저의 즐겨찾기(favorites)에 추가할 때 즐겨찾기의 제목이 된다    &amp;gt; 검색 엔진의 결과 페이지에 제목으로 표시된다- &amp;lt;body&amp;gt; : 웹 브라우저를 통해 보이는 내용(content) 부분- &amp;lt;h1&amp;gt; ~ &amp;lt;h6&amp;gt; : 제목(heading)을 나타낸다- &amp;lt;p&amp;gt; : 단락(paragraph)을 나타낸다Tag(태그)  웹 페이지를 구성하는 요소는 텍스트, 이미지, 버튼 등 매우 다양하다 태그는 이런 다양한 구성 요소를 정의하는 역할을 하며, HTML 문법을 이루는 가장 작은 단위입니다. 기본 형식은 다음과 같이 괄호(&amp;lt; &amp;gt;) 사이에 태그명을 넣는 형태이다[각종 태그 종류]- hn 태그 : hn 태그는 제목이나 주제를 나타내는 텍스트를 표현할 때 사용(hn 태그는 h1부터 h6 태그까지 6개가 있는데, 여기서 h는 heading을 의미하고 n에 들어가는 숫자는 중요도를 나타낸다)- p 태그 : p 태그는 본문의 문단(paragraph)을 작성할 때 사용(HTML에서는 제목이나 주제를 나타내는 텍스트가 아니면 대부분 본문이기 때문에 p 태그를 자주 사용한다)- br 태그 : br 태그는 문단에서 줄 바꿈할 때 사용- blockquote 태그 : blockquote 태그는 출처에서 인용한 문단 단위의 텍스트를 작성할 때 사용한다 이때 출처가 확실한 인용문은 cite 속성으로 출처 경로를 명시해야 한다- q 태그 : q 태그는 문단 안에 텍스트 단위의 짧은 인용문을 작성할 때 사용할 수 있는 태그 q 태그를 사용한 콘텐츠는 큰따옴표(&quot;&quot;)로 묶임- ins와 del 태그 : ins 태그는 새로 추가된 텍스트임을 나타낼 때 사용하고, del 태그는 기존에 있던 텍스트가 삭제된 텍스트임을 나타낼 때 사용한다 ins 태그를 사용한 콘텐츠에는 밑줄이, del 태그를 사용한 콘텐츠에는 취소선이 생긴다- sub와 sup 태그 : sub 태그와 sup 태그는 각각 아래 첨자, 위 첨자에 해당하는 텍스트를 작성할 때 사용한다- div 태그 : div 태그는 블록 요소와 인라인 요소를 그룹으로 묶을 때 사용한다(body 태그 안에 영역 구분 없이 표시하려는 텍스트만 작성하면 코드가 복잡해질수록 텍스트를 구분하기 어려워지는데 이 코드를 div 태그를 사용해 영역별로 그룹을 지으면 코드 단순화가 가능하다)- span 태그 : span 태그는 인라인 요소를 그룹으로 묶을 때 사용한다- ul 태그 :ul(unordered list) 태그는 순서가 없는 비순서형 목록을 생성할 때 사용하며 이때 목록 내용은 li(list item) 태그로 구성한다- ol 태그 : ol(ordered list) 태그는 순서형 목록을 생성할 때 사용하며 ul 태그와 마찬가지로 li 태그로 목록 내용을 구성 한다- dl 태그 : dl(description list) 태그는 정의형 목록을 만들 때 사용합니다. 정의형 목록은 용어와 용어 설명을 나열한 형태의 목록이라고 보면 된다 dl 태그로 목록을 생성할 때는 li 태그 대신에 dt(description term) 태그로 용어를, dd(description details) 태그로 용어 설명을 작성한다- a 태그 : a 태그는 HTML에서 내부나 외부 링크를 생성하며 a 태그는 대상 경로를 의미하는 href 속성을 필수로 사용해야 하고, 그 외에 target, title 속성을 선택해서 사용할 수 있다- img 태그 : HTML에서 이미지 객체를 삽입하고 싶을 때는 img 태그를 사용하며 img 태그는 src 속성과 alt 속성으로 구성된다- strong 태그 : strong 태그는 텍스트의 의미를 강조하고 싶을 때 사용하며 strong 태그는 스타일에서 차이를 두기 위해 시각적으로 텍스트를 굵게 표시하는 것뿐 아니라 웹 브라우저에 중요한 부분임을 알려 주는 역할을 한다- em 태그 : em(emphasis) 태그 역시 텍스트의 의미를 강조하고 싶을 때 사용하며 em 태그를 사용하면 텍스트가 기울어져 보이면서 강조 효과를 낼 수 있다주석  주석(comment)은 실행결과(웹 브라우저)에는 표시되지 않지만, 코드에 어떠한 메모나 설명을 남기고 싶을 때 사용하며 &amp;lt;!--와 --&amp;gt; 사이에 내용을 작성하면 해당 내용은 주석으로 처리된다DTD (Documen Type Definition)웹 브라우저가 처리할 해당 문서가 어떤 문서 형식을 따라야 하는지 미리 정의 하는 것으로 HTML문서 작성시 항상 맨처음에 넣어야 한다&amp;lt;!DOCTYPE html&amp;gt;기본구조- html 태그는 HTML 문서의 시작과 끝을 의미한다 따라서 모든 태그는 html 태그 안에 작성해야 한다- head 태그는 HTML 문서의 메타데이터(metadata)를 정의하는 영역이다 메타데이터란 HTML 문서에 대한 정보(data)로, 웹 브라우저에는 직접 노출되지 않는다 보통 meta, title, link, style, script 등의 태그를 사용해 HTML 문서의 여러 정보를 정의한다- meta 태그는 메타데이터를 정의하는 데 사용한다- title 태그는 HTML 문서의 제목을 지정하는 데 사용한다- body 태그는 웹 브라우저에 노출되는 내용을 작성하는 영역이다, 따라서 웹 브라우저에서 표시되는 모든 내용은 body 태그 영역 안에 작성한다&amp;lt;html&amp;gt;     &amp;lt;head&amp;gt;         &amp;lt;title&amp;gt; 제목 &amp;lt;/title&amp;gt;         &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;        &amp;lt;meta name=&quot;keyword&quot; content=&quot;HTML, meta, tag, element, reference&quot;&amp;gt;        &amp;lt;meta name=&quot;description&quot; content=&quot;HTML meta tag page&quot;&amp;gt;        &amp;lt;meta name=&quot;author&quot; content=&quot;gyejin&quot;&amp;gt;        &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&amp;gt;            &amp;lt;/head&amp;gt;         &amp;lt;body&amp;gt;        내용    &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 부모,자식,형제 관계  HTML은 태그 사용 위치에 따라서 부모,자식,형제 관계가 성립된다 상위 태그 안에 하위 태그가 존재하면 상위태그는 하위태그의 부모가 되며 해당 상위태그 밑에 존재하는 하위태그들은 각 형제 관계를 갖게된다폼(Form) 구성하기  폼(form)은 HTML에서 사용자와 상호작용해서 정보를 입력받고 서버로 전송하기 위한 양식을 의미한다 실제로 웹 페이지에서 폼은 흔하게 찾아볼 수 있다 예를 들어, 네이버 로그인 화면에는 아이디와 비밀번호를 입력하는 요소와 로그인 상태 유지를 설정하는 체크박스, 버튼 요소까지 다양한 상호작용 요소가 존재한다폼(Form) 관련 태그- form 태그 : 폼 양식을 의미하는 태그이며 HTML의 폼을 구성하는 태그는 모두 form 태그 안에 작성해야 한다(form 태그는 action과 method 속성을 함께 사용)    * `action 속성` : action 속성에는 폼 요소에서 사용자와 상호작용으로 입력받은 값들을 전송할 서버의 URL 주소를 적는다    * `method 속성` : method 속성에는 입력받은 값을 서버에 전송할 때 송신 방식을 적습니다. 속성값으로 get 또는 post를 사용할 수 있다- input 태그 : 로그인 페이지의 아이디와 비밀번호처럼 입력받는 요소를 생성할 때는 input 태그를 사용한다(input 태그에는 type, name, value 속성이 있는데, type 속성은 필수로 사용해야 하고, name과 value 속성은 선택해서 사용할 수 있다)    * `type 속성` : type 속성은 입력된 값에 따라 상호작용 요소의 종류를 결정하며 입력 요소는 아이디나 비밀번호를 입력받는 요소 외에도 콤보박스, 파일 업로드, 체크박스, 라디오버튼 등 다양하다 이런 요소의 종류를 type 속성에 사용된 값으로 결정한다    * `name 속성` : name 속성에는 입력 요소의 이름을 작성하며 입력 요소가 form 태그에 의해 서버로 전송될 때, name 속성에 적힌 값이 이름으로 지정된다 서버에서는 지정된 이름으로 입력 요소를 식별할 수 있다    * `value 속성` : value 속성에는 입력 요소의 초깃값을 작성하며 입력 요소는 보통 사용자에게서 수동으로 값을 입력받지만, 상황에 따라 초깃값을 설정해야 하는 경우가 있다 이럴 때 사용하는 속성이다- label 태그 : label 태그는 form 태그 안에서 사용하는 상호작용 요소에 이름을 붙일 때 사용한다- textarea 태그 : 여러 줄의 입력 요소를 생성할 때는 input 태그가 아닌 textarea 태그를 사용하며 웹 사이트에서 글을 작성할 때 사용하는 입력 요소는 대부분 textarea 태그로 생성한다- select, option, optgroup 태그 : elect 태그를 사용하면 콤보박스(combobox)를 생성할 수 있으며, 콤보박스에 항목 하나를 추가할 때는 option 태그를 사용하고, 항목들을 그룹으로 묶고 싶다면 optgroup 태그를 사용한다- button 태그 : input 태그에서 type 속성값을 submit, reset, button으로 지정해 생성할 수 있으며 별도의 button 태그로 생성할 수도 있다. button 태그도 마찬가지로 type 속성을 가진다테이블(Table) 관련 태그  표(table)는 웹 페이지에서 흔하게 볼 수 있는, 2차원 격자 형태로 구성된 데이터를 의미하며 표는 다음 그림처럼 행(row), 열(column) 그리고 행과 열이 만나는 셀(cell)로 구성된다- table 태그 : html에서 표를 생성할 때 사용한다폼과 동일하게 표 관련 태그는 모두 table태그 안에서 사용해야 한다- caption 태그 : 표 제목을 지정할 때 사용하는 태그- tr 태그 : 표에서 행을 생성할 때 사용하며, tr 태그 하나는 행 하나를 생성하기 때문에 행을 여러 개 생성할 때는 tr 태그를 여러 번 사용한다- th, td 태그 : 표에서 열을 생성할 때 사용하며 th태그는 표에서 제목을 나타내는 열을 생성, td태그는 표에서 일반적인 데이터를 나타내는 열을 생성한다- thead, tfoot, tbody 태그 : 표에서 행을 묶어 그룹화가 가능하다- col과 colgroup 태그 : 표에서 열을 그룹화 하고자 할 때 사용된다멀티미디어 관련 태그- audio 태그 : audio 태그는 항상 src 속성과 함께 사용하며, src 속성값에는 삽입하려고 하는 오디오 파일의 경로를 적어 준다, 그리고 오디오 컨트롤 패널이 웹 브라우저에 노출되도록 controls 속성을 설정해야 한다- video 태그 : video 태그도 비디오 경로를 입력하는 src 속성을 필수로 사용해야 하며,controls 속성을 추가해 사용자가 제어할 수 있는 컨트롤 패널도 표시해야 한다- source 태그 : audio 태그와 video 태그는 다양한 포맷을 지원하지만, 웹 브라우저별로 지원하는 포맷과 미디어 타입은 각각 다르다 예를 들어 오디오에서, MP3 포맷은 모든 웹 브라우저에서 지원하지만 WAV나 OGG 포맷은 지원하지 않는 웹 브라우저도 있다 그런데 OGG 포맷을 우선 지원하고 어쩔 수 없는 경우에만 MP3 포맷을 지원해야 하는 경우 source 태그를 사용해야한다"
   },
   
   {
@@ -571,10 +736,25 @@
   },
   
   {
+    "title": "(Web) Html의 모든것",
+    "url": "/posts/html/",
+    "categories": "Develop, html",
+    "tags": "html",
+    "date": "2023-07-14 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "HTML란  HTML은 HyperText Markup Language의 약자웹 페이지는 HTML 문서라고도 불리며, HTML 태그들로 구성된다각각의 HTML 태그는 웹 페이지의 디자인이나 기능을 결정하는데 사용된다HTML 기본 구조- &amp;lt;!DOCTYPE html&amp;gt; : 현재 문서가 HTML5 문서임을 명시한다- &amp;lt;html&amp;gt; : HTML 문서의 루트(root) 요소를 정의한다- &amp;lt;head&amp;gt; : HTML 문서의 메타데이터(metadata)를 정의한다- 메타데이터(metadata)란 HTML 문서에 대한 정보(data)로 웹 브라우저에는 직접적으로 표현되지 않는 정보를 의미한다- 이러한 메타데이터는 &amp;lt;title&amp;gt;, &amp;lt;style&amp;gt;, &amp;lt;meta&amp;gt;, &amp;lt;link&amp;gt;, &amp;lt;script&amp;gt;, &amp;lt;base&amp;gt;태그 등을 이용하여 표현할 수 있다- &amp;lt;title&amp;gt; : HTML 문서의 제목(title)을 정의하며, 다음과 같은 용도로 사용된다    &amp;gt; 웹 브라우저의 툴바(toolbar)에 표시    &amp;gt; 웹 브라우저의 즐겨찾기(favorites)에 추가할 때 즐겨찾기의 제목이 된다    &amp;gt; 검색 엔진의 결과 페이지에 제목으로 표시된다- &amp;lt;body&amp;gt; : 웹 브라우저를 통해 보이는 내용(content) 부분- &amp;lt;h1&amp;gt; ~ &amp;lt;h6&amp;gt; : 제목(heading)을 나타낸다- &amp;lt;p&amp;gt; : 단락(paragraph)을 나타낸다Tag(태그)  웹 페이지를 구성하는 요소는 텍스트, 이미지, 버튼 등 매우 다양하다 태그는 이런 다양한 구성 요소를 정의하는 역할을 하며, HTML 문법을 이루는 가장 작은 단위입니다. 기본 형식은 다음과 같이 괄호(&amp;lt; &amp;gt;) 사이에 태그명을 넣는 형태이다[각종 태그 종류]- hn 태그 : hn 태그는 제목이나 주제를 나타내는 텍스트를 표현할 때 사용(hn 태그는 h1부터 h6 태그까지 6개가 있는데, 여기서 h는 heading을 의미하고 n에 들어가는 숫자는 중요도를 나타낸다)- p 태그 : p 태그는 본문의 문단(paragraph)을 작성할 때 사용(HTML에서는 제목이나 주제를 나타내는 텍스트가 아니면 대부분 본문이기 때문에 p 태그를 자주 사용한다)- br 태그 : br 태그는 문단에서 줄 바꿈할 때 사용- blockquote 태그 : blockquote 태그는 출처에서 인용한 문단 단위의 텍스트를 작성할 때 사용한다 이때 출처가 확실한 인용문은 cite 속성으로 출처 경로를 명시해야 한다- q 태그 : q 태그는 문단 안에 텍스트 단위의 짧은 인용문을 작성할 때 사용할 수 있는 태그 q 태그를 사용한 콘텐츠는 큰따옴표(&quot;&quot;)로 묶임- ins와 del 태그 : ins 태그는 새로 추가된 텍스트임을 나타낼 때 사용하고, del 태그는 기존에 있던 텍스트가 삭제된 텍스트임을 나타낼 때 사용한다 ins 태그를 사용한 콘텐츠에는 밑줄이, del 태그를 사용한 콘텐츠에는 취소선이 생긴다- sub와 sup 태그 : sub 태그와 sup 태그는 각각 아래 첨자, 위 첨자에 해당하는 텍스트를 작성할 때 사용한다- div 태그 : div 태그는 블록 요소와 인라인 요소를 그룹으로 묶을 때 사용한다(body 태그 안에 영역 구분 없이 표시하려는 텍스트만 작성하면 코드가 복잡해질수록 텍스트를 구분하기 어려워지는데 이 코드를 div 태그를 사용해 영역별로 그룹을 지으면 코드 단순화가 가능하다)- span 태그 : span 태그는 인라인 요소를 그룹으로 묶을 때 사용한다- ul 태그 :ul(unordered list) 태그는 순서가 없는 비순서형 목록을 생성할 때 사용하며 이때 목록 내용은 li(list item) 태그로 구성한다- ol 태그 : ol(ordered list) 태그는 순서형 목록을 생성할 때 사용하며 ul 태그와 마찬가지로 li 태그로 목록 내용을 구성 한다- dl 태그 : dl(description list) 태그는 정의형 목록을 만들 때 사용합니다. 정의형 목록은 용어와 용어 설명을 나열한 형태의 목록이라고 보면 된다 dl 태그로 목록을 생성할 때는 li 태그 대신에 dt(description term) 태그로 용어를, dd(description details) 태그로 용어 설명을 작성한다- a 태그 : a 태그는 HTML에서 내부나 외부 링크를 생성하며 a 태그는 대상 경로를 의미하는 href 속성을 필수로 사용해야 하고, 그 외에 target, title 속성을 선택해서 사용할 수 있다- img 태그 : HTML에서 이미지 객체를 삽입하고 싶을 때는 img 태그를 사용하며 img 태그는 src 속성과 alt 속성으로 구성된다- strong 태그 : strong 태그는 텍스트의 의미를 강조하고 싶을 때 사용하며 strong 태그는 스타일에서 차이를 두기 위해 시각적으로 텍스트를 굵게 표시하는 것뿐 아니라 웹 브라우저에 중요한 부분임을 알려 주는 역할을 한다- em 태그 : em(emphasis) 태그 역시 텍스트의 의미를 강조하고 싶을 때 사용하며 em 태그를 사용하면 텍스트가 기울어져 보이면서 강조 효과를 낼 수 있다주석  주석(comment)은 실행결과(웹 브라우저)에는 표시되지 않지만, 코드에 어떠한 메모나 설명을 남기고 싶을 때 사용하며 &amp;lt;!--와 --&amp;gt; 사이에 내용을 작성하면 해당 내용은 주석으로 처리된다DTD (Documen Type Definition)웹 브라우저가 처리할 해당 문서가 어떤 문서 형식을 따라야 하는지 미리 정의 하는 것으로 HTML문서 작성시 항상 맨처음에 넣어야 한다&amp;lt;!DOCTYPE html&amp;gt;기본구조- html 태그는 HTML 문서의 시작과 끝을 의미한다 따라서 모든 태그는 html 태그 안에 작성해야 한다- head 태그는 HTML 문서의 메타데이터(metadata)를 정의하는 영역이다 메타데이터란 HTML 문서에 대한 정보(data)로, 웹 브라우저에는 직접 노출되지 않는다 보통 meta, title, link, style, script 등의 태그를 사용해 HTML 문서의 여러 정보를 정의한다- meta 태그는 메타데이터를 정의하는 데 사용한다- title 태그는 HTML 문서의 제목을 지정하는 데 사용한다- body 태그는 웹 브라우저에 노출되는 내용을 작성하는 영역이다, 따라서 웹 브라우저에서 표시되는 모든 내용은 body 태그 영역 안에 작성한다&amp;lt;html&amp;gt;     &amp;lt;head&amp;gt;         &amp;lt;title&amp;gt; 제목 &amp;lt;/title&amp;gt;         &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;        &amp;lt;meta name=&quot;keyword&quot; content=&quot;HTML, meta, tag, element, reference&quot;&amp;gt;        &amp;lt;meta name=&quot;description&quot; content=&quot;HTML meta tag page&quot;&amp;gt;        &amp;lt;meta name=&quot;author&quot; content=&quot;gyejin&quot;&amp;gt;        &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&amp;gt;            &amp;lt;/head&amp;gt;         &amp;lt;body&amp;gt;        내용    &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 부모,자식,형제 관계  HTML은 태그 사용 위치에 따라서 부모,자식,형제 관계가 성립된다 상위 태그 안에 하위 태그가 존재하면 상위태그는 하위태그의 부모가 되며 해당 상위태그 밑에 존재하는 하위태그들은 각 형제 관계를 갖게된다폼(Form) 구성하기  폼(form)은 HTML에서 사용자와 상호작용해서 정보를 입력받고 서버로 전송하기 위한 양식을 의미한다 실제로 웹 페이지에서 폼은 흔하게 찾아볼 수 있다 예를 들어, 네이버 로그인 화면에는 아이디와 비밀번호를 입력하는 요소와 로그인 상태 유지를 설정하는 체크박스, 버튼 요소까지 다양한 상호작용 요소가 존재한다폼(Form) 관련 태그- form 태그 : 폼 양식을 의미하는 태그이며 HTML의 폼을 구성하는 태그는 모두 form 태그 안에 작성해야 한다(form 태그는 action과 method 속성을 함께 사용)    * `action 속성` : action 속성에는 폼 요소에서 사용자와 상호작용으로 입력받은 값들을 전송할 서버의 URL 주소를 적는다    * `method 속성` : method 속성에는 입력받은 값을 서버에 전송할 때 송신 방식을 적습니다. 속성값으로 get 또는 post를 사용할 수 있다- input 태그 : 로그인 페이지의 아이디와 비밀번호처럼 입력받는 요소를 생성할 때는 input 태그를 사용한다(input 태그에는 type, name, value 속성이 있는데, type 속성은 필수로 사용해야 하고, name과 value 속성은 선택해서 사용할 수 있다)    * `type 속성` : type 속성은 입력된 값에 따라 상호작용 요소의 종류를 결정하며 입력 요소는 아이디나 비밀번호를 입력받는 요소 외에도 콤보박스, 파일 업로드, 체크박스, 라디오버튼 등 다양하다 이런 요소의 종류를 type 속성에 사용된 값으로 결정한다    * `name 속성` : name 속성에는 입력 요소의 이름을 작성하며 입력 요소가 form 태그에 의해 서버로 전송될 때, name 속성에 적힌 값이 이름으로 지정된다 서버에서는 지정된 이름으로 입력 요소를 식별할 수 있다    * `value 속성` : value 속성에는 입력 요소의 초깃값을 작성하며 입력 요소는 보통 사용자에게서 수동으로 값을 입력받지만, 상황에 따라 초깃값을 설정해야 하는 경우가 있다 이럴 때 사용하는 속성이다- label 태그 : label 태그는 form 태그 안에서 사용하는 상호작용 요소에 이름을 붙일 때 사용한다- textarea 태그 : 여러 줄의 입력 요소를 생성할 때는 input 태그가 아닌 textarea 태그를 사용하며 웹 사이트에서 글을 작성할 때 사용하는 입력 요소는 대부분 textarea 태그로 생성한다- select, option, optgroup 태그 : elect 태그를 사용하면 콤보박스(combobox)를 생성할 수 있으며, 콤보박스에 항목 하나를 추가할 때는 option 태그를 사용하고, 항목들을 그룹으로 묶고 싶다면 optgroup 태그를 사용한다- button 태그 : input 태그에서 type 속성값을 submit, reset, button으로 지정해 생성할 수 있으며 별도의 button 태그로 생성할 수도 있다. button 태그도 마찬가지로 type 속성을 가진다테이블(Table) 관련 태그  표(table)는 웹 페이지에서 흔하게 볼 수 있는, 2차원 격자 형태로 구성된 데이터를 의미하며 표는 다음 그림처럼 행(row), 열(column) 그리고 행과 열이 만나는 셀(cell)로 구성된다- table 태그 : html에서 표를 생성할 때 사용한다폼과 동일하게 표 관련 태그는 모두 table태그 안에서 사용해야 한다- caption 태그 : 표 제목을 지정할 때 사용하는 태그- tr 태그 : 표에서 행을 생성할 때 사용하며, tr 태그 하나는 행 하나를 생성하기 때문에 행을 여러 개 생성할 때는 tr 태그를 여러 번 사용한다- th, td 태그 : 표에서 열을 생성할 때 사용하며 th태그는 표에서 제목을 나타내는 열을 생성, td태그는 표에서 일반적인 데이터를 나타내는 열을 생성한다- thead, tfoot, tbody 태그 : 표에서 행을 묶어 그룹화가 가능하다- col과 colgroup 태그 : 표에서 열을 그룹화 하고자 할 때 사용된다멀티미디어 관련 태그- audio 태그 : audio 태그는 항상 src 속성과 함께 사용하며, src 속성값에는 삽입하려고 하는 오디오 파일의 경로를 적어 준다, 그리고 오디오 컨트롤 패널이 웹 브라우저에 노출되도록 controls 속성을 설정해야 한다- video 태그 : video 태그도 비디오 경로를 입력하는 src 속성을 필수로 사용해야 하며,controls 속성을 추가해 사용자가 제어할 수 있는 컨트롤 패널도 표시해야 한다- source 태그 : audio 태그와 video 태그는 다양한 포맷을 지원하지만, 웹 브라우저별로 지원하는 포맷과 미디어 타입은 각각 다르다 예를 들어 오디오에서, MP3 포맷은 모든 웹 브라우저에서 지원하지만 WAV나 OGG 포맷은 지원하지 않는 웹 브라우저도 있다 그런데 OGG 포맷을 우선 지원하고 어쩔 수 없는 경우에만 MP3 포맷을 지원해야 하는 경우 source 태그를 사용해야한다"
+  },
+  
+  {
     "title": "(Debian) NTP와 systemd-timesyncd",
     "url": "/posts/debian_ntp/",
     "categories": "Linux, Debian",
-    "tags": "Linux, Debian",
+    "tags": "Debian",
     "date": "2023-07-09 11:33:00 +0800",
     
 
@@ -589,7 +769,7 @@
     "title": "(Debian) 잠금 설정",
     "url": "/posts/debian_suspend_set-copy/",
     "categories": "Linux, Debian",
-    "tags": "Linux, Debian",
+    "tags": "Debian",
     "date": "2023-06-15 11:33:00 +0800",
     
 
@@ -601,25 +781,10 @@
   },
   
   {
-    "title": "(Nodejs) 설치 및 구동",
-    "url": "/posts/nodejs2/",
-    "categories": "Web, Backend, Nodejs",
-    "tags": "Backend, Web, Nodejs",
-    "date": "2023-06-11 11:33:00 +0800",
-    
-
-
-
-
-
-    "snippet": "NodeJS 설치  다운로드 주소  설치 후 터미널에서 node –version 명령어를 통해 확인 할 수 있다NodeJS 기본 구동const http = require(&#39;http&#39;);const hostname = &#39;127.0.0.1&#39;;const port = 3000;const server = http.createServer((req, res) =&amp;gt; {  res.statusCode = 200;  res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;);  res.end(&#39;Hello World&#39;);});server.listen(port, hostname, () =&amp;gt; {  console.log(`Server running at http://${hostname}:${port}/`);});  nodejs 사이트에 기재되어있는 기본 구동 소스를 통해 간단한 .js파일을 생성한다.  node [파일명]을 통해 node.js 파일을 구동시킨다.  웹 브라우저를 통해 접속한다 (ex: 127.0.0.1:3000)"
-  },
-  
-  {
     "title": "(Debian) 한글 설정",
     "url": "/posts/debian_hangul_set/",
     "categories": "Linux, Debian",
-    "tags": "Linux, Debian",
+    "tags": "Debian",
     "date": "2023-06-11 11:33:00 +0800",
     
 
@@ -631,10 +796,25 @@
   },
   
   {
+    "title": "(Nodejs) 설치 및 구동",
+    "url": "/posts/nodejs2/",
+    "categories": "Framework, Nodejs",
+    "tags": "Nodejs",
+    "date": "2023-06-11 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "NodeJS 설치  다운로드 주소  설치 후 터미널에서 node –version 명령어를 통해 확인 할 수 있다NodeJS 기본 구동const http = require(&#39;http&#39;);const hostname = &#39;127.0.0.1&#39;;const port = 3000;const server = http.createServer((req, res) =&amp;gt; {  res.statusCode = 200;  res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;);  res.end(&#39;Hello World&#39;);});server.listen(port, hostname, () =&amp;gt; {  console.log(`Server running at http://${hostname}:${port}/`);});  nodejs 사이트에 기재되어있는 기본 구동 소스를 통해 간단한 .js파일을 생성한다.  node [파일명]을 통해 node.js 파일을 구동시킨다.  웹 브라우저를 통해 접속한다 (ex: 127.0.0.1:3000)"
+  },
+  
+  {
     "title": "(Nodejs) Nodejs란",
     "url": "/posts/nodejs1/",
-    "categories": "Web, Backend, Nodejs",
-    "tags": "Backend, Web, Nodejs",
+    "categories": "Framework, Nodejs",
+    "tags": "Nodejs",
     "date": "2023-06-10 11:33:00 +0800",
     
 
@@ -648,8 +828,8 @@
   {
     "title": "(Flutter) 초기 설정",
     "url": "/posts/flutter_2/",
-    "categories": "App, Flutter",
-    "tags": "Flutter, App",
+    "categories": "Framework, Flutter",
+    "tags": "Flutter",
     "date": "2023-06-04 11:33:00 +0800",
     
 
@@ -657,14 +837,14 @@
 
 
 
-    "snippet": "안드로이드 스튜디오안드로이드 스튜디오는 안드로이드 앱 개발을 위한 IDE이다.- /*네이티브 방식*/ : 안드로이드나 IOS 같은 플랫폼 자체에서 제공하는 개발 환경으로 개발하는 방식 안드로이드는 개발 도구로 안드로이드 스튜디오를 사용하며 개발 언어로는 자바 또는 코틀린을 사용한다 ios는 맥os 환경에서만 개발이 가능하며 개발 도구로 엑스코드를 사용한다 사용언어로는 스위프트 또는 오브젝티브를 사용한다- /*하이브리드 방식*/ : 웹 기술로 앱 화면을 만들고 네이티브 기술로 포장하여 앱 형태로 가공한다. 기존의 웹 기술을 활용하여 빠르게 앱을 개발 할 수 있다는 장점을 가지고 있지만, 네이티브 성능을 따라 갈 수 없으며 UI 또한 별도로 만든다.- /*크로스 플랫폼 방식*/ : 안드로이드와 IOS를 한번에 개발하는 방식으로 빌드 할 때 네이티브 코드로 변환되어 네이티브 성능과 거의 동일하다. 생산성과 품질을 비교했을때 선호하는 방식안드로이드 스튜디오 설치1. 플러터는 이곳에서 다운로드가 가능하다      낮은 진입장벽 : 네이티브 개발에 비해 플러터는 배워야 할 개념과 안드로이드 ios를 동시에 만들어 내기 때문에 더 쉽게 개발이 가능하다        높은 네이티브 성능 : 플러터는 네이티브 코드로 변환되어 성능이 네이티브와 거의 유사하다.        편리한 개발 도구 : 안드로이드 스튜디오에서 개발 할 수 있으며 비주얼 스튜디오 코드에서도 플로그인을 제공한다.  flutter 설치1. 플러터는 이곳에서 다운로드가 가능하다              SDK 설치        다운받은 파일 사용할 디렉토리에 압축 풀기    환경변수 설정                  시스템 환경 변수 편집        시스템 속성 창에서 ‘고급’ 선택 -&amp;gt; ‘환경 변수’를 선택        환경 변수 창에서 사용자 변수 중 Path를 선택 후 편집을 누른다        새로 만들기 -&amp;gt; 찾아보기를 눌러 위에서 압축을 풀었던 flutter 폴더 내의 bin폴더를 선택후 저장한다              정상적으로 설치되고 설정되었는지 확인"
+    "snippet": "안드로이드 스튜디오안드로이드 스튜디오는 안드로이드 앱 개발을 위한 IDE이다.- /*네이티브 방식*/ : 안드로이드나 IOS 같은 플랫폼 자체에서 제공하는 개발 환경으로 개발하는 방식 안드로이드는 개발 도구로 안드로이드 스튜디오를 사용하며 개발 언어로는 자바 또는 코틀린을 사용한다 ios는 맥os 환경에서만 개발이 가능하며 개발 도구로 엑스코드를 사용한다 사용언어로는 스위프트 또는 오브젝티브를 사용한다- /*하이브리드 방식*/ : 웹 기술로 앱 화면을 만들고 네이티브 기술로 포장하여 앱 형태로 가공한다. 기존의 웹 기술을 활용하여 빠르게 앱을 개발 할 수 있다는 장점을 가지고 있지만, 네이티브 성능을 따라 갈 수 없으며 UI 또한 별도로 만든다.- /*크로스 플랫폼 방식*/ : 안드로이드와 IOS를 한번에 개발하는 방식으로 빌드 할 때 네이티브 코드로 변환되어 네이티브 성능과 거의 동일하다. 생산성과 품질을 비교했을때 선호하는 방식안드로이드 스튜디오 설치1. 플러터는 이곳에서 다운로드가 가능하다      낮은 진입장벽 : 네이티브 개발에 비해 플러터는 배워야 할 개념과 안드로이드 ios를 동시에 만들어 내기 때문에 더 쉽게 개발이 가능하다        높은 네이티브 성능 : 플러터는 네이티브 코드로 변환되어 성능이 네이티브와 거의 유사하다.        편리한 개발 도구 : 안드로이드 스튜디오에서 개발 할 수 있으며 비주얼 스튜디오 코드에서도 플로그인을 제공한다.  flutter 설치1. 플러터는 이곳에서 다운로드가 가능하다      SDK 설치        다운받은 파일 사용할 디렉토리에 압축 풀기        환경변수 설정        시스템 환경 변수 편집    시스템 속성 창에서 ‘고급’ 선택 -&amp;gt; ‘환경 변수’를 선택    환경 변수 창에서 사용자 변수 중 Path를 선택 후 편집을 누른다    새로 만들기 -&amp;gt; 찾아보기를 눌러 위에서 압축을 풀었던 flutter 폴더 내의 bin폴더를 선택후 저장한다    정상적으로 설치되고 설정되었는지 확인"
   },
   
   {
     "title": "(Flutter) Flutter란",
     "url": "/posts/flutter_1/",
-    "categories": "App, Flutter",
-    "tags": "Flutter, App",
+    "categories": "Framework, Flutter",
+    "tags": "Flutter",
     "date": "2023-06-03 11:33:00 +0800",
     
 
@@ -672,14 +852,14 @@
 
 
 
-    "snippet": "flutter는  크로스 플랫폼 이며 Dart언어를 사용한다 다트는 구글에서 개발한 언어이며 자바 또는 자바스크립트와 비슷하다.- /*네이티브 방식*/ : 안드로이드나 IOS 같은 플랫폼 자체에서 제공하는 개발 환경으로 개발하는 방식 안드로이드는 개발 도구로 안드로이드 스튜디오를 사용하며 개발 언어로는 자바 또는 코틀린을 사용한다 ios는 맥os 환경에서만 개발이 가능하며 개발 도구로 엑스코드를 사용한다 사용언어로는 스위프트 또는 오브젝티브를 사용한다- /*하이브리드 방식*/ : 웹 기술로 앱 화면을 만들고 네이티브 기술로 포장하여 앱 형태로 가공한다. 기존의 웹 기술을 활용하여 빠르게 앱을 개발 할 수 있다는 장점을 가지고 있지만, 네이티브 성능을 따라 갈 수 없으며 UI 또한 별도로 만든다.- /*크로스 플랫폼 방식*/ : 안드로이드와 IOS를 한번에 개발하는 방식으로 빌드 할 때 네이티브 코드로 변환되어 네이티브 성능과 거의 동일하다. 생산성과 품질을 비교했을때 선호하는 방식flutter의 특징      낮은 진입장벽 : 네이티브 개발에 비해 플러터는 배워야 할 개념과 안드로이드 ios를 동시에 만들어 내기 때문에 더 쉽게 개발이 가능하다        높은 네이티브 성능 : 플러터는 네이티브 코드로 변환되어 성능이 네이티브와 거의 유사하다.        편리한 개발 도구 : 안드로이드 스튜디오에서 개발 할 수 있으며 비주얼 스튜디오 코드에서도 플로그인을 제공한다.  flutter 설치1. 플러터는 이곳에서 다운로드가 가능하다              SDK 설치        다운받은 파일 사용할 디렉토리에 압축 풀기    환경변수 설정                  시스템 환경 변수 편집        시스템 속성 창에서 ‘고급’ 선택 -&amp;gt; ‘환경 변수’를 선택        환경 변수 창에서 사용자 변수 중 Path를 선택 후 편집을 누른다        새로 만들기 -&amp;gt; 찾아보기를 눌러 위에서 압축을 풀었던 flutter 폴더 내의 bin폴더를 선택후 저장한다              정상적으로 설치되고 설정되었는지 확인"
+    "snippet": "flutter는  크로스 플랫폼 이며 Dart언어를 사용한다 다트는 구글에서 개발한 언어이며 자바 또는 자바스크립트와 비슷하다.- /*네이티브 방식*/ : 안드로이드나 IOS 같은 플랫폼 자체에서 제공하는 개발 환경으로 개발하는 방식 안드로이드는 개발 도구로 안드로이드 스튜디오를 사용하며 개발 언어로는 자바 또는 코틀린을 사용한다 ios는 맥os 환경에서만 개발이 가능하며 개발 도구로 엑스코드를 사용한다 사용언어로는 스위프트 또는 오브젝티브를 사용한다- /*하이브리드 방식*/ : 웹 기술로 앱 화면을 만들고 네이티브 기술로 포장하여 앱 형태로 가공한다. 기존의 웹 기술을 활용하여 빠르게 앱을 개발 할 수 있다는 장점을 가지고 있지만, 네이티브 성능을 따라 갈 수 없으며 UI 또한 별도로 만든다.- /*크로스 플랫폼 방식*/ : 안드로이드와 IOS를 한번에 개발하는 방식으로 빌드 할 때 네이티브 코드로 변환되어 네이티브 성능과 거의 동일하다. 생산성과 품질을 비교했을때 선호하는 방식flutter의 특징      낮은 진입장벽 : 네이티브 개발에 비해 플러터는 배워야 할 개념과 안드로이드 ios를 동시에 만들어 내기 때문에 더 쉽게 개발이 가능하다        높은 네이티브 성능 : 플러터는 네이티브 코드로 변환되어 성능이 네이티브와 거의 유사하다.        편리한 개발 도구 : 안드로이드 스튜디오에서 개발 할 수 있으며 비주얼 스튜디오 코드에서도 플로그인을 제공한다.  flutter 설치1. 플러터는 이곳에서 다운로드가 가능하다      SDK 설치        다운받은 파일 사용할 디렉토리에 압축 풀기        환경변수 설정        시스템 환경 변수 편집    시스템 속성 창에서 ‘고급’ 선택 -&amp;gt; ‘환경 변수’를 선택    환경 변수 창에서 사용자 변수 중 Path를 선택 후 편집을 누른다    새로 만들기 -&amp;gt; 찾아보기를 눌러 위에서 압축을 풀었던 flutter 폴더 내의 bin폴더를 선택후 저장한다    정상적으로 설치되고 설정되었는지 확인"
   },
   
   {
     "title": "(Vmware) 공유폴더 설정",
     "url": "/posts/vmware_dirshare/",
-    "categories": "Linux, Vmware",
-    "tags": "Linux, Vmware",
+    "categories": "Utils, Vmware",
+    "tags": "Vmware",
     "date": "2023-05-29 11:33:00 +0800",
     
 
@@ -694,7 +874,7 @@
     "title": "(Debian) sudoers 설정",
     "url": "/posts/debian_sudoer_setting/",
     "categories": "Linux, Debian",
-    "tags": "Linux, Debian",
+    "tags": "Debian",
     "date": "2023-05-27 11:33:00 +0800",
     
 
@@ -723,8 +903,8 @@
   {
     "title": "(Raid) Raid의 정의와 구성",
     "url": "/posts/RAID/",
-    "categories": "Linux, Raid",
-    "tags": "Linux, Raid",
+    "categories": "Linux",
+    "tags": "Linux",
     "date": "2023-05-20 11:33:00 +0800",
     
 
@@ -732,7 +912,7 @@
 
 
 
-    "snippet": "RAID 정의  Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다RAID 0(스트라이핑)  RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,여러 환경에서의 읽기 및 쓰기 처리량이 개선된다. RAID 0을 위해서는 최소한 2개의 드라이브가 필요하며, 데이터가 분산되는 방식 때문에 배열 드라이브의 전체 용량이 하나로 통합된다. 예를 들어 스트라이프 RAID 0 구성에서 쌍을 이룬 2개의 1TB 드라이브는 하나의 2TB 볼륨으로 인식된다. 하지만 RAID 0 는 패리티(Parity) 데이터를 미러링(Mirroring) 처리하거나 저장하지 않기 때문에, 하나의 디스크에 문제가 발생하면 나머지 디스크에 저장된 데이터가 무용지물이 된다.RAID 1(미러링)  RAID 0 과의 반대로 안정성에 방향을 둔 레벨로 데이터 저장소를 서로 복제형태로 하나의 데이터를 양쪽에 디스크에 동일하게 기록 한다, 데이터의 저장용량은 줄어들지만 데이터를 양쪽에 각각 보관함으로써 안정성을 높였다.RAID 4RAID 5(패리티 스트라이핑)RAID 6"
+    "snippet": "RAID 정의  Raid(redundant array of independent/inexpensive disks)는 여러 개의 드라이브를 하나의 논리적인 유닛으로 묶어주는 저장 기술이다RAID 0(스트라이핑)  RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,여러 환경에서의 읽기 및 쓰기 처리량이 개선된다. RAID 0을 위해서는 최소한 2개의 드라이브가 필요하며, 데이터가 분산되는 방식 때문에 배열 드라이브의 전체 용량이 하나로 통합된다. 예를 들어 스트라이프 RAID 0 구성에서 쌍을 이룬 2개의 1TB 드라이브는 하나의 2TB 볼륨으로 인식된다. 하지만 RAID 0 는 패리티(Parity) 데이터를 미러링(Mirroring) 처리하거나 저장하지 않기 때문에, 하나의 디스크에 문제가 발생하면 나머지 디스크에 저장된 데이터가 무용지물이 된다.RAID 1(미러링)  RAID 0 과의 반대로 안정성에 방향을 둔 레벨로 데이터 저장소를 서로 복제형태로 하나의 데이터를 양쪽에 디스크에 동일하게 기록 한다, 데이터의 저장용량은 줄어들지만 데이터를 양쪽에 각각 보관함으로써 안정성을 높였다.RAID 4RAID 5(패리티 스트라이핑)"
   },
   
   {
@@ -768,8 +948,8 @@
   {
     "title": "(Mariadb) 이중화란",
     "url": "/posts/ha_mariadb/",
-    "categories": "DB, Mariadb",
-    "tags": "DB, Mariadb",
+    "categories": "Linux",
+    "tags": "Linux",
     "date": "2023-05-13 11:33:00 +0800",
     
 
@@ -783,8 +963,8 @@
   {
     "title": "(Hypervisor) 하이퍼바이저란",
     "url": "/posts/Hypervisor/",
-    "categories": "Linux, Hypervisor",
-    "tags": "Linux, Hypervisor",
+    "categories": "Linux",
+    "tags": "Linux",
     "date": "2023-05-08 11:33:00 +0800",
     
 
@@ -838,6 +1018,81 @@
 
 
     "snippet": "Docker란도커(docker)는 하나의 OS에 가상 머신처럼 독립된 여러개의 실행환경을 만들어주는 것으로, 사용시에 아래와 같은 이점을 얻을 수 있다      구성 단순화          Docker는 하나의 Configuration으로 모든 플랫폼에서 실행할 수 있다. Configuration 파일을 코드에 넣고 환경 변수를 전달하여 다른 환경에 맞출 수 있다. 따라서 하나의 Docker 이미지를 다른 환경에서 사용할 수 있다.            코드 관리          Docker는 일관된 환경을 제공하여 개발 및 코딩을 훨씬 편안하게 만들어준다. Docker 이미지는 변경이 불가하기에 개발환경에서 운영 환경까지 애플리케이션 환경이 변경되지 않는 이점이 존재한다.            개발 생산성 향상          개발 환경을 운영 환경에 최대한 가깝게 복제할 수 있다. Docker를 사용하면 코드가 운영 환경의 컨테이너에서 실행될 수 있으며 VM과 달리 Docker는 오버 헤드 메모리 용량이 적기에 여러 서비스를 실행하는데 도움이 된다. 또한 Docker의 Shared Volume을 사용하여 호스트에서 컨테이너의 어플리케이션 코드를 사용할 수 있도록 할 수 있다. 이를 통해 개발자는 자신의 플랫폼 및 편집기에서 소스 코드를 편집할 수 있으며 이는 Docker내에서 실행 중인 환경에 반영된다.            애플리케이션 격리          Web Server(e.g. Apache, Nginx)와 연결된 API 서버를 격리할 필요가 있는 경우가 있다. 이 경우 다른 컨테이너에서 API를 서버를 실행할 수 있다.            빠른 배포          컨테이너가 OS를 부팅하지 않고 어플리케이션을 실행하기 때문에 Docker 컨테이너를 매우 빠르게 만들 수 있다.      Docker컨테이너기존에 vm가상화 기술은 하나의 OS안에 여러개의 OS를 생성하는 가상화 방식이지만 컨테이너 가상화 기술은 OS레벨의 가상화로 프로세만 격리시켜 동작하는 방식이다Docker이미지Docker Image란 컨테이너를 실행 할 수 있는 실행파일과 설정 값 들을 가지고 있는 파일이다Docker 컨테이너에 이미지를 넣고 실행을 시키면 해당 프로세스가 동작한다Docker엔진"
+  },
+  
+  {
+    "title": "Enable Google Page Views",
+    "url": "/posts/enable-google-pv/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2021-01-04 07:32:00 +0800",
+    
+
+
+
+
+
+    "snippet": "This post is to enable Page Views on the Chirpy theme based blog that you just built. This requires technical knowledge and it’s recommended to keep the google_analytics.pv.* empty unless you have a good reason. If your website has low traffic, the page views count would discourage you to write more blogs. With that said, let’s start with the setup.Set up Google AnalyticsCreate GA account and propertyFirst, you need to set up your account on Google analytics. While you create your account, you must create your first Property as well.  Head to https://analytics.google.com/ and click on Start Measuring  Enter your desired Account Name and choose the desired checkboxes  Enter your desired Property Name. This is the name of the tracker project that appears on your Google Analytics dashboard  Enter the required information About your business  Hit Create and accept any license popup to set up your Google Analytics account and create your propertyCreate Data StreamWith your property created, you now need to set up Data Stream to track your blog traffic. After you signup, the prompt should automatically take you to create your first Data Stream. If not, follow these steps:  Go to Admin on the left column  Select the desired property from the drop-down on the second column  Click on Data Streams  Add a stream and click on Web  Enter your blog’s URLIt should look like this:Now, click on the new data stream and grab the Measurement ID. It should look something like G-V6XXXXXXXX. Copy this to your _config.yml file:google_analytics:  id: &#39;G-V6XXXXXXX&#39;   # fill in your Google Analytics ID  # Google Analytics pageviews report settings  pv:    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine    cache_path:       # the local PV cache data, friendly to visitors from GFW regionWhen you push these changes to your blog, you should start seeing the traffic on your Google Analytics. Play around with the Google Analytics dashboard to get familiar with the options available as it takes like 5 mins to pick up your changes. You should now be able to monitor your traffic in real time.Setup Page ViewsThere is a detailed tutorial available to set up Google Analytics superProxy. But, if you are interested to just quickly get your Chirpy-based blog display page views, follow along. These steps were tested on a Linux machine. If you are running Windows, you can use the Git bash terminal to run Unix-like commands.Setup Google App Engine      Visit https://console.cloud.google.com/appengine        Click on Create Application        Click on Create Project        Enter the name and choose the data center close to you        Select Python language and Standard environment        Enable billing account. Yeah, you have to link your credit card. But, you won’t be billed unless you exceed your free quota. For a simple blog, the free quota is more than sufficient.        Go to your App Engine dashboard on your browser and select API &amp;amp; Services from the left navigation menu        Click on Enable APIs and Services button on the top        Enable the following APIs: Google Analytics API        On the left, Click on OAuth Consent Screen and accept Configure Consent Screen. Select External since your blog is probably hosted for the public. Click on Publish under Publishing Status        Click on Credentials on the left and create a new OAuth Client IDs credential. Make sure to add an entry under Authorized redirect URIs that matches: https://&amp;lt;project-id&amp;gt;.&amp;lt;region&amp;gt;.r.appspot.com/admin/auth        Note down the Your Client ID and Your Client Secret. You’ll need this in the next section.        Download and install the cloud SDK for your platform: https://cloud.google.com/sdk/docs/quickstart        Run the following commands:    [root@bc96abf71ef8 /]# gcloud init    ~snip~    Go to the following link in your browser:        https://accounts.google.com/o/oauth2/auth?response_type=code&amp;amp;client_id=XYZ.apps.googleusercontent.com&amp;amp;redirect_uri=ABCDEFG    Enter verification code: &amp;lt;VERIFICATION CODE THAT YOU GET AFTER YOU VISIT AND AUTHENTICATE FROM THE ABOVE LINK&amp;gt;    You are logged in as: [blah_blah@gmail.com].    Pick cloud project to use:[1] chirpy-test-300716[2] Create a new projectPlease enter numeric choice or text value (must exactly match listitem): 1[root@bc96abf71ef8 /]# gcloud info# Your selected project info should be displayed here      Setup Google Analytics superProxy      Clone the Google Analytics superProxy project on Github: https://github.com/googleanalytics/google-analytics-super-proxy to your local.        Remove the first 2 lines in the src/app.yaml file:    - application: your-project-id- version: 1            In src/config.py, add the OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET that you gathered from your App Engine Dashboard.        Enter any random key for XSRF_KEY, your config.py should look similar to this    #!/usr/bin/python2.7__author__ = &#39;pete.frisella@gmail.com (Pete Frisella)&#39;# OAuth 2.0 Client SettingsAUTH_CONFIG = {  &#39;OAUTH_CLIENT_ID&#39;: &#39;YOUR_CLIENT_ID&#39;,  &#39;OAUTH_CLIENT_SECRET&#39;: &#39;YOUR_CLIENT_SECRET&#39;,  &#39;OAUTH_REDIRECT_URI&#39;: &#39;%s%s&#39; % (    &#39;https://chirpy-test-XXXXXX.ue.r.appspot.com&#39;,    &#39;/admin/auth&#39;  )}# XSRF SettingsXSRF_KEY = &#39;OnceUponATimeThereLivedALegend&#39;              You can configure a custom domain instead of https://PROJECT_ID.REGION_ID.r.appspot.com.But, for the sake of keeping it simple, we will be using the Google provided default URL.            From inside the src/ directory, deploy the app    [root@bc96abf71ef8 src]# gcloud app deployServices to deploy:    descriptor:      [/tmp/google-analytics-super-proxy/src/app.yaml]source:          [/tmp/google-analytics-super-proxy/src]target project:  [chirpy-test-XXXX]target service:  [default]target version:  [VESRION_NUM]target url:      [https://chirpy-test-XXXX.ue.r.appspot.com]Do you want to continue (Y/n)? Y    Beginning deployment of service [default]...╔════════════════════════════════════════════════════════════╗╠═ Uploading 1 file to Google Cloud Storage                 ═╣╚════════════════════════════════════════════════════════════╝File upload done.Updating service [default]...done.Setting traffic split for service [default]...done.Deployed service [default] to [https://chirpy-test-XXXX.ue.r.appspot.com]    You can stream logs from the command line by running:$ gcloud app logs tail -s default    To view your application in the web browser run:$ gcloud app browse            Visit the deployed service. Add a /admin to the end of the URL.        Click on Authorize Users and make sure to add yourself as a managed user.        If you get any errors, please Google it. The errors are self-explanatory and should be easy to fix.  If everything went good, you’ll get this screen:Create Google Analytics QueryHead to https://PROJECT_ID.REGION_ID.r.appspot.com/admin and create a query after verifying the account. GA Core Reporting API query request can be created in Query Explorer.The query parameters are as follows:  start-date: fill in the first day of blog posting  end-date: fill in today (this is a parameter supported by GA Report, which means that it will always end according to the current query date)  metrics: select ga:pageviews  dimensions: select ga:pagePathIn order to reduce the returned results and reduce the network bandwidth, we add custom filtering rules 1:      filters: fill in ga:pagePath=~^/posts/.*/$;ga:pagePath!@=.    Among them, ; means using logical AND to concatenate two rules.    If the site.baseurl is specified, change the first filtering rule to ga:pagePath=~^/BASE_URL/posts/.*/$, where BASE_URL is the value of site.baseurl.  After Run Query, copy the generated contents of API Query URI at the bottom of the page and fill in the Encoded URI for the query of SuperProxy on GAE.After the query is saved on GAE, a Public Endpoint (public access address) will be generated, and we will get the query result in JSON format when accessing it. Finally, click Enable Endpoint in Public Request Endpoint to make the query effective, and click Start Scheduling in Scheduling to start the scheduled task.Configure Chirpy to Display Page ViewOnce all the hard part is done, it is very easy to enable the Page View on Chirpy theme. Your superProxy dashboard should look something like below and you can grab the required values.Update the _config.yml file of Chirpy project with the values from your dashboard, to look similar to the following:google_analytics:  id: &#39;G-V6XXXXXXX&#39;   # fill in your Google Analytics ID  pv:    proxy_endpoint: &#39;https://PROJECT_ID.REGION_ID.r.appspot.com/query?id=&amp;lt;ID FROM SUPER PROXY&amp;gt;&#39;    cache_path:       # the local PV cache data, friendly to visitors from GFW regionNow, you should see the Page View enabled on your blog.Reference            Google Analytics Core Reporting API: Filters &amp;#8617;      "
+  },
+  
+  {
+    "title": "Customize the Favicon",
+    "url": "/posts/customize-the-favicon/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2019-08-11 00:34:00 +0800",
+    
+
+
+
+
+
+    "snippet": "The favicons of Chirpy are placed in the directory assets/img/favicons/. You may want to replace them with your own. The following sections will guide you to create and replace the default favicons.Generate the faviconPrepare a square image (PNG, JPG, or SVG) with a size of 512x512 or more, and then go to the online tool Real Favicon Generator and click the button Select your Favicon image to upload your image file.In the next step, the webpage will show all usage scenarios. You can keep the default options, scroll to the bottom of the page, and click the button Generate your Favicons and HTML code to generate the favicon.Download &amp;amp; ReplaceDownload the generated package, unzip and delete the following two from the extracted files:  browserconfig.xml  site.webmanifestAnd then copy the remaining image files (.PNG and .ICO) to cover the original files in the directory assets/img/favicons/ of your Jekyll site. If your Jekyll site doesn’t have this directory yet, just create one.The following table will help you understand the changes to the favicon files:            File(s)      From Online Tool      From Chirpy                  *.PNG      ✓      ✗              *.ICO      ✓      ✗        ✓ means keep, ✗ means delete.The next time you build the site, the favicon will be replaced with a customized edition."
+  },
+  
+  {
+    "title": "Getting Started",
+    "url": "/posts/getting-started/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2019-08-09 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "PrerequisitesFollow the instructions in the Jekyll Docs to complete the installation of Ruby, RubyGems, Jekyll, and Bundler. In addition, Git is also required to be installed.InstallationCreating a New SiteThere are two ways to create a new repository for this theme:  Using the Chirpy Starter - Easy to upgrade, isolates irrelevant project files so you can focus on writing.  Forking on GitHub - Convenient for custom development, but difficult to upgrade. Unless you are familiar with Jekyll and are determined to tweak or contribute to this project, this approach is not recommended.Option 1. Using the Chirpy StarterCreate a new repository from the Chirpy Starter and name it &amp;lt;GH_USERNAME&amp;gt;.github.io, where GH_USERNAME represents your GitHub username.Option 2. Forking on GitHubFork Chirpy on GitHub and rename it to &amp;lt;GH_USERNAME&amp;gt;.github.io. Please note that the default branch code is in development.  If you want the site to be stable, please switch to the latest tag and start writing.And then execute:$ bash tools/init.sh  If you don’t want to deploy your site on GitHub Pages, append option --no-gh at the end of the above command.The above command will:  Removes some files or directories from your repository:          .travis.yml      files under _posts            If the option --no-gh is provided, the directory .github will be deleted. Otherwise, set up the GitHub Action workflow by removing the extension .hook of .github/workflows/pages-deploy.yml.hook, and then remove the other files and directories in the folder .github.        Removes item Gemfile.lock from .gitignore.    Creates a new commit to save the changes automatically.Installing DependenciesBefore running for the first time, go to the root directory of your site, and install dependencies as follows:$ bundleUsageConfigurationUpdate the variables of _config.yml as needed. Some of them are typical options:  url  avatar  timezone  langCustoming StylesheetIf you need to customize the stylesheet, copy the theme’s assets/css/style.scss to the same path on your Jekyll site, and then add the custom style at the end of the style file.Starting from v4.1.0, if you want to overwrite the SASS variables defined in _sass/addon/variables.scss, create a new file _sass/variables-hook.scss and assign new values to the target variable in it.Customing Static AssetsStatic assets configuration was introduced in version 5.1.0. The CDN of the static assets is defined by file _data/assets/cross_origin.yml, and you can replace some of them according to the network conditions in the region where your website is published.Also, if you’d like to self-host the static assets, please refer to the chirpy-static-assets.Running Local ServerYou may want to preview the site contents before publishing, so just run it by:$ bundle exec jekyll sOr run the site on Docker with the following command:$ docker run -it --rm \\    --volume=&quot;$PWD:/srv/jekyll&quot; \\    -p 4000:4000 jekyll/jekyll \\    jekyll serveAfter a while, the local service will be published at http://127.0.0.1:4000.DeploymentBefore the deployment begins, check out the file _config.yml and make sure the url is configured correctly. Furthermore, if you prefer the project site and don’t use a custom domain, or you want to visit your website with a base URL on a web server other than GitHub Pages, remember to change the baseurl to your project name that starts with a slash, e.g, /project-name.Now you can choose ONE of the following methods to deploy your Jekyll site.Deploy by Using Github ActionsFor security reasons, GitHub Pages build runs on safe mode, which restricts us from using plugins to generate additional page files. Therefore, we can use GitHub Actions to build the site, store the built site files on a new branch, and use that branch as the source of the GitHub Pages service.Quickly check the files needed for GitHub Actions build:      Ensure your Jekyll site has the file .github/workflows/pages-deploy.yml. Otherwise, create a new one and fill in the contents of the sample file, and the value of the on.push.branches should be the same as your repo’s default branch name.        Ensure your Jekyll site has file tools/deploy.sh. Otherwise, copy it from here to your Jekyll site.        Furthermore, if you have committed Gemfile.lock to the repo, and your runtime system is not Linux, don’t forget to update the platform list in the lock file:    $ bundle lock --add-platform x86_64-linux      After the above steps, rename your repository to &amp;lt;GH_USERNAME&amp;gt;.github.io on GitHub.Now publish your Jekyll site by:      Push any commit to remote to trigger the GitHub Actions workflow. Once the build is complete and successful, a new remote branch named gh-pages will appear to store the built site files.        Browse to your repository on GitHub. Select the tab Settings, then click Pages in the left navigation bar, and then in the section Source of GitHub Pages, select the /(root) directory of branch gh-pages as the publishing source. Remember to click Save before leaving.            Visit your website at the address indicated by GitHub.  Manually Build and DeployOn self-hosted servers, you cannot enjoy the convenience of GitHub Actions. Therefore, you should build the site on your local machine and then upload the site files to the server.Go to the root of the source project, and build your site as follows:$ JEKYLL_ENV=production bundle exec jekyll bOr build the site on Docker:$ docker run -it --rm \\    --env JEKYLL_ENV=production \\    --volume=&quot;$PWD:/srv/jekyll&quot; \\    jekyll/jekyll \\    jekyll buildUnless you specified the output path, the generated site files will be placed in folder _site of the project’s root directory. Now you should upload those files to the target server.UpgradingIt depends on how you use the theme:      If you are using the theme gem (there will be gem &quot;jekyll-theme-chirpy&quot; in the Gemfile), editing the Gemfile and update the version number of the theme gem, for example:    - gem &quot;jekyll-theme-chirpy&quot;, &quot;~&amp;gt; 3.2&quot;, &quot;&amp;gt;= 3.2.1&quot;+ gem &quot;jekyll-theme-chirpy&quot;, &quot;~&amp;gt; 3.3&quot;, &quot;&amp;gt;= 3.3.0&quot;        And then execute the following command:    $ bundle update jekyll-theme-chirpy        As the version upgrades, the critical files (for details, see the Startup Template) and configuration options will change. Please refer to the Upgrade Guide to keep your repo’s files in sync with the latest version of the theme.        If you forked from the source project (there will be gemspec in the Gemfile of your site), then merge the latest upstream tags into your Jekyll site to complete the upgrade.The merge is likely to conflict with your local modifications. Please be patient and careful to resolve these conflicts.  "
+  },
+  
+  {
+    "title": "Writing a New Post",
+    "url": "/posts/write-a-new-post/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2019-08-08 14:10:00 +0800",
+    
+
+
+
+
+
+    "snippet": "This post will guide you how to write a post on Chirpy theme. Even if you have previous experience with Jekyll, this article is worth reading, because many features require specific variables to be set.Naming and PathCreate a new file named YYYY-MM-DD-TITLE.EXTENSION and put it in the _posts of the root directory. Please note that the EXTENSION must be one of md and markdown. If you want to save time of creating files, please consider using the plugin Jekyll-Compose to accomplish this.Front MatterBasically, you need to fill the Front Matter as below at the top of the post:---title: TITLEdate: YYYY-MM-DD HH:MM:SS +/-TTTTcategories: [TOP_CATEGORIE, SUB_CATEGORIE]tags: [TAG]     # TAG names should always be lowercase---  The posts’ layout has been set to post by default, so there is no need to add the variable layout in the Front Matter block.Timezone of DateIn order to accurately record the release date of a post, you should not only set up the timezone of _config.yml but also provide the post’s timezone in variable date of its Front Matter block. Format: +/-TTTT, e.g. +0800.Categories and TagsThe categories of each post are designed to contain up to two elements, and the number of elements in tags can be zero to infinity. For instance:---categories: [Animal, Insect]tags: [bee]---Author InformationThe author information of the post usually does not need to be filled in the Front Matter , they will be obtained from variables social.name and the first entry of social.links of the configuration file by default. But you can also override it as follows:---author:  name: Full Name  link: https://example.com---Table of ContentsBy default, the Table of Contents (TOC) is displayed on the right panel of the post. If you want to turn it off globally, go to _config.yml and set the value of variable toc to false. If you want to turn off TOC for a specific post, add the following to the post’s Front Matter:---toc: false---CommentsThe global switch of comments is defined by variable comments.active in the file _config.yml. After selecting a comment system for this variable, comments will be turned on for all posts.If you want to close the comment for a specific post, add the following to the Front Matter of the post:---comments: false---MathematicsFor website performance reasons, the mathematical feature won’t be loaded by default. But it can be enabled by:---math: true---MermaidMermaid is a great diagrams generation tool. To enable it on your post, add the following to the YAML block:---mermaid: true---Then you can use it like other markdown languages: surround the graph code with ```mermaid and ```.ImagesCaptionAdd italics to the next line of an image，then it will become the caption and appear at the bottom of the image:![img-description](/path/to/image)_Image Caption_SizeIn order to prevent the page content layout from shifting when the image is loaded, we should set the width and height for each image:![Desktop View](/assets/img/sample/mockup.png){: width=&quot;700&quot; height=&quot;400&quot; }Starting from Chirpy v5.0.0, height and width support abbreviations (height → h, width → w). The following example has the same effect as the above:![Desktop View](/assets/img/sample/mockup.png){: w=&quot;700&quot; h=&quot;400&quot; }PositionBy default, the image is centered, but you can specify the position by using one of the classes normal, left, and right.  Once the position is specified, the image caption should not be added.      Normal position    Image will be left aligned in below sample:    ![Desktop View](/assets/img/sample/mockup.png){: .normal }            Float to the left    ![Desktop View](/assets/img/sample/mockup.png){: .left }            Float to the right    ![Desktop View](/assets/img/sample/mockup.png){: .right }      ShadowThe screenshots of the program window can be considered to show the shadow effect, and the shadow will be visible in the light mode:![Desktop View](/assets/img/sample/mockup.png){: .shadow }CDN URLIf you host the images on the CDN, you can save the time of repeatedly writing the CDN URL by assigning the variable img_cdn of _config.yml file:img_cdn: https://cdn.comOnce img_cdn is assigned, the CDN URL will be added to the path of all images (images of site avatar and posts) starting with /.For instance, when using images:![The flower](/path/to/flower.png)The parsing result will automatically add the CDN prefix https://cdn.com before the image path:&amp;lt;img src=&quot;https://cdn.com/path/to/flower.png&quot; alt=&quot;The flower&quot;&amp;gt;Image PathWhen a post contains many images, it will be a time-consuming task to repeatedly define the path of the images. To solve this, we can define this path in the YAML block of the post:---img_path: /img/path/---And then, the image source of Markdown can write the file name directly:![The flower](flower.png)The output will be:&amp;lt;img src=&quot;/img/path/flower.png&quot; alt=&quot;The flower&quot;&amp;gt;Preview ImageIf you want to add an image to the top of the post contents, specify the attribute src, width, height, and alt for the image:---image:  src: /path/to/image/file  width: 1000   # in pixels  height: 400   # in pixels  alt: image alternative text---Except for alt, all other options are necessary, especially the width and height, which are related to user experience and web page loading performance. The above section “Size” also mentions this.Starting from Chirpy v5.0.0, the attributes height and width can be abbreviated: height → h, width → w. In addition, the img_path can also be passed to the preview image, that is, when it has been set, the  attribute src only needs the image file name.Pinned PostsYou can pin one or more posts to the top of the home page, and the fixed posts are sorted in reverse order according to their release date. Enable by:---pin: true---PromptsThere are several types of prompts: tip, info, warning, and danger. They can be generated by adding the class prompt-{type} to the blockquote. For example, define a prompt of type info as follows:&amp;gt; Example line for prompt.{: .prompt-info }SyntaxInline Code`inline code part`Filepath Hightlight`/path/to/a/file.extend`{: .filepath}Code BlockMarkdown symbols ``` can easily create a code block as follows:```This is a plaintext code snippet.```Specifying LanguageUsing ```{language} you will get a code block with syntax highlight:```yamlkey: value```  The Jekyll tag {% highlight %} is not compatible with this theme.Line NumberBy default, all languages except plaintext, console, and terminal will display line numbers. When you want to hide the line number of a code block, add the class nolineno to it:```shellecho &#39;No more line numbers!&#39;```{: .nolineno }Specifying the FilenameYou may have noticed that the code language will be displayed at the top of the code block. If you want to replace it with the file name, you can add the attribute file to achieve this:```shell# content```{: file=&quot;path/to/file&quot; }Liquid CodesIf you want to display the Liquid snippet, surround the liquid code with {% raw %} and {% endraw %}:{% raw %}```liquid{% if product.title contains &#39;Pack&#39; %}  This product&#39;s title contains the word Pack.{% endif %}```{% endraw %}Or adding render_with_liquid: false (Requires Jekyll 4.0 or higher) to the post’s YAML block.Learn MoreFor more knowledge about Jekyll posts, visit the Jekyll Docs: Posts."
+  },
+  
+  {
+    "title": "Text and Typography",
+    "url": "/posts/text-and-typography/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2019-08-08 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "This post is to show Markdown syntax rendering on Chirpy, you can also use it as an example of writing. Now, let’s start looking at text and typography.TitlesH1 - headingH2 - headingH3 - headingH4 - headingParagraphI wandered lonely as a cloudThat floats on high o’er vales and hills,When all at once I saw a crowd,A host, of golden daffodils;Beside the lake, beneath the trees,Fluttering and dancing in the breeze.ListsOrdered list  Firstly  Secondly  ThirdlyUnordered list  Chapter          Section                  Paragraph                    Task list  TODO  Completed  Defeat COVID-19          Vaccine production      Economic recovery      People smile again      Description list  Sun  the star around which the earth orbits  Moon  the natural satellite of the earth, visible by reflected light from the sunBlock Quote  This line shows the block quote.Prompts  An example showing the tip type prompt.  An example showing the info type prompt.  An example showing the warning type prompt.  An example showing the danger type prompt.Tables            Company      Contact      Country                  Alfreds Futterkiste      Maria Anders      Germany              Island Trading      Helen Bennett      UK              Magazzini Alimentari Riuniti      Giovanni Rovelli      Italy      Linkshttp://127.0.0.1:4000FootnoteClick the hook will locate the footnote1, and here is another footnote2.Images  Default (with caption)Full screen width and center alignment  Shadowshadow effect (visible in light mode)  Left aligned      Float to left    “A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space.”        Float to right    “A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space.”  Mermaid SVG gantt  title  Adding GANTT diagram functionality to mermaid  apple :a, 2017-07-20, 1w  banana :crit, b, 2017-07-23, 1d  cherry :active, c, after b a, 1dMathematicsThe mathematics powered by MathJax:\\[\\sum_{n=1}^\\infty 1/n^2 = \\frac{\\pi^2}{6}\\]When $a \\ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are\\[x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\]Inline codeThis is an example of Inline Code.FilepathHere is the /path/to/the/file.extend.Code blockCommonThis is a common code snippet, without syntax highlight and line number.Specific LanguagesConsole$ env |grep SHELLSHELL=/usr/local/bin/bashPYENV_SHELL=bashShellif [ $? -ne 0 ]; then    echo &quot;The command was not successful.&quot;;    #do the needful / exitfi;Specific filename@import  &quot;colors/light-typography&quot;,  &quot;colors/dark-typography&quot;Reverse Footnote            The footnote source &amp;#8617;              The 2nd footnote source &amp;#8617;      "
   }
   
 ]

@@ -43,19 +43,19 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="systemd-timesyncd란" />
 <meta property="og:description" content="systemd-timesyncd란" />
-<link rel="canonical" href="http://localhost:4000/posts/debian_ntp/" />
-<meta property="og:url" content="http://localhost:4000/posts/debian_ntp/" />
-<meta property="og:site_name" content="Jogyejin" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/debian_ntp/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/debian_ntp/" />
+<meta property="og:site_name" content="JoGyeJin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-07-09T11:33:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="(Debian) NTP와 systemd-timesyncd" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-09T11:33:00+08:00","datePublished":"2023-07-09T11:33:00+08:00","description":"systemd-timesyncd란","headline":"(Debian) NTP와 systemd-timesyncd","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/debian_ntp/"},"url":"http://localhost:4000/posts/debian_ntp/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-09T11:33:00+08:00","datePublished":"2023-07-09T11:33:00+08:00","description":"systemd-timesyncd란","headline":"(Debian) NTP와 systemd-timesyncd","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/debian_ntp/"},"url":"http://0.0.0.0:4000/posts/debian_ntp/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>(Debian) NTP와 systemd-timesyncd | Jogyejin
+  <title>(Debian) NTP와 systemd-timesyncd | JoGyeJin
   </title>
 
   <!--
@@ -70,8 +70,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Jogyejin">
-<meta name="application-name" content="Jogyejin">
+<meta name="apple-mobile-web-app-title" content="JoGyeJin">
+<meta name="application-name" content="JoGyeJin">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -148,9 +148,9 @@
     </div>
 
     <div class="site-title mt-3">
-      <a href="/">Jogyejin</a>
+      <a href="/">JoGyeJin</a>
     </div>
-    <div class="site-subtitle font-italic">기술블로그</div>
+    <div class="site-subtitle font-italic">IT기술기록 & 기술블로그</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -160,7 +160,7 @@
     <li class="nav-item">
       <a href="/" class="nav-link">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>HOME</span>
+        <span>메인홈</span>
       </a>
     </li>
     <!-- the real tabs -->
@@ -170,7 +170,7 @@
         <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>CATEGORIES</span>
+        <span>카테고리</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -179,7 +179,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>TAGS</span>
+        <span>태그</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -188,7 +188,7 @@
         <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ARCHIVES</span>
+        <span>저장소</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -197,7 +197,7 @@
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ABOUT</span>
+        <span>프로필</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -253,7 +253,7 @@
         
           <span>
             <a href="/">
-              Home
+              메인홈
             </a>
           </span>
 
@@ -702,7 +702,6 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
 - offset : NTP서버와 로컬(자신) 의 시간 차이, millisecond 단위
 - disp : offset 에 대한 분산 (jitter)
 </pre></td></tr></tbody></table></code></div>  </div>
-
 </blockquote>
 
 </div>
@@ -723,9 +722,6 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
   
   <div class="post-tags">
     <i class="fa fa-tags fa-fw mr-1"></i>
-      
-      <a href="/tags/linux/"
-          class="post-tag no-text-decoration" >Linux</a>
       
       <a href="/tags/debian/"
           class="post-tag no-text-decoration" >Debian</a>
@@ -875,6 +871,10 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
+      
+        
+        
+
   
     
     
@@ -899,6 +899,201 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
@@ -999,11 +1194,6 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1028,77 +1218,7 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1164,10 +1284,7 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
-  
-    
-    
-    
+      
     
   
     
@@ -1209,60 +1326,7 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -1273,245 +1337,6 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1610,171 +1435,6 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1798,34 +1458,34 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
 
     
       
-      <a class="post-tag" href="/tags/web/">Web</a>
-    
-      
-      <a class="post-tag" href="/tags/backend/">Backend</a>
-    
-      
-      <a class="post-tag" href="/tags/study/">Study</a>
+      <a class="post-tag" href="/tags/javascript/">Javascript</a>
     
       
       <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
-      <a class="post-tag" href="/tags/apache/">Apache</a>
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
+      <a class="post-tag" href="/tags/access/">access</a>
+    
+      
+      <a class="post-tag" href="/tags/react/">React</a>
+    
+      
+      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/vue/">Vue</a>
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
-      <a class="post-tag" href="/tags/tomcat/">tomcat</a>
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
-      <a class="post-tag" href="/tags/frontend/">Frontend</a>
-    
-      
-      <a class="post-tag" href="/tags/html/">Html</a>
+      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>
@@ -2378,7 +2038,228 @@ server 192.168.20.10   –&gt; ntp server 아이피로 추가`</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2769,9 +2650,9 @@ gsettings s...
   
 
   
-  <a href="/posts/subnet/" class="btn btn-outline-primary"
+  <a href="/posts/html/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>(Network) Subnet과 Subnetting</p>
+    <p>(Web) Html의 모든것</p>
   </a>
   
 
@@ -2904,6 +2785,10 @@ gsettings s...
     
     
     
+      
+        
+        
+
   
     
     
@@ -2928,6 +2813,201 @@ gsettings s...
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3028,11 +3108,6 @@ gsettings s...
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -3057,77 +3132,7 @@ gsettings s...
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -3193,10 +3198,7 @@ gsettings s...
     
     
     
-  
-    
-    
-    
+      
     
   
     
@@ -3238,60 +3240,7 @@ gsettings s...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -3302,245 +3251,6 @@ gsettings s...
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3639,171 +3349,6 @@ gsettings s...
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3827,34 +3372,34 @@ gsettings s...
 
     
       
-      <a class="post-tag" href="/tags/web/">Web</a>
-    
-      
-      <a class="post-tag" href="/tags/backend/">Backend</a>
-    
-      
-      <a class="post-tag" href="/tags/study/">Study</a>
+      <a class="post-tag" href="/tags/javascript/">Javascript</a>
     
       
       <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
-      <a class="post-tag" href="/tags/apache/">Apache</a>
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
+      <a class="post-tag" href="/tags/access/">access</a>
+    
+      
+      <a class="post-tag" href="/tags/react/">React</a>
+    
+      
+      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/vue/">Vue</a>
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
-      <a class="post-tag" href="/tags/tomcat/">tomcat</a>
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
-      <a class="post-tag" href="/tags/frontend/">Frontend</a>
-    
-      
-      <a class="post-tag" href="/tags/html/">Html</a>
+      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>

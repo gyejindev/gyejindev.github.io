@@ -41,21 +41,21 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="(Hypervisor) 하이퍼바이저란" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태" />
-<meta property="og:description" content="hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태" />
-<link rel="canonical" href="http://localhost:4000/posts/Hypervisor/" />
-<meta property="og:url" content="http://localhost:4000/posts/Hypervisor/" />
-<meta property="og:site_name" content="Jogyejin" />
+<meta name="description" content="hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태 반 가상화(para-virtualization) 전 가상화의 경우는 하이퍼바이저가 생성한 VM은 하드웨어 자원을 사용 할 수 없고 하이퍼바이저를 통해서만 사용이 가능했다 하지만 반 가상화는 하이퍼바이저가 생성한 VM에서 하이퍼바이저 없이 하드웨어 리소스를 사용 할 수 있다 하지만 반 가상화를 사용하기 위해서는 VM에서 각 커널을 일일이 수정해줘야한다는 어려움이 있다 호스트 기반 가상화 하드웨어 위에 OS를 설치해서 OS위에 하이퍼바이저가 구동하는 형태" />
+<meta property="og:description" content="hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태 반 가상화(para-virtualization) 전 가상화의 경우는 하이퍼바이저가 생성한 VM은 하드웨어 자원을 사용 할 수 없고 하이퍼바이저를 통해서만 사용이 가능했다 하지만 반 가상화는 하이퍼바이저가 생성한 VM에서 하이퍼바이저 없이 하드웨어 리소스를 사용 할 수 있다 하지만 반 가상화를 사용하기 위해서는 VM에서 각 커널을 일일이 수정해줘야한다는 어려움이 있다 호스트 기반 가상화 하드웨어 위에 OS를 설치해서 OS위에 하이퍼바이저가 구동하는 형태" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/Hypervisor/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/Hypervisor/" />
+<meta property="og:site_name" content="JoGyeJin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-05-08T11:33:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="(Hypervisor) 하이퍼바이저란" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-08T11:33:00+08:00","datePublished":"2023-05-08T11:33:00+08:00","description":"hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태","headline":"(Hypervisor) 하이퍼바이저란","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Hypervisor/"},"url":"http://localhost:4000/posts/Hypervisor/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-08T11:33:00+08:00","datePublished":"2023-05-08T11:33:00+08:00","description":"hypervisor(하이퍼바이저)란? 가상 머신(Virtual Machine, VM)을 생성하고 구동하는 프로그램이다. 하이퍼바이저는 가상 운영 체제를 관리하며 운영하면서 해당 인스턴스들의 하드웨어 리소스를 공유할 수 있다. 전가상화/반가상화/호스트기반 전 가상화(bare-metal/hypervisor) OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태 반 가상화(para-virtualization) 전 가상화의 경우는 하이퍼바이저가 생성한 VM은 하드웨어 자원을 사용 할 수 없고 하이퍼바이저를 통해서만 사용이 가능했다 하지만 반 가상화는 하이퍼바이저가 생성한 VM에서 하이퍼바이저 없이 하드웨어 리소스를 사용 할 수 있다 하지만 반 가상화를 사용하기 위해서는 VM에서 각 커널을 일일이 수정해줘야한다는 어려움이 있다 호스트 기반 가상화 하드웨어 위에 OS를 설치해서 OS위에 하이퍼바이저가 구동하는 형태","headline":"(Hypervisor) 하이퍼바이저란","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/Hypervisor/"},"url":"http://0.0.0.0:4000/posts/Hypervisor/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>(Hypervisor) 하이퍼바이저란 | Jogyejin
+  <title>(Hypervisor) 하이퍼바이저란 | JoGyeJin
   </title>
 
   <!--
@@ -70,8 +70,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Jogyejin">
-<meta name="application-name" content="Jogyejin">
+<meta name="apple-mobile-web-app-title" content="JoGyeJin">
+<meta name="application-name" content="JoGyeJin">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -148,9 +148,9 @@
     </div>
 
     <div class="site-title mt-3">
-      <a href="/">Jogyejin</a>
+      <a href="/">JoGyeJin</a>
     </div>
-    <div class="site-subtitle font-italic">기술블로그</div>
+    <div class="site-subtitle font-italic">IT기술기록 & 기술블로그</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -160,7 +160,7 @@
     <li class="nav-item">
       <a href="/" class="nav-link">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>HOME</span>
+        <span>메인홈</span>
       </a>
     </li>
     <!-- the real tabs -->
@@ -170,7 +170,7 @@
         <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>CATEGORIES</span>
+        <span>카테고리</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -179,7 +179,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>TAGS</span>
+        <span>태그</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -188,7 +188,7 @@
         <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ARCHIVES</span>
+        <span>저장소</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -197,7 +197,7 @@
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ABOUT</span>
+        <span>프로필</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -253,7 +253,7 @@
         
           <span>
             <a href="/">
-              Home
+              메인홈
             </a>
           </span>
 
@@ -349,212 +349,6 @@
 <!-- images -->
 
 
-
-
-  
-  
-
-  
-    
-      
-      
-    
-
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-
-    
-      
-
-        <!-- Add CDN URL -->
-        
-
-        <!-- Add image path -->
-        
-
-        
-        
-
-      
-
-      <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-
-      
-
-    
-
-    <!-- Add SVG placehoder to prevent layout reflow -->
-
-    
-
-    <!-- Bypass the HTML-proofer test -->
-    
-
-    
-
-  
-    
-
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-
-    
-      
-
-        <!-- Add CDN URL -->
-        
-
-        <!-- Add image path -->
-        
-
-        
-        
-
-      
-
-      <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-
-      
-
-    
-
-    <!-- Add SVG placehoder to prevent layout reflow -->
-
-    
-
-    <!-- Bypass the HTML-proofer test -->
-    
-
-    
-
-  
-    
-
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-      
-
-      
-
-      
-    
-
-    
-      
-
-        <!-- Add CDN URL -->
-        
-
-        <!-- Add image path -->
-        
-
-        
-        
-
-      
-
-      <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-
-      
-
-    
-
-    <!-- Add SVG placehoder to prevent layout reflow -->
-
-    
-
-    <!-- Bypass the HTML-proofer test -->
-    
-
-    
-
-  
-
-  
 
 
 
@@ -741,8 +535,7 @@
   <h3 id="전가상화반가상화호스트기반"><span class="mr-2">전가상화/반가상화/호스트기반</span><a href="#전가상화반가상화호스트기반" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3>
   <ul>
     <li>전 가상화(bare-metal/hypervisor)
-OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태
-<img data-src="/assets/images/fullvm.png" alt="onealog" data-proofer-ignore></li>
+OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위에 하이퍼바이저가 동작하여 가상 머신을 생성 및 구동하는 형태</li>
   </ul>
 </blockquote>
 
@@ -750,14 +543,12 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
   <li>반 가상화(para-virtualization)
     <blockquote>
       <p>전 가상화의 경우는 하이퍼바이저가 생성한 VM은 하드웨어 자원을 사용 할 수 없고 하이퍼바이저를 통해서만 사용이 가능했다 하지만 반 가상화는 하이퍼바이저가 생성한 VM에서 하이퍼바이저 없이 하드웨어 리소스를 사용 할 수 있다
-하지만 반 가상화를 사용하기 위해서는 VM에서 각 커널을 일일이 수정해줘야한다는 어려움이 있다
-<img data-src="/assets/images/fullvm.png" alt="onealog" data-proofer-ignore></p>
+하지만 반 가상화를 사용하기 위해서는 VM에서 각 커널을 일일이 수정해줘야한다는 어려움이 있다</p>
     </blockquote>
   </li>
   <li>호스트 기반 가상화
     <blockquote>
-      <p>하드웨어 위에 OS를 설치해서 OS위에 하이퍼바이저가 구동하는 형태
-<img data-src="/assets/images/hostvm.png" alt="onealog" data-proofer-ignore></p>
+      <p>하드웨어 위에 OS를 설치해서 OS위에 하이퍼바이저가 구동하는 형태</p>
     </blockquote>
   </li>
 </ul>
@@ -771,8 +562,7 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
   <div class="post-meta mb-3">
     <i class="far fa-folder-open fa-fw mr-1"></i>
     
-      <a href='/categories/linux/'>Linux</a>,
-      <a href='/categories/hypervisor/'>Hypervisor</a>
+      <a href='/categories/linux/'>Linux</a>
   </div>
   
 
@@ -783,9 +573,6 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
       
       <a href="/tags/linux/"
           class="post-tag no-text-decoration" >Linux</a>
-      
-      <a href="/tags/hypervisor/"
-          class="post-tag no-text-decoration" >Hypervisor</a>
       
   </div>
   
@@ -932,6 +719,10 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
+      
+        
+        
+
   
     
     
@@ -956,6 +747,201 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1056,11 +1042,6 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1085,77 +1066,7 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1221,10 +1132,7 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
-  
-    
-    
-    
+      
     
   
     
@@ -1266,60 +1174,7 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -1330,245 +1185,6 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1667,171 +1283,6 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1855,34 +1306,34 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
 
     
       
-      <a class="post-tag" href="/tags/web/">Web</a>
-    
-      
-      <a class="post-tag" href="/tags/backend/">Backend</a>
-    
-      
-      <a class="post-tag" href="/tags/study/">Study</a>
+      <a class="post-tag" href="/tags/javascript/">Javascript</a>
     
       
       <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
-      <a class="post-tag" href="/tags/apache/">Apache</a>
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
+      <a class="post-tag" href="/tags/access/">access</a>
+    
+      
+      <a class="post-tag" href="/tags/react/">React</a>
+    
+      
+      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/vue/">Vue</a>
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
-      <a class="post-tag" href="/tags/tomcat/">tomcat</a>
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
-      <a class="post-tag" href="/tags/frontend/">Frontend</a>
-    
-      
-      <a class="post-tag" href="/tags/html/">Html</a>
+      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>
@@ -2617,7 +2068,228 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2718,6 +2390,52 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
       
       
       <div class="card">
+        <a href="/posts/ha_mariadb/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago small"
+    data-ts="1683948780"
+    
+    >
+  2023-05-13
+</em>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Mariadb) 이중화란</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+HA(High Availability, 고가용성)이란
+
+  이중화(HA)는 서비스의 연속성 보장을 위해 서버 2대 이상을 통해 한쪽 서버가 장애 시 다른 서버가 해당 서비스를 대신 운영하여 가용성을 높이는 솔루션이다.
+
+
+
+
+HA 방식
+
+1. Active-Standby
+
+
+  Active-Standby 구성은 하나의 Master서버와 여러대의 Sla...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/RAID/">
           <div class="card-body">
             <!--
@@ -2750,64 +2468,9 @@ OS위에 하이퍼바이저가 동작하는것이 아닌 하드웨어 바로 위
 
 RAID 0(스트라이핑)
 
-
-
   RAID 0 또는 스트라이핑은 배열 드라이브에 데이터를 분산시킨다.
 작업부하가 각 드라이브로 병렬화되고 분산되기 때문에,
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/linux_vi/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago small"
-    data-ts="1684553580"
-    
-    >
-  2023-05-20
-</em>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Linux) vi편집기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                vi 편집기란
-
-vi편집기는 리눅스 계열의 시스템에서 제일 많이 사용되고있는 제일 보편적인 편집기다
-vi 편집기에는 아래 3개의 모드를 지원한다
-
-  명령모드
-  입력모드
-  콜론 모드
-
-
-vi 명령어
-
-  명령 모드에서 입력 모드로 전환
-  
-    i : 커서 앞(왼쪽)에 입력
-    a : 커서 다음(오른쪽)에 입력
-  
-
-
-
-  입력 모드에서 ...
+여러...
               </p>
             </div>
           </div>
@@ -2968,6 +2631,10 @@ vi 명령어
     
     
     
+      
+        
+        
+
   
     
     
@@ -2992,6 +2659,201 @@ vi 명령어
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3092,11 +2954,6 @@ vi 명령어
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -3121,77 +2978,7 @@ vi 명령어
     
     
     
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -3257,10 +3044,7 @@ vi 명령어
     
     
     
-  
-    
-    
-    
+      
     
   
     
@@ -3302,60 +3086,7 @@ vi 명령어
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -3366,245 +3097,6 @@ vi 명령어
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3703,171 +3195,6 @@ vi 명령어
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3891,34 +3218,34 @@ vi 명령어
 
     
       
-      <a class="post-tag" href="/tags/web/">Web</a>
-    
-      
-      <a class="post-tag" href="/tags/backend/">Backend</a>
-    
-      
-      <a class="post-tag" href="/tags/study/">Study</a>
+      <a class="post-tag" href="/tags/javascript/">Javascript</a>
     
       
       <a class="post-tag" href="/tags/springboot/">SpringBoot</a>
     
       
-      <a class="post-tag" href="/tags/apache/">Apache</a>
+      <a class="post-tag" href="/tags/vue/">Vue</a>
+    
+      
+      <a class="post-tag" href="/tags/access/">access</a>
+    
+      
+      <a class="post-tag" href="/tags/react/">React</a>
+    
+      
+      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
     
       
-      <a class="post-tag" href="/tags/vue/">Vue</a>
+      <a class="post-tag" href="/tags/network/">Network</a>
     
       
-      <a class="post-tag" href="/tags/tomcat/">tomcat</a>
+      <a class="post-tag" href="/tags/debian/">Debian</a>
     
       
-      <a class="post-tag" href="/tags/frontend/">Frontend</a>
-    
-      
-      <a class="post-tag" href="/tags/html/">Html</a>
+      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>
