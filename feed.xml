@@ -4,7 +4,7 @@
   <id>http://0.0.0.0:4000/</id>
   <title>JoGyeJin</title>
   <subtitle>경험에서 습득한 기술공유</subtitle>
-  <updated>2024-05-10T22:41:22+08:00</updated>
+  <updated>2024-05-16T13:47:57+08:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://0.0.0.0:4000/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>vscode prettier 설정 및 오류 해결방법</title>
+    <link href="http://0.0.0.0:4000/posts/vscode_prettier/" rel="alternate" type="text/html" title="vscode prettier 설정 및 오류 해결방법" />
+    <published>2024-05-10T11:33:00+08:00</published>
+  
+    <updated>2024-05-10T11:33:00+08:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/vscode_prettier/</id>
+    <content src="http://0.0.0.0:4000/posts/vscode_prettier/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Utils" />
+    
+    <category term="Vscode" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Prittier
+
+prittier은 vscode 확장 패키지 프로그램으로 코드를 자동으로 정렬해주는 기능을 제공한다
+
+
+
+Prittier 설치
+
+1. vscode extenstion 확장 탭에서 Prettier 검색 후 설치를 한다
+
+
+
+2. 환경설정에서 prettier로 변경
+
+ctrl+, 또는 메뉴의 환경설정을 찾아 들어간후 아래와 같이 Default Formatter 설정에서 None으로 되어있는 부분을 Prettier 로 설정한다
+
+
+
+적용이 안되는경우
+
+검색창에 ‘json’을 검색한 뒤 Edit in setting.json파일로 들어가 editor.formatOnSave의 값이 true인지 확인해보자 값이 없거나 false로 되어있으면 true로 수정 또는 추가하자
+
+
+
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -224,56 +285,6 @@ React 프로젝트 만들기
 (1) cmd 명령프롬프트 혹은 vscode의 터미널을 열어서 하기 명령어를 수행
 
 ###### 프로젝트 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>React란</title>
-    <link href="http://0.0.0.0:4000/posts/react01/" rel="alternate" type="text/html" title="React란" />
-    <published>2024-05-01T11:33:00+08:00</published>
-  
-    <updated>2024-05-01T11:33:00+08:00</updated>
-  
-    <id>http://0.0.0.0:4000/posts/react01/</id>
-    <content src="http://0.0.0.0:4000/posts/react01/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Framework" />
-    
-    <category term="React" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      React란
-
-React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브러리이며 컴포넌트라는 작은 조각들로 UI를 구성한다 또한 Virtual Dom이라는 개념을 사용하여 성능을 최적화한다
-
-주요 특징
-
-
-  
-    가독성과 유지보수성: JSX 문법을 사용하여 컴포넌트 기반으로 UI를 작성할 수 있으므로 가독성이 높고 유지보수가 용이하며 각 컴포넌트는 독립적으로 작성되어 관련 로직이나 스타일이 캡슐화되어 있다
-  
-  
-    재사용 가능한 컴포넌트: React는 컴포넌트 기반의 아키텍처를 채택하고 있어, 재사용 가능한 UI 요소를 쉽게 작성할 수 있다 이로써 개발 속도를 높이고 일관된 UI를 유지할 수 있다
-  
-  
-    가상 DOM과 성능 최적화: React는 Virtual DOM을 사용하...
     </summary>
   
 

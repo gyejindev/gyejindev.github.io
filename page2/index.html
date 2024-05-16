@@ -326,7 +326,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/vue_level01/">vue 입문 Level01</a>
+      <a href="/posts/rn_project_matzip04/">맛집 앱 만들기 프로젝트 Part4 상수화와 navigation 고도화</a>
     </h1>
 
     <div class="post-content">
@@ -337,13 +337,13 @@
 
 
 
-        vue의 기본 구조
+        반복되는 값과 변경되지 않는 변수들을 상수화하기위해 상수 파일을 만든다
 
-SPA와 Router
+[matzip/front/src/constants/navigations.ts] 파일을 작성한다
 
-Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면으로 구성된 애플리케이션을 말한다)로 구성되는데, 이때 한 페이지 내에서도 다른 페이지로 이동할 필요 없이 마치 여러 개의 페이지가 있는 듯한 방식으로 작동하게 해 주는 것이 바로 Vue Router이다.
+authNavigations는 각 스크린들의 네임을 매번 호출하기때문에 따로 상수화를 해주고 export로 외부에서 가져올 수 있도록하였다
 
-이는 보통...
+나중에 버튼 색상등 반복되어 사용되는 고정...
       </p>
     </div>
 
@@ -358,14 +358,14 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 -->
 
 <em class="timeago"
-    data-ts="1709523180"
+    data-ts="1713411180"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-03-04
+  2024-04-18
 </em>
 
 
@@ -390,7 +390,7 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="879 words">
+  title="840 words">
   <em>4 min</em></span>
 
 
@@ -399,8 +399,8 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
           <i class="far fa-folder-open fa-fw"></i>
           <span>
           
-            Framework,
-            Vue
+            Project,
+            ReatNative
           </span>
         
       </div>
@@ -415,7 +415,7 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/javascript_spread_rest/">Javascript Spread와 Rest Parameters</a>
+      <a href="/posts/rn_project_matzip03/">맛집 앱 만들기 프로젝트 Part3 stack navigation</a>
     </h1>
 
     <div class="post-content">
@@ -426,11 +426,15 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
 
 
-        Spread Operator
+        Stack Navigation
 
-전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다
+stack navigator라는 컨트롤러가 하위에 stack screen을 갖는데  새로운 스크린으로 이동할 때마다 Stack 맨 위에 싸여서, 순차적으로 앞뒤 화면 이동이 가능하게 해주는 기능이다
 
-배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 ...
+
+
+navigation 기능을 위해 AuthStackNavigator 코드 작성
+
+[matzip/front/src/nav...
       </p>
     </div>
 
@@ -445,14 +449,14 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 -->
 
 <em class="timeago"
-    data-ts="1708831980"
+    data-ts="1713324780"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-02-25
+  2024-04-17
 </em>
 
 
@@ -477,8 +481,575 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="625 words">
+  title="674 words">
   <em>3 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Project,
+            ReatNative
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/rn_project_matzip02/">맛집 앱 만들기 프로젝트 Part2 최초화면 및 로그인 화면 초기구성</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        최초화면인 AuthHomeScreen 코드 작성
+
+[matzip/front/src/screens/AuthHomeScreen.tsx] 파일을 작성한다
+
+해당 파일은 로그인화면으로 이동, 회원가입화면으로 이동등의 기능을 갖는 사용자 최초 화면으로 사용예정
+
+import React from &#39;react&#39;;
+import {Button, SafeAreaView...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1713238380"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-16
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="343 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Project,
+            ReatNative
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/rn_project_matzip01/">맛집 앱 만들기 프로젝트 Part1 프로젝트 설치 및 기본설정</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        프로젝트 설명
+
+맛집을 기록하고 기록한 내용을 공유하는 앱을 만드는 프로젝트이다
+
+그럼 프로젝트를 생성해보도록한다 프로젝트의 구조를 먼저 구상해보자
+
+
+  
+    front
+
+    
+      App.tsx
+      src
+        
+          navigation
+            
+              AuthStackNav...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1713151980"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-15
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="404 words">
+  <em>2 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Project,
+            ReatNative
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/typescript04/">Typescript as const 효과적인 상수관리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        리터럴 타입(readonly)과 프리미티브 타입
+
+타입스크립트에서는 string, number 등과 같이 포괄적인 타입에도 명확한 값(리터럴 타입)을 설정하는것이 가능하다
+
+예를들어 아래와 같이 name을 let으로 선언했을경우 string타입이라는 포괄적인 의미를 가지고있는 primitive type을 갖는다
+
+let name = &#39;홍길동&#39;;
+con...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1712028780"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-02
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="492 words">
+  <em>2 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Develop,
+            Typescript
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/typescript03/">Typescript 인터페이스(Interface)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Typescript 인터페이스
+
+인터페이스는 상호 간에 정의한 약속 혹은 규칙을 의미한다.
+
+타입스크립트에서의 인터페이스는 보통 다음과 같은 범주에 대해 약속을 정의할 수 있다
+
+
+  객체의 스펙(속성과 속성의 타입)
+  함수의 파라미터
+  함수의 스펙(파라미터 타입, 반환 타입 등)
+  배열과 객체를 접근하는 방식
+  클래스
+
+
+
+
+
+
+인터페이스 사...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1712028780"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-02
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="1055 words">
+  <em>5 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Develop,
+            Typescript
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/typescript02/">Typescript 문법</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Typescript 데이터 타입
+
+타입스크립트로 변수나 함수와 같은 자바스크립트 코드에 타입을 정의할 수 있다
+
+대표적인 데이터 타입들을 알아보자
+
+
+  
+    String : 자바스크립트 변수의 타입이 문자열인 경우 하기 코드와 같이 선언한다
+
+    let name: string = &quot;bts&quot;; // 문자열의 값을 갖는다
+    
+  
+  
+  ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1712028780"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-02
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="798 words">
+  <em>4 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Develop,
+            Typescript
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/javascript_01/">Javascript 구조 분해 할당</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        구조 분해 할당이란
+
+객체와 배열은 자바스크립트에서 가장 많이 쓰이는 자료 구조이다
+
+키를 가진 데이터 여러 개를 하나로 사용할 때 객체를, 각 컬렉션에 데이터를 순서대로 저장할 땐 배열을 사용한다
+
+그러다보니 함수에 객체나 배열을 전달해야 하는 경우가 생긴다 또한 객체나 배열에 저장된 데이터 전체가 아닌 일부만 전달이 필요한 경우가 생기기도 한다.
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1712028780"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-04-02
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="429 words">
+  <em>2 min</em></span>
 
 
         <!-- categories -->
@@ -502,7 +1073,7 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/IntelliJspring_encoding/">IntelliJ Springboot 한글 인코딩</a>
+      <a href="/posts/javascript_call_apply_bind/">Javascript 함수의 Call & Apply & Bind</a>
     </h1>
 
     <div class="post-content">
@@ -513,25 +1084,19 @@ Vue 기반 애플리케이션은 흔히 SPA(Single Page Application, 한 화면�
 
 
 
-        문제
+        Call 함수란
+
+먼저 Call을 사용하기전에 왜 사용하는지를 알아보자
+
+모든 함수는 실행할때 함수 앞에 작성한 오브젝트를 this로 참조한다 하기 코드를 보자
 
 
-  IntelliJ에서 Springboot를 작업하다보면 콘솔에 하기 그림과 같이 한글이 깨져 출력되는 경우
 
+위 코드처럼 현재 함수를 실행하는곳이 어느 위치(오브젝트)냐가 즉 this가 되고 this에 따라 함수 결과값이 달라진다
 
+그럼 어떻게 해야 데이터 중심적인 결과를 도출할 수 있을까?
 
-
-
-  API호출에 따른 Response에서 한글이 깨져서 응답되는경우
-
-
-해결방법
-
-Step01 IntelliJ설정 변경
-
-하기 사진과 같이
-
-메뉴 -&amp;gt; Settings -&amp;gt; File Encodings -&amp;gt; 모두...
+...
       </p>
     </div>
 
@@ -546,14 +1111,14 @@ Step01 IntelliJ설정 변경
 -->
 
 <em class="timeago"
-    data-ts="1707967980"
+    data-ts="1712028780"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-02-15
+  2024-04-02
 </em>
 
 
@@ -578,274 +1143,8 @@ Step01 IntelliJ설정 변경
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="226 words">
-  <em>1 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Utils,
-            IntelliJ
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/vue_vite/">Vue vite란</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        vite(비트)란?
-비트는 자바스크립트 네이티브 모듈 (opens new window)을 기반으로 한 데브 서버이다, 이미 현대 프런트엔드 개발 생태계는 웹팩을 중심으로 개발 환경과 배포 시스템이 구축되어 있다 그런데 왜 비트와 같은 도구들이 나왔을까? 그 이유는 웹팩을 사용할 때보다 훨씬 더 빠르게 개발하고 배포할 수 있기 때문이다 왜 빠른지 이해하...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1707276780"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-02-07
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="632 words">
-  <em>3 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Framework,
-            Vue
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/vue_pinia/">pinia란</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        pinia란
-Pinia는 Composition API 기반에서 동작하는 상태 관리자이다
-여태까지 Vue에서 사용되던 가장 보편적이고 유명한 상태 관리자는 Vuex였습니다.
-그런데 Vue의 개발자, Even You는 본인의 트위터에서 Vuex 5와 Pinia는 사실상 완전 동일한 프로젝트로 생각해야 한다고 말한 바 있습니다.
-
-Vuex 5에서 원하던 기...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1707276780"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-02-07
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="642 words">
-  <em>3 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Framework,
-            Vue
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/langchain/">LangChain이란</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        LangChain 이란
-
-LangChain을 알기위해선 먼저 LLM(대형 언어 모델)에 대해 알아야한다
-LLM은 방대한 양의 데이터를 기반으로 사전에 학습이 되어진 초대형 딥 러닝 모델이다
-
-
-  LM (언어 모델, Language Model) 이란, 인간의 언어를 이해하고 생성하도록 훈련된 일종의 인공지능 모델
-
-
-LNP vs LLM
-
-NLP는 인간...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1706671980"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-01-31
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="331 words">
-  <em>1 min</em></span>
+  title="840 words">
+  <em>4 min</em></span>
 
 
         <!-- categories -->
@@ -854,7 +1153,7 @@ NLP는 인간...
           <span>
           
             Develop,
-            Python
+            Javascript
           </span>
         
       </div>
@@ -869,7 +1168,7 @@ NLP는 인간...
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/vue03/">Vue Chap3</a>
+      <a href="/posts/javascript_map/">Javascript Map함수</a>
     </h1>
 
     <div class="post-content">
@@ -880,8 +1179,18 @@ NLP는 인간...
 
 
 
-        
+        Map 함수란
 
+Map함수는  콜백 함수를 이용해 각각의 요소에 호출해서 그 값을 변환할 수 있게 해준다. 다시 말하자면 콜백 함수는 배열의 각 요소에 실행된다
+
+예를들어 간단한 예제 코드를 보도록한다
+
+먼저 다음과 같은 배열 요소가 있다고 가정해본다
+
+[단순한 Javascript 배열]
+
+  //배열 arr을 만들고 1~5 까지 숫자를 넣어둔다 
+ ...
       </p>
     </div>
 
@@ -896,14 +1205,14 @@ NLP는 인간...
 -->
 
 <em class="timeago"
-    data-ts="1705807980"
+    data-ts="1712028780"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-01-21
+  2024-04-02
 </em>
 
 
@@ -928,8 +1237,8 @@ NLP는 인간...
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="0 words">
-  <em>1 min</em></span>
+  title="401 words">
+  <em>2 min</em></span>
 
 
         <!-- categories -->
@@ -937,289 +1246,8 @@ NLP는 인간...
           <i class="far fa-folder-open fa-fw"></i>
           <span>
           
-            Framework,
-            Vue
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/usegit/">Git(깃) 사용방법</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Git은 무엇일까?
-
-
-  
-    깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다
-
-    깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다
-
-    분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다
-  
-
-
-Github는 무엇일까?
-
-
-  깃은 형상을 관리할 수 있게 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1705721580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-01-20
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1418 words">
-  <em>7 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Utils,
-            Git
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/vue_route/">Vue Route 기능 사용하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Route란
-
-Route(라우트)는 길, 방향의 의미로 웹 서비스를 이용해보면 로그인시 URL이 /login 회원가입시에는 /create 이런식으로 URL을 보내게되는데
-각 서비스마다 URL을 다르게하여 처리하는 방법을 Route기능이라고 한다
-
-Vue에서 Route기능 사용하기
-
-Route 설치
-
-프롬프트로 npm install vue-router/...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1705721580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-01-20
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="310 words">
-  <em>1 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Framework,
-            Vue
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/vue_axios/">Vue Axios 라이브러리 사용하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Axios란
-
-Axios는 Vue에서 Ajax전송을 도와주는 Http 클라이언트 라이브러리이다
-Ajax를 사용하다보면 발생할 수 있는 불편함을 보완해주는 기능들을 제공한다
-
-
-  [Ajax]
-Ajax는 Asynchronous JavaScript and XML의 약자로 빠르게 동작하는 동적인 웹 페이지를 만들기 위해 개발 기법의 하나이다
-Ajax는 웹 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1705721580"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-01-20
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="233 words">
-  <em>1 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Framework,
-            Vue
+            Develop,
+            Javascript
           </span>
         
       </div>
@@ -1380,9 +1408,24 @@ Ajax는 웹 ...
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page8/">8</a>
+        <a class="page-link btn-box-shadow" href="/page9/">9</a>
       </li>
     
 
@@ -1391,7 +1434,7 @@ Ajax는 웹 ...
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>2</span>
-    <span class="text-muted">/ 8</span>
+    <span class="text-muted">/ 9</span>
   </li>
 
   <!-- right arrow -->
@@ -1564,7 +1607,10 @@ Ajax는 웹 ...
     
     
     
-      
+  
+    
+    
+    
     
   
     
@@ -1655,8 +1701,6 @@ Ajax는 웹 ...
     
     
     
-      
-    
   
     
     
@@ -1671,23 +1715,6 @@ Ajax는 웹 ...
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1710,74 +1737,6 @@ Ajax는 웹 ...
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1894,10 +1853,6 @@ Ajax는 웹 ...
     
     
     
-      
-        
-        
-
   
     
     
@@ -1908,69 +1863,6 @@ Ajax는 웹 ...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -1995,6 +1887,17 @@ Ajax는 웹 ...
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2065,6 +1968,150 @@ Ajax는 웹 ...
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -2101,13 +2148,16 @@ Ajax는 웹 ...
       <a class="post-tag" href="/tags/vue/">Vue</a>
     
       
+      <a class="post-tag" href="/tags/doc/">Doc</a>
+    
+      
+      <a class="post-tag" href="/tags/reatnative/">ReatNative</a>
+    
+      
       <a class="post-tag" href="/tags/access/">access</a>
     
       
       <a class="post-tag" href="/tags/react/">React</a>
-    
-      
-      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
@@ -2117,9 +2167,6 @@ Ajax는 웹 ...
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
-      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>
@@ -2311,7 +2358,10 @@ Ajax는 웹 ...
     
     
     
-      
+  
+    
+    
+    
     
   
     
@@ -2402,8 +2452,6 @@ Ajax는 웹 ...
     
     
     
-      
-    
   
     
     
@@ -2418,23 +2466,6 @@ Ajax는 웹 ...
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2457,74 +2488,6 @@ Ajax는 웹 ...
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2641,10 +2604,6 @@ Ajax는 웹 ...
     
     
     
-      
-        
-        
-
   
     
     
@@ -2655,69 +2614,6 @@ Ajax는 웹 ...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -2742,6 +2638,17 @@ Ajax는 웹 ...
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2812,6 +2719,150 @@ Ajax는 웹 ...
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -2848,13 +2899,16 @@ Ajax는 웹 ...
       <a class="post-tag" href="/tags/vue/">Vue</a>
     
       
+      <a class="post-tag" href="/tags/doc/">Doc</a>
+    
+      
+      <a class="post-tag" href="/tags/reatnative/">ReatNative</a>
+    
+      
       <a class="post-tag" href="/tags/access/">access</a>
     
       
       <a class="post-tag" href="/tags/react/">React</a>
-    
-      
-      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
@@ -2864,9 +2918,6 @@ Ajax는 웹 ...
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
-      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>

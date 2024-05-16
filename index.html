@@ -325,6 +325,103 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/vscode_prettier/">vscode prettier 설정 및 오류 해결방법</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Prittier
+
+prittier은 vscode 확장 패키지 프로그램으로 코드를 자동으로 정렬해주는 기능을 제공한다
+
+
+
+Prittier 설치
+
+1. vscode extenstion 확장 탭에서 Prettier 검색 후 설치를 한다
+
+
+
+2. 환경설정에서 prettier로 변경
+
+ctrl+, 또는 메뉴의 환경설정을 찾아 들어간후 아래와 같이 Defau...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+
+      <div class="mr-auto">
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+<em class="timeago"
+    data-ts="1715311980"
+    
+      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
+    
+    
+      data-capitalize="true"
+    >
+  2024-05-10
+</em>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="170 words">
+  <em>1 min</em></span>
+
+
+        <!-- categories -->
+        
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          
+            Utils,
+            Vscode
+          </span>
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/react05/">React State와 Lifecycle</a>
     </h1>
 
@@ -865,7 +962,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/typescript03/">Typescript 인터페이스(Interface)</a>
+      <a href="/posts/rn_project_matzip07/">맛집 앱 만들기 프로젝트 Part7 Button 공통 컴포넌트 구현하기</a>
     </h1>
 
     <div class="post-content">
@@ -876,25 +973,8 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 
 
-        Typescript 인터페이스
+        ##
 
-인터페이스는 상호 간에 정의한 약속 혹은 규칙을 의미한다.
-
-타입스크립트에서의 인터페이스는 보통 다음과 같은 범주에 대해 약속을 정의할 수 있다
-
-
-  객체의 스펙(속성과 속성의 타입)
-  함수의 파라미터
-  함수의 스펙(파라미터 타입, 반환 타입 등)
-  배열과 객체를 접근하는 방식
-  클래스
-
-
-
-
-
-
-인터페이스 사...
       </p>
     </div>
 
@@ -909,14 +989,14 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 -->
 
 <em class="timeago"
-    data-ts="1712028780"
+    data-ts="1713497580"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-04-02
+  2024-04-19
 </em>
 
 
@@ -941,8 +1021,8 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1055 words">
-  <em>5 min</em></span>
+  title="1 words">
+  <em>1 min</em></span>
 
 
         <!-- categories -->
@@ -950,8 +1030,8 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
           <i class="far fa-folder-open fa-fw"></i>
           <span>
           
-            Develop,
-            Typescript
+            Project,
+            ReatNative
           </span>
         
       </div>
@@ -966,7 +1046,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/typescript02/">Typescript 문법</a>
+      <a href="/posts/rn_project_matzip06/">맛집 앱 만들기 프로젝트 Part6 스크린 구조 및 옵션 설정</a>
     </h1>
 
     <div class="post-content">
@@ -977,21 +1057,21 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 
 
-        Typescript 데이터 타입
+        스크린 폴더 구조화하기
 
-타입스크립트로 변수나 함수와 같은 자바스크립트 코드에 타입을 정의할 수 있다
-
-대표적인 데이터 타입들을 알아보자
+현재 스크린파일들은 [matzip/front/src/navigations/screens] 밑에 있는데 조금 더 세분화하여 구조화를 진행한다
 
 
   
-    String : 자바스크립트 변수의 타입이 문자열인 경우 하기 코드와 같이 선언한다
+    screens
 
-    let name: string = &quot;bts&quot;; // 문자열의 값을 갖는다
     
-  
-  
-  ...
+      
+        auth
+
+        
+          AuthHomeScreen.tsx
+          LoginScreen.t...
       </p>
     </div>
 
@@ -1006,14 +1086,14 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 -->
 
 <em class="timeago"
-    data-ts="1712028780"
+    data-ts="1713411180"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-04-02
+  2024-04-18
 </em>
 
 
@@ -1038,7 +1118,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="798 words">
+  title="785 words">
   <em>4 min</em></span>
 
 
@@ -1047,8 +1127,8 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
           <i class="far fa-folder-open fa-fw"></i>
           <span>
           
-            Develop,
-            Typescript
+            Project,
+            ReatNative
           </span>
         
       </div>
@@ -1063,7 +1143,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/javascript_call_apply_bind/">Javascript 함수의 Call & Apply & Bind</a>
+      <a href="/posts/rn_project_matzip05/">맛집 앱 만들기 프로젝트 Part5 Drawer Navigation 설치 및 적용</a>
     </h1>
 
     <div class="post-content">
@@ -1074,19 +1154,15 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 
 
-        Call 함수란
+        Drawer Navigator란
 
-먼저 Call을 사용하기전에 왜 사용하는지를 알아보자
+아래와 같이 화면 간 탐색을 위해 왼쪽(때로는 오른쪽)의 서랍을 사용할 수 있게해주는 기능이다
 
-모든 함수는 실행할때 함수 앞에 작성한 오브젝트를 this로 참조한다 하기 코드를 보자
+해당 프로젝트에서는 사용자가 바로 Drawer Navigation기능을 사용하는것이 아닌 로그인에 성공한 사용자만 Drawer기능을 사용하고 로그인하지 않은 사용자는 Stack Navigation기능을 사용한다
 
 
 
-위 코드처럼 현재 함수를 실행하는곳이 어느 위치(오브젝트)냐가 즉 this가 되고 this에 따라 함수 결과값이 달라진다
-
-그럼 어떻게 해야 데이터 중심적인 결과를 도출할 수 있을까?
-
-...
+Dar...
       </p>
     </div>
 
@@ -1101,14 +1177,14 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 -->
 
 <em class="timeago"
-    data-ts="1712028780"
+    data-ts="1713411180"
     
       data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
     
     
       data-capitalize="true"
     >
-  2024-04-02
+  2024-04-18
 </em>
 
 
@@ -1133,7 +1209,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="840 words">
+  title="730 words">
   <em>4 min</em></span>
 
 
@@ -1142,94 +1218,8 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
           <i class="far fa-folder-open fa-fw"></i>
           <span>
           
-            Develop,
-            Javascript
-          </span>
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/typescript01/">Typescript 개요</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Typescript개요
-
-
-  타입스크립트는 자바스크립트의 슈퍼셋인 오픈소스 프로그래밍 언어이다. 마이크로소프트에서 개발, 유지하고 있으며 엄격한 문법을 지원한다. C#의 리드 아키텍트이자 델파이, 터보 파스칼의 창시자인 Anders Hejlsberg가 개발에 참여한다. 클라이언트 사이드와 서버 사이드를 위한 개발에 사용할 수 있다. 타입스크립트는 자...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex">
-
-      <div class="mr-auto">
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-<em class="timeago"
-    data-ts="1711942380"
-    
-      data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll"
-    
-    
-      data-capitalize="true"
-    >
-  2024-04-01
-</em>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="993 words">
-  <em>5 min</em></span>
-
-
-        <!-- categories -->
-        
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          
-            Develop,
-            Typescript
+            Project,
+            ReatNative
           </span>
         
       </div>
@@ -1390,9 +1380,24 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page8/">8</a>
+        <a class="page-link btn-box-shadow" href="/page9/">9</a>
       </li>
     
 
@@ -1401,7 +1406,7 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>1</span>
-    <span class="text-muted">/ 8</span>
+    <span class="text-muted">/ 9</span>
   </li>
 
   <!-- right arrow -->
@@ -1574,7 +1579,10 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
+  
+    
+    
+    
     
   
     
@@ -1665,8 +1673,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
-    
   
     
     
@@ -1681,23 +1687,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1720,74 +1709,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1904,10 +1825,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
-        
-        
-
   
     
     
@@ -1918,69 +1835,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -2005,6 +1859,17 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2075,6 +1940,150 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -2111,13 +2120,16 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
       <a class="post-tag" href="/tags/vue/">Vue</a>
     
       
+      <a class="post-tag" href="/tags/doc/">Doc</a>
+    
+      
+      <a class="post-tag" href="/tags/reatnative/">ReatNative</a>
+    
+      
       <a class="post-tag" href="/tags/access/">access</a>
     
       
       <a class="post-tag" href="/tags/react/">React</a>
-    
-      
-      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
@@ -2127,9 +2139,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
-      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>
@@ -2321,7 +2330,10 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
+  
+    
+    
+    
     
   
     
@@ -2412,8 +2424,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
-    
   
     
     
@@ -2428,23 +2438,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2467,74 +2460,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2651,10 +2576,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-      
-        
-        
-
   
     
     
@@ -2665,69 +2586,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -2752,6 +2610,17 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2822,6 +2691,150 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -2858,13 +2871,16 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
       <a class="post-tag" href="/tags/vue/">Vue</a>
     
       
+      <a class="post-tag" href="/tags/doc/">Doc</a>
+    
+      
+      <a class="post-tag" href="/tags/reatnative/">ReatNative</a>
+    
+      
       <a class="post-tag" href="/tags/access/">access</a>
     
       
       <a class="post-tag" href="/tags/react/">React</a>
-    
-      
-      <a class="post-tag" href="/tags/doc/">Doc</a>
     
       
       <a class="post-tag" href="/tags/linux/">Linux</a>
@@ -2874,9 +2890,6 @@ React는 페이스북에서 개발한 오픈 소스 자바스크립트 라이브
     
       
       <a class="post-tag" href="/tags/debian/">Debian</a>
-    
-      
-      <a class="post-tag" href="/tags/typescript/">Typescript</a>
     
 
     </div>

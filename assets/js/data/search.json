@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "vscode prettier 설정 및 오류 해결방법",
+    "url": "/posts/vscode_prettier/",
+    "categories": "Utils, Vscode",
+    "tags": "Vscode",
+    "date": "2024-05-10 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Prittierprittier은 vscode 확장 패키지 프로그램으로 코드를 자동으로 정렬해주는 기능을 제공한다Prittier 설치1. vscode extenstion 확장 탭에서 Prettier 검색 후 설치를 한다2. 환경설정에서 prettier로 변경ctrl+, 또는 메뉴의 환경설정을 찾아 들어간후 아래와 같이 Default Formatter 설정에서 None으로 되어있는 부분을 Prettier 로 설정한다적용이 안되는경우검색창에 ‘json’을 검색한 뒤 Edit in setting.json파일로 들어가 editor.formatOnSave의 값이 true인지 확인해보자 값이 없거나 false로 되어있으면 true로 수정 또는 추가하자"
+  },
+  
+  {
     "title": "React State와 Lifecycle",
     "url": "/posts/react05/",
     "categories": "Framework, React",
@@ -91,6 +106,126 @@
   },
   
   {
+    "title": "맛집 앱 만들기 프로젝트 Part7 Button 공통 컴포넌트 구현하기",
+    "url": "/posts/rn_project_matzip07/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-19 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "##"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part6 스크린 구조 및 옵션 설정",
+    "url": "/posts/rn_project_matzip06/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-18 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "스크린 폴더 구조화하기현재 스크린파일들은 [matzip/front/src/navigations/screens] 밑에 있는데 조금 더 세분화하여 구조화를 진행한다      screens                  auth                  AuthHomeScreen.tsx          LoginScreen.tsx          SignupScreen.tsx                            calender                  CalendarHomeScreen.tsx                            feed                  FeedHomeScreen.tsx                            map                  MapHoemScreen.tsx                    MainDrawerNavigator 코드 작성[matzip/front/src/navigations/drawer/MainDrawerNavigator.tsx]로그인된 사용자 화면인 drawer navigator에 피드 화면과 캘린더 화면을 추가하기 위해 코드를 추가한다  11, 12번째 줄 feed, calendar 스크린을 추가한다import {createDrawerNavigator} from &#39;@react-navigation/drawer&#39;;import MapHomeScreen from &#39;../../screens/map/MapHomeScreen&#39;;import FeedHomeScreen from &#39;../../screens/feed/FeedHomeScreen&#39;;import CalendarHomeScreen from &#39;../../screens/calender/CalendarHomeScreen&#39;;const Drawer = createDrawerNavigator();function MainDrawerNavigator() {  return (    &amp;lt;Drawer.Navigator&amp;gt;      &amp;lt;Drawer.Screen name=&quot;MapHome&quot; component={MapHomeScreen} /&amp;gt;      &amp;lt;Drawer.Screen name=&quot;FeedHome&quot; component={FeedHomeScreen} /&amp;gt;      &amp;lt;Drawer.Screen name=&quot;CalendarHome&quot; component={CalendarHomeScreen} /&amp;gt;    &amp;lt;/Drawer.Navigator&amp;gt;  );}export default MainDrawerNavigator;FeedHomeScreen 코드 작성[matzip/front/src/navigations/screen/feed/FeedHomeScreen .tsx]import React from &#39;react&#39;;import {StyleSheet, Text, View} from &#39;react-native&#39;;function FeedHomeScreen() {  return (    &amp;lt;View&amp;gt;      &amp;lt;Text&amp;gt;피드홈&amp;lt;/Text&amp;gt;    &amp;lt;/View&amp;gt;  );}const styles = StyleSheet.create({});export default FeedHomeScreen;FeedHomeScreen 코드 작성[matzip/front/src/navigations/screen/calender/CalendarHomeScreen.tsx]import React from &#39;react&#39;;import {StyleSheet, Text, View} from &#39;react-native&#39;;function CalendarHomeScreen() {  return (    &amp;lt;View&amp;gt;      &amp;lt;Text&amp;gt;캘린더&amp;lt;/Text&amp;gt;    &amp;lt;/View&amp;gt;  );}const styles = StyleSheet.create({});export default CalendarHomeScreen;SignupScreen 코드 작성[matzip/front/src/navigations/screen/auth/SignupScreen .tsx]비로그인 사용자인 stack navigation에서  사용할 회원가입 스크린도 간단하게 추가해두도록하자import React from &#39;react&#39;;import {StyleSheet, Text, View} from &#39;react-native&#39;;function SignupScreen() {  return (    &amp;lt;View&amp;gt;      &amp;lt;Text&amp;gt;회원가입스크린&amp;lt;/Text&amp;gt;    &amp;lt;/View&amp;gt;  );}const styles = StyleSheet.create({});export default SignupScreen;constants 상수 파일 코드 수정[matzip/front/src/constants/navigations.ts]  4번째 줄에 회원가입 파라미터로 사용할 SIGNUP을 추가해두었다const authNavigations = {  AUTH_HOME: &#39;AuthHome&#39;,  LOGIN: &#39;Login&#39;,  SIGNUP: &#39;Signup&#39;,} as const;export {authNavigations};AuthStackNavigator 파일 코드 수정[matzip/front/src/navigations/stack/AuthStackNavigator.tsx]  13번째 줄에 [authNavigations.SIGNUP]: undefined; 를 추가하여 상수화한 SIGNUP도 파라미터 타입으로 지정해두도록 한다  42번째 줄에 회원가입 스크린도 추가하도록 한다.import {createStackNavigator} from &#39;@react-navigation/stack&#39;;import React from &#39;react&#39;;import {StyleSheet} from &#39;react-native&#39;;import AuthHomeScreen from &#39;../../screens/auth/AuthHomeScreen&#39;;import LoginScreen from &#39;../../screens/auth/LoginScreen&#39;;import {authNavigations} from &#39;../../constants&#39;;import SignupScreen from &#39;../../screens/auth/SignupScreen&#39;;export type AuthStackParamList = {  [authNavigations.AUTH_HOME]: undefined;  [authNavigations.LOGIN]: undefined;  [authNavigations.SIGNUP]: undefined;};const Stack = createStackNavigator&amp;lt;AuthStackParamList&amp;gt;();function AuthStackNavigator() {  return (    &amp;lt;Stack.Navigator      screenOptions={{        cardStyle: {          backgroundColor: &#39;white&#39;,        },        headerStyle: {          backgroundColor: &#39;white&#39;,          shadowColor: &#39;gray&#39;,        },        headerTitleStyle: {          fontSize: 15,        },        headerTintColor: &#39;black&#39;,      }}&amp;gt;      &amp;lt;Stack.Screen        name={authNavigations.AUTH_HOME}        component={AuthHomeScreen}        options={{headerTitle: &#39;&#39;, headerShown: false}}      /&amp;gt;      &amp;lt;Stack.Screen        name={authNavigations.LOGIN}        component={LoginScreen}        options={{headerTitle: &#39;로그인&#39;}}      /&amp;gt;      &amp;lt;Stack.Screen        name={authNavigations.SIGNUP}        component={SignupScreen}        options={{headerTitle: &#39;회원가입&#39;}}      /&amp;gt;    &amp;lt;/Stack.Navigator&amp;gt;  );}const styles = StyleSheet.create({});export default AuthStackNavigator;AuthHomeScreen 파일 코드 수정[matzip/front/src/navigations/screen/auth/AuthHomeScreen.tsx]  15번째 줄에 회원가입 버튼도 추가해두도록 한다import {StackScreenProps} from &#39;@react-navigation/stack&#39;;import React from &#39;react&#39;;import {Button, SafeAreaView, StyleSheet, View} from &#39;react-native&#39;;import {AuthStackParamList} from &#39;../../navigations/stack/AuthStackNavigator&#39;;import {authNavigations} from &#39;../../constants&#39;;type AuthHomeScreenProps = StackScreenProps&amp;lt;AuthStackParamList&amp;gt;;function AuthHomeScreen({navigation}: AuthHomeScreenProps) {  return (    &amp;lt;SafeAreaView&amp;gt;      &amp;lt;View&amp;gt;        &amp;lt;Button          title=&quot;로그인화면으로 이동&quot;          onPress={() =&amp;gt; navigation.navigate(authNavigations.LOGIN)}&amp;gt;&amp;lt;/Button&amp;gt;        &amp;lt;Button          title=&quot;회원가입으로 이동&quot;          onPress={() =&amp;gt; navigation.navigate(authNavigations.SIGNUP)}&amp;gt;&amp;lt;/Button&amp;gt;      &amp;lt;/View&amp;gt;    &amp;lt;/SafeAreaView&amp;gt;  );}const styles = StyleSheet.create({});export default AuthHomeScreen;"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part5 Drawer Navigation 설치 및 적용",
+    "url": "/posts/rn_project_matzip05/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-18 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Drawer Navigator란아래와 같이 화면 간 탐색을 위해 왼쪽(때로는 오른쪽)의 서랍을 사용할 수 있게해주는 기능이다해당 프로젝트에서는 사용자가 바로 Drawer Navigation기능을 사용하는것이 아닌 로그인에 성공한 사용자만 Drawer기능을 사용하고 로그인하지 않은 사용자는 Stack Navigation기능을 사용한다Darawer Navigator 설치npm install @react-navigation/drawernpm install react-native-gesture-handler react-native-reanimatedPlugin설정[matzip/front/babel.config.js] 파일을 수정한다기존에 작성되어있는 module.exports 가 보이고 presets 속성값이 보일텐데 하단에 plugins를 추가하자module.exports = {  presets: [&#39;module:@react-native/babel-preset&#39;],  plugins: [&#39;react-native-reanimated/plugin&#39;],};Drawer Navigator 코드 작성[matzip/front/src/navigations/drawer/MainDrawerNavigator.tsx] 파일을 작성한다  4번째 줄 stack navigator 사용했던것과 동일하게  createDrawerNavigator를 불러와서 Drawer로 사용하도록하자  7번째 줄 Drawer.Navigator로 Drawer.Screen을 감싸고 Drawer.Screen에는 이동할 Screen들을 정의한다import {createDrawerNavigator} from &#39;@react-navigation/drawer&#39;;import MapHomeScreen from &#39;../../screens/MapHomeScreen&#39;;const Drawer = createDrawerNavigator();function MainDrawerNavigator() {  return (    &amp;lt;Drawer.Navigator&amp;gt;      &amp;lt;Drawer.Screen name=&quot;MapHome&quot; component={MapHomeScreen} /&amp;gt;    &amp;lt;/Drawer.Navigator&amp;gt;  );}export default MainDrawerNavigator;MapHomeScreen 코드 작성[matzip/front/src/navigations/screens/MapHomeScreen.tsx] 파일을 작성한다Drawer Navigation의 Screen으로 사용할 MapHomeScreen코드를 작성한다import React from &#39;react&#39;;import {StyleSheet, Text, View} from &#39;react-native&#39;;function MapHomeScreen() {  return (    &amp;lt;View&amp;gt;      &amp;lt;Text&amp;gt;맵 스크린&amp;lt;/Text&amp;gt;    &amp;lt;/View&amp;gt;  );}const styles = StyleSheet.create({});export default MapHomeScreen;RootNavigator 코드 작성[matzip/front/src/navigations/root/RootNavigator.tsx] 파일을 작성한다사용자가 앱을 실행했을때 제일 먼저 걸쳐가는 곳으로 로그인된 사용자인지 아닌지를 구분하는 부분으로 사용할 것이다  1, 2번째 줄에 stack 과 drawer의 navigator 파일들을 import해주도록하자  5번째 줄에 추후에 로그인 검증을 타고 상태값으로 drawer로 보낼지 stack으로 보낼지를 정하겠지만 현재는 임시로 isLoggedIn을 true로 줘서 로그인된 사용자로 가정하고 작성한다  7번째 줄에 5번째 줄의 isLoggedIn정보에 따라 로그인된 상태(true)면 drawer로 로그인이 안된 상태(false)면 stack으로 보내도록한다import AuthStackNavigator from &#39;../stack/AuthStackNavigator&#39;;import MainDrawerNavigator from &#39;../drawer/MainDrawerNavigator&#39;;function RootNavigator() {  const isLoggedIn = true;  return &amp;lt;&amp;gt;{isLoggedIn ? &amp;lt;MainDrawerNavigator /&amp;gt; : &amp;lt;AuthStackNavigator /&amp;gt;}&amp;lt;/&amp;gt;;}export default RootNavigator;App코드 작성[matzip/front/App.tsx] 파일을 작성한다  이전 코드에서 사용하지 않는 코드는 모두 제거하였다  8번째 줄에서 위에서 작성한 RootNavigator로 앱 실행시 제일 먼저 처리하도록 변경하였다import {NavigationContainer} from &#39;@react-navigation/native&#39;;import React from &#39;react&#39;;import RootNavigator from &#39;./src/navigations/root/RootNavigator&#39;;function App() {  return (    &amp;lt;NavigationContainer&amp;gt;      &amp;lt;RootNavigator /&amp;gt;    &amp;lt;/NavigationContainer&amp;gt;  );}export default App;Drawer 적용된 현재 화면Android 실행 오류시  npx react-native start –reset-cache  cd android -&amp;gt; .\\gradlew clean -&amp;gt; npm run android"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part4 상수화와 navigation 고도화",
+    "url": "/posts/rn_project_matzip04/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-18 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "반복되는 값과 변경되지 않는 변수들을 상수화하기위해 상수 파일을 만든다[matzip/front/src/constants/navigations.ts] 파일을 작성한다authNavigations는 각 스크린들의 네임을 매번 호출하기때문에 따로 상수화를 해주고 export로 외부에서 가져올 수 있도록하였다나중에 버튼 색상등 반복되어 사용되는 고정 변수들은 해당 파일에 선언하려고한다const authNavigations = {  AUTH_HOME: &#39;AuthHome&#39;,  LOGIN: &#39;Login&#39;,} as const;export {authNavigations};상수화 사용 및 타입지정으로 AuthStackNavigator 코드 작성[matzip/front/src/navigations/stack/AuthStackNavigator.tsx] 파일을 작성한다먼저 AuthStackNavigator.tsx파일은 네비게이션 라우팅 기능을 수행하는 파일로 어떤 페이지로 이동할때 제일 먼저 거쳐가는 곳이다기존 내용에서 변경 부분을 확인해보자  6번째 줄에 상수화를 했던 authNavigations를 import해준다  8번째 줄에 해당 네비게이터에 들어오는 파라미터 (로그인, 회원가입등)를 타입으로 지정하여 개발자 실수를 줄이기위해 작성하였다 export한 이유는 다른 스크린에서도 해당 타입으로 검사후 전달하기 위해서 사용  12번째 줄에 제네릭 파라미터로 타입을 위에 8번째 줄에서 작성한 type검사를 진행하여 받는다  17, 21번째 줄 각각 네비게이터에서 관리하고있는 스크린 페이지들의 이름을 상수화로 작성하였다 name={authNavigations.HOME,authNavigations.LOGIN}import {createStackNavigator} from &#39;@react-navigation/stack&#39;;import React from &#39;react&#39;;import {StyleSheet} from &#39;react-native&#39;;import AuthHomeScreen from &#39;../screens/AuthHomeScreen&#39;;import LoginScreen from &#39;../screens/LoginScreen&#39;;import {authNavigations} from &#39;../constants&#39;;export type AuthStackParamList = {  [authNavigations.AUTH_HOME]: undefined;  [authNavigations.LOGIN]: undefined;};const Stack = createStackNavigator&amp;lt;AuthStackParamList&amp;gt;();function AuthStackNavigator() {  return (    &amp;lt;Stack.Navigator&amp;gt;      &amp;lt;Stack.Screen        name={authNavigations.AUTH_HOME}        component={AuthHomeScreen}      /&amp;gt;      &amp;lt;Stack.Screen name={authNavigations.LOGIN} component={LoginScreen} /&amp;gt;    &amp;lt;/Stack.Navigator&amp;gt;  );}const styles = StyleSheet.create({});export default AuthStackNavigator;AuthHomeScreen 파일 코드 작성네비게이터의 관리받고있는 사용자 최초화면 AuthHomeScreen을 수정하도록하자  1번째 줄 Stack의 Screen으로 렌더링되는 컴포넌트는 자동으로 navigation props와 route props를 주입받는다  2번째 줄 상수화시킨 파일을 불러오자  6번째 줄 위에서 네비게이터에 전달되는 파라미터를 제네릭 파라미터로 타입검사를하게끔 코드를 작성하였기 때문에 해당 AuthHomeScreen 스크린 파일에서도 타입을 하나 만들고 네비게이터에서 만들어둔 타입을 그대로 받아서 사용하자  7번째 줄 AuthHomeScreen 파라미터의 값 타입을 6번째 줄에서 만든 타입으로 검사하도록하자  14번째 줄 로그인버튼을 눌렀을때 네비게이션으로 전달되는 파라미터를 위에 2번째줄에서 상수화한 authNavigations.LOGIN 를 사용하자import {StackScreenProps} from &#39;@react-navigation/stack&#39;;import {authNavigations} from &#39;../constants&#39;;import React from &#39;react&#39;;import {Button, SafeAreaView, StyleSheet, View} from &#39;react-native&#39;;import {AuthStackParamList} from &#39;../navigation/AuthStackNavigator&#39;;type AuthHomeScreenProps = StackScreenProps&amp;lt;AuthStackParamList&amp;gt;;function AuthHomeScreen({navigation}: AuthHomeScreenProps) {  return (    &amp;lt;SafeAreaView&amp;gt;      &amp;lt;View&amp;gt;        &amp;lt;Button          title=&quot;로그인화면으로 이동&quot;          onPress={() =&amp;gt; navigation.navigate(authNavigations.LOGIN)}&amp;gt;&amp;lt;/Button&amp;gt;      &amp;lt;/View&amp;gt;    &amp;lt;/SafeAreaView&amp;gt;  );}const styles = StyleSheet.create({});export default AuthHomeScreen;"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part3 stack navigation",
+    "url": "/posts/rn_project_matzip03/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-17 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Stack Navigationstack navigator라는 컨트롤러가 하위에 stack screen을 갖는데  새로운 스크린으로 이동할 때마다 Stack 맨 위에 싸여서, 순차적으로 앞뒤 화면 이동이 가능하게 해주는 기능이다navigation 기능을 위해 AuthStackNavigator 코드 작성[matzip/front/src/navigations/stack/AuthStackNavigator.tsx] 파일을 작성한다해당 파일은 로그인화면이나 회원가입화면 등 여러 컴퍼넌트 페이지로 자연스럽게 이동할 수 있도록 사용되는 navigation 및 stack을 작성한다import {createStackNavigator} from &#39;@react-navigation/stack&#39;;import React from &#39;react&#39;;import {StyleSheet, View} from &#39;react-native&#39;;import AuthHomeScreen from &#39;../screens/AuthHomeScreen&#39;;import LoginScreen from &#39;../screens/LoginScreen&#39;;function AuthStackNavigator() {  const Stack = createStackNavigator();  return (    &amp;lt;Stack.Navigator&amp;gt;      &amp;lt;Stack.Screen name=&quot;AuthHome&quot; component={AuthHomeScreen} /&amp;gt;      &amp;lt;Stack.Screen name=&quot;Login&quot; component={LoginScreen} /&amp;gt;    &amp;lt;/Stack.Navigator&amp;gt;  );}const styles = StyleSheet.create({});export default AuthStackNavigator;  createStackNavigator : createStackNavigator 메서드는 Screen이랑 Navigator라는 두개의 속성을 반환하는 함수이다 위에서는 Stack이라는 변수에 담아서 Screen과 Navigator를 편하게 불러오기위해 사용되었다  Navigator : 다른 언어에서의 라우터 기능과 비슷한 Navigator는 감싸준 Screen들(컴포넌트)을 컨트롤할 수 있도록한다  Stack.Screen의 name과 component 프로퍼티 : name은 스크린의 이름이고 component에는 컴포넌트 이름을 적어주면된다메인 파일인 App 코드 작성위에서 작성한 AuthStackNavigator를 통해 스크린을 컨트롤하기위해서 시작파일인 App을 변경한다import {NavigationContainer} from &#39;@react-navigation/native&#39;;import React, {useState} from &#39;react&#39;;import {  Button,  SafeAreaView,  StyleSheet,  Text,  TextInput,  View,} from &#39;react-native&#39;;import AuthStackNavigator from &#39;./src/navigation/AuthStackNavigator&#39;;function App() {  const [name, setname] = useState(&#39;&#39;);  const handleChangeInput = (text: string) =&amp;gt; {    console.log(text);    setname(text);  };  return (    &amp;lt;NavigationContainer&amp;gt;      &amp;lt;AuthStackNavigator /&amp;gt;    &amp;lt;/NavigationContainer&amp;gt;  );}const styles = StyleSheet.create({  container: {},  input: {},});export default App;최초화면인 AuthHomeScreen 코드 작성로그인 화면으로 이동할 수 있는 버튼을 만들어 해당 버튼에 navigation을 연결해주었다import React from &#39;react&#39;;import {Button, SafeAreaView, StyleSheet, View} from &#39;react-native&#39;;function AuthHomeScreen({navigation}) {  return (    &amp;lt;SafeAreaView&amp;gt;      &amp;lt;View&amp;gt;        &amp;lt;Button          title=&quot;로그인화면으로 이동&quot;          onPress={() =&amp;gt; navigation.navigate(&#39;Login&#39;)}&amp;gt;&amp;lt;/Button&amp;gt;      &amp;lt;/View&amp;gt;    &amp;lt;/SafeAreaView&amp;gt;  );}const styles = StyleSheet.create({});export default AuthHomeScreen;  컴포넌트들은 navigation이라는 props를 받을 수 있고 해당 navigation.navigate을통해 화면 전환 기능을 사용할 수 있다 , navigation.navigate안에 값에는 이동하고 싶은 페이지 네임을 AuthStackNavigator파일에서 작성한 컴포넌트 네임으로 작성해준다[현재까지 완성된 부분]"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part2 최초화면 및 로그인 화면 초기구성",
+    "url": "/posts/rn_project_matzip02/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-16 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "최초화면인 AuthHomeScreen 코드 작성[matzip/front/src/screens/AuthHomeScreen.tsx] 파일을 작성한다해당 파일은 로그인화면으로 이동, 회원가입화면으로 이동등의 기능을 갖는 사용자 최초 화면으로 사용예정import React from &#39;react&#39;;import {Button, SafeAreaView, StyleSheet, View} from &#39;react-native&#39;;function AuthHomeScreen() {  return (    &amp;lt;SafeAreaView&amp;gt;      &amp;lt;View&amp;gt;        &amp;lt;Button title=&quot;로그인화면으로 이동&quot;&amp;gt;&amp;lt;/Button&amp;gt;      &amp;lt;/View&amp;gt;    &amp;lt;/SafeAreaView&amp;gt;  );}const styles = StyleSheet.create({});export default AuthHomeScreen;  SafeAreaView : 핸드폰 기기에서 최상단 시계있는 부분등 사용하면 겹치는 부분을 제외하고 화면에 그릴 수 있도록 영역 지정하는 기능  View : 리액트에서 html의 div태그와 비슷한 기능을하는 View가 있다고 생각할 수 있다로그인화면인 LoginScreen 코드 작성[matzip/front/src/screens/LoginScreen.tsx] 파일을 작성한다해당 파일은 로그인화면으로 사용자가 로그인을 하기 위해 표시되는 로그인 페이지이다해당 페이지에서는 임시로 페이지만 작성해두고 다음에 버튼 기능등을 추가하도록 한다import React from &#39;react&#39;;import {StyleSheet, Text, View} from &#39;react-native&#39;;function LoginScreen() {  return (    &amp;lt;View&amp;gt;      &amp;lt;Text&amp;gt;로그인 스크린&amp;lt;/Text&amp;gt;    &amp;lt;/View&amp;gt;  );}const styles = StyleSheet.create({});export default LoginScreen;"
+  },
+  
+  {
+    "title": "맛집 앱 만들기 프로젝트 Part1 프로젝트 설치 및 기본설정",
+    "url": "/posts/rn_project_matzip01/",
+    "categories": "Project, ReatNative",
+    "tags": "ReatNative",
+    "date": "2024-04-15 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "프로젝트 설명맛집을 기록하고 기록한 내용을 공유하는 앱을 만드는 프로젝트이다그럼 프로젝트를 생성해보도록한다 프로젝트의 구조를 먼저 구상해보자      front          App.tsx      src                  navigation                          AuthStackNavigator.tsx                                screens                          AuthHomeScreen.ts              LoginScreen.tsx                                          ReactNative에 필요한 환경 준비하기설치 및 적용 방법 : 👉🏻리액트네이티브 기본환경구성 여기를 참고하여 하기 프로그램을 설치 및 환경설정 준비를하도록하자  Chocolatey  Nodejs  Python  React Native CLI  JDK  안드로이드 스튜디오프로젝트 만들기(1) RN프로젝트 생성npx react-native@latest init matzipApp(2) 만들어진 프로젝트로 이동후 실행npx react-native run-androidvscode 확장패키지[react의 기본 컴포넌트 구성 기본 코드를 만들어주는 확장플러그인 사용법은 srnf 를 입력후 엔터]  simple-front-snippets[javascript 및 typescript 등 코드를 자동 정렬해주는 기능의 확장플러그인 설치 및 적용 방법 : 👉🏻Prittier]  Prittier필요 패키지 설치[상단바 부분과 하단바 부분의 사용을 위해 navigation 패키지를 설치 ]  npm install @react-navigation/native  npm install react-native-screens react-native-safe-area-context[각 페이지(스크린)으로 이동하기 위해 Stack Navigator를 설치]  npm install @react-navigation/stack  npm install react-native-gesture-handler  npm install @react-native-masked-view/masked-view추가 설정  [android/app/src/main/java/MainActivity.java 또는 MainActivity.kt 파일 최하단에 아래 코드 추가]  override fun onCreate(savedInstanceState: Bundle?) {    super.onCreate(null)  }  [android/app/src/main/java/MainActivity.java 또는 MainActivity.kt 파일 상단에 하기 import 구문 추가]  import android.os.Bundle;  [index.js 파일에 하기 import 하기]  import &#39;react-native-gesture-handler&#39;;"
+  },
+  
+  {
+    "title": "Typescript as const 효과적인 상수관리",
+    "url": "/posts/typescript04/",
+    "categories": "Develop, Typescript",
+    "tags": "Typescript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "리터럴 타입(readonly)과 프리미티브 타입타입스크립트에서는 string, number 등과 같이 포괄적인 타입에도 명확한 값(리터럴 타입)을 설정하는것이 가능하다예를들어 아래와 같이 name을 let으로 선언했을경우 string타입이라는 포괄적인 의미를 가지고있는 primitive type을 갖는다let name = &#39;홍길동&#39;;console.log(typeof(name)); // string 타입으로 출력하지만 아래와 같이 let으로 선언했는데도 불구하고 as const 키워드를 사용하면 정확한 값을 타입으로 갖는 리터럴 타입(readonly)을 갖게할 수 있다 아래 코드를 보면 let으로 name만 선언했을경우 추론적인 string타입이었겠지만 as const키워드를 붙였기때문에 name에는 정확한 값인 홍길동의 값만 갖을 수 있다let name = &#39;홍길동&#39; as const;name = &quot;이순신&quot; // error Type &#39;이순신&#39; is not assignable to type &#39;홍길동&#39;객체에서의 상수 관리아래 코드와 같이 Colors라는 각 컬러 데이터를 담은 객체 변수를 만들었을때를 예를들어보자해당 객체의 각 속성(red,blue,green)의 추론된 값을 보면 리터럴 타입(readonly)이 아닌 프리미티브 타입으로 추론된 것을 알 수 있다그 이유는 객체는 언제든 객체 내부의 값들을 바꿀 수 있기 때문이다.const Colors = {       red: &quot;#FF0000&quot;,       blue: &quot;#0000FF&quot;,       green: &quot;#008000&quot;, }그럼 어떻게해야 속성들도 값을 고정해버리는 강력한 리터럴 타입으로 지정할 수 있을까?바로 위에서 배운 as const 키워드를 아래 코드처럼 동일하게 사용하면 된다const Colors = {       red: &quot;#FF0000&quot;,       blue: &quot;#0000FF&quot;,       green: &quot;#008000&quot;, } as const;"
+  },
+  
+  {
     "title": "Typescript 인터페이스(Interface)",
     "url": "/posts/typescript03/",
     "categories": "Develop, Typescript",
@@ -121,6 +256,21 @@
   },
   
   {
+    "title": "Javascript 구조 분해 할당",
+    "url": "/posts/javascript_01/",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "구조 분해 할당이란객체와 배열은 자바스크립트에서 가장 많이 쓰이는 자료 구조이다키를 가진 데이터 여러 개를 하나로 사용할 때 객체를, 각 컬렉션에 데이터를 순서대로 저장할 땐 배열을 사용한다그러다보니 함수에 객체나 배열을 전달해야 하는 경우가 생긴다 또한 객체나 배열에 저장된 데이터 전체가 아닌 일부만 전달이 필요한 경우가 생기기도 한다.먼저 사용해보면서 이해해보도록 하자[배열 분해하기]배열의 요소를 다른곳에 저장 혹은 사용하기 위해서는 해당 배열의 요소를 인덱스로 접근하였지만,분해 할당을 통해 인덱스 없이도 각 요소에 접근이 가능하다// 이름과 성을 요소로 가진 배열let arr = [&quot;Bora&quot;, &quot;Lee&quot;]// 구조 분해 할당을 이용해// firstName엔 arr[0]을 surname엔 arr[1]을 할당let [firstName, surname] = arr;alert(firstName); // Boraalert(surname);  // Lee특정 요소는 필요하지 않을 때 하기 코드 처럼 쉼표를 사용하여 해당 요소를 무시할 수도 있다// 두 번째 요소는 필요하지 않음let [firstName, , title] = [&quot;Julius&quot;, &quot;Caesar&quot;, &quot;Consul&quot;, &quot;of the Roman Republic&quot;];alert( title ); // Consul[객체 분해하기]구조 분해 할당으로 객체도 분해할 수 있다.let options = {  title: &quot;Menu&quot;,  width: 100,  height: 200};let {title, width, height} = options;alert(title);  // Menualert(width);  // 100alert(height); // 200"
+  },
+  
+  {
     "title": "Javascript 함수의 Call &amp; Apply &amp; Bind",
     "url": "/posts/javascript_call_apply_bind/",
     "categories": "Develop, Javascript",
@@ -133,6 +283,21 @@
 
 
     "snippet": "Call 함수란먼저 Call을 사용하기전에 왜 사용하는지를 알아보자모든 함수는 실행할때 함수 앞에 작성한 오브젝트를 this로 참조한다 하기 코드를 보자위 코드처럼 현재 함수를 실행하는곳이 어느 위치(오브젝트)냐가 즉 this가 되고 this에 따라 함수 결과값이 달라진다그럼 어떻게 해야 데이터 중심적인 결과를 도출할 수 있을까?바로 모든 Javascript 함수에 내장되어있는 Call함수를 사용하면 된다.위에 코드를 Call함수를 사용하여 정상적인 결과를 만들어보자Call 함수를 사용하여 현재 this가 hello라는 객체라고 알려주어 messg라는 값을 잘 출력하는것을 볼 수 있다.Call 함수 사용법은 func.call(thisArg[, arg1[, arg2[, ...]]]) 로 사용하면 된다Apply 함수란apply()는 위에서 배운 Call()과 동일하지만 뒤에 받는 함수의 파라미터가 배열인 경우에 사용된다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}// 첫번째 인수인 this를 korea객체로 주어서 오브젝트를 지정하고 두번째 인수를 배열로주었다// 배열이 아니었으면 위에서 배운 call을 사용할 수 있지만 인자가 배열이기 때문에 apply를 사용한다updateName.apply(korea, [&quot;대한민국&quot;,150]); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);만약 call로 배열 인자를 처리하고 싶다면 ES6문법인 Spread 문법을 사용할 수 있다하기 코드는 위 코드 apply에서 call로 변경한 코드이다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}const updateData = [&quot;대한민국&quot;, 150];// 첫번째 인수인 this를 korea객체로 주어서 오브젝트를 지정하고 두번째 인수는 위에 배열 변수를 만든 후 // Spread문법으로 나열하였다// call로도 배열을 처리할 수 있다updateName.call(korea, ...updateData); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);Bind 함수란Bind 키워드를 사용하면 this의 값을 영구적으로 바꿀 수 있다var korea = {    name: &quot;한국&quot;,    age: 100};var us = {    name: &quot;미국&quot;,    age: 80};function updateName(name, age){    this.name=name;    this.age=age;}// bind 키워드를 사용하여 updateKorea함수를 사용하면 항상 this가 korea이게 만들 수 있다const updateKorea = updateName.bind(korea);// call이나 apply를 사용하지 않아도 updateKorea가 this를 korea로 갖고있기 때문에 // 바로 파라미터만 전달하여 업데이트할 수 있다updateKorea(&quot;대한민국&quot;, 150); // 결과 값이 name: 대한민국, age: 150 잘나오는것을 확인할 수 있다console.log(korea);"
+  },
+  
+  {
+    "title": "Javascript Map함수",
+    "url": "/posts/javascript_map/",
+    "categories": "Develop, Javascript",
+    "tags": "Javascript",
+    "date": "2024-04-02 11:33:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Map 함수란Map함수는  콜백 함수를 이용해 각각의 요소에 호출해서 그 값을 변환할 수 있게 해준다. 다시 말하자면 콜백 함수는 배열의 각 요소에 실행된다예를들어 간단한 예제 코드를 보도록한다먼저 다음과 같은 배열 요소가 있다고 가정해본다[단순한 Javascript 배열]  //배열 arr을 만들고 1~5 까지 숫자를 넣어둔다   const arr = [1, 2, 3, 4, 5];해당 배열의 각 요소에 10을 곱해야 한다고 생각해보자 그럼 아래와 같이 for문이 제일 먼저 떠오를 수 있다[for문을 사용한 배열 요소 처리]  let arr = [1, 2, 3, 4, 5];    for (let i = 0; i &amp;lt; arr.length; i++){    arr[i] = arr[i] * 10;  }    console.log(arr); // [10, 20, 30, 40, 50]하지만 Array.map() 함수를 사용하면 더욱 간결한 코드로 동일 결과 값을 얻을 수 있다 하기 코드처럼[Array.map 함수를 사용한 배열 요소 처리]  let arr = [1, 2, 3, 4, 5];    let modifiedArr = arr.map(function(element){      return element *10;  });    console.log(modifiedArr); // [10, 20, 30, 40, 50]다른도 보면서 어떤 상황일때 편하게 Map함수를 사용할 수 있는지 보도록 한다[Array.map 함수를 사용한 객체 배열 요소 처리]  let users = [    {firstName : &quot;Susan&quot;, lastName: &quot;Steward&quot;},    {firstName : &quot;Daniel&quot;, lastName: &quot;Longbottom&quot;},    {firstName : &quot;Jacob&quot;, lastName: &quot;Black&quot;}  ];    let userFullnames = users.map(function(element){      return `${element.firstName} ${element.lastName}`;  })    console.log(userFullnames);  // [&quot;Susan Steward&quot;, &quot;Daniel Longbottom&quot;, &quot;Jacob Black&quot;]"
   },
   
   {
@@ -1018,6 +1183,36 @@
 
 
     "snippet": "Docker란도커(docker)는 하나의 OS에 가상 머신처럼 독립된 여러개의 실행환경을 만들어주는 것으로, 사용시에 아래와 같은 이점을 얻을 수 있다      구성 단순화          Docker는 하나의 Configuration으로 모든 플랫폼에서 실행할 수 있다. Configuration 파일을 코드에 넣고 환경 변수를 전달하여 다른 환경에 맞출 수 있다. 따라서 하나의 Docker 이미지를 다른 환경에서 사용할 수 있다.            코드 관리          Docker는 일관된 환경을 제공하여 개발 및 코딩을 훨씬 편안하게 만들어준다. Docker 이미지는 변경이 불가하기에 개발환경에서 운영 환경까지 애플리케이션 환경이 변경되지 않는 이점이 존재한다.            개발 생산성 향상          개발 환경을 운영 환경에 최대한 가깝게 복제할 수 있다. Docker를 사용하면 코드가 운영 환경의 컨테이너에서 실행될 수 있으며 VM과 달리 Docker는 오버 헤드 메모리 용량이 적기에 여러 서비스를 실행하는데 도움이 된다. 또한 Docker의 Shared Volume을 사용하여 호스트에서 컨테이너의 어플리케이션 코드를 사용할 수 있도록 할 수 있다. 이를 통해 개발자는 자신의 플랫폼 및 편집기에서 소스 코드를 편집할 수 있으며 이는 Docker내에서 실행 중인 환경에 반영된다.            애플리케이션 격리          Web Server(e.g. Apache, Nginx)와 연결된 API 서버를 격리할 필요가 있는 경우가 있다. 이 경우 다른 컨테이너에서 API를 서버를 실행할 수 있다.            빠른 배포          컨테이너가 OS를 부팅하지 않고 어플리케이션을 실행하기 때문에 Docker 컨테이너를 매우 빠르게 만들 수 있다.      Docker컨테이너기존에 vm가상화 기술은 하나의 OS안에 여러개의 OS를 생성하는 가상화 방식이지만 컨테이너 가상화 기술은 OS레벨의 가상화로 프로세만 격리시켜 동작하는 방식이다Docker이미지Docker Image란 컨테이너를 실행 할 수 있는 실행파일과 설정 값 들을 가지고 있는 파일이다Docker 컨테이너에 이미지를 넣고 실행을 시키면 해당 프로세스가 동작한다Docker엔진"
+  },
+  
+  {
+    "title": "coc매크로",
+    "url": "/posts/cocmecro/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2021-01-04 07:32:00 +0800",
+    
+
+
+
+
+
+    "snippet": "[authorize_code 알아내기]https://kauth.kakao.com/oauth/authorize?client_id=59353340de0368257f702e7c90f16a81&amp;amp;redirect_uri=https://example.com/oauth&amp;amp;response_type=code&amp;amp;scope=talk_message"
+  },
+  
+  {
+    "title": "Enable Google Page Views",
+    "url": "/posts/gyejin_tip/",
+    "categories": "Private, Doc",
+    "tags": "Doc",
+    "date": "2021-01-04 07:32:00 +0800",
+    
+
+
+
+
+
+    "snippet": "사진 기재하기링크 기재하기  (1) 새탭에서 링크 열기 : 👉🏻ES6 공식DOC"
   },
   
   {
