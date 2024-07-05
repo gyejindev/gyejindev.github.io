@@ -1,0 +1,289 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://0.0.0.0:4000/</id>
+  <title>Jogyejin</title>
+  <subtitle>기술블로그 &amp;&amp; 프로젝트공유</subtitle>
+  <updated>2024-07-05T15:09:59+09:00</updated>
+  <author>
+    <name>Jogyejin</name>
+    <uri>http://0.0.0.0:4000/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4000/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="ko"
+    href="http://0.0.0.0:4000/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+  <rights> © 2024 Jogyejin </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>vscode prettier 설정 및 오류 해결방법</title>
+    <link href="http://0.0.0.0:4000/posts/vscode_prettier/" rel="alternate" type="text/html" title="vscode prettier 설정 및 오류 해결방법" />
+    <published>2024-05-10T12:33:00+09:00</published>
+  
+    <updated>2024-05-10T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/vscode_prettier/</id>
+    <content src="http://0.0.0.0:4000/posts/vscode_prettier/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Utils" />
+    
+    <category term="Vscode" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Prittier
+
+prittier은 vscode 확장 패키지 프로그램으로 코드를 자동으로 정렬해주는 기능을 제공한다
+
+
+
+Prittier 설치
+
+1. vscode extenstion 확장 탭에서 Prettier 검색 후 설치를 한다
+
+
+
+2. 환경설정에서 prettier로 변경
+
+ctrl+, 또는 메뉴의 환경설정을 찾아 들어간후 아래와 같이 Default Formatter 설정에서 None으로 되어있는 부분을 Prettier 로 설정한다
+
+
+
+적용이 안되는경우
+
+검색창에 ‘json’을 검색한 뒤 Edit in setting.json파일로 들어가 editor.formatOnSave의 값이 true인지 확인해보자 값이 없거나 false로 되어있으면 true로 수정 또는 추가하자
+
+
+
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>맛집 앱 만들기 프로젝트 Part14 React Query 로그인연동하기</title>
+    <link href="http://0.0.0.0:4000/posts/rn_project_matzip14/" rel="alternate" type="text/html" title="맛집 앱 만들기 프로젝트 Part14 React Query 로그인연동하기" />
+    <published>2024-05-07T12:33:00+09:00</published>
+  
+    <updated>2024-05-07T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/rn_project_matzip14/</id>
+    <content src="http://0.0.0.0:4000/posts/rn_project_matzip14/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Project" />
+    
+    <category term="ReatNative" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      React Query 사용을 위해 Query Client Provider로 App을 감싸주자
+
+[matzip/front/App.tsx]
+
+import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import RootNavigator from './src/navigations/root/RootNavigator';
+import {QueryClientProvider} from '@tanstack/react-query';
+import queryClient from './src/api/queryClient';
+
+function App() {
+  return (
+    &amp;lt;QueryClientProvider ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>맛집 앱 만들기 프로젝트 Part13 React Query 사용 및 API추가하기</title>
+    <link href="http://0.0.0.0:4000/posts/rn_project_matzip13/" rel="alternate" type="text/html" title="맛집 앱 만들기 프로젝트 Part13 React Query 사용 및 API추가하기" />
+    <published>2024-05-06T12:33:00+09:00</published>
+  
+    <updated>2024-05-06T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/rn_project_matzip13/</id>
+    <content src="http://0.0.0.0:4000/posts/rn_project_matzip13/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Project" />
+    
+    <category term="ReatNative" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      React Query란
+
+리액트 쿼리는 서버 데이터를 가져오고 캐싱하고 동기화하면 업데이트해주는 라이브러리이다
+
+React Query 설치
+
+(프론트 프로젝트 폴더에서)
+
+npm i @tanstack/react-query
+
+
+React Query에서 사용할 데이터 타입들을 미리 지정해두자
+
+[matzip/front/src/types/domain.ts]
+
+type MarkerColor = 'RED' | 'YELLOW' | 'GREEN' | 'BLUE' | 'PURPLE';
+
+type Category = {
+  [key in MarkerColor]: string;
+};
+
+interface ImageUri {
+  id?: number;
+  uri: string;
+}
+
+interface Marker {
+  i...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치</title>
+    <link href="http://0.0.0.0:4000/posts/rn_project_matzip12/" rel="alternate" type="text/html" title="맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치" />
+    <published>2024-05-05T12:33:00+09:00</published>
+  
+    <updated>2024-05-05T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/rn_project_matzip12/</id>
+    <content src="http://0.0.0.0:4000/posts/rn_project_matzip12/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Project" />
+    
+    <category term="ReatNative" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      앱 로그인 설계
+
+
+
+
+  Step1: 앱 실행시 Refresh Api Call을 호출하여 성공, 실패를 나눈다
+  Step2 :  실패한경우 신규 유저 또는 오래전에 로그인한 사용자로 토큰이 만료된 사용자로 토큰을 제거하고 다시 로그인을 하게하여  로그인 성공시 AccessToken(header), RefreshToken(storage)을 저장하고 메인페이지로 이동시킨다
+성공한 경우 RefreshToken이 아직 살아있는 사용자로 자동 로그인을 하여 메인화면으로 이동시킨다 AccessToken(header), RefreshToken(storage) 토큰들을 모두 갱신시켜서 재저장한다
+
+
+EncryptStorage 설치 및 편의설정
+
+RefreshToken을 저장하기 위해 EncryptStorage 를...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Step5 React State와 Lifecycle</title>
+    <link href="http://0.0.0.0:4000/posts/react05/" rel="alternate" type="text/html" title="Step5 React State와 Lifecycle" />
+    <published>2024-05-05T12:33:00+09:00</published>
+  
+    <updated>2024-05-05T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/react05/</id>
+    <content src="http://0.0.0.0:4000/posts/react05/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Framework" />
+    
+    <category term="React" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      State개요
+
+
+  
+    React에서의 State는 단언 뜻 그대로 상태를 뜻하며 Props처럼 JavaScript의 객체로 구성되어있다. 두 객체 모두 렌더링 결과물에 영향을 주는 정보를 갖고 있는데 중요한 차이가 있다 Props는 함수의 매개변수처럼 컴포넌트에 전달되는 반면에 state는 함수 내의 선언된 변수처럼 컴포넌트 안에서 관리된다는 점이다.
+  
+  
+    React는 지역변수, 전역변수의 값이 변경된다해서 컴포넌트를 다시 렌더링 하지 않는다 state를 사용하여 데이터를 관리하는 이유이다 (state 값이 변하면 관련 있는 컴포넌트들이 재렌더링되어 화면이 바뀐다)
+  
+  
+    일반적으로 리액트에서는 유동적인 데이터는 변수에 담아서 사용하지 않고 useState()라는 리액트...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+

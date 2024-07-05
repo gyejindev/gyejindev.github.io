@@ -1,0 +1,3840 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  <!-- it's a local file path -->
+
+  
+  
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="(인터랙티브 웹 페이지 만들기) Chapter3" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Chap1. 웹 페이지의 배경 꾸미기 태그 영역마다 배경색과 이미지를 넣을 수 있다 Chap1-1. 배경색 지정하기 배경색은 background-color 속성을 사용해서 태그에 직접 지정할 수 있다 속성명 속성값 설명 background-color 영문명rgb(0,0,0)#000000 배경색을 영어 색상명으로 적용배경색을 RGB 표기법으로 적용배경색을 16진수 표기법으로 적용 See the Pen background-color by mon node (@mon-node) on CodePen. Chap1-2. 배경 이미지 적용하기 속성명 속성값 설명 &lt;background-image&gt; url(이미지 경로 배경 이미지를 삽입 &lt;background-repeat&gt; repeat, repeat-x, repeat-y, no-repeat 배경 이미지를 반복 &lt;background-position&gt; 가로축, 세로축 배경 이미지의 위치를 지정 &lt;background-size&gt; contain, cover 배경 이미지의 크기를 지정 &lt;background-attachment&gt; fixed 배경 이미지가 움직이지 않게 고정 See the Pen background-image by mon node (@mon-node) on CodePen. Chap2. 웹 페이지의 레이아웃 구성하기 집의 공간을 거실, 주방, 서재등 사용 목적에 나누듯이 웹 페이지도 시맨틱 태그를 통해 레이아웃을 분리해본다 Chap2-1. float을 사용하여 블록 요소 좌우로 배치하기 float 속성은 블록 요소를 강제로 띄워서 화면에 좌우로 배치가 가능하다 속성명 속성값 설명 &lt;float&gt; leftright 요소를 띄워서 왼쪽에 배치한다요소를 띄워서 오른쪽에 배치한다 See the Pen 웹 페이지의 레이아웃 구성_float 예제 by mon node (@mon-node) on CodePen. 위와 같이 section 요소가 좌우로 잘배치되었지만 부모 요소인 .wrap가 자식 요소의 높잇값을 인식하지 못해 테두리를 감싸지 못했다 인식 시키기위해서는 하기와 같이 가상 선택자를 생성한다 1 2 3 4 5 .wrap::after{ content: &#39;&#39;; display: block; clear: both; } Chap2-2. position 블록 요소 자유롭게 배치하기 position 속성은 여러 요소를 순서와 상관없이 화면에 가로세로 좌푯값을 설정해서 자유롭게 배치가 가능하다 속성명 속성값 설명 &lt;position&gt; relativeabsolutefixed 적용된 요소의 현재 위칫값을 기준으로 상대 위치를 지정부모 요소의 특정 구간을 기준으로 절대 위치를 지정한다웹 브라우저를 기준으로 절대 위치를 지정한다 [position-relative] See the Pen 웹 페이지의 레이아웃 구성_position 예제 by mon node (@mon-node) on CodePen. relative는 요소를 일반적인 문서 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-absolute] See the Pen 웹 페이지의 레이아웃 구성_position-absolute 예제 by mon node (@mon-node) on CodePen. absolute는 일반적인 문서 흐름에서 제거하고, 가장 가까운 position 지정 요소(position 속성에 속성값이 정의되어 있는 요소)에 대해 상대적으로 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-fixed] See the Pen 웹 페이지의 레이아웃 구성_position-fixed예제 by mon node (@mon-node) on CodePen. fixed는 웹 브라우저 기준으로 좌푯값이 고정된다 Chap2-3. object-fit을 사용하여 콘텐츠를 특정 영역에 채우기 object-fit 속성을 사용하면 부모 요소 영역에서 자식 요소로 지정한 이미지, 동영상 등 콘텐츠의 비율을 설정할 수 있다 속성명 속성값 설명 &lt;object-fit&gt; fillcovercontain 요소의 비율을 무시하고 가득 채움요소의 비율을 유지하면서 여백 없이 가득 채움요소의 비율을 유지하면서 콘텐츠가 잘리지 않게 가득 채움 See the Pen 웹 페이지의 레이아웃 구성_object-fit예제 by mon node (@mon-node) on CodePen. Chap2-4. z-index을 사용하여 겹쳐 있는 요소의 z축 순서를 지정하기 z-index를 사용하여 겹친 요소의 z축 순서를 강제로 지정할 수 있다 속성명 속성값 설명 &lt;z-index&gt; 순섯값 요소에 z축의 순서를 지정한다(값이 큰 요소가 위로 올라감) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; z-index: 2; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; z-index: 1; } Chap2-5. opacity을 사용하여 요소의 투명도 설정하기 특정 요소에 opacity 속성을 사용하여 투명에서 불투명까지 단계별로 투명도를 지정할 수 있다 속성명 속성값 설명 &lt;opacity&gt; 0~1 요소의 투명도를 지정함 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; opacity: 0.3; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; opacity: 0.5; } Chap3. 다양한 그래픽 효과 적용하기 css만으로도 그래픽 효과를 넣고 다양한 인터랙티브한 콘텐츠를 만들 수 있다 Chap3-1. 요소의 그림자 만들기 box-shadow, text-shadow 속성을 사용하면 블록 요소와 텍스트에 그림자 효과를 적용할 수 있다 속성명 속성값 설명 &lt;box-shadow&gt; 가로축/세로축/퍼짐정도/색상 블록 요소의 그림자를 생성 &lt;text-shadow&gt; 가로축/세로축/퍼짐정도/색상 텍스트의 그림자를 생성 See the Pen 블록 요소 그림자 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-2. 모서리를 둥글게 만들기 border-radius 속성을 사용하면 모서리를 둥글게 설정할 수 있다 속성명 속성값 설명 &lt;border-radius&gt; px, % 모서리를 속성값만큼 둥글게 만듬 See the Pen 모서리 둥글게 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-3. 그레이디언트 적용하기 gradient 속성을 사용하면 한쪽은 짙게 하고 다른 쪽으로 갈수록 엷어지는 그레디언트로 지정이 가능하다 (그레이디언트 모양은 직선 또는 타원으로 지정한다) 속성명 속성값 설명 &lt;gradient&gt; linear-gradient(방향, 색상1, 색상2)radial-gradient(색상1, 색상2) 직선 모양의 그레이디언트를 적용타원 모양의 그레이디언트를 적용 See the Pen 그라디언트 적용하기 by mon node (@mon-node) on CodePen. Chap3-4. filter 속성 적용하기 filter 속성은 요소에 대한 시각효과를 지정하며 포토샵에서의 보정 기술과 같은 기술을 적용할 수 있다 속성명 속성값 설명 &lt;filter&gt; blurbrightnesscontrastgrayscalehue-rotateinvertsaturatesepia 요소의 흐림 효과를 조정한다요소의 밝기를 조정한다요소의 명도 대비를 조절한다요소의 흑백을 지정한다요소의 색상 단계를 조절한다요소의 색상 반전 단계를 조절한다요소의 채도를 조절한다요소의 갈색 톤 단계를 조절한다 See the Pen filter 사용하기 예제 by mon node (@mon-node) on CodePen. Chap4. 인터랙티브 웹을 위한 css다루기 css를 사용하여 사용자 행동에 따라 반응하는 인터랙티브 웹 콘텐츠를 만들기 Chap4-1. 콘텐츠 모양을 자유롭게 변형하기 transform 속성을 이용하여 HTML의 요소들을 다양하게 변형한 효과를 적용할 수 있다 속성명 속성값 설명 &lt;transform(2D)&gt; scaleskewtranslaterotate 선택한 요소의 크기를 확대 및 축소한다)선택한 요소를 x축 또는 y축으로 비틀어서 변형한다선택한 요소를 현재 위치 기준 x축 또는 y축 이동선택한 요소를 회전시킨다 &lt;transform(3D)&gt; rotateX, rotateYtranslateZ 선택한 요소를 x축 또는 y축으로 입체감 있게 회전시킨다선택한 요소를 z축으로 입체감 있게 보이면서 이동시킨다 perspective px 3D효과가 적용된 요소가 입체감 있게 보이도록 원근감을 부여한다 transform-style preserve-3d 3D효과를 유지시킨다 transform-origin 가로축,세로축 요소의 변형이 일어나는 중심축을 변경할 수 있다 See the Pen transform 예제 by mon node (@mon-node) on CodePen. Chap4-2. 사용자 행동에 반응하는 전환 효과 만들기 transition 속성을 이용하여 요소의 속성값이 변경될 때 시간을 지정하여 일정시간 동안 부드러운 모션 처리를 가능하게한다 속성명 속성값 설명 &lt;transition-property&gt; 속성명 전환 효과를 줄 css 속성명을 지정한다 속성명은 여러개 지정이 가능하며 all을 입력하면 전체 속성에서 사용이 가능하다 transition-duration 지속 시간(초 단위) 전환 효과가 발생할 때 지속할 시간을 나타낸다, 지속 시간은 초(s)단위로 지정하는데 0.5s는 0.5초, 1s는 1초를 의미한다 transition-delay 지연 시간(초 단위) 전환 효과가 발생할 때 지연할 시간을 나타낸다. 지연 시간은 초 단위로 지정하고, 이 속성을 사용하면 지연 시간 이후에 전환 효과가 나타난다 transition-timing-function 가속도 전환 효과의 가속도를 나타낸다 transition 속성명/전환시간/가속도/지연시간 모든 전환 효과 관련 속성값을 한꺼번에 축약해서 사용할 수 있다 See the Pen trnstion 예제 by mon node (@mon-node) on CodePen. Chap4-3. 자동으로 움직이는 애니메이션 효과 만들기 animation 속성을 사용자가 특정 동작을 하지 않더라도 미리 지정한 조건에 맞게 자동으로 반복하는 애니메이션 효과를 줄 수있다 속성명 속성값 설명 &lt;@keyframes&gt; 애니메이션 세트 지정 애니메이션의 시작과 끝을 등록하여 사용자 모션을 등록한다 0%는 시작 지점, 100%는 끝 지점이며 중간 지점은 여러개 추가 가능 animation-name 이름 키프레임으로 등록한 모션의 이름을 호출한다 animation-duration 지속 시간(초 단위) 키프레임 모션 한 세트를 얼마 동안 동작하게 할지 초 단위로 등록 animation-timing-function 가속도 키프레임 모션을 실행할 때 가속도를 설정한다 가속도의 사용 방법은 transtion속성과 같다 animation-iteration-count 횟수 키프레임 모션 한 세트가 몇 번 동작하는지 횟수를 숫자로 설정한다, 무한 반복하고 싶으면 속성값을 infinite로 지정한다 animation-play-state running/paused 키프레임 모션을 실행할 때 동작 상태를 지정한다 running은 모션을 그대로 진행하는 것을, paused는 일시 정지하는 것을 나타낸다 animation 이름/진행 시간/가속도/지연 시간/반복 횟수 애니메이션 속성을 축약해서 작성할 수 있다 See the Pen 애니메이션 예제 by mon node (@mon-node) on CodePen." />
+<meta property="og:description" content="Chap1. 웹 페이지의 배경 꾸미기 태그 영역마다 배경색과 이미지를 넣을 수 있다 Chap1-1. 배경색 지정하기 배경색은 background-color 속성을 사용해서 태그에 직접 지정할 수 있다 속성명 속성값 설명 background-color 영문명rgb(0,0,0)#000000 배경색을 영어 색상명으로 적용배경색을 RGB 표기법으로 적용배경색을 16진수 표기법으로 적용 See the Pen background-color by mon node (@mon-node) on CodePen. Chap1-2. 배경 이미지 적용하기 속성명 속성값 설명 &lt;background-image&gt; url(이미지 경로 배경 이미지를 삽입 &lt;background-repeat&gt; repeat, repeat-x, repeat-y, no-repeat 배경 이미지를 반복 &lt;background-position&gt; 가로축, 세로축 배경 이미지의 위치를 지정 &lt;background-size&gt; contain, cover 배경 이미지의 크기를 지정 &lt;background-attachment&gt; fixed 배경 이미지가 움직이지 않게 고정 See the Pen background-image by mon node (@mon-node) on CodePen. Chap2. 웹 페이지의 레이아웃 구성하기 집의 공간을 거실, 주방, 서재등 사용 목적에 나누듯이 웹 페이지도 시맨틱 태그를 통해 레이아웃을 분리해본다 Chap2-1. float을 사용하여 블록 요소 좌우로 배치하기 float 속성은 블록 요소를 강제로 띄워서 화면에 좌우로 배치가 가능하다 속성명 속성값 설명 &lt;float&gt; leftright 요소를 띄워서 왼쪽에 배치한다요소를 띄워서 오른쪽에 배치한다 See the Pen 웹 페이지의 레이아웃 구성_float 예제 by mon node (@mon-node) on CodePen. 위와 같이 section 요소가 좌우로 잘배치되었지만 부모 요소인 .wrap가 자식 요소의 높잇값을 인식하지 못해 테두리를 감싸지 못했다 인식 시키기위해서는 하기와 같이 가상 선택자를 생성한다 1 2 3 4 5 .wrap::after{ content: &#39;&#39;; display: block; clear: both; } Chap2-2. position 블록 요소 자유롭게 배치하기 position 속성은 여러 요소를 순서와 상관없이 화면에 가로세로 좌푯값을 설정해서 자유롭게 배치가 가능하다 속성명 속성값 설명 &lt;position&gt; relativeabsolutefixed 적용된 요소의 현재 위칫값을 기준으로 상대 위치를 지정부모 요소의 특정 구간을 기준으로 절대 위치를 지정한다웹 브라우저를 기준으로 절대 위치를 지정한다 [position-relative] See the Pen 웹 페이지의 레이아웃 구성_position 예제 by mon node (@mon-node) on CodePen. relative는 요소를 일반적인 문서 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-absolute] See the Pen 웹 페이지의 레이아웃 구성_position-absolute 예제 by mon node (@mon-node) on CodePen. absolute는 일반적인 문서 흐름에서 제거하고, 가장 가까운 position 지정 요소(position 속성에 속성값이 정의되어 있는 요소)에 대해 상대적으로 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-fixed] See the Pen 웹 페이지의 레이아웃 구성_position-fixed예제 by mon node (@mon-node) on CodePen. fixed는 웹 브라우저 기준으로 좌푯값이 고정된다 Chap2-3. object-fit을 사용하여 콘텐츠를 특정 영역에 채우기 object-fit 속성을 사용하면 부모 요소 영역에서 자식 요소로 지정한 이미지, 동영상 등 콘텐츠의 비율을 설정할 수 있다 속성명 속성값 설명 &lt;object-fit&gt; fillcovercontain 요소의 비율을 무시하고 가득 채움요소의 비율을 유지하면서 여백 없이 가득 채움요소의 비율을 유지하면서 콘텐츠가 잘리지 않게 가득 채움 See the Pen 웹 페이지의 레이아웃 구성_object-fit예제 by mon node (@mon-node) on CodePen. Chap2-4. z-index을 사용하여 겹쳐 있는 요소의 z축 순서를 지정하기 z-index를 사용하여 겹친 요소의 z축 순서를 강제로 지정할 수 있다 속성명 속성값 설명 &lt;z-index&gt; 순섯값 요소에 z축의 순서를 지정한다(값이 큰 요소가 위로 올라감) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; z-index: 2; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; z-index: 1; } Chap2-5. opacity을 사용하여 요소의 투명도 설정하기 특정 요소에 opacity 속성을 사용하여 투명에서 불투명까지 단계별로 투명도를 지정할 수 있다 속성명 속성값 설명 &lt;opacity&gt; 0~1 요소의 투명도를 지정함 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; opacity: 0.3; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; opacity: 0.5; } Chap3. 다양한 그래픽 효과 적용하기 css만으로도 그래픽 효과를 넣고 다양한 인터랙티브한 콘텐츠를 만들 수 있다 Chap3-1. 요소의 그림자 만들기 box-shadow, text-shadow 속성을 사용하면 블록 요소와 텍스트에 그림자 효과를 적용할 수 있다 속성명 속성값 설명 &lt;box-shadow&gt; 가로축/세로축/퍼짐정도/색상 블록 요소의 그림자를 생성 &lt;text-shadow&gt; 가로축/세로축/퍼짐정도/색상 텍스트의 그림자를 생성 See the Pen 블록 요소 그림자 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-2. 모서리를 둥글게 만들기 border-radius 속성을 사용하면 모서리를 둥글게 설정할 수 있다 속성명 속성값 설명 &lt;border-radius&gt; px, % 모서리를 속성값만큼 둥글게 만듬 See the Pen 모서리 둥글게 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-3. 그레이디언트 적용하기 gradient 속성을 사용하면 한쪽은 짙게 하고 다른 쪽으로 갈수록 엷어지는 그레디언트로 지정이 가능하다 (그레이디언트 모양은 직선 또는 타원으로 지정한다) 속성명 속성값 설명 &lt;gradient&gt; linear-gradient(방향, 색상1, 색상2)radial-gradient(색상1, 색상2) 직선 모양의 그레이디언트를 적용타원 모양의 그레이디언트를 적용 See the Pen 그라디언트 적용하기 by mon node (@mon-node) on CodePen. Chap3-4. filter 속성 적용하기 filter 속성은 요소에 대한 시각효과를 지정하며 포토샵에서의 보정 기술과 같은 기술을 적용할 수 있다 속성명 속성값 설명 &lt;filter&gt; blurbrightnesscontrastgrayscalehue-rotateinvertsaturatesepia 요소의 흐림 효과를 조정한다요소의 밝기를 조정한다요소의 명도 대비를 조절한다요소의 흑백을 지정한다요소의 색상 단계를 조절한다요소의 색상 반전 단계를 조절한다요소의 채도를 조절한다요소의 갈색 톤 단계를 조절한다 See the Pen filter 사용하기 예제 by mon node (@mon-node) on CodePen. Chap4. 인터랙티브 웹을 위한 css다루기 css를 사용하여 사용자 행동에 따라 반응하는 인터랙티브 웹 콘텐츠를 만들기 Chap4-1. 콘텐츠 모양을 자유롭게 변형하기 transform 속성을 이용하여 HTML의 요소들을 다양하게 변형한 효과를 적용할 수 있다 속성명 속성값 설명 &lt;transform(2D)&gt; scaleskewtranslaterotate 선택한 요소의 크기를 확대 및 축소한다)선택한 요소를 x축 또는 y축으로 비틀어서 변형한다선택한 요소를 현재 위치 기준 x축 또는 y축 이동선택한 요소를 회전시킨다 &lt;transform(3D)&gt; rotateX, rotateYtranslateZ 선택한 요소를 x축 또는 y축으로 입체감 있게 회전시킨다선택한 요소를 z축으로 입체감 있게 보이면서 이동시킨다 perspective px 3D효과가 적용된 요소가 입체감 있게 보이도록 원근감을 부여한다 transform-style preserve-3d 3D효과를 유지시킨다 transform-origin 가로축,세로축 요소의 변형이 일어나는 중심축을 변경할 수 있다 See the Pen transform 예제 by mon node (@mon-node) on CodePen. Chap4-2. 사용자 행동에 반응하는 전환 효과 만들기 transition 속성을 이용하여 요소의 속성값이 변경될 때 시간을 지정하여 일정시간 동안 부드러운 모션 처리를 가능하게한다 속성명 속성값 설명 &lt;transition-property&gt; 속성명 전환 효과를 줄 css 속성명을 지정한다 속성명은 여러개 지정이 가능하며 all을 입력하면 전체 속성에서 사용이 가능하다 transition-duration 지속 시간(초 단위) 전환 효과가 발생할 때 지속할 시간을 나타낸다, 지속 시간은 초(s)단위로 지정하는데 0.5s는 0.5초, 1s는 1초를 의미한다 transition-delay 지연 시간(초 단위) 전환 효과가 발생할 때 지연할 시간을 나타낸다. 지연 시간은 초 단위로 지정하고, 이 속성을 사용하면 지연 시간 이후에 전환 효과가 나타난다 transition-timing-function 가속도 전환 효과의 가속도를 나타낸다 transition 속성명/전환시간/가속도/지연시간 모든 전환 효과 관련 속성값을 한꺼번에 축약해서 사용할 수 있다 See the Pen trnstion 예제 by mon node (@mon-node) on CodePen. Chap4-3. 자동으로 움직이는 애니메이션 효과 만들기 animation 속성을 사용자가 특정 동작을 하지 않더라도 미리 지정한 조건에 맞게 자동으로 반복하는 애니메이션 효과를 줄 수있다 속성명 속성값 설명 &lt;@keyframes&gt; 애니메이션 세트 지정 애니메이션의 시작과 끝을 등록하여 사용자 모션을 등록한다 0%는 시작 지점, 100%는 끝 지점이며 중간 지점은 여러개 추가 가능 animation-name 이름 키프레임으로 등록한 모션의 이름을 호출한다 animation-duration 지속 시간(초 단위) 키프레임 모션 한 세트를 얼마 동안 동작하게 할지 초 단위로 등록 animation-timing-function 가속도 키프레임 모션을 실행할 때 가속도를 설정한다 가속도의 사용 방법은 transtion속성과 같다 animation-iteration-count 횟수 키프레임 모션 한 세트가 몇 번 동작하는지 횟수를 숫자로 설정한다, 무한 반복하고 싶으면 속성값을 infinite로 지정한다 animation-play-state running/paused 키프레임 모션을 실행할 때 동작 상태를 지정한다 running은 모션을 그대로 진행하는 것을, paused는 일시 정지하는 것을 나타낸다 animation 이름/진행 시간/가속도/지연 시간/반복 횟수 애니메이션 속성을 축약해서 작성할 수 있다 See the Pen 애니메이션 예제 by mon node (@mon-node) on CodePen." />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/chap3/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/chap3/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-07T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(인터랙티브 웹 페이지 만들기) Chapter3" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-07T12:33:00+09:00","datePublished":"2023-10-07T12:33:00+09:00","description":"Chap1. 웹 페이지의 배경 꾸미기 태그 영역마다 배경색과 이미지를 넣을 수 있다 Chap1-1. 배경색 지정하기 배경색은 background-color 속성을 사용해서 태그에 직접 지정할 수 있다 속성명 속성값 설명 background-color 영문명rgb(0,0,0)#000000 배경색을 영어 색상명으로 적용배경색을 RGB 표기법으로 적용배경색을 16진수 표기법으로 적용 See the Pen background-color by mon node (@mon-node) on CodePen. Chap1-2. 배경 이미지 적용하기 속성명 속성값 설명 &lt;background-image&gt; url(이미지 경로 배경 이미지를 삽입 &lt;background-repeat&gt; repeat, repeat-x, repeat-y, no-repeat 배경 이미지를 반복 &lt;background-position&gt; 가로축, 세로축 배경 이미지의 위치를 지정 &lt;background-size&gt; contain, cover 배경 이미지의 크기를 지정 &lt;background-attachment&gt; fixed 배경 이미지가 움직이지 않게 고정 See the Pen background-image by mon node (@mon-node) on CodePen. Chap2. 웹 페이지의 레이아웃 구성하기 집의 공간을 거실, 주방, 서재등 사용 목적에 나누듯이 웹 페이지도 시맨틱 태그를 통해 레이아웃을 분리해본다 Chap2-1. float을 사용하여 블록 요소 좌우로 배치하기 float 속성은 블록 요소를 강제로 띄워서 화면에 좌우로 배치가 가능하다 속성명 속성값 설명 &lt;float&gt; leftright 요소를 띄워서 왼쪽에 배치한다요소를 띄워서 오른쪽에 배치한다 See the Pen 웹 페이지의 레이아웃 구성_float 예제 by mon node (@mon-node) on CodePen. 위와 같이 section 요소가 좌우로 잘배치되었지만 부모 요소인 .wrap가 자식 요소의 높잇값을 인식하지 못해 테두리를 감싸지 못했다 인식 시키기위해서는 하기와 같이 가상 선택자를 생성한다 1 2 3 4 5 .wrap::after{ content: &#39;&#39;; display: block; clear: both; } Chap2-2. position 블록 요소 자유롭게 배치하기 position 속성은 여러 요소를 순서와 상관없이 화면에 가로세로 좌푯값을 설정해서 자유롭게 배치가 가능하다 속성명 속성값 설명 &lt;position&gt; relativeabsolutefixed 적용된 요소의 현재 위칫값을 기준으로 상대 위치를 지정부모 요소의 특정 구간을 기준으로 절대 위치를 지정한다웹 브라우저를 기준으로 절대 위치를 지정한다 [position-relative] See the Pen 웹 페이지의 레이아웃 구성_position 예제 by mon node (@mon-node) on CodePen. relative는 요소를 일반적인 문서 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-absolute] See the Pen 웹 페이지의 레이아웃 구성_position-absolute 예제 by mon node (@mon-node) on CodePen. absolute는 일반적인 문서 흐름에서 제거하고, 가장 가까운 position 지정 요소(position 속성에 속성값이 정의되어 있는 요소)에 대해 상대적으로 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다 [position-fixed] See the Pen 웹 페이지의 레이아웃 구성_position-fixed예제 by mon node (@mon-node) on CodePen. fixed는 웹 브라우저 기준으로 좌푯값이 고정된다 Chap2-3. object-fit을 사용하여 콘텐츠를 특정 영역에 채우기 object-fit 속성을 사용하면 부모 요소 영역에서 자식 요소로 지정한 이미지, 동영상 등 콘텐츠의 비율을 설정할 수 있다 속성명 속성값 설명 &lt;object-fit&gt; fillcovercontain 요소의 비율을 무시하고 가득 채움요소의 비율을 유지하면서 여백 없이 가득 채움요소의 비율을 유지하면서 콘텐츠가 잘리지 않게 가득 채움 See the Pen 웹 페이지의 레이아웃 구성_object-fit예제 by mon node (@mon-node) on CodePen. Chap2-4. z-index을 사용하여 겹쳐 있는 요소의 z축 순서를 지정하기 z-index를 사용하여 겹친 요소의 z축 순서를 강제로 지정할 수 있다 속성명 속성값 설명 &lt;z-index&gt; 순섯값 요소에 z축의 순서를 지정한다(값이 큰 요소가 위로 올라감) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; z-index: 2; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; z-index: 1; } Chap2-5. opacity을 사용하여 요소의 투명도 설정하기 특정 요소에 opacity 속성을 사용하여 투명에서 불투명까지 단계별로 투명도를 지정할 수 있다 속성명 속성값 설명 &lt;opacity&gt; 0~1 요소의 투명도를 지정함 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 --css-- .wrap .left{ width: 200px; height: 200px; background-color: blue; position: absolute; top: 50px; left: 50px; opacity: 0.3; } .wrap .right{ width: 200px; height: 200px; background-color: red; position: absolute; top: 50px; left: 50px; opacity: 0.5; } Chap3. 다양한 그래픽 효과 적용하기 css만으로도 그래픽 효과를 넣고 다양한 인터랙티브한 콘텐츠를 만들 수 있다 Chap3-1. 요소의 그림자 만들기 box-shadow, text-shadow 속성을 사용하면 블록 요소와 텍스트에 그림자 효과를 적용할 수 있다 속성명 속성값 설명 &lt;box-shadow&gt; 가로축/세로축/퍼짐정도/색상 블록 요소의 그림자를 생성 &lt;text-shadow&gt; 가로축/세로축/퍼짐정도/색상 텍스트의 그림자를 생성 See the Pen 블록 요소 그림자 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-2. 모서리를 둥글게 만들기 border-radius 속성을 사용하면 모서리를 둥글게 설정할 수 있다 속성명 속성값 설명 &lt;border-radius&gt; px, % 모서리를 속성값만큼 둥글게 만듬 See the Pen 모서리 둥글게 만들기 예제 by mon node (@mon-node) on CodePen. Chap3-3. 그레이디언트 적용하기 gradient 속성을 사용하면 한쪽은 짙게 하고 다른 쪽으로 갈수록 엷어지는 그레디언트로 지정이 가능하다 (그레이디언트 모양은 직선 또는 타원으로 지정한다) 속성명 속성값 설명 &lt;gradient&gt; linear-gradient(방향, 색상1, 색상2)radial-gradient(색상1, 색상2) 직선 모양의 그레이디언트를 적용타원 모양의 그레이디언트를 적용 See the Pen 그라디언트 적용하기 by mon node (@mon-node) on CodePen. Chap3-4. filter 속성 적용하기 filter 속성은 요소에 대한 시각효과를 지정하며 포토샵에서의 보정 기술과 같은 기술을 적용할 수 있다 속성명 속성값 설명 &lt;filter&gt; blurbrightnesscontrastgrayscalehue-rotateinvertsaturatesepia 요소의 흐림 효과를 조정한다요소의 밝기를 조정한다요소의 명도 대비를 조절한다요소의 흑백을 지정한다요소의 색상 단계를 조절한다요소의 색상 반전 단계를 조절한다요소의 채도를 조절한다요소의 갈색 톤 단계를 조절한다 See the Pen filter 사용하기 예제 by mon node (@mon-node) on CodePen. Chap4. 인터랙티브 웹을 위한 css다루기 css를 사용하여 사용자 행동에 따라 반응하는 인터랙티브 웹 콘텐츠를 만들기 Chap4-1. 콘텐츠 모양을 자유롭게 변형하기 transform 속성을 이용하여 HTML의 요소들을 다양하게 변형한 효과를 적용할 수 있다 속성명 속성값 설명 &lt;transform(2D)&gt; scaleskewtranslaterotate 선택한 요소의 크기를 확대 및 축소한다)선택한 요소를 x축 또는 y축으로 비틀어서 변형한다선택한 요소를 현재 위치 기준 x축 또는 y축 이동선택한 요소를 회전시킨다 &lt;transform(3D)&gt; rotateX, rotateYtranslateZ 선택한 요소를 x축 또는 y축으로 입체감 있게 회전시킨다선택한 요소를 z축으로 입체감 있게 보이면서 이동시킨다 perspective px 3D효과가 적용된 요소가 입체감 있게 보이도록 원근감을 부여한다 transform-style preserve-3d 3D효과를 유지시킨다 transform-origin 가로축,세로축 요소의 변형이 일어나는 중심축을 변경할 수 있다 See the Pen transform 예제 by mon node (@mon-node) on CodePen. Chap4-2. 사용자 행동에 반응하는 전환 효과 만들기 transition 속성을 이용하여 요소의 속성값이 변경될 때 시간을 지정하여 일정시간 동안 부드러운 모션 처리를 가능하게한다 속성명 속성값 설명 &lt;transition-property&gt; 속성명 전환 효과를 줄 css 속성명을 지정한다 속성명은 여러개 지정이 가능하며 all을 입력하면 전체 속성에서 사용이 가능하다 transition-duration 지속 시간(초 단위) 전환 효과가 발생할 때 지속할 시간을 나타낸다, 지속 시간은 초(s)단위로 지정하는데 0.5s는 0.5초, 1s는 1초를 의미한다 transition-delay 지연 시간(초 단위) 전환 효과가 발생할 때 지연할 시간을 나타낸다. 지연 시간은 초 단위로 지정하고, 이 속성을 사용하면 지연 시간 이후에 전환 효과가 나타난다 transition-timing-function 가속도 전환 효과의 가속도를 나타낸다 transition 속성명/전환시간/가속도/지연시간 모든 전환 효과 관련 속성값을 한꺼번에 축약해서 사용할 수 있다 See the Pen trnstion 예제 by mon node (@mon-node) on CodePen. Chap4-3. 자동으로 움직이는 애니메이션 효과 만들기 animation 속성을 사용자가 특정 동작을 하지 않더라도 미리 지정한 조건에 맞게 자동으로 반복하는 애니메이션 효과를 줄 수있다 속성명 속성값 설명 &lt;@keyframes&gt; 애니메이션 세트 지정 애니메이션의 시작과 끝을 등록하여 사용자 모션을 등록한다 0%는 시작 지점, 100%는 끝 지점이며 중간 지점은 여러개 추가 가능 animation-name 이름 키프레임으로 등록한 모션의 이름을 호출한다 animation-duration 지속 시간(초 단위) 키프레임 모션 한 세트를 얼마 동안 동작하게 할지 초 단위로 등록 animation-timing-function 가속도 키프레임 모션을 실행할 때 가속도를 설정한다 가속도의 사용 방법은 transtion속성과 같다 animation-iteration-count 횟수 키프레임 모션 한 세트가 몇 번 동작하는지 횟수를 숫자로 설정한다, 무한 반복하고 싶으면 속성값을 infinite로 지정한다 animation-play-state running/paused 키프레임 모션을 실행할 때 동작 상태를 지정한다 running은 모션을 그대로 진행하는 것을, paused는 일시 정지하는 것을 나타낸다 animation 이름/진행 시간/가속도/지연 시간/반복 횟수 애니메이션 속성을 축약해서 작성할 수 있다 See the Pen 애니메이션 예제 by mon node (@mon-node) on CodePen.","headline":"(인터랙티브 웹 페이지 만들기) Chapter3","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/chap3/"},"url":"http://0.0.0.0:4000/posts/chap3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>(인터랙티브 웹 페이지 만들기) Chapter3 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>(인터랙티브 웹 페이지 만들기) Chapter3</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>(인터랙티브 웹 페이지 만들기) Chapter3</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1696649580"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Oct  7, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="{width=" class="popup img-link  shimmer"><img src="{"width"= loading="lazy"></a>800, "height"=>500}" class="preview-img" alt="Preview Image" w="1200" h="630" ></div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="2826 words"
+>
+  <em>15 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <hr />
+
+<h2 id="chap1-웹-페이지의-배경-꾸미기"><span class="me-2">Chap1. 웹 페이지의 배경 꾸미기</span><a href="#chap1-웹-페이지의-배경-꾸미기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+  <p><span style="color:orange"> 태그 영역마다 배경색과 이미지를 넣을 수 있다</span></p>
+</blockquote>
+
+<h3 id="chap1-1-배경색-지정하기"><span class="me-2">Chap1-1. 배경색 지정하기</span><a href="#chap1-1-배경색-지정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>배경색은 <strong>background-color</strong> 속성을 사용해서 태그에 직접 지정할 수 있다</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><span style="color:red">background-color</span></td>
+      <td style="text-align: center">영문명<br />rgb(0,0,0)<br />#000000</td>
+      <td style="text-align: center">배경색을 영어 색상명으로 적용<br />배경색을 RGB 표기법으로 적용<br />배경색을 16진수 표기법으로 적용</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="gOZZrBZ" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/gOZZrBZ">
+  background-color</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<hr />
+
+<h3 id="chap1-2-배경-이미지-적용하기"><span class="me-2">Chap1-2. 배경 이미지 적용하기</span><a href="#chap1-2-배경-이미지-적용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;background-image&gt;</code></td>
+      <td style="text-align: center">url(이미지 경로</td>
+      <td style="text-align: center">배경 이미지를 삽입</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;background-repeat&gt;</code></td>
+      <td style="text-align: center">repeat, repeat-x, repeat-y, no-repeat</td>
+      <td style="text-align: center">배경 이미지를 반복</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;background-position&gt;</code></td>
+      <td style="text-align: center">가로축, 세로축</td>
+      <td style="text-align: center">배경 이미지의 위치를 지정</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;background-size&gt;</code></td>
+      <td style="text-align: center">contain, cover</td>
+      <td style="text-align: center">배경 이미지의 크기를 지정</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;background-attachment&gt;</code></td>
+      <td style="text-align: center">fixed</td>
+      <td style="text-align: center">배경 이미지가 움직이지 않게 고정</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="XWooqEQ" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/XWooqEQ">
+  background-image</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="chap2-웹-페이지의-레이아웃-구성하기"><span class="me-2">Chap2. 웹 페이지의 레이아웃 구성하기</span><a href="#chap2-웹-페이지의-레이아웃-구성하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+  <p><span style="color:orange">집의 공간을 거실, 주방, 서재등 사용 목적에 나누듯이</span> 웹 페이지도 시맨틱 태그를 통해 레이아웃을 분리해본다</p>
+</blockquote>
+
+<h3 id="chap2-1-float을-사용하여-블록-요소-좌우로-배치하기"><span class="me-2">Chap2-1. float을 사용하여 블록 요소 좌우로 배치하기</span><a href="#chap2-1-float을-사용하여-블록-요소-좌우로-배치하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>float 속성은 블록 요소를 강제로 띄워서 화면에 좌우로 배치가 가능하다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;float&gt;</code></td>
+      <td style="text-align: center">left<br />right</td>
+      <td style="text-align: center">요소를 띄워서 왼쪽에 배치한다<br />요소를 띄워서 오른쪽에 배치한다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="ExGGBVv" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/ExGGBVv">
+  웹 페이지의 레이아웃 구성_float 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>위와 같이 section 요소가 좌우로 잘배치되었지만 부모 요소인 .wrap가 자식 요소의 높잇값을 인식하지 못해 테두리를 감싸지 못했다 인식 시키기위해서는 하기와 같이 가상 선택자를 생성한다</p>
+<div class="language-css highlighter-rouge"><div class="code-header">
+        <span data-label-text="CSS"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nc">.wrap</span><span class="nd">::after</span><span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">''</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="chap2-2-position-블록-요소-자유롭게-배치하기"><span class="me-2">Chap2-2. position 블록 요소 자유롭게 배치하기</span><a href="#chap2-2-position-블록-요소-자유롭게-배치하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>position 속성은 여러 요소를  순서와 상관없이 화면에 가로세로 좌푯값을 설정해서 자유롭게 배치가 가능하다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;position&gt;</code></td>
+      <td style="text-align: center">relative<br />absolute<br />fixed</td>
+      <td style="text-align: center">적용된 요소의 현재 위칫값을 기준으로 상대 위치를 지정<br />부모 요소의 특정 구간을 기준으로 절대 위치를 지정한다<br />웹 브라우저를 기준으로 절대 위치를 지정한다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><strong>[position-relative]</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="Yzddord" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/Yzddord">
+  웹 페이지의 레이아웃 구성_position 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote class="prompt-warning">
+  <p><code class="language-plaintext highlighter-rouge">relative</code>는 요소를 일반적인 문서 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다</p>
+</blockquote>
+
+<hr />
+
+<p><strong>[position-absolute]</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="qBLgBeg" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/qBLgBeg">
+  웹 페이지의 레이아웃 구성_position-absolute 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote class="prompt-warning">
+  <p><code class="language-plaintext highlighter-rouge">absolute</code>는 일반적인 문서 흐름에서 제거하고, 가장 가까운 position 지정 요소(position 속성에 속성값이 정의되어 있는 요소)에 대해 상대적으로 오프셋(위치를 얼마간 이동시킬 것인지)을 적용한다</p>
+</blockquote>
+
+<p><strong>[position-fixed]</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="eYbxpmd" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/eYbxpmd">
+  웹 페이지의 레이아웃 구성_position-fixed예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote class="prompt-warning">
+  <p><code class="language-plaintext highlighter-rouge">fixed</code>는 웹 브라우저 기준으로 좌푯값이 고정된다</p>
+</blockquote>
+
+<h3 id="chap2-3-object-fit을-사용하여-콘텐츠를-특정-영역에-채우기"><span class="me-2">Chap2-3. object-fit을 사용하여 콘텐츠를 특정 영역에 채우기</span><a href="#chap2-3-object-fit을-사용하여-콘텐츠를-특정-영역에-채우기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>object-fit 속성을 사용하면 부모 요소 영역에서 자식 요소로 지정한 이미지, 동영상 등 콘텐츠의 비율을 설정할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;object-fit&gt;</code></td>
+      <td style="text-align: center">fill<br />cover<br />contain</td>
+      <td style="text-align: center">요소의 비율을 무시하고 가득 채움<br />요소의 비율을 유지하면서 여백 없이 가득 채움<br />요소의 비율을 유지하면서 콘텐츠가 잘리지 않게 가득 채움</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="OJrdyZJ" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/OJrdyZJ">
+  웹 페이지의 레이아웃 구성_object-fit예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap2-4-z-index을-사용하여-겹쳐-있는-요소의-z축-순서를-지정하기"><span class="me-2">Chap2-4. z-index을 사용하여 겹쳐 있는 요소의 z축 순서를 지정하기</span><a href="#chap2-4-z-index을-사용하여-겹쳐-있는-요소의-z축-순서를-지정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">z-index</code>를 사용하여 겹친 요소의 z축 순서를 강제로 지정할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;z-index&gt;</code></td>
+      <td style="text-align: center">순섯값</td>
+      <td style="text-align: center">요소에 z축의 순서를 지정한다(값이 큰 요소가 위로 올라감)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<div class="language-css highlighter-rouge"><div class="code-header">
+        <span data-label-text="CSS"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="nt">--css--</span>
+
+<span class="nc">.wrap</span> <span class="nc">.left</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.wrap</span> <span class="nc">.right</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="chap2-5-opacity을-사용하여-요소의-투명도-설정하기"><span class="me-2">Chap2-5. opacity을 사용하여 요소의 투명도 설정하기</span><a href="#chap2-5-opacity을-사용하여-요소의-투명도-설정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<blockquote class="prompt-tip">
+  <p>특정 요소에 <code class="language-plaintext highlighter-rouge">opacity</code> 속성을 사용하여 투명에서 불투명까지 단계별로 투명도를 지정할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;opacity&gt;</code></td>
+      <td style="text-align: center">0~1</td>
+      <td style="text-align: center">요소의 투명도를 지정함</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<div class="language-css highlighter-rouge"><div class="code-header">
+        <span data-label-text="CSS"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="nt">--css--</span>
+
+<span class="nc">.wrap</span> <span class="nc">.left</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.3</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.wrap</span> <span class="nc">.right</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="chap3-다양한-그래픽-효과-적용하기"><span class="me-2">Chap3. 다양한 그래픽 효과 적용하기</span><a href="#chap3-다양한-그래픽-효과-적용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<blockquote class="prompt-tip">
+  <p>css만으로도 그래픽 효과를 넣고 다양한 인터랙티브한 콘텐츠를 만들 수 있다</p>
+</blockquote>
+
+<h3 id="chap3-1-요소의-그림자-만들기"><span class="me-2">Chap3-1. 요소의 그림자 만들기</span><a href="#chap3-1-요소의-그림자-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">box-shadow</code>, <code class="language-plaintext highlighter-rouge">text-shadow</code> 속성을 사용하면 블록 요소와 텍스트에 그림자 효과를 적용할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;box-shadow&gt;</code></td>
+      <td style="text-align: center">가로축/세로축/퍼짐정도/색상</td>
+      <td style="text-align: center">블록 요소의 그림자를 생성</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;text-shadow&gt;</code></td>
+      <td style="text-align: center">가로축/세로축/퍼짐정도/색상</td>
+      <td style="text-align: center">텍스트의 그림자를 생성</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="PoXVZNN" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/PoXVZNN">
+  블록 요소 그림자 만들기 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap3-2-모서리를-둥글게-만들기"><span class="me-2">Chap3-2. 모서리를 둥글게 만들기</span><a href="#chap3-2-모서리를-둥글게-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">border-radius</code> 속성을 사용하면 모서리를 둥글게 설정할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;border-radius&gt;</code></td>
+      <td style="text-align: center">px, %</td>
+      <td style="text-align: center">모서리를 속성값만큼 둥글게 만듬</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="xxmMrrp" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/xxmMrrp">
+  모서리 둥글게 만들기 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap3-3-그레이디언트-적용하기"><span class="me-2">Chap3-3. 그레이디언트 적용하기</span><a href="#chap3-3-그레이디언트-적용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">gradient</code> 속성을 사용하면 한쪽은 짙게 하고 다른 쪽으로 갈수록 엷어지는 그레디언트로 지정이 가능하다 (그레이디언트 모양은 직선 또는 타원으로 지정한다)</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;gradient&gt;</code></td>
+      <td style="text-align: center">linear-gradient(방향, 색상1, 색상2)<br />radial-gradient(색상1, 색상2)</td>
+      <td style="text-align: center">직선 모양의 그레이디언트를 적용<br />타원 모양의 그레이디언트를 적용</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="poqGwWb" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/poqGwWb">
+  그라디언트 적용하기</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap3-4-filter-속성-적용하기"><span class="me-2">Chap3-4. filter 속성 적용하기</span><a href="#chap3-4-filter-속성-적용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">filter</code> 속성은 요소에 대한 시각효과를 지정하며 포토샵에서의 보정 기술과 같은 기술을 적용할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;filter&gt;</code></td>
+      <td style="text-align: center">blur<br />brightness<br />contrast<br />grayscale<br />hue-rotate<br />invert<br />saturate<br />sepia</td>
+      <td style="text-align: center">요소의 흐림 효과를 조정한다<br />요소의 밝기를 조정한다<br />요소의 명도 대비를 조절한다<br />요소의 흑백을 지정한다<br />요소의 색상 단계를 조절한다<br />요소의 색상 반전 단계를 조절한다<br />요소의 채도를 조절한다<br />요소의 갈색 톤 단계를 조절한다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="dywazbL" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/dywazbL">
+  filter 사용하기 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="chap4-인터랙티브-웹을-위한-css다루기"><span class="me-2">Chap4. 인터랙티브 웹을 위한 css다루기</span><a href="#chap4-인터랙티브-웹을-위한-css다루기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<blockquote class="prompt-tip">
+  <p>css를 사용하여 사용자 행동에 따라 반응하는 인터랙티브 웹 콘텐츠를 만들기</p>
+</blockquote>
+
+<h3 id="chap4-1-콘텐츠-모양을-자유롭게-변형하기"><span class="me-2">Chap4-1. 콘텐츠 모양을 자유롭게 변형하기</span><a href="#chap4-1-콘텐츠-모양을-자유롭게-변형하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">transform</code> 속성을 이용하여 HTML의 요소들을 다양하게 변형한 효과를 적용할 수 있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;transform(2D)&gt;</code></td>
+      <td style="text-align: center">scale<br />skew<br />translate<br />rotate</td>
+      <td style="text-align: center">선택한 요소의 크기를 확대 및 축소한다)<br />선택한 요소를 x축 또는 y축으로 비틀어서 변형한다<br />선택한 요소를 현재 위치 기준 x축 또는 y축 이동<br />선택한 요소를 회전시킨다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;transform(3D)&gt;</code></td>
+      <td style="text-align: center">rotateX, rotateY<br />translateZ</td>
+      <td style="text-align: center">선택한 요소를 x축 또는 y축으로 입체감 있게 회전시킨다<br />선택한 요소를 z축으로 입체감 있게 보이면서 이동시킨다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">perspective</code></td>
+      <td style="text-align: center">px</td>
+      <td style="text-align: center">3D효과가 적용된 요소가 입체감 있게 보이도록 원근감을 부여한다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transform-style</code></td>
+      <td style="text-align: center">preserve-3d</td>
+      <td style="text-align: center">3D효과를 유지시킨다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transform-origin</code></td>
+      <td style="text-align: center">가로축,세로축</td>
+      <td style="text-align: center">요소의 변형이 일어나는 중심축을 변경할 수 있다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="300" data-default-tab="html" data-slug-hash="ExGrvXG" data-editable="true" data-user="mon-node" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/ExGrvXG">
+  transform 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap4-2-사용자-행동에-반응하는-전환-효과-만들기"><span class="me-2">Chap4-2. 사용자 행동에 반응하는 전환 효과 만들기</span><a href="#chap4-2-사용자-행동에-반응하는-전환-효과-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">transition</code> 속성을 이용하여 요소의 속성값이 변경될 때 시간을 지정하여 일정시간 동안 부드러운 모션 처리를 가능하게한다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;transition-property&gt;</code></td>
+      <td style="text-align: center">속성명</td>
+      <td>전환 효과를 줄 css 속성명을 지정한다 속성명은 여러개 지정이 가능하며 all을 입력하면 전체 속성에서 사용이 가능하다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transition-duration</code></td>
+      <td style="text-align: center">지속 시간(초 단위)</td>
+      <td>전환 효과가 발생할 때 지속할 시간을 나타낸다, 지속 시간은 초(s)단위로 지정하는데 0.5s는 0.5초, 1s는 1초를 의미한다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transition-delay</code></td>
+      <td style="text-align: center">지연 시간(초 단위)</td>
+      <td>전환 효과가 발생할 때 지연할 시간을 나타낸다. 지연 시간은 초 단위로 지정하고, 이 속성을 사용하면 지연 시간 이후에 전환 효과가 나타난다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transition-timing-function</code></td>
+      <td style="text-align: center">가속도</td>
+      <td>전환 효과의 가속도를 나타낸다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">transition</code></td>
+      <td style="text-align: center">속성명/전환시간/가속도/지연시간</td>
+      <td>모든 전환 효과 관련 속성값을 한꺼번에 축약해서 사용할 수 있다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="VwqgMQW" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/VwqgMQW">
+  trnstion 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="chap4-3-자동으로-움직이는-애니메이션-효과-만들기"><span class="me-2">Chap4-3. 자동으로 움직이는 애니메이션 효과 만들기</span><a href="#chap4-3-자동으로-움직이는-애니메이션-효과-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><code class="language-plaintext highlighter-rouge">animation</code> 속성을 사용자가 특정 동작을 하지 않더라도 미리 지정한 조건에 맞게 자동으로 반복하는 애니메이션 효과를 줄 수있다</p>
+</blockquote>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성명</th>
+      <th style="text-align: center">속성값</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;@keyframes&gt;</code></td>
+      <td style="text-align: center">애니메이션 세트 지정</td>
+      <td>애니메이션의 시작과 끝을 등록하여 사용자 모션을 등록한다 0%는 시작 지점, 100%는 끝 지점이며 중간 지점은 여러개 추가 가능</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation-name</code></td>
+      <td style="text-align: center">이름</td>
+      <td>키프레임으로 등록한 모션의 이름을 호출한다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation-duration</code></td>
+      <td style="text-align: center">지속 시간(초 단위)</td>
+      <td>키프레임 모션 한 세트를 얼마 동안 동작하게 할지 초 단위로 등록</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation-timing-function</code></td>
+      <td style="text-align: center">가속도</td>
+      <td>키프레임 모션을 실행할 때 가속도를 설정한다 가속도의 사용 방법은 transtion속성과 같다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation-iteration-count</code></td>
+      <td style="text-align: center">횟수</td>
+      <td>키프레임 모션 한 세트가 몇 번 동작하는지 횟수를 숫자로 설정한다, 무한 반복하고 싶으면 속성값을 infinite로 지정한다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation-play-state</code></td>
+      <td style="text-align: center">running/paused</td>
+      <td>키프레임 모션을 실행할 때 동작 상태를 지정한다 running은 모션을 그대로 진행하는 것을, paused는 일시 정지하는 것을 나타낸다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">animation</code></td>
+      <td style="text-align: center">이름/진행 시간/가속도/지연 시간/반복 횟수</td>
+      <td>애니메이션 속성을 축약해서 작성할 수 있다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p class="codepen" data-height="500" data-default-tab="html" data-slug-hash="ZEVwXNb" data-editable="true" data-user="mon-node" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/ZEVwXNb">
+  애니메이션 예제</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/develop/">Develop</a>,
+          <a href="/categories/javascript/">Javascript</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/javascript/"
+            class="post-tag no-text-decoration"
+          >Javascript</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter3%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap3%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter3%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap3%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap3%2F&text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter3%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap3%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/jsp01/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1705462380"
+  data-df="ll"
+  
+>
+  Jan 17, 2024
+</time>
+
+              <h4 class="pt-0 my-2">JSP 자바 웹 프로그래밍 Chap1</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  [실습을 위한 도구들]
+
+
+  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구
+  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버
+  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)
+  Oracle 21c Express Edition : 데이터 베이스 관리 시스템
+  SQL Developer : ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_spread_rest/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1708831980"
+  data-df="ll"
+  
+>
+  Feb 25, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Spread와 Rest Parameters</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Spread Operator
+
+전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다
+
+배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_map/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712028780"
+  data-df="ll"
+  
+>
+  Apr  2, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Map함수</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Map 함수란
+
+Map함수는  콜백 함수를 이용해 각각의 요소에 호출해서 그 값을 변환할 수 있게 해준다. 다시 말하자면 콜백 함수는 배열의 각 요소에 실행된다
+
+예를들어 간단한 예제 코드를 보도록한다
+
+먼저 다음과 같은 배열 요소가 있다고 가정해본다
+
+[단순한 Javascript 배열]
+
+1
+2
+  //배열 arr을 만들고 1~5 까지 숫자를 넣어둔...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/chap2/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>(인터랙티브 웹 페이지 만들기) Chapter2</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/chap4/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>(인터랙티브 웹 페이지 만들기) Chapter4</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

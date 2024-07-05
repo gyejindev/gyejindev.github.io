@@ -1,0 +1,3299 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="생성자와 this" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="생성자 인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드 인스턴스 초기화란 인스턴스 변수들을 초기화하는 것 대부분 객체의 초기화를 목적으로 사용한다 인스턴스 생성 과정 graph LR A(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&gt;B(생성자가 호출되어 실행)--&gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다) 생성자의 제약조건 생성자의 이름은 클래스의 이름과 같아야한다 생성자는 다른 함수와는 다르게 리턴 값이 없다 생성자는 객체가 생성될때 자동으로 한번 호출된다 생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩) 생성자의 종류 매개변수가 있는 생성자 1 2 3 4 5 6 7 8 9 10 11 12 class human { String name; String job; int age; Car() {} // 기본 생성자 Car(String c, String g, int d) { // 생성자 name = c; job = g; age = d; } } 생성자를 사용하지 않고 객체에 데이터를 직접 넣을때 1 2 3 4 5 // 생성자를 사용하지 않았을 때 human h = new human(); h.name = &quot;parkdongwon&quot;; h.job = &quot;student&quot;; h.age = 16; 생성자를 사용하여 객체에 데이터를 직접 넣을때 1 human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); this this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다 this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우) 아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용하지 않아서 이슈된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { name = name; job = job; age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: null System.out.println(&quot;job: &quot; + h.job); // job: null System.out.println(&quot;age: &quot; + h.age); // age: 0 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용해서 정상화된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출) 아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다 오버로딩 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 // this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출) public class human { public String name; public String job; public int age; public human(String name, int age) { // human(String name, String job, int age)를 호출 this(name, &quot;student&quot;, age); } public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } 객체 자신의 참조값을 전달하고 싶을 때 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 // this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때) public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } // 어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우 public human getHumanInstance() { return this; } }" />
+<meta property="og:description" content="생성자 인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드 인스턴스 초기화란 인스턴스 변수들을 초기화하는 것 대부분 객체의 초기화를 목적으로 사용한다 인스턴스 생성 과정 graph LR A(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&gt;B(생성자가 호출되어 실행)--&gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다) 생성자의 제약조건 생성자의 이름은 클래스의 이름과 같아야한다 생성자는 다른 함수와는 다르게 리턴 값이 없다 생성자는 객체가 생성될때 자동으로 한번 호출된다 생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩) 생성자의 종류 매개변수가 있는 생성자 1 2 3 4 5 6 7 8 9 10 11 12 class human { String name; String job; int age; Car() {} // 기본 생성자 Car(String c, String g, int d) { // 생성자 name = c; job = g; age = d; } } 생성자를 사용하지 않고 객체에 데이터를 직접 넣을때 1 2 3 4 5 // 생성자를 사용하지 않았을 때 human h = new human(); h.name = &quot;parkdongwon&quot;; h.job = &quot;student&quot;; h.age = 16; 생성자를 사용하여 객체에 데이터를 직접 넣을때 1 human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); this this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다 this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우) 아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용하지 않아서 이슈된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { name = name; job = job; age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: null System.out.println(&quot;job: &quot; + h.job); // job: null System.out.println(&quot;age: &quot; + h.age); // age: 0 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용해서 정상화된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출) 아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다 오버로딩 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 // this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출) public class human { public String name; public String job; public int age; public human(String name, int age) { // human(String name, String job, int age)를 호출 this(name, &quot;student&quot;, age); } public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } 객체 자신의 참조값을 전달하고 싶을 때 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 // this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때) public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } // 어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우 public human getHumanInstance() { return this; } }" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/constructor/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/constructor/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-10T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="생성자와 this" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-10T12:33:00+09:00","datePublished":"2023-11-10T12:33:00+09:00","description":"생성자 인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드 인스턴스 초기화란 인스턴스 변수들을 초기화하는 것 대부분 객체의 초기화를 목적으로 사용한다 인스턴스 생성 과정 graph LR A(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&gt;B(생성자가 호출되어 실행)--&gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다) 생성자의 제약조건 생성자의 이름은 클래스의 이름과 같아야한다 생성자는 다른 함수와는 다르게 리턴 값이 없다 생성자는 객체가 생성될때 자동으로 한번 호출된다 생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩) 생성자의 종류 매개변수가 있는 생성자 1 2 3 4 5 6 7 8 9 10 11 12 class human { String name; String job; int age; Car() {} // 기본 생성자 Car(String c, String g, int d) { // 생성자 name = c; job = g; age = d; } } 생성자를 사용하지 않고 객체에 데이터를 직접 넣을때 1 2 3 4 5 // 생성자를 사용하지 않았을 때 human h = new human(); h.name = &quot;parkdongwon&quot;; h.job = &quot;student&quot;; h.age = 16; 생성자를 사용하여 객체에 데이터를 직접 넣을때 1 human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); this this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다 this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우) 아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용하지 않아서 이슈된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { name = name; job = job; age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: null System.out.println(&quot;job: &quot; + h.job); // job: null System.out.println(&quot;age: &quot; + h.age); // age: 0 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 // this를 사용해서 정상화된 코드 public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출) 아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다 오버로딩 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 // this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출) public class human { public String name; public String job; public int age; public human(String name, int age) { // human(String name, String job, int age)를 호출 this(name, &quot;student&quot;, age); } public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } public static void main(String[] args) { human h = new human(&quot;parkdongwon&quot;, &quot;student&quot;, 16); System.out.println(&quot;name: &quot; + h.name); // name: parkdongwon System.out.println(&quot;job: &quot; + h.job); // job: student System.out.println(&quot;age: &quot; + h.age); // age: 16 } } 객체 자신의 참조값을 전달하고 싶을 때 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 // this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때) public class human { public String name; public String job; public int age; public human(String name, String job, int age) { this.name = name; this.job = job; this.age = age; } // 어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우 public human getHumanInstance() { return this; } }","headline":"생성자와 this","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/constructor/"},"url":"http://0.0.0.0:4000/posts/constructor/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>생성자와 this | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>생성자와 this</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>생성자와 this</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1699587180"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Nov 10, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1139 words"
+>
+  <em>6 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <hr />
+
+<h2 id="생성자"><span class="me-2">생성자</span><a href="#생성자" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+  <ul>
+    <li>인스턴스(객체)가 생성될 때 호출되는 인스턴스(객체) 초기화 메서드</li>
+    <li>인스턴스 초기화란 인스턴스 변수들을 초기화하는 것</li>
+    <li>대부분 <code class="language-plaintext highlighter-rouge">객체의 초기화</code>를 목적으로 사용한다</li>
+  </ul>
+</blockquote>
+
+<h2 id="인스턴스-생성-과정"><span class="me-2">인스턴스 생성 과정</span><a href="#인스턴스-생성-과정" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<pre><code class="language-mermaid">graph LR
+A(new연산자를 통해서 메모리heap영역에 인스턴스 생성)--&gt;B(생성자가 호출되어 실행)--&gt;C(new연산자 결과로 해당 객체의 주소가 변환되어 참조변수에 저장된다)
+</code></pre>
+
+<h2 id="생성자의-제약조건"><span class="me-2">생성자의 제약조건</span><a href="#생성자의-제약조건" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+
+  <ul class="task-list">
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>생성자의 이름은 클래스의 이름과 같아야한다</li>
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>생성자는 다른 함수와는 다르게 리턴 값이 없다</li>
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>생성자는 객체가 생성될때 자동으로 한번 호출된다</li>
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>생성자는 매개변수 조건에 따라 여러개를 작성할 수 있다(오버로딩)</li>
+  </ul>
+</blockquote>
+
+<h2 id="생성자의-종류"><span class="me-2">생성자의 종류</span><a href="#생성자의-종류" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<h3 id="매개변수가-있는-생성자"><span class="me-2">매개변수가 있는 생성자</span><a href="#매개변수가-있는-생성자" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">human</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">job</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span> 
+
+    <span class="nc">Car</span><span class="o">()</span> <span class="o">{}</span> <span class="c1">// 기본 생성자</span>
+    <span class="nc">Car</span><span class="o">(</span><span class="nc">String</span> <span class="n">c</span><span class="o">,</span> <span class="nc">String</span> <span class="n">g</span><span class="o">,</span> <span class="kt">int</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 생성자    </span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+        <span class="n">job</span> <span class="o">=</span> <span class="n">g</span><span class="o">;</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="생성자를-사용하지-않고-객체에-데이터를-직접-넣을때"><span class="me-2">생성자를 사용하지 않고 객체에 데이터를 직접 넣을때</span><a href="#생성자를-사용하지-않고-객체에-데이터를-직접-넣을때" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// 생성자를 사용하지 않았을 때</span>
+<span class="n">human</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">human</span><span class="o">();</span>
+<span class="n">h</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"parkdongwon"</span><span class="o">;</span>
+<span class="n">h</span><span class="o">.</span><span class="na">job</span> <span class="o">=</span> <span class="s">"student"</span><span class="o">;</span>
+<span class="n">h</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="mi">16</span><span class="o">;</span>        
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="생성자를-사용하여-객체에-데이터를-직접-넣을때"><span class="me-2">생성자를 사용하여 객체에 데이터를 직접 넣을때</span><a href="#생성자를-사용하여-객체에-데이터를-직접-넣을때" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">human</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">human</span><span class="o">(</span><span class="s">"parkdongwon"</span><span class="o">,</span> <span class="s">"student"</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="this"><span class="me-2">this</span><a href="#this" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+  <p>this는 객체 즉 자기자신을 나타낸다 this를 사용하는 경우는 아래와 같다</p>
+</blockquote>
+
+<h3 id="this를-사용하는-경우클래스의-속성과-생성자메소드의-매개변수의-이름이-같은-경우"><span class="me-2">this를 사용하는 경우(클래스의 속성과 생성자/메소드의 매개변수의 이름이 같은 경우)</span><a href="#this를-사용하는-경우클래스의-속성과-생성자메소드의-매개변수의-이름이-같은-경우" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>아래 소스와 같이 생성자에서 받는 매개변수의 이름과 클래스의 변수 이름이 같을 경우 java는 매개변수인지 클래스 변수인지 인식을 하지 못해서 값을 제대로 반영하지 못한다</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="c1">// this를 사용하지 않아서 이슈된 코드</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">human</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">job</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">human</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">job</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="n">job</span> <span class="o">=</span> <span class="n">job</span><span class="o">;</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">human</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">human</span><span class="o">(</span><span class="s">"parkdongwon"</span><span class="o">,</span> <span class="s">"student"</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">name</span><span class="o">);</span> <span class="c1">// name: null</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"job: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">job</span><span class="o">);</span> <span class="c1">// job: null</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">age</span><span class="o">);</span> <span class="c1">// age: 0</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="c1">// this를 사용해서 정상화된 코드</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">human</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">job</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">human</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">job</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">job</span> <span class="o">=</span> <span class="n">job</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">human</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">human</span><span class="o">(</span><span class="s">"parkdongwon"</span><span class="o">,</span> <span class="s">"student"</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">name</span><span class="o">);</span> <span class="c1">// name: parkdongwon</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"job: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">job</span><span class="o">);</span> <span class="c1">// job: student</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">age</span><span class="o">);</span> <span class="c1">// age: 16</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="this를-사용하는-경우클래스에-오버로딩된-다른-생성자-호출"><span class="me-2">this를 사용하는 경우(클래스에 오버로딩된 다른 생성자 호출)</span><a href="#this를-사용하는-경우클래스에-오버로딩된-다른-생성자-호출" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<blockquote class="prompt-tip">
+  <p>아래 소스와 같이 생성자가 여러개인 오버로딩된 경우 생성자가 다른 생성자를 호출할때는 this를 사용하여 호출한다</p>
+</blockquote>
+
+<ul class="task-list">
+  <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i><code class="language-plaintext highlighter-rouge">오버로딩</code> 이란 너무 많이 적재했다(Overloading)는 뜻을 가진 단어로 같은 이름의 메서드에 매개변수의 타입, 개수를 다르게 한 것을 말한다</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="c1">// this를 사용하는 경우 (클래스에 오버로딩된 다른 생성자 호출)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">human</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">job</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">human</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// human(String name, String job, int age)를 호출</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="s">"student"</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="nf">human</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">job</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">job</span> <span class="o">=</span> <span class="n">job</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">human</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">human</span><span class="o">(</span><span class="s">"parkdongwon"</span><span class="o">,</span> <span class="s">"student"</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">name</span><span class="o">);</span> <span class="c1">// name: parkdongwon</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"job: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">job</span><span class="o">);</span> <span class="c1">// job: student</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age: "</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="na">age</span><span class="o">);</span> <span class="c1">// age: 16</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="객체-자신의-참조값을-전달하고-싶을-때"><span class="me-2">객체 자신의 참조값을 전달하고 싶을 때</span><a href="#객체-자신의-참조값을-전달하고-싶을-때" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<div class="language-java highlighter-rouge"><div class="code-header">
+        <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">// this를 사용하는 경우 (객체 자신의 참조값을 전달하고 싶을 때)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">human</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">job</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">human</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">job</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">job</span> <span class="o">=</span> <span class="n">job</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//  어떤 메소드에서는 동작을 완료하고 리턴값으로 메소드의 매개변수로 객체, 자기 자신의 참조값을 전달하고 싶어하는 경우</span>
+    <span class="kd">public</span> <span class="n">human</span> <span class="nf">getHumanInstance</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>   
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/develop/">Develop</a>,
+          <a href="/categories/java/">Java</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/java/"
+            class="post-tag no-text-decoration"
+          >Java</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%20this%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fconstructor%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%20this%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fconstructor%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fconstructor%2F&text=%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80%20this%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fconstructor%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/jsp01/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1705462380"
+  data-df="ll"
+  
+>
+  Jan 17, 2024
+</time>
+
+              <h4 class="pt-0 my-2">JSP 자바 웹 프로그래밍 Chap1</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  [실습을 위한 도구들]
+
+
+  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구
+  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버
+  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)
+  Oracle 21c Express Edition : 데이터 베이스 관리 시스템
+  SQL Developer : ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/langchain/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1706671980"
+  data-df="ll"
+  
+>
+  Jan 31, 2024
+</time>
+
+              <h4 class="pt-0 my-2">LangChain이란</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  LangChain 이란
+
+LangChain을 알기위해선 먼저 LLM(대형 언어 모델)에 대해 알아야한다
+LLM은 방대한 양의 데이터를 기반으로 사전에 학습이 되어진 초대형 딥 러닝 모델이다
+
+
+  LM (언어 모델, Language Model) 이란, 인간의 언어를 이해하고 생성하도록 훈련된 일종의 인공지능 모델
+
+
+LNP vs LLM
+
+NLP는 인간...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_spread_rest/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1708831980"
+  data-df="ll"
+  
+>
+  Feb 25, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Spread와 Rest Parameters</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Spread Operator
+
+전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다
+
+배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/chap5/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>(인터랙티브 웹 페이지 만들기) Chapter5</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/class/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>클래스와 인스턴스</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,3964 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  <!-- it's a local file path -->
+
+  
+  
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="(코딩 자율학습 스프링 부트3) 3장" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Part2. 스프링 부트 시작 게시판 만들고 새 글 작성하기: Create 폼 데이터 폼 데이터는 HTML 요소인 &lt;form&gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &lt;form&gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 [FORM 태그 속성] 폼 태그 속성에는 name, action, method, target 등이 있다 1. action - 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다 - 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다 1. name - 전송될 데이터의 이름 1. accept-charset - 폼 전송에 사용할 문자 인코딩을 지정한다 1. target - action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다 1. method (디폴트 값 = get) - 서버로 데이터를 전송하는 방식입니다. - get 방식 or post 방식이 존재한다 1) get 방식 - &lt;form method = &quot;get&quot;&gt; &amp; 링크 &amp; URL 직접 &amp; 자바스크립트 등등 - URL의 끝에 데이터를 첨부해서 전송하는 방식 문제점 - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지) - URL 최대 256자까지 (오버플로우 : 데이터 잘림) - URL은 인코딩 방식이 base64(한글포함x) - 되도록 영문과 숫자 정도만 전송 1) post 방식 - post 방식 : &lt;form method = &quot;post&quot;&gt; 유일 - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식) - 데이터 노출이 없음(보안상 조금 더 안전) - 제한 크기 무제한 - 한글 상관없이 전송 [Form데이터를 DTO객체로 저장하는 과정] graph LR A(01.뷰 페이지 만들기)--&gt;B[02.컨트롤러 만들기] B--&gt;C(03.DTO 만들기) graph LR D[04.전송 받은 폼 데이터로 DTO 객체에 담기] D--&gt;E(05.DTO를 엔티티로 변환하기)--&gt;F(06.리파지터리로 엔티티를 DB에 저장하기) 뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache] 컨트롤러 만들기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] [사용자가 입력한 폼 데이터를 처리하는 라우트] DTO 만들기[/src/main/java/dto/ArticleForm] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 폼 데이터와 DTO 필드 매핑하기 DTO를 엔티티로 변환하기 [엔티티 클래스 생성 /src/main/java/entity/Article] DTO의 데이터를 받아서 처리하기 위해 엔티티 클래스를 생성한다 DTO 코드를 작성할 때와 같이 title, content 필드를 선언한다 두 필드도 DB에서 인식할 수 있게 @Column 어노테이션을 붙인다 두 필드가 DB 테이블의 각 열(column)과 연결된다 엔티티 클래스에 @Entity이 선언되어있는데 JPA에서 제공하는 어노테이션으로, 이 어노테이션이 붙은 클래스를 기반으로 DB에 테이블이 생성된다 테이블 이름은 클래스 이름과 동일하게 Article로 생성된다 엔티티의 대푯값을 넣는다 대푯값을 id로 선언하고 @Id 어노테이션을 붙입니다. 이어서 @GeneratedValue 어노테이션도 붙여서 대푯값을 자동으로 생성하게 한다(예: 1, 2, 3, …) 리파지터리로 엔티티를 DB에 저장하기 [리파지터리 인터페이스 생성하기 /src/main/java/repository/ArticleRepository] [리파지터리로 엔티티를 DB에 저장하기 /src/main/java/controller/ArticleController] JPA(Java Persistence API)는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 JPA의 핵심 도구로는 엔티티(entity)와 리파지터리(repository)가 있다 엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다 리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다 [DTO를 DB에 저장하는 과정] graph LR A(클라이언트에서 데이터 생성)--&gt;B[컨트롤러에서 DTO에 담음] B--&gt;C C(DTO객체를 DB엔티티로 변환)--&gt;D[리파지터리에서 DB엔티티를 DB에 저장]" />
+<meta property="og:description" content="Part2. 스프링 부트 시작 게시판 만들고 새 글 작성하기: Create 폼 데이터 폼 데이터는 HTML 요소인 &lt;form&gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &lt;form&gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 [FORM 태그 속성] 폼 태그 속성에는 name, action, method, target 등이 있다 1. action - 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다 - 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다 1. name - 전송될 데이터의 이름 1. accept-charset - 폼 전송에 사용할 문자 인코딩을 지정한다 1. target - action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다 1. method (디폴트 값 = get) - 서버로 데이터를 전송하는 방식입니다. - get 방식 or post 방식이 존재한다 1) get 방식 - &lt;form method = &quot;get&quot;&gt; &amp; 링크 &amp; URL 직접 &amp; 자바스크립트 등등 - URL의 끝에 데이터를 첨부해서 전송하는 방식 문제점 - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지) - URL 최대 256자까지 (오버플로우 : 데이터 잘림) - URL은 인코딩 방식이 base64(한글포함x) - 되도록 영문과 숫자 정도만 전송 1) post 방식 - post 방식 : &lt;form method = &quot;post&quot;&gt; 유일 - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식) - 데이터 노출이 없음(보안상 조금 더 안전) - 제한 크기 무제한 - 한글 상관없이 전송 [Form데이터를 DTO객체로 저장하는 과정] graph LR A(01.뷰 페이지 만들기)--&gt;B[02.컨트롤러 만들기] B--&gt;C(03.DTO 만들기) graph LR D[04.전송 받은 폼 데이터로 DTO 객체에 담기] D--&gt;E(05.DTO를 엔티티로 변환하기)--&gt;F(06.리파지터리로 엔티티를 DB에 저장하기) 뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache] 컨트롤러 만들기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] [사용자가 입력한 폼 데이터를 처리하는 라우트] DTO 만들기[/src/main/java/dto/ArticleForm] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 폼 데이터와 DTO 필드 매핑하기 DTO를 엔티티로 변환하기 [엔티티 클래스 생성 /src/main/java/entity/Article] DTO의 데이터를 받아서 처리하기 위해 엔티티 클래스를 생성한다 DTO 코드를 작성할 때와 같이 title, content 필드를 선언한다 두 필드도 DB에서 인식할 수 있게 @Column 어노테이션을 붙인다 두 필드가 DB 테이블의 각 열(column)과 연결된다 엔티티 클래스에 @Entity이 선언되어있는데 JPA에서 제공하는 어노테이션으로, 이 어노테이션이 붙은 클래스를 기반으로 DB에 테이블이 생성된다 테이블 이름은 클래스 이름과 동일하게 Article로 생성된다 엔티티의 대푯값을 넣는다 대푯값을 id로 선언하고 @Id 어노테이션을 붙입니다. 이어서 @GeneratedValue 어노테이션도 붙여서 대푯값을 자동으로 생성하게 한다(예: 1, 2, 3, …) 리파지터리로 엔티티를 DB에 저장하기 [리파지터리 인터페이스 생성하기 /src/main/java/repository/ArticleRepository] [리파지터리로 엔티티를 DB에 저장하기 /src/main/java/controller/ArticleController] JPA(Java Persistence API)는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 JPA의 핵심 도구로는 엔티티(entity)와 리파지터리(repository)가 있다 엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다 리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다 [DTO를 DB에 저장하는 과정] graph LR A(클라이언트에서 데이터 생성)--&gt;B[컨트롤러에서 DTO에 담음] B--&gt;C C(DTO객체를 DB엔티티로 변환)--&gt;D[리파지터리에서 DB엔티티를 DB에 저장]" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/spring2/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/spring2/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-16T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(코딩 자율학습 스프링 부트3) 3장" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-16T12:33:00+09:00","datePublished":"2023-11-16T12:33:00+09:00","description":"Part2. 스프링 부트 시작 게시판 만들고 새 글 작성하기: Create 폼 데이터 폼 데이터는 HTML 요소인 &lt;form&gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &lt;form&gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data Transfer Object)라 한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 [FORM 태그 속성] 폼 태그 속성에는 name, action, method, target 등이 있다 1. action - 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다 - 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다 1. name - 전송될 데이터의 이름 1. accept-charset - 폼 전송에 사용할 문자 인코딩을 지정한다 1. target - action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다 1. method (디폴트 값 = get) - 서버로 데이터를 전송하는 방식입니다. - get 방식 or post 방식이 존재한다 1) get 방식 - &lt;form method = &quot;get&quot;&gt; &amp; 링크 &amp; URL 직접 &amp; 자바스크립트 등등 - URL의 끝에 데이터를 첨부해서 전송하는 방식 문제점 - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지) - URL 최대 256자까지 (오버플로우 : 데이터 잘림) - URL은 인코딩 방식이 base64(한글포함x) - 되도록 영문과 숫자 정도만 전송 1) post 방식 - post 방식 : &lt;form method = &quot;post&quot;&gt; 유일 - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식) - 데이터 노출이 없음(보안상 조금 더 안전) - 제한 크기 무제한 - 한글 상관없이 전송 [Form데이터를 DTO객체로 저장하는 과정] graph LR A(01.뷰 페이지 만들기)--&gt;B[02.컨트롤러 만들기] B--&gt;C(03.DTO 만들기) graph LR D[04.전송 받은 폼 데이터로 DTO 객체에 담기] D--&gt;E(05.DTO를 엔티티로 변환하기)--&gt;F(06.리파지터리로 엔티티를 DB에 저장하기) 뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache] 컨트롤러 만들기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] [사용자가 입력한 폼 데이터를 처리하는 라우트] DTO 만들기[/src/main/java/dto/ArticleForm] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController] [사용자에게 폼 데이터 입력할 수 있는 페이지 제공] 폼 데이터와 DTO 필드 매핑하기 DTO를 엔티티로 변환하기 [엔티티 클래스 생성 /src/main/java/entity/Article] DTO의 데이터를 받아서 처리하기 위해 엔티티 클래스를 생성한다 DTO 코드를 작성할 때와 같이 title, content 필드를 선언한다 두 필드도 DB에서 인식할 수 있게 @Column 어노테이션을 붙인다 두 필드가 DB 테이블의 각 열(column)과 연결된다 엔티티 클래스에 @Entity이 선언되어있는데 JPA에서 제공하는 어노테이션으로, 이 어노테이션이 붙은 클래스를 기반으로 DB에 테이블이 생성된다 테이블 이름은 클래스 이름과 동일하게 Article로 생성된다 엔티티의 대푯값을 넣는다 대푯값을 id로 선언하고 @Id 어노테이션을 붙입니다. 이어서 @GeneratedValue 어노테이션도 붙여서 대푯값을 자동으로 생성하게 한다(예: 1, 2, 3, …) 리파지터리로 엔티티를 DB에 저장하기 [리파지터리 인터페이스 생성하기 /src/main/java/repository/ArticleRepository] [리파지터리로 엔티티를 DB에 저장하기 /src/main/java/controller/ArticleController] JPA(Java Persistence API)는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 JPA의 핵심 도구로는 엔티티(entity)와 리파지터리(repository)가 있다 엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다 리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다 [DTO를 DB에 저장하는 과정] graph LR A(클라이언트에서 데이터 생성)--&gt;B[컨트롤러에서 DTO에 담음] B--&gt;C C(DTO객체를 DB엔티티로 변환)--&gt;D[리파지터리에서 DB엔티티를 DB에 저장]","headline":"(코딩 자율학습 스프링 부트3) 3장","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/spring2/"},"url":"http://0.0.0.0:4000/posts/spring2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>(코딩 자율학습 스프링 부트3) 3장 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>(코딩 자율학습 스프링 부트3) 3장</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>(코딩 자율학습 스프링 부트3) 3장</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1700105580"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Nov 16, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="{width=" class="popup img-link  shimmer"><img src="{"width"= loading="lazy"></a>800, "height"=>500}" class="preview-img" alt="Preview Image" w="1200" h="630" ></div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1273 words"
+>
+  <em>7 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <hr />
+
+<h2 id="part2-스프링-부트-시작"><span class="me-2">Part2. 스프링 부트 시작</span><a href="#part2-스프링-부트-시작" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<h2 id="게시판-만들고-새-글-작성하기-create"><span class="me-2">게시판 만들고 새 글 작성하기: Create</span><a href="#게시판-만들고-새-글-작성하기-create" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<h3 id="폼-데이터"><span class="me-2">폼 데이터</span><a href="#폼-데이터" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><span style="color:orange">폼 데이터</span>는 HTML 요소인 <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code> 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code>태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 <code class="language-plaintext highlighter-rouge">DTO(Data Transfer Object)</code>라 한다</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre>[FORM 태그 속성]
+폼 태그 속성에는 name, action, method, target 등이 있다
+
+1. action
+- 폼 내부에 입력 값들 전송하는(받는사람) 서버 측 URL을 지정한다
+- 데이터를 보내려면 브라우저가 전송 위치(URL)를 알아야 하기 때문에 이를 위해 action 속성을 사용한다
+
+1. name
+- 전송될 데이터의 이름
+
+1. accept-charset
+- 폼 전송에 사용할 문자 인코딩을 지정한다
+
+1. target
+- action에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정한다
+
+1. method (디폴트 값 = get)
+- 서버로 데이터를 전송하는 방식입니다.
+- get 방식 or post 방식이 존재한다
+    1) get 방식
+    - <span class="nt">&lt;form</span> <span class="na">method = </span><span class="s">"get"</span><span class="nt">&gt;</span> <span class="err">&amp;</span> 링크 <span class="err">&amp;</span>  URL 직접 <span class="err">&amp;</span> 자바스크립트 등등
+    - URL의 끝에 데이터를 첨부해서 전송하는 방식
+    
+    문제점
+    - 항상 노출이 된다. (보안에 중요한 데이터는 사용 금지)
+    - URL 최대 256자까지 (오버플로우 : 데이터 잘림)
+    - URL은 인코딩 방식이 base64(한글포함x)
+    - 되도록 영문과 숫자 정도만 전송 
+    1) post 방식
+    - post 방식 : <span class="nt">&lt;form</span> <span class="na">method = </span><span class="s">"post"</span><span class="nt">&gt;</span> 유일
+    - 패킷의 본문 안에 데이터를 넣어서 전송하는 방식(FM 제대로 된 방식)
+    - 데이터 노출이 없음(보안상 조금 더 안전)
+    - 제한 크기 무제한
+    - 한글 상관없이 전송
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<p align="center">[Form데이터를 DTO객체로 저장하는 과정]</p>
+
+<pre><code class="language-mermaid">graph LR
+A(01.뷰 페이지 만들기)--&gt;B[02.컨트롤러 만들기]
+B--&gt;C(03.DTO 만들기)
+</code></pre>
+
+<pre><code class="language-mermaid">graph LR
+D[04.전송 받은 폼 데이터로 DTO 객체에 담기]
+D--&gt;E(05.DTO를 엔티티로 변환하기)--&gt;F(06.리파지터리로 엔티티를 DB에 저장하기)
+</code></pre>
+<p><br /></p>
+
+<p><strong>뷰페이지 만들기[src/main/java/resources/templates/articles/new.mustache]</strong>
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/01.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/01.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<p><br /></p>
+
+<p><strong>컨트롤러 만들기[/src/main/java/controller/ArticleController]</strong>
+<br />
+[사용자에게 폼 데이터 입력할 수 있는 페이지 제공]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/02.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/02.PNG" alt="image" border="0" loading="lazy"></a>
+[사용자가 입력한 폼 데이터를 처리하는 라우트]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/03.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/03.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<p><br /></p>
+
+<p><strong>DTO 만들기[/src/main/java/dto/ArticleForm]</strong>
+<br />
+[사용자에게 폼 데이터 입력할 수 있는 페이지 제공]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/04.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/04.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<p><br /></p>
+
+<p><strong>전송 받은 폼 데이터로 DTO 객체에 담기[/src/main/java/controller/ArticleController]</strong>
+<br />
+[사용자에게 폼 데이터 입력할 수 있는 페이지 제공]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/05.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/05.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<p><br /></p>
+
+<p><strong>폼 데이터와 DTO 필드 매핑하기</strong>
+<br />
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/06.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/06.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<p><strong>DTO를 엔티티로 변환하기</strong>
+<br />
+[엔티티 클래스 생성 /src/main/java/entity/Article]</p>
+<ul>
+  <li>DTO의 데이터를 받아서 처리하기 위해 엔티티 클래스를 생성한다</li>
+  <li>DTO 코드를 작성할 때와 같이 title, content 필드를 선언한다 두 필드도 DB에서 인식할 수 있게 @Column 어노테이션을 붙인다 두 필드가 DB 테이블의 각 열(column)과 연결된다</li>
+  <li>엔티티 클래스에 @Entity이 선언되어있는데 JPA에서 제공하는 어노테이션으로, 이 어노테이션이 붙은 클래스를 기반으로 DB에 테이블이 생성된다 테이블 이름은 클래스 이름과 동일하게 Article로 생성된다</li>
+  <li>엔티티의 대푯값을 넣는다 대푯값을 id로 선언하고 @Id 어노테이션을 붙입니다. 이어서 @GeneratedValue 어노테이션도 붙여서 대푯값을 자동으로 생성하게 한다(예: 1, 2, 3, …)
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/07.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/07.PNG" alt="image" border="0" loading="lazy"></a></li>
+</ul>
+
+<p><br />
+<strong>리파지터리로 엔티티를 DB에 저장하기</strong>
+<br />
+[리파지터리 인터페이스 생성하기 /src/main/java/repository/ArticleRepository]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/08.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/08.PNG" alt="image" border="0" loading="lazy"></a>
+<br /></p>
+
+<p>[리파지터리로 엔티티를 DB에 저장하기 /src/main/java/controller/ArticleController]
+<a href="https://enjoycoding.synology.me:7777/springboot_part2/09.PNG" class="popup img-link  shimmer"><img src="https://enjoycoding.synology.me:7777/springboot_part2/09.PNG" alt="image" border="0" loading="lazy"></a></p>
+
+<blockquote class="prompt-tip">
+  <p><span style="color:orange">JPA(Java Persistence API)</span>는 자바 언어로 DB에 명령을 내리는 도구로, 데이터를 객체 지향적으로 관리할 수 있게 
+JPA의 핵심 도구로는 <code class="language-plaintext highlighter-rouge">엔티티(entity)</code>와 <code class="language-plaintext highlighter-rouge">리파지터리(repository)</code>가 있다</p>
+  <ul class="task-list">
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>엔티티: 자바 객체를 DB가 이해할 수 있게 만든 것으로, 이를 기반으로 테이블이 만들어진다</li>
+    <li class="task-list-item"><i class="fas fa-check-circle fa-fw checked"></i>리파지터리: 엔티티가 DB 속 테이블에 저장 및 관리될 수 있게 하는 인터페이스이다</li>
+  </ul>
+</blockquote>
+
+<p><br /></p>
+<p align="center">[DTO를 DB에 저장하는 과정]</p>
+
+<pre><code class="language-mermaid">graph LR
+A(클라이언트에서 데이터 생성)--&gt;B[컨트롤러에서 DTO에 담음]
+B--&gt;C
+C(DTO객체를 DB엔티티로 변환)--&gt;D[리파지터리에서 DB엔티티를 DB에 저장]
+</code></pre>
+<p><br /></p>
+
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/framework/">Framework</a>,
+          <a href="/categories/springboot/">SpringBoot</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/springboot/"
+            class="post-tag no-text-decoration"
+          >SpringBoot</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%203%EC%9E%A5%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring2%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%203%EC%9E%A5%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring2%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring2%2F&text=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%203%EC%9E%A5%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring2%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/spring1/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1699673580"
+  data-df="ll"
+  
+>
+  Nov 11, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 1,2장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+Part1. 스프링 부트 시작
+
+스프링 부트란?
+
+  스프링 부트(Spring Boot)는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다
+스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다
+
+
+스프링 부트 개발 환경 설정하기
+스프링 부트 개발 환경 설정에는 3단계로 이루어진다
+1단계 : JDK설치하기2단계 : ID...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/spring9/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1700969580"
+  data-df="ll"
+  
+>
+  Nov 26, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 4장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+
+
+게시글 Update
+게시판에 작성한 글을 수정하기 위해서는 해당 글을 불러와 수정할 수 있는 입력 상태로 만들어야 한다 이후 내용을 입력하고 다시 전송하면 DB에 반영돼 최종적으로 수정된다
+
+[수정 단계]
+
+  &amp;lt;상세 페이지&amp;gt;에서 [Edit] 버튼을 클릭한다
+  요청을 받은 컨트롤러는 해당 글의 id로 DB에서 데이터를 찾아 가져온다...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/spring11/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1702265580"
+  data-df="ll"
+  
+>
+  Dec 11, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 11장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+
+
+REST API와 JSAON의 등장 배경
+웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
+REST API 방식에서는 HT...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/spring1/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>(코딩 자율학습 스프링 부트3) 1,2장</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/spring9/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>(코딩 자율학습 스프링 부트3) 4장</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

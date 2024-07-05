@@ -1,0 +1,4217 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Git(깃) 사용방법" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Git은 무엇일까? 깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다 깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다 분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다 Github는 무엇일까? 깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다 Git 설치 깃 설치 페이지 에서 설치를 진행한다 쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천 에디터를 선택하는 창이 나오는데 Git에서 기본으로 사용할 에디터를 지정하는 단계로 Git에서 Commit등 메시지를 남길때 선택한 에디터 창을 열어준다 저자는 VSC를 주로 사용하기에 해당 에디터를 선택하였다 기본 브랜치 명을 선택하는 창이 나오는데 과거에는 기본 브랜치로 master를 많이 사용했지만 최근들어 main으로 변경하는 추세이다 따라서 저자는 main으로 변경하여 넘어가도록 한다 다음 메뉴부터는 대부분 기본으로 사용하는 기능으로 NEXT로 넘어가도록 한다 Git 초기 설정 유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정)유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정) Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init $git remote add origin [Git 주소] $git branch -M main (브랜치를 master에서 main으로 변경) $git branch (현재 branch 확인) $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m “Initial commit” (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 핵심 요약 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 #유저 설정 git config --global user.name &quot;사용자이름&quot; git config --global user.email &quot;사용자이메일&quot; #확인 git config --global user.name git config --global user.email #기본 브랜치명 변경 git config --global init.defaultBranch main git config --global init.defaultBranch # 깃허브에서 레포지 생성 부터 업로드까지 Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init (현재 디렉토리를 기준으로 Git 저장소 생성, .git 디렉토리 생성됨) $git remote add origin [Git 주소] $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m &quot;Initial commit&quot; (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 11-1. ! [rejected] main -&gt; main (non-fast-forward) 에러 발생할 경우 $git push origin +main 시도 # 깃허브 원격저장소에서 수정사항을 로컬로 가져오기 Pull &amp; Fetch $git pull &lt;remote_name&gt; &lt;branch_name&gt; #연결된 원격 저장소 확인 $git remote --verbose #원격 연결을 삭제 $git remote remove &lt;remote-name&gt; #현재 브랜치 이름 변경 $git branch -M main (브랜치명을 main으로 변경) #등록된 브랜치의 상세한 정보 확인 $git branch -v #현재 연결된 원격 저장소의 브랜치 확인 $git branch -r # 브랜치 생성하기 $git branch [생성할 branch_name] $git push [remote_name] [생성할 branch_name] #push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음 # 브랜치 이동하기 $git switch [이동할 브랜치명] # 로컬에서 원격의 브랜치를 찾을 수 있도록 갱신 $git remote update # 원격 + 로컬 저장소 확인 $git branch -a # 원격 저장소의 브랜치 가져오기 $git branch -a 로 브랜치 확인 $git checkout -t origin/[브랜치명] # 브랜치 삭제 $git branch -d [삭제할 브랜치명] # 원격저장소의 브랜치를 삭제 $git push [romote_name] --delete [삭제할 브랜치명] # 로그 $ git log --all --graph --oneline ##### --all 로그 전체를 보여준다 ##### --graph 그래프형식을 이용해 표현해준다 ##### --oneline 한 커밋당 한줄로 표현해준다. Git 주요용어 커밋 (commit) : 파일을 추가하거나 변경 내용을 저장소에 저장 푸시 (push) : 파일을 추가하거나 변경 내용을 원격 저장소에 업로드" />
+<meta property="og:description" content="Git은 무엇일까? 깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다 깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다 분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다 Github는 무엇일까? 깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다 Git 설치 깃 설치 페이지 에서 설치를 진행한다 쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천 에디터를 선택하는 창이 나오는데 Git에서 기본으로 사용할 에디터를 지정하는 단계로 Git에서 Commit등 메시지를 남길때 선택한 에디터 창을 열어준다 저자는 VSC를 주로 사용하기에 해당 에디터를 선택하였다 기본 브랜치 명을 선택하는 창이 나오는데 과거에는 기본 브랜치로 master를 많이 사용했지만 최근들어 main으로 변경하는 추세이다 따라서 저자는 main으로 변경하여 넘어가도록 한다 다음 메뉴부터는 대부분 기본으로 사용하는 기능으로 NEXT로 넘어가도록 한다 Git 초기 설정 유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정)유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정) Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init $git remote add origin [Git 주소] $git branch -M main (브랜치를 master에서 main으로 변경) $git branch (현재 branch 확인) $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m “Initial commit” (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 핵심 요약 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 #유저 설정 git config --global user.name &quot;사용자이름&quot; git config --global user.email &quot;사용자이메일&quot; #확인 git config --global user.name git config --global user.email #기본 브랜치명 변경 git config --global init.defaultBranch main git config --global init.defaultBranch # 깃허브에서 레포지 생성 부터 업로드까지 Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init (현재 디렉토리를 기준으로 Git 저장소 생성, .git 디렉토리 생성됨) $git remote add origin [Git 주소] $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m &quot;Initial commit&quot; (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 11-1. ! [rejected] main -&gt; main (non-fast-forward) 에러 발생할 경우 $git push origin +main 시도 # 깃허브 원격저장소에서 수정사항을 로컬로 가져오기 Pull &amp; Fetch $git pull &lt;remote_name&gt; &lt;branch_name&gt; #연결된 원격 저장소 확인 $git remote --verbose #원격 연결을 삭제 $git remote remove &lt;remote-name&gt; #현재 브랜치 이름 변경 $git branch -M main (브랜치명을 main으로 변경) #등록된 브랜치의 상세한 정보 확인 $git branch -v #현재 연결된 원격 저장소의 브랜치 확인 $git branch -r # 브랜치 생성하기 $git branch [생성할 branch_name] $git push [remote_name] [생성할 branch_name] #push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음 # 브랜치 이동하기 $git switch [이동할 브랜치명] # 로컬에서 원격의 브랜치를 찾을 수 있도록 갱신 $git remote update # 원격 + 로컬 저장소 확인 $git branch -a # 원격 저장소의 브랜치 가져오기 $git branch -a 로 브랜치 확인 $git checkout -t origin/[브랜치명] # 브랜치 삭제 $git branch -d [삭제할 브랜치명] # 원격저장소의 브랜치를 삭제 $git push [romote_name] --delete [삭제할 브랜치명] # 로그 $ git log --all --graph --oneline ##### --all 로그 전체를 보여준다 ##### --graph 그래프형식을 이용해 표현해준다 ##### --oneline 한 커밋당 한줄로 표현해준다. Git 주요용어 커밋 (commit) : 파일을 추가하거나 변경 내용을 저장소에 저장 푸시 (push) : 파일을 추가하거나 변경 내용을 원격 저장소에 업로드" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/usegit/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/usegit/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-20T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git(깃) 사용방법" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-20T12:33:00+09:00","datePublished":"2024-01-20T12:33:00+09:00","description":"Git은 무엇일까? 깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다 깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다 분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다 Github는 무엇일까? 깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다 Git 설치 깃 설치 페이지 에서 설치를 진행한다 쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천 에디터를 선택하는 창이 나오는데 Git에서 기본으로 사용할 에디터를 지정하는 단계로 Git에서 Commit등 메시지를 남길때 선택한 에디터 창을 열어준다 저자는 VSC를 주로 사용하기에 해당 에디터를 선택하였다 기본 브랜치 명을 선택하는 창이 나오는데 과거에는 기본 브랜치로 master를 많이 사용했지만 최근들어 main으로 변경하는 추세이다 따라서 저자는 main으로 변경하여 넘어가도록 한다 다음 메뉴부터는 대부분 기본으로 사용하는 기능으로 NEXT로 넘어가도록 한다 Git 초기 설정 유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정)유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정) Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init $git remote add origin [Git 주소] $git branch -M main (브랜치를 master에서 main으로 변경) $git branch (현재 branch 확인) $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m “Initial commit” (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 핵심 요약 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 #유저 설정 git config --global user.name &quot;사용자이름&quot; git config --global user.email &quot;사용자이메일&quot; #확인 git config --global user.name git config --global user.email #기본 브랜치명 변경 git config --global init.defaultBranch main git config --global init.defaultBranch # 깃허브에서 레포지 생성 부터 업로드까지 Github Repositories → New → Repository name 등 작성 후 Create Repository 생성된 repository의 Git 주소 복사 작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init (현재 디렉토리를 기준으로 Git 저장소 생성, .git 디렉토리 생성됨) $git remote add origin [Git 주소] $git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능) $git status (현재 add 내역 확인) $git commit -m &quot;Initial commit&quot; (스테이지 영역 → 로컬 repository) $git log (commit 이력 확인) $git push origin main (로컬 repository → 원격 repository) 11-1. ! [rejected] main -&gt; main (non-fast-forward) 에러 발생할 경우 $git push origin +main 시도 # 깃허브 원격저장소에서 수정사항을 로컬로 가져오기 Pull &amp; Fetch $git pull &lt;remote_name&gt; &lt;branch_name&gt; #연결된 원격 저장소 확인 $git remote --verbose #원격 연결을 삭제 $git remote remove &lt;remote-name&gt; #현재 브랜치 이름 변경 $git branch -M main (브랜치명을 main으로 변경) #등록된 브랜치의 상세한 정보 확인 $git branch -v #현재 연결된 원격 저장소의 브랜치 확인 $git branch -r # 브랜치 생성하기 $git branch [생성할 branch_name] $git push [remote_name] [생성할 branch_name] #push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음 # 브랜치 이동하기 $git switch [이동할 브랜치명] # 로컬에서 원격의 브랜치를 찾을 수 있도록 갱신 $git remote update # 원격 + 로컬 저장소 확인 $git branch -a # 원격 저장소의 브랜치 가져오기 $git branch -a 로 브랜치 확인 $git checkout -t origin/[브랜치명] # 브랜치 삭제 $git branch -d [삭제할 브랜치명] # 원격저장소의 브랜치를 삭제 $git push [romote_name] --delete [삭제할 브랜치명] # 로그 $ git log --all --graph --oneline ##### --all 로그 전체를 보여준다 ##### --graph 그래프형식을 이용해 표현해준다 ##### --oneline 한 커밋당 한줄로 표현해준다. Git 주요용어 커밋 (commit) : 파일을 추가하거나 변경 내용을 저장소에 저장 푸시 (push) : 파일을 추가하거나 변경 내용을 원격 저장소에 업로드","headline":"Git(깃) 사용방법","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/usegit/"},"url":"http://0.0.0.0:4000/posts/usegit/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>Git(깃) 사용방법 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>Git(깃) 사용방법</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>Git(깃) 사용방법</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1705721580"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Jan 20, 2024
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1418 words"
+>
+  <em>7 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <h2 id="git은-무엇일까"><span class="me-2">Git은 무엇일까?</span><a href="#git은-무엇일까" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>
+    <p>깃은 형상 관리 도구중 하나로 버전 관리 시스템이라고도 불린다</p>
+
+    <p>깃은 개발 소스코드를 효과적으로 관리할 수 있게 해주는 무료, 공개소프트웨어이다</p>
+
+    <p>분산형 관리 시스템이기에 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능하다</p>
+  </li>
+</ul>
+
+<h2 id="github는-무엇일까"><span class="me-2">Github는 무엇일까?</span><a href="#github는-무엇일까" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>깃은 형상을 관리할 수 있게 하는 버전 관리 도구라면 깃허브는 해당 코드들을 저장하기 위해 사용되는 서버 즉 웹 호스팅 서비스이다</li>
+</ul>
+
+<h2 id="git-설치"><span class="me-2">Git 설치</span><a href="#git-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p><a href="https://git-scm.com/" target="_blank">깃 설치 페이지</a> 에서 설치를 진행한다</p>
+
+<p><a href="/assets/data/doc/git_install_01.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_install_01.png" alt="absolute" loading="lazy"></a></p>
+
+<p>쭉 진행하다 보면 컴포넌트 설정하는 부분이 나오는데 기본값을 사용해도 무방하며 필요에 따라서 선택하도록 한다 특별히 중요하게 다룰 옵션은 없어서 잘 모르겠다면 기본값을 사용하는 걸 추천</p>
+
+<p><a href="/assets/data/doc/git_install_02.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_install_02.png" alt="absolute" loading="lazy"></a></p>
+
+<p>에디터를 선택하는 창이 나오는데 Git에서 기본으로 사용할 에디터를 지정하는 단계로 Git에서 Commit등 메시지를 남길때 선택한 에디터 창을 열어준다</p>
+
+<p>저자는 VSC를 주로 사용하기에 해당 에디터를 선택하였다</p>
+
+<p><a href="/assets/data/doc/git_install_03.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_install_03.png" alt="absolute" loading="lazy"></a></p>
+
+<p>기본 브랜치 명을 선택하는 창이 나오는데 과거에는 기본 브랜치로 master를 많이 사용했지만 최근들어 main으로 변경하는 추세이다</p>
+
+<p>따라서 저자는 main으로 변경하여 넘어가도록 한다</p>
+
+<p><a href="/assets/data/doc/git_install_04.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_install_04.png" alt="absolute" loading="lazy"></a></p>
+
+<p>다음 메뉴부터는 대부분 기본으로 사용하는 기능으로 NEXT로 넘어가도록 한다</p>
+
+<h2 id="git-초기-설정"><span class="me-2">Git 초기 설정</span><a href="#git-초기-설정" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정)유저 설정 (커밋에 기록할 사용자 이름과 이메일을 설정)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep00.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep00.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>Github Repositories → New → Repository name 등 작성 후 Create Repository</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep01.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep01.png" alt="absolute" loading="lazy"></a></p>
+
+<p><a href="/assets/data/doc/git_rep02.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep02.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>생성된 repository의 Git 주소 복사</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep03.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep03.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>작업 중인 서버의 프로젝트 디렉토리로 이동하여 $git init</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep04.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep04.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>$git remote add origin [Git 주소]</li>
+  <li>$git branch -M main (브랜치를 master에서 main으로 변경)</li>
+  <li>$git branch (현재 branch 확인)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep05.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep05.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>$git add -A (수정된 파일 전부를 스테이징 영역에 추가, $git add . 으로 현 디렉토리만으로 제한 가능)</li>
+  <li>$git status (현재 add 내역 확인)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep06.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep06.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>$git commit -m “Initial commit” (스테이지 영역 → 로컬 repository)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep07.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep07.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>$git log (commit 이력 확인)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep08.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep08.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>$git push origin main (로컬 repository → 원격 repository)</li>
+</ul>
+
+<p><a href="/assets/data/doc/git_rep09.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep09.png" alt="absolute" loading="lazy"></a></p>
+
+<p><a href="/assets/data/doc/git_rep10.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep10.png" alt="absolute" loading="lazy"></a></p>
+
+<p><a href="/assets/data/doc/git_rep11.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/doc/git_rep11.png" alt="absolute" loading="lazy"></a></p>
+
+<h2 id="핵심-요약"><span class="me-2">핵심 요약</span><a href="#핵심-요약" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+</pre></td><td class="rouge-code"><pre><span class="c">#유저 설정</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"사용자이름"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"사용자이메일"</span>
+<span class="c">#확인</span>
+git config <span class="nt">--global</span> user.name
+git config <span class="nt">--global</span> user.email
+<span class="c">#기본 브랜치명 변경</span>
+git config <span class="nt">--global</span> init.defaultBranch main
+git config <span class="nt">--global</span> init.defaultBranch
+
+<span class="c"># 깃허브에서 레포지 생성 부터 업로드까지 </span>
+Github Repositories → New → Repository name 등 작성 후 Create Repository
+생성된 repository의 Git 주소 복사
+작업 중인 서버의 프로젝트 디렉토리로 이동하여 <span class="nv">$git</span> init
+<span class="o">(</span>현재 디렉토리를 기준으로 Git 저장소 생성, .git 디렉토리 생성됨<span class="o">)</span>
+<span class="nv">$git</span> remote add origin <span class="o">[</span>Git 주소]
+<span class="nv">$git</span> add <span class="nt">-A</span> <span class="o">(</span>수정된 파일 전부를 스테이징 영역에 추가, <span class="nv">$git</span> add <span class="nb">.</span> 으로 현 디렉토리만으로 제한 가능<span class="o">)</span>
+<span class="nv">$git</span> status <span class="o">(</span>현재 add 내역 확인<span class="o">)</span>
+<span class="nv">$git</span> commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span> <span class="o">(</span>스테이지 영역 → 로컬 repository<span class="o">)</span>
+<span class="nv">$git</span> log <span class="o">(</span>commit 이력 확인<span class="o">)</span>
+<span class="nv">$git</span> push origin main <span class="o">(</span>로컬 repository → 원격 repository<span class="o">)</span>
+11-1. <span class="o">!</span> <span class="o">[</span>rejected] main -&gt; main <span class="o">(</span>non-fast-forward<span class="o">)</span> 에러 발생할 경우 <span class="nv">$git</span> push origin +main 시도
+
+<span class="c"># 깃허브 원격저장소에서 수정사항을 로컬로 가져오기 Pull &amp; Fetch</span>
+<span class="nv">$git</span> pull &lt;remote_name&gt; &lt;branch_name&gt;
+
+<span class="c">#연결된 원격 저장소 확인</span>
+<span class="nv">$git</span> remote <span class="nt">--verbose</span>
+
+<span class="c">#원격 연결을 삭제</span>
+<span class="nv">$git</span> remote remove &lt;remote-name&gt;
+
+<span class="c">#현재 브랜치 이름 변경</span>
+<span class="nv">$git</span> branch <span class="nt">-M</span> main <span class="o">(</span>브랜치명을 main으로 변경<span class="o">)</span>
+
+<span class="c">#등록된 브랜치의 상세한 정보 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-v</span>
+
+<span class="c">#현재 연결된 원격 저장소의 브랜치 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-r</span>
+
+<span class="c"># 브랜치 생성하기</span>
+<span class="nv">$git</span> branch <span class="o">[</span>생성할 branch_name]
+<span class="nv">$git</span> push <span class="o">[</span>remote_name] <span class="o">[</span>생성할 branch_name] <span class="c">#push를 안해주면 로컬저장소에만 해당 branch가 생성되어있고 원격저장소엔 브랜치가없음</span>
+
+<span class="c"># 브랜치 이동하기</span>
+<span class="nv">$git</span> switch <span class="o">[</span>이동할 브랜치명]
+
+<span class="c"># 로컬에서 원격의 브랜치를 찾을 수 있도록 갱신</span>
+<span class="nv">$git</span> remote update
+
+<span class="c"># 원격 + 로컬 저장소 확인</span>
+<span class="nv">$git</span> branch <span class="nt">-a</span>
+
+<span class="c"># 원격 저장소의 브랜치 가져오기</span>
+<span class="nv">$git</span> branch <span class="nt">-a</span> 로 브랜치 확인 
+<span class="nv">$git</span> checkout <span class="nt">-t</span> origin/[브랜치명]
+
+<span class="c"># 브랜치 삭제</span>
+<span class="nv">$git</span> branch <span class="nt">-d</span> <span class="o">[</span>삭제할 브랜치명]
+
+<span class="c"># 원격저장소의 브랜치를 삭제</span>
+<span class="nv">$git</span> push <span class="o">[</span>romote_name] <span class="nt">--delete</span> <span class="o">[</span>삭제할 브랜치명]
+
+<span class="c"># 로그 </span>
+<span class="nv">$ </span>git log <span class="nt">--all</span> <span class="nt">--graph</span> <span class="nt">--oneline</span>
+<span class="c">##### --all 로그 전체를 보여준다</span>
+<span class="c">##### --graph 그래프형식을 이용해 표현해준다</span>
+<span class="c">##### --oneline 한 커밋당 한줄로 표현해준다.</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="git-주요용어"><span class="me-2">Git 주요용어</span><a href="#git-주요용어" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>커밋 (commit) : 파일을 추가하거나 변경 내용을 저장소에 저장</li>
+  <li>푸시 (push) : 파일을 추가하거나 변경 내용을 원격 저장소에 업로드</li>
+</ul>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/utils/">Utils</a>,
+          <a href="/categories/git/">Git</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/git/"
+            class="post-tag no-text-decoration"
+          >Git</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=Git(%EA%B9%83)%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fusegit%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=Git(%EA%B9%83)%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fusegit%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fusegit%2F&text=Git(%EA%B9%83)%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fusegit%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/vmware_dirshare/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1685331180"
+  data-df="ll"
+  
+>
+  May 29, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(Vmware) 공유폴더 설정</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+vmware 공유폴더 설정
+1.vmware 세션 설정에서 Shared Folders를 Always enabled로 변경하고 Add버튼을 눌러 호스트PC에서 공유 할 폴더를 지정한다.
+
+2.vmware 툴바 설치를 진행 한다
+
+3.게스트os(필자는 debian11)에서 sudo apt-get install open-vm-tools 명령어로 툴바에 필...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/IntelliJspring_encoding/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1707967980"
+  data-df="ll"
+  
+>
+  Feb 15, 2024
+</time>
+
+              <h4 class="pt-0 my-2">IntelliJ Springboot 한글 인코딩</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  문제
+
+
+  IntelliJ에서 Springboot를 작업하다보면 콘솔에 하기 그림과 같이 한글이 깨져 출력되는 경우
+
+
+
+
+
+  API호출에 따른 Response에서 한글이 깨져서 응답되는경우
+
+
+해결방법
+
+Step01 IntelliJ설정 변경
+
+하기 사진과 같이
+
+메뉴 -&amp;gt; Settings -&amp;gt; File Encodings -&amp;gt; 모두...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/vscode_prettier/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1715311980"
+  data-df="ll"
+  
+>
+  May 10, 2024
+</time>
+
+              <h4 class="pt-0 my-2">vscode prettier 설정 및 오류 해결방법</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Prittier
+
+prittier은 vscode 확장 패키지 프로그램으로 코드를 자동으로 정렬해주는 기능을 제공한다
+
+
+
+Prittier 설치
+
+1. vscode extenstion 확장 탭에서 Prettier 검색 후 설치를 한다
+
+&amp;lt;img data-action=”zoom” src=”{{ “/assets/data/vscode/vscode_pre...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/vue_route/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Vue Route 기능 사용하기</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/vue03/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Vue Chap3</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

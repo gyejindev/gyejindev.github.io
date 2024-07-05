@@ -1,0 +1,3433 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  <!-- it's a local file path -->
+
+  
+  
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="(인터랙티브 웹 페이지 만들기) Chapter4" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Chap1. flex 방식으로 레이아웃 만들기 앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다 Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다 flex의 기본 [Flex의 기본 레이아웃] 1 2 3 4 5 &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;/div&gt; 부모 요소의 div.container를 Flex Container라고 부르며 자식 요소인 div.item들을 Flex Item이라고 부른다 [속성] display : flex container를 정의한다 flex-flow : flex-direction와 flex-wrap의 단축 속성 flex-direction : flex items의 주 축을 설정한다 flex-wrap : flex items의 여러 줄 묶음 설정 justify-content : 주 축의 정렬 방법을 설정한다 align-content : 교차 축의 정렬 방법을 설정한다 align-items : 교차 축에서 items의 정렬 방법을 설정한다 display 속성 사용하기 자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 display: flex 혹은 display: inline-flex 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; &lt;div&gt;3&lt;/div&gt; &lt;div&gt;4&lt;/div&gt; &lt;div&gt;5&lt;/div&gt; &lt;/div&gt; flex-direction 속성 사용하기 자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다 기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다 column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다 1 2 3 4 5 6 7 8 9 10 11 &lt;style&gt; .container { display: flex; flex-direction: row; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; justify-content 속성 사용하기 기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. 아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-items 속성 사용하기 기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다. 여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-items: stretch; } /* baseline 이해를 돕기 위한 가시성 선언 */ .container div:nth-child(1) { padding: 10px 40px 0 40px } .container div:nth-child(2) { padding: 20px 40px } .container div:nth-child(3) { padding: 10px 40px 80px 40px } .container div:nth-child(4) { padding: 40px 40px 20px 40px } .container div:nth-child(5) { padding: 20px 40px 10px 40px } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-content 속성 사용하기 flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다. justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-content: stretch; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; flex-wrap 속성 사용하기 자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다. 값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데, 100px 크기의 자식 요소가 10개 있다(총 1000px) 부모 요소의 크기는 700px이다. 부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 자식 요소의 순서 지정하기 컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다. order 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 order에 선언된 값에 의해서만 순서가 정해진다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; } /* 화면 크기가 768px 이하면 끝으로 */ @media screen and (max-width: 768px) { .container { flex-direction : column } .last-with-mobile { order: 1 } } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;last-with-mobile&quot;&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 요소의 여백 비율 지정하기" />
+<meta property="og:description" content="Chap1. flex 방식으로 레이아웃 만들기 앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다 Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다 flex의 기본 [Flex의 기본 레이아웃] 1 2 3 4 5 &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;/div&gt; 부모 요소의 div.container를 Flex Container라고 부르며 자식 요소인 div.item들을 Flex Item이라고 부른다 [속성] display : flex container를 정의한다 flex-flow : flex-direction와 flex-wrap의 단축 속성 flex-direction : flex items의 주 축을 설정한다 flex-wrap : flex items의 여러 줄 묶음 설정 justify-content : 주 축의 정렬 방법을 설정한다 align-content : 교차 축의 정렬 방법을 설정한다 align-items : 교차 축에서 items의 정렬 방법을 설정한다 display 속성 사용하기 자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 display: flex 혹은 display: inline-flex 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; &lt;div&gt;3&lt;/div&gt; &lt;div&gt;4&lt;/div&gt; &lt;div&gt;5&lt;/div&gt; &lt;/div&gt; flex-direction 속성 사용하기 자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다 기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다 column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다 1 2 3 4 5 6 7 8 9 10 11 &lt;style&gt; .container { display: flex; flex-direction: row; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; justify-content 속성 사용하기 기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. 아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-items 속성 사용하기 기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다. 여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-items: stretch; } /* baseline 이해를 돕기 위한 가시성 선언 */ .container div:nth-child(1) { padding: 10px 40px 0 40px } .container div:nth-child(2) { padding: 20px 40px } .container div:nth-child(3) { padding: 10px 40px 80px 40px } .container div:nth-child(4) { padding: 40px 40px 20px 40px } .container div:nth-child(5) { padding: 20px 40px 10px 40px } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-content 속성 사용하기 flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다. justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-content: stretch; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; flex-wrap 속성 사용하기 자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다. 값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데, 100px 크기의 자식 요소가 10개 있다(총 1000px) 부모 요소의 크기는 700px이다. 부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 자식 요소의 순서 지정하기 컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다. order 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 order에 선언된 값에 의해서만 순서가 정해진다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; } /* 화면 크기가 768px 이하면 끝으로 */ @media screen and (max-width: 768px) { .container { flex-direction : column } .last-with-mobile { order: 1 } } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;last-with-mobile&quot;&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 요소의 여백 비율 지정하기" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/chap4/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/chap4/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-15T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(인터랙티브 웹 페이지 만들기) Chapter4" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-15T12:33:00+09:00","datePublished":"2023-10-15T12:33:00+09:00","description":"Chap1. flex 방식으로 레이아웃 만들기 앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다 Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다 flex의 기본 [Flex의 기본 레이아웃] 1 2 3 4 5 &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;div class=&quot;item&quot;&gt;flex item&lt;/div&gt; &lt;/div&gt; 부모 요소의 div.container를 Flex Container라고 부르며 자식 요소인 div.item들을 Flex Item이라고 부른다 [속성] display : flex container를 정의한다 flex-flow : flex-direction와 flex-wrap의 단축 속성 flex-direction : flex items의 주 축을 설정한다 flex-wrap : flex items의 여러 줄 묶음 설정 justify-content : 주 축의 정렬 방법을 설정한다 align-content : 교차 축의 정렬 방법을 설정한다 align-items : 교차 축에서 items의 정렬 방법을 설정한다 display 속성 사용하기 자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 display: flex 혹은 display: inline-flex 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; &lt;div&gt;3&lt;/div&gt; &lt;div&gt;4&lt;/div&gt; &lt;div&gt;5&lt;/div&gt; &lt;/div&gt; flex-direction 속성 사용하기 자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다 기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다 column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다 1 2 3 4 5 6 7 8 9 10 11 &lt;style&gt; .container { display: flex; flex-direction: row; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; justify-content 속성 사용하기 기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. 아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-items 속성 사용하기 기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다. align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다. 만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다. 여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-items: stretch; } /* baseline 이해를 돕기 위한 가시성 선언 */ .container div:nth-child(1) { padding: 10px 40px 0 40px } .container div:nth-child(2) { padding: 20px 40px } .container div:nth-child(3) { padding: 10px 40px 80px 40px } .container div:nth-child(4) { padding: 40px 40px 20px 40px } .container div:nth-child(5) { padding: 20px 40px 10px 40px } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; align-content 속성 사용하기 flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다. justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; align-content: stretch; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; flex-wrap 속성 사용하기 자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다. 값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데, 100px 크기의 자식 요소가 10개 있다(총 1000px) 부모 요소의 크기는 700px이다. 부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;style&gt; .container { display: flex; flex-direction: row; flex-wrap: nowrap; } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 자식 요소의 순서 지정하기 컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다. order 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 order에 선언된 값에 의해서만 순서가 정해진다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;style&gt; .container { display: flex; flex-flow: row nowrap; } /* 화면 크기가 768px 이하면 끝으로 */ @media screen and (max-width: 768px) { .container { flex-direction : column } .last-with-mobile { order: 1 } } &lt;/style&gt; &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;last-with-mobile&quot;&gt;1&lt;/div&gt; &lt;div&gt;2&lt;/div&gt; ... &lt;/div&gt; 요소의 여백 비율 지정하기","headline":"(인터랙티브 웹 페이지 만들기) Chapter4","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/chap4/"},"url":"http://0.0.0.0:4000/posts/chap4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>(인터랙티브 웹 페이지 만들기) Chapter4 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>(인터랙티브 웹 페이지 만들기) Chapter4</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>(인터랙티브 웹 페이지 만들기) Chapter4</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1697340780"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Oct 15, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="{width=" class="popup img-link  shimmer"><img src="{"width"= loading="lazy"></a>800, "height"=>500}" class="preview-img" alt="Preview Image" w="1200" h="630" ></div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1455 words"
+>
+  <em>8 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <header include-html="./copyfalse.html"></header>
+
+<hr />
+
+<h2 id="chap1-flex-방식으로-레이아웃-만들기"><span class="me-2">Chap1. flex 방식으로 레이아웃 만들기</span><a href="#chap1-flex-방식으로-레이아웃-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote class="prompt-tip">
+  <p>앞서배운 float을 활용한 레이아웃 배치에 이어서 더욱 더 편리하게 레이아웃을 만들 수 있는 flex방식이 있다
+Flex(플랙스)는 Flexible Box, Flexbox라고 불리기도한다</p>
+</blockquote>
+
+<h3 id="flex의-기본"><span class="me-2">flex의 기본</span><a href="#flex의-기본" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>[Flex의 기본 레이아웃]</p>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>flex item<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>flex item<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>flex item<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>부모 요소의 <code class="language-plaintext highlighter-rouge">div.container</code>를 Flex Container라고 부르며 자식 요소인 <code class="language-plaintext highlighter-rouge">div.item</code>들을 Flex Item이라고 부른다</p>
+
+<p>[속성]</p>
+<ul>
+  <li>display : flex container를 정의한다</li>
+  <li>flex-flow : flex-direction와 flex-wrap의 단축 속성</li>
+  <li>flex-direction : flex items의 주 축을 설정한다</li>
+  <li>flex-wrap : flex items의 여러 줄 묶음 설정</li>
+  <li>justify-content : 주 축의 정렬 방법을 설정한다</li>
+  <li>align-content : 교차 축의 정렬 방법을 설정한다</li>
+  <li>align-items : 교차 축에서 items의 정렬 방법을 설정한다</li>
+</ul>
+
+<h3 id="display-속성-사용하기"><span class="me-2">display 속성 사용하기</span><a href="#display-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>자식 요소(Flex Item)를 감싸는 부모 요소(Flex Container)에 <code class="language-plaintext highlighter-rouge">display: flex</code> 혹은 <code class="language-plaintext highlighter-rouge">display: inline-flex</code> 속성값을 사용하여 이 요소들이 Flexbox 레이아웃임을 선언한다</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="flex-direction-속성-사용하기"><span class="me-2">flex-direction 속성 사용하기</span><a href="#flex-direction-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>자식 요소를 어떤 방향성을 가지고 배치 할 지 결정하는 기본축을 선언한다. 
+이 기본축이 가로냐 세로냐에 따라 후속 속성들의 정렬축이 결정된다
+기본값은 row, 측방은 가로다 따라서 모든 자식 요소가 가로로 배치된다
+column의 측방은 세로이며 모든 자식 요소가 세로로 배치된다</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="justify-content-속성-사용하기"><span class="me-2">justify-content 속성 사용하기</span><a href="#justify-content-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>기본축 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.
+아래 예제에서 자식 요소들이 가로로 배치되어 있다고 해서 justify-content 속성이 반드시 수평 방향으로만 정렬하는 것은 아니다. flex-direction의 기본축(row, column)에 따라 수평, 수직으로 방향성이 바뀐다. 난해하다면 더 아래 align-items 설명에서 추가 예문을 참고한다.
+만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다.</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
+<span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">nowrap</span><span class="p">;</span>
+<span class="nl">justify-content</span><span class="p">:</span> <span class="n">flex-start</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="align-items-속성-사용하기"><span class="me-2">align-items 속성 사용하기</span><a href="#align-items-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>기본축의 교차축(반대 축) 방향으로 자식 요소를 정렬한다. 혼동하기 쉬운 요인은 아래와 같으니 유의한다.
+align-items 속성이 반드시 수직 방향으로만 정렬하는 것은 아니다. flex-direction에서 선언한 기본축의 반대 방향으로 정렬한다.
+만일 자식 요소가 부모 요소의 공간에 꽉 차게 배치되어 있다면 아무런 효과를 볼 수 없다. 아래 예문에서도 일부 속성값에서 그런 현상을 볼 수 있다.
+여기에 소개한 flex-flow 속성은 flex-direction, flex-wrap 속성의 단축 속성이다.</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-flow</span><span class="p">:</span> <span class="n">row</span> <span class="nb">nowrap</span><span class="p">;</span>
+<span class="nl">align-items</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+  
+<span class="c">/* baseline 이해를 돕기 위한 가시성 선언 */</span>
+<span class="nc">.container</span> <span class="nt">div</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">1</span><span class="o">)</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">40px</span> <span class="m">0</span> <span class="m">40px</span> <span class="p">}</span>
+<span class="nc">.container</span> <span class="nt">div</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">2</span><span class="o">)</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span> <span class="m">40px</span> <span class="p">}</span>
+<span class="nc">.container</span> <span class="nt">div</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">3</span><span class="o">)</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">40px</span> <span class="m">80px</span> <span class="m">40px</span> <span class="p">}</span>
+<span class="nc">.container</span> <span class="nt">div</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">4</span><span class="o">)</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">40px</span> <span class="m">40px</span> <span class="m">20px</span> <span class="m">40px</span> <span class="p">}</span>
+<span class="nc">.container</span> <span class="nt">div</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">5</span><span class="o">)</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span> <span class="m">40px</span> <span class="m">10px</span> <span class="m">40px</span> <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="align-content-속성-사용하기"><span class="me-2">align-content 속성 사용하기</span><a href="#align-content-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>flex-wrap: wrap 속성에 의해 줄넘김 된 요소를 개별 단위에서 하나의 그룹 단위로 묶는다. 자식 요소가 줄넘김 없이 한 줄로만 이루어진 경우에는 아무 효과가 없다.
+justify-content, align-items 속성값을 한꺼번에 가지고 있으며, 정렬 알고리즘은 align-items와 같이 기본축의 교차(반대) 방향이다.</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-flow</span><span class="p">:</span> <span class="n">row</span> <span class="nb">nowrap</span><span class="p">;</span>
+<span class="nl">align-content</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="flex-wrap-속성-사용하기"><span class="me-2">flex-wrap 속성 사용하기</span><a href="#flex-wrap-속성-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>자식 요소의 줄넘김을 처리한다. 기본값은 nowrap으로 줄넘김 하지 않는다.
+값이 wrap인 경우, 기본적으로 자식 요소 크기의 합이 부모 요소보다 클 때 줄넘김 하는데,
+100px 크기의 자식 요소가 10개 있다(총 1000px)
+부모 요소의 크기는 700px이다.
+부모 요소에 7개의 자식 요소가 한 행을 이루고 나머지 3개의 요소는 개행한다.</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
+<span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">nowrap</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  ...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="자식-요소의-순서-지정하기"><span class="me-2">자식 요소의 순서 지정하기</span><a href="#자식-요소의-순서-지정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p>컨테이너 안에서 아이템이 나열되는 순서를 나타낸다. 숫자가 작을수록 앞에, 클수록 끝에 위치한다. 음수 사용이 가능하며, 음수가 클수록 앞에 위치한다.
+<code class="language-plaintext highlighter-rouge">order</code> 속성이 선언되면, HTML이나 CSS에서 구문을 어떤 순서에 따라 작성했는지와 상관없이, 오직 <code class="language-plaintext highlighter-rouge">order</code>에 선언된 값에 의해서만 순서가 정해진다</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre>
+<span class="nt">&lt;style&gt;</span>
+<span class="nc">.container</span> <span class="p">{</span> 
+<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="nl">flex-flow</span><span class="p">:</span> <span class="n">row</span> <span class="nb">nowrap</span><span class="p">;</span>
+<span class="p">}</span>
+  
+  <span class="c">/* 화면 크기가 768px 이하면 끝으로 */</span>
+<span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+<span class="nc">.container</span> <span class="p">{</span> <span class="nl">flex-direction</span> <span class="p">:</span> <span class="n">column</span> <span class="p">}</span>
+<span class="nc">.last-with-mobile</span> <span class="p">{</span> <span class="nl">order</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"last-with-mobile"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="요소의-여백-비율-지정하기"><span class="me-2">요소의 여백 비율 지정하기</span><a href="#요소의-여백-비율-지정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/develop/">Develop</a>,
+          <a href="/categories/javascript/">Javascript</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/javascript/"
+            class="post-tag no-text-decoration"
+          >Javascript</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter4%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap4%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter4%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap4%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap4%2F&text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter4%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap4%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/jsp01/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1705462380"
+  data-df="ll"
+  
+>
+  Jan 17, 2024
+</time>
+
+              <h4 class="pt-0 my-2">JSP 자바 웹 프로그래밍 Chap1</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  [실습을 위한 도구들]
+
+
+  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구
+  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버
+  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)
+  Oracle 21c Express Edition : 데이터 베이스 관리 시스템
+  SQL Developer : ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_spread_rest/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1708831980"
+  data-df="ll"
+  
+>
+  Feb 25, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Spread와 Rest Parameters</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Spread Operator
+
+전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다
+
+배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_map/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712028780"
+  data-df="ll"
+  
+>
+  Apr  2, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Map함수</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Map 함수란
+
+Map함수는  콜백 함수를 이용해 각각의 요소에 호출해서 그 값을 변환할 수 있게 해준다. 다시 말하자면 콜백 함수는 배열의 각 요소에 실행된다
+
+예를들어 간단한 예제 코드를 보도록한다
+
+먼저 다음과 같은 배열 요소가 있다고 가정해본다
+
+[단순한 Javascript 배열]
+
+1
+2
+  //배열 arr을 만들고 1~5 까지 숫자를 넣어둔...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/chap3/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>(인터랙티브 웹 페이지 만들기) Chapter3</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/apache_port_set/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>(Debian12) apache 멀티 포트 서비스 설정</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

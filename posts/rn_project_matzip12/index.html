@@ -1,0 +1,3175 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="앱 로그인 설계 Step1: 앱 실행시 Refresh Api Call을 호출하여 성공, 실패를 나눈다 Step2 : 실패한경우 신규 유저 또는 오래전에 로그인한 사용자로 토큰이 만료된 사용자로 토큰을 제거하고 다시 로그인을 하게하여 로그인 성공시 AccessToken(header), RefreshToken(storage)을 저장하고 메인페이지로 이동시킨다 성공한 경우 RefreshToken이 아직 살아있는 사용자로 자동 로그인을 하여 메인화면으로 이동시킨다 AccessToken(header), RefreshToken(storage) 토큰들을 모두 갱신시켜서 재저장한다 EncryptStorage 설치 및 편의설정 RefreshToken을 저장하기 위해 EncryptStorage 를 설치하도록 하자 1 npm install react-native-encrypted-storage EncryptStorage를 편하게 사용하기 위해 아래 파일을 만들고 설정해두자 [matzip/front/src/utils/encryptStorage.ts] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 import EncryptStorage from &#39;react-native-encrypted-storage&#39;; const setEncryptStorage = async &lt;T&gt;(key: string, data: T) =&gt; { await EncryptStorage.setItem(key, JSON.stringify(data)); }; const getEncryptStorage = async (key: string) =&gt; { const storedData = await EncryptStorage.getItem(key); return storedData ? JSON.parse(storedData) : null; }; const removeEncryptStorage = async (key: string) =&gt; { const data = await getEncryptStorage(key); if (data) { await EncryptStorage.removeItem(key); } }; export {setEncryptStorage, getEncryptStorage, removeEncryptStorage}; 테스트용 백엔드를 만들기위해 데이터베이스인 postgresql 설치 👉🏻postgresql 설치URL postgresql에 쉽게 데이터를 넣고 수정하고할 수 있는 pgadmin 툴 다운로드 및 생성 👉🏻pgadmin 설치URL (1) 설치가 완료되었으면 pgadmin을 실행시켜서 Servers -&gt; Register -&gt; Server를 클릭하여 아래와 같이 생성하도록 하자 Name : matzip-app Host name / address : localhost Port: 5432 Username/Password: postgres (2) Server를 생성했으면 matzip-app이 생기고 왼쪽에 토글바를 눌러 열면 Databases항목이보인다 Databases우클릭 Create를 눌러서 DB를 생성한다 DB이름 또한 matzip-app으로 생성하였다 프로젝트 폴더에 server폴더 생성 현재까지 진행한 react-native소스들은 모두 프로젝트폴더내의 front폴더에있을것이다 server폴더를 최상위에 하나 더만들어서 최상위에는 front, server가 존재하도록하자 server 기본 소스코드 다운 및 실행 server 소스가 필요한데 이 프로젝트는 react-native가 중점이기에 server 소스는 기본적인 RestApi기능을 하는 소스만을 사용할것이다 서버 소스파일은 👉🏻소스코드){:target=”_blank”} 여기에서 다운받고 위에서 만들어둔 server폴더에 풀어두자 server폴더내의 기본 설정 작업 [matzip/server/.env] env파일을 생성하여 아래와 같이 postgresql 및 서버 포트, 토큰 정보등을 담아두도록하자 1 2 3 4 5 6 7 8 PORT=3030 DB_USERNAME=postgres DB_PASSWORD=postgres DB_DATABASE=matzip-app DB_HOST=localhost JWT_SECRET=SecretMatzip JWT_ACCESS_TOKEN_EXPIRATION=30m JWT_REFRESH_TOKEN_EXPIRATION=30d 서버의 의존성 패키지를 설치하고 실행시키자 1 2 npm install npm run start:dev Front 폴더에서 Axios 및 ReactQuery 설치 1 2 npm install axios npm install @tanstack/react-query" />
+<meta property="og:description" content="앱 로그인 설계 Step1: 앱 실행시 Refresh Api Call을 호출하여 성공, 실패를 나눈다 Step2 : 실패한경우 신규 유저 또는 오래전에 로그인한 사용자로 토큰이 만료된 사용자로 토큰을 제거하고 다시 로그인을 하게하여 로그인 성공시 AccessToken(header), RefreshToken(storage)을 저장하고 메인페이지로 이동시킨다 성공한 경우 RefreshToken이 아직 살아있는 사용자로 자동 로그인을 하여 메인화면으로 이동시킨다 AccessToken(header), RefreshToken(storage) 토큰들을 모두 갱신시켜서 재저장한다 EncryptStorage 설치 및 편의설정 RefreshToken을 저장하기 위해 EncryptStorage 를 설치하도록 하자 1 npm install react-native-encrypted-storage EncryptStorage를 편하게 사용하기 위해 아래 파일을 만들고 설정해두자 [matzip/front/src/utils/encryptStorage.ts] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 import EncryptStorage from &#39;react-native-encrypted-storage&#39;; const setEncryptStorage = async &lt;T&gt;(key: string, data: T) =&gt; { await EncryptStorage.setItem(key, JSON.stringify(data)); }; const getEncryptStorage = async (key: string) =&gt; { const storedData = await EncryptStorage.getItem(key); return storedData ? JSON.parse(storedData) : null; }; const removeEncryptStorage = async (key: string) =&gt; { const data = await getEncryptStorage(key); if (data) { await EncryptStorage.removeItem(key); } }; export {setEncryptStorage, getEncryptStorage, removeEncryptStorage}; 테스트용 백엔드를 만들기위해 데이터베이스인 postgresql 설치 👉🏻postgresql 설치URL postgresql에 쉽게 데이터를 넣고 수정하고할 수 있는 pgadmin 툴 다운로드 및 생성 👉🏻pgadmin 설치URL (1) 설치가 완료되었으면 pgadmin을 실행시켜서 Servers -&gt; Register -&gt; Server를 클릭하여 아래와 같이 생성하도록 하자 Name : matzip-app Host name / address : localhost Port: 5432 Username/Password: postgres (2) Server를 생성했으면 matzip-app이 생기고 왼쪽에 토글바를 눌러 열면 Databases항목이보인다 Databases우클릭 Create를 눌러서 DB를 생성한다 DB이름 또한 matzip-app으로 생성하였다 프로젝트 폴더에 server폴더 생성 현재까지 진행한 react-native소스들은 모두 프로젝트폴더내의 front폴더에있을것이다 server폴더를 최상위에 하나 더만들어서 최상위에는 front, server가 존재하도록하자 server 기본 소스코드 다운 및 실행 server 소스가 필요한데 이 프로젝트는 react-native가 중점이기에 server 소스는 기본적인 RestApi기능을 하는 소스만을 사용할것이다 서버 소스파일은 👉🏻소스코드){:target=”_blank”} 여기에서 다운받고 위에서 만들어둔 server폴더에 풀어두자 server폴더내의 기본 설정 작업 [matzip/server/.env] env파일을 생성하여 아래와 같이 postgresql 및 서버 포트, 토큰 정보등을 담아두도록하자 1 2 3 4 5 6 7 8 PORT=3030 DB_USERNAME=postgres DB_PASSWORD=postgres DB_DATABASE=matzip-app DB_HOST=localhost JWT_SECRET=SecretMatzip JWT_ACCESS_TOKEN_EXPIRATION=30m JWT_REFRESH_TOKEN_EXPIRATION=30d 서버의 의존성 패키지를 설치하고 실행시키자 1 2 npm install npm run start:dev Front 폴더에서 Axios 및 ReactQuery 설치 1 2 npm install axios npm install @tanstack/react-query" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/rn_project_matzip12/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/rn_project_matzip12/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-05T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-05T12:33:00+09:00","datePublished":"2024-05-05T12:33:00+09:00","description":"앱 로그인 설계 Step1: 앱 실행시 Refresh Api Call을 호출하여 성공, 실패를 나눈다 Step2 : 실패한경우 신규 유저 또는 오래전에 로그인한 사용자로 토큰이 만료된 사용자로 토큰을 제거하고 다시 로그인을 하게하여 로그인 성공시 AccessToken(header), RefreshToken(storage)을 저장하고 메인페이지로 이동시킨다 성공한 경우 RefreshToken이 아직 살아있는 사용자로 자동 로그인을 하여 메인화면으로 이동시킨다 AccessToken(header), RefreshToken(storage) 토큰들을 모두 갱신시켜서 재저장한다 EncryptStorage 설치 및 편의설정 RefreshToken을 저장하기 위해 EncryptStorage 를 설치하도록 하자 1 npm install react-native-encrypted-storage EncryptStorage를 편하게 사용하기 위해 아래 파일을 만들고 설정해두자 [matzip/front/src/utils/encryptStorage.ts] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 import EncryptStorage from &#39;react-native-encrypted-storage&#39;; const setEncryptStorage = async &lt;T&gt;(key: string, data: T) =&gt; { await EncryptStorage.setItem(key, JSON.stringify(data)); }; const getEncryptStorage = async (key: string) =&gt; { const storedData = await EncryptStorage.getItem(key); return storedData ? JSON.parse(storedData) : null; }; const removeEncryptStorage = async (key: string) =&gt; { const data = await getEncryptStorage(key); if (data) { await EncryptStorage.removeItem(key); } }; export {setEncryptStorage, getEncryptStorage, removeEncryptStorage}; 테스트용 백엔드를 만들기위해 데이터베이스인 postgresql 설치 👉🏻postgresql 설치URL postgresql에 쉽게 데이터를 넣고 수정하고할 수 있는 pgadmin 툴 다운로드 및 생성 👉🏻pgadmin 설치URL (1) 설치가 완료되었으면 pgadmin을 실행시켜서 Servers -&gt; Register -&gt; Server를 클릭하여 아래와 같이 생성하도록 하자 Name : matzip-app Host name / address : localhost Port: 5432 Username/Password: postgres (2) Server를 생성했으면 matzip-app이 생기고 왼쪽에 토글바를 눌러 열면 Databases항목이보인다 Databases우클릭 Create를 눌러서 DB를 생성한다 DB이름 또한 matzip-app으로 생성하였다 프로젝트 폴더에 server폴더 생성 현재까지 진행한 react-native소스들은 모두 프로젝트폴더내의 front폴더에있을것이다 server폴더를 최상위에 하나 더만들어서 최상위에는 front, server가 존재하도록하자 server 기본 소스코드 다운 및 실행 server 소스가 필요한데 이 프로젝트는 react-native가 중점이기에 server 소스는 기본적인 RestApi기능을 하는 소스만을 사용할것이다 서버 소스파일은 👉🏻소스코드){:target=”_blank”} 여기에서 다운받고 위에서 만들어둔 server폴더에 풀어두자 server폴더내의 기본 설정 작업 [matzip/server/.env] env파일을 생성하여 아래와 같이 postgresql 및 서버 포트, 토큰 정보등을 담아두도록하자 1 2 3 4 5 6 7 8 PORT=3030 DB_USERNAME=postgres DB_PASSWORD=postgres DB_DATABASE=matzip-app DB_HOST=localhost JWT_SECRET=SecretMatzip JWT_ACCESS_TOKEN_EXPIRATION=30m JWT_REFRESH_TOKEN_EXPIRATION=30d 서버의 의존성 패키지를 설치하고 실행시키자 1 2 npm install npm run start:dev Front 폴더에서 Axios 및 ReactQuery 설치 1 2 npm install axios npm install @tanstack/react-query","headline":"맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/rn_project_matzip12/"},"url":"http://0.0.0.0:4000/posts/rn_project_matzip12/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>맛집 앱 만들기 프로젝트 Part12 앱 로그인 설계 및 기타 프로그램 설치</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1714879980"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  May  5, 2024
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="734 words"
+>
+  <em>4 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <h2 id="앱-로그인-설계"><span class="me-2">앱 로그인 설계</span><a href="#앱-로그인-설계" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p><a href="/assets/data/Project/ReactNative/project_reactnative_09.png" class="popup img-link  shimmer"><img data-action="zoom" src="/assets/data/Project/ReactNative/project_reactnative_09.png" alt="absolute" loading="lazy"></a></p>
+
+<ul>
+  <li>Step1: 앱 실행시 Refresh Api Call을 호출하여 성공, 실패를 나눈다</li>
+  <li>Step2 :  실패한경우 신규 유저 또는 오래전에 로그인한 사용자로 토큰이 만료된 사용자로 토큰을 제거하고 다시 로그인을 하게하여  로그인 성공시 AccessToken(header), RefreshToken(storage)을 저장하고 메인페이지로 이동시킨다
+성공한 경우 RefreshToken이 아직 살아있는 사용자로 자동 로그인을 하여 메인화면으로 이동시킨다 AccessToken(header), RefreshToken(storage) 토큰들을 모두 갱신시켜서 재저장한다</li>
+</ul>
+
+<h2 id="encryptstorage-설치-및-편의설정"><span class="me-2">EncryptStorage 설치 및 편의설정</span><a href="#encryptstorage-설치-및-편의설정" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>RefreshToken을 저장하기 위해 EncryptStorage 를 설치하도록 하자</p>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npm <span class="nb">install </span>react-native-encrypted-storage
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>EncryptStorage를 편하게 사용하기 위해 아래 파일을 만들고 설정해두자</p>
+
+<p>[matzip/front/src/utils/encryptStorage.ts]</p>
+
+<div class="language-typescript highlighter-rouge"><div class="code-header">
+        <span data-label-text="TypeScript"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="nx">EncryptStorage</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-native-encrypted-storage</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">setEncryptStorage</span> <span class="o">=</span> <span class="k">async</span> <span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">data</span><span class="p">:</span> <span class="nx">T</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">EncryptStorage</span><span class="p">.</span><span class="nf">setItem</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">getEncryptStorage</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">storedData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">EncryptStorage</span><span class="p">.</span><span class="nf">getItem</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">storedData</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">storedData</span><span class="p">)</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">removeEncryptStorage</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">getEncryptStorage</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">EncryptStorage</span><span class="p">.</span><span class="nf">removeItem</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="p">{</span><span class="nx">setEncryptStorage</span><span class="p">,</span> <span class="nx">getEncryptStorage</span><span class="p">,</span> <span class="nx">removeEncryptStorage</span><span class="p">};</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="테스트용-백엔드를-만들기위해-데이터베이스인-postgresql-설치"><span class="me-2">테스트용 백엔드를 만들기위해 데이터베이스인 postgresql 설치</span><a href="#테스트용-백엔드를-만들기위해-데이터베이스인-postgresql-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>👉🏻<a href="https://www.postgresql.org/download/" target="_blank">postgresql 설치URL</a></p>
+
+<h2 id="postgresql에-쉽게-데이터를-넣고-수정하고할-수-있는-pgadmin-툴-다운로드-및-생성"><span class="me-2">postgresql에 쉽게 데이터를 넣고 수정하고할 수 있는 pgadmin 툴 다운로드 및 생성</span><a href="#postgresql에-쉽게-데이터를-넣고-수정하고할-수-있는-pgadmin-툴-다운로드-및-생성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>👉🏻<a href="https://www.pgadmin.org/download/" target="_blank">pgadmin 설치URL</a></p>
+
+<p>(1) 설치가 완료되었으면 pgadmin을 실행시켜서 Servers -&gt; Register -&gt; Server를 클릭하여 아래와 같이 생성하도록 하자</p>
+
+<ul>
+  <li>Name : matzip-app</li>
+  <li>Host name / address : localhost</li>
+  <li>Port: 5432</li>
+  <li>Username/Password: postgres</li>
+</ul>
+
+<p>(2) Server를 생성했으면 matzip-app이 생기고 왼쪽에 토글바를 눌러 열면 Databases항목이보인다 Databases우클릭 Create를 눌러서 DB를 생성한다 DB이름 또한 matzip-app으로 생성하였다</p>
+
+<h2 id="프로젝트-폴더에-server폴더-생성"><span class="me-2">프로젝트 폴더에 server폴더 생성</span><a href="#프로젝트-폴더에-server폴더-생성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>현재까지 진행한 react-native소스들은 모두 프로젝트폴더내의 front폴더에있을것이다</p>
+
+<p>server폴더를 최상위에 하나 더만들어서 최상위에는 front, server가 존재하도록하자</p>
+
+<h2 id="server-기본-소스코드-다운-및-실행"><span class="me-2">server 기본 소스코드 다운 및 실행</span><a href="#server-기본-소스코드-다운-및-실행" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>server 소스가 필요한데 이 프로젝트는 react-native가 중점이기에 server 소스는 기본적인 RestApi기능을 하는 소스만을 사용할것이다 서버 소스파일은 👉🏻<a href="https://www.pgadmin.org/download/" target="_blank">소스코드</a>){:target=”_blank”} 여기에서 다운받고 위에서 만들어둔 server폴더에 풀어두자</p>
+
+<h2 id="server폴더내의-기본-설정-작업"><span class="me-2">server폴더내의 기본 설정 작업</span><a href="#server폴더내의-기본-설정-작업" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>[matzip/server/.env]</p>
+
+<p>env파일을 생성하여 아래와 같이 postgresql 및 서버 포트, 토큰 정보등을 담아두도록하자</p>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nv">PORT</span><span class="o">=</span>3030
+<span class="nv">DB_USERNAME</span><span class="o">=</span>postgres
+<span class="nv">DB_PASSWORD</span><span class="o">=</span>postgres
+<span class="nv">DB_DATABASE</span><span class="o">=</span>matzip-app
+<span class="nv">DB_HOST</span><span class="o">=</span>localhost
+<span class="nv">JWT_SECRET</span><span class="o">=</span>SecretMatzip
+<span class="nv">JWT_ACCESS_TOKEN_EXPIRATION</span><span class="o">=</span>30m
+<span class="nv">JWT_REFRESH_TOKEN_EXPIRATION</span><span class="o">=</span>30d
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>서버의 의존성 패키지를 설치하고 실행시키자</p>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>npm <span class="nb">install 
+</span>npm run start:dev
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="front-폴더에서-axios-및-reactquery-설치"><span class="me-2">Front 폴더에서 Axios 및 ReactQuery 설치</span><a href="#front-폴더에서-axios-및-reactquery-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>npm <span class="nb">install </span>axios
+npm <span class="nb">install</span> @tanstack/react-query
+</pre></td></tr></tbody></table></code></div></div>
+
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/project/">Project</a>,
+          <a href="/categories/reatnative/">ReatNative</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/reatnative/"
+            class="post-tag no-text-decoration"
+          >ReatNative</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=%EB%A7%9B%EC%A7%91%20%EC%95%B1%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20Part12%20%EC%95%B1%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%84%A4%EA%B3%84%20%EB%B0%8F%20%EA%B8%B0%ED%83%80%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%84%A4%EC%B9%98%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Frn_project_matzip12%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=%EB%A7%9B%EC%A7%91%20%EC%95%B1%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20Part12%20%EC%95%B1%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%84%A4%EA%B3%84%20%EB%B0%8F%20%EA%B8%B0%ED%83%80%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%84%A4%EC%B9%98%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Frn_project_matzip12%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Frn_project_matzip12%2F&text=%EB%A7%9B%EC%A7%91%20%EC%95%B1%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20Part12%20%EC%95%B1%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%84%A4%EA%B3%84%20%EB%B0%8F%20%EA%B8%B0%ED%83%80%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%84%A4%EC%B9%98%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Frn_project_matzip12%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/rn_project_matzip05/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1713411180"
+  data-df="ll"
+  
+>
+  Apr 18, 2024
+</time>
+
+              <h4 class="pt-0 my-2">맛집 앱 만들기 프로젝트 Part5 Drawer Navigation 설치 및 적용</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Drawer Navigator란
+
+아래와 같이 화면 간 탐색을 위해 왼쪽(때로는 오른쪽)의 서랍을 사용할 수 있게해주는 기능이다
+
+해당 프로젝트에서는 사용자가 바로 Drawer Navigation기능을 사용하는것이 아닌 로그인에 성공한 사용자만 Drawer기능을 사용하고 로그인하지 않은 사용자는 Stack Navigation기능을 사용한다
+
+
+
+Dar...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/rn_project_matzip06/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1713411180"
+  data-df="ll"
+  
+>
+  Apr 18, 2024
+</time>
+
+              <h4 class="pt-0 my-2">맛집 앱 만들기 프로젝트 Part6 스크린 구조 및 옵션 설정</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  스크린 폴더 구조화하기
+
+현재 스크린파일들은 [matzip/front/src/navigations/screens] 밑에 있는데 조금 더 세분화하여 구조화를 진행한다
+
+
+  
+    screens
+
+    
+      
+        auth
+
+        
+          AuthHomeScreen.tsx
+          LoginScreen.t...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/rn_project_matzip07/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1713497580"
+  data-df="ll"
+  
+>
+  Apr 19, 2024
+</time>
+
+              <h4 class="pt-0 my-2">맛집 앱 만들기 프로젝트 Part7 Pressable 컴포넌트 개념과 Button 컴포넌트 구현하기</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  공통 컴포넌트
+
+여러 페이지에서 버튼과 같이 동일한 스타일을 여러번 사용하고 싶은경우 컴포넌트를 생성해 가져다 사용하면 효율적으로 구현할 수 있다
+
+Pressable 컴포넌트
+
+Pressable 컴포넌트는 터치 이벤트를 처리하는 데 사용되는 컴포넌트이다
+
+👉🏻리액트네이티브 Pressable 공식문서 여기를 참고
+
+기본적으로 touchableopacit...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/react05/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Step5 React State와 Lifecycle</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/rn_project_matzip13/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>맛집 앱 만들기 프로젝트 Part13 React Query 사용 및 API추가하기</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

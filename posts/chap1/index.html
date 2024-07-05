@@ -1,0 +1,4440 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  <!-- it's a local file path -->
+
+  
+  
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="(인터랙티브 웹 페이지 만들기) Chapter1" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="UI &amp; UX UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등) UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분) HTML, CSS, 자바스크립트란 예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다 웹 개발에 있어서 필요한 도구 웹 브라우저 웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한다 웹 브라우저는 다양하며 현재 Chrome 브라우저가 점유율 최상위를 차지하고 있다 Chrome 설치 : https://www.google.co.kr/chrome/ 웹 에디터 웹 개발을 위해 효율적인 코드를 작성 할 수 있도록 도와주는 웹 에디터 (IDE)가 필요하다 종류가 다양하며 대표적으로 Editplus, Notepad++, ATOM Editor, VisualStudio등이 존재한다 VisualStudio설치 : https://code.visualstudio.com 태그란 [태그는 브라우저가 웹 문서를 잘 이해할 수 있도록 콘텐츠를 목적에 맞게 분류한 규칙] 부모 태그와 자식 태그 : 태그의 기본 문법은 부모 태그 안에 자식태그가 존재하는 형태이며 Tab으로 들여쓰기를 하여 자식 태그를 분리한다 [Ex] 1 2 3 4 5 6 7 &lt;html&gt; =&gt; 부모 태그 &lt;head&gt; =&gt; 자식 태그 &lt;/head&gt; =&gt; 자식 태그 &lt;body&gt; =&gt; 자식 태그 &lt;/body&gt; =&gt; 자식 태그 &lt;/html&gt; =&gt; 부모 태그 HTML의 기본 구조 HTML의 구성은 문서 타입을 지정해 주는 &lt;!DOCTYPE&gt;, &lt;html&gt;태그로 구성되며 &lt;html&gt; 태그 안에는 다시 &lt;head&gt; 와 &lt;body&gt;태그 영역으로 분리된다 [TCP School 참고] &lt;!DOCTYPE html&gt; : 현재 웹 문서가 HTML5 문서임을 명시하는 영역 &lt;html&gt; : HTML 문서의 루트 요소(주요 핵심) 내용을 담고 있는 영역 &lt;head&gt; : HTML 문서의 메타데이터(metadata)를 갖고있는 영역이며 페이지에서 보이지 않는 문서 설정 또는 css, 자바스크립트와 같은 외부 파일을 연결하는 영역이다 &lt;body&gt;: 웹 브라우저에 출력 할 주요 콘텐츠를 갖고있는 영역 시맨틱 태그 HTML에서의 body안에 기본 구조를 형식에 맞게 구현해주는 형식 태그 시맨틱(semantic)이라는 ‘의미의’, ‘의미론적인’라는 뜻을 가진 형용사 즉 시맨틱 태그는 의미를 부여한 태그라는 뜻이되며&lt;header&gt;나 &lt;footer&gt; 같은 태그들이 있다 이 태그들은 이름만 봐도 상단과 하단이라는 것을 알 수 있으며 이렇게 시맨틱 태그의 등장으로 인해 태그만 보고도 문서를 더 쉽게 이해할 수 있게 된다 시맨틱Tag 설명   &lt;header&gt; 사이트의 머리부분에 사용   &lt;main&gt; 메인 콘텐츠를 나타내는데 사용   &lt;section&gt; 제목별로 나눌 수 있는 문서의 콘텐츠 영역을 구성하는 요소   &lt;article&gt; 개별 콘텐츠를 나타내는 요소   &lt;aside&gt; 좌우측의 사이드 영역   &lt;footer&gt; 사이트의 바닥부분, 주로 연락처나 제작자 정보등을 기술하는 부분   &lt;hgroup&gt; 제목과 부제목을 묶어서 나타내는 요소   &lt;nav&gt; 웹 페이지 메뉴를 만들 때 사용   시맨틱 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Jogyejin의 시맨틱 태그 연습&lt;/title&gt; &lt;style&gt; /* 전체 스타일링 */ body { font-family: sans-serif; margin: 0; padding: 0; background-color: skyblue; } /* 헤더 스타일링 */ header { background-color: #333; color: #fff; padding: 1em; display: flex; align-items: center; justify-content: space-between; } header h1 { margin: 0; } /* 네비게이션 스타일링 */ nav { background-color: orange; padding: 0.5em; } nav ul { list-style: none; margin: 0; padding: 0; display: flex; } nav li { margin-right: 1em; } nav a { color: #333; text-decoration: none; padding: 0.5em; } nav a:hover { background-color: #333; color: #fff; } /* 메인 스타일링 */ main { display: flex; flex-wrap: wrap; margin: 1em; } section { margin-right: 1em; flex: 1 1 300px; background-color: #fff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); margin-bottom: 1em; padding: 1em; } section:last-child { margin-right: 0; } section h2 { margin: 0; } article { margin-top: 1em; } article h3 { margin: 0; } /* 사이드바 스타일링 */ aside { background-color: #fab1a0; padding: 1em; margin-right: 1em; flex: 0 0 300px; } aside h3 { margin: 0; } /* 바닥글 스타일링 */ footer { background-color: #1abc9c; color: #fff; padding: 1em; text-align: center; } footer p { margin: 0; padding: 0.5em; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;header&gt; &lt;h1&gt;Jogyejin의 시맨틱 태그 연습&lt;/h1&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;default-avatar&quot; border=&quot;0&quot; width=&quot;100&quot;&gt; &lt;/header&gt; &lt;nav&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;홈&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;상품정보&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;내정보&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/nav&gt; &lt;main&gt; &lt;section&gt; &lt;h2&gt;상품정보&lt;/h2&gt; &lt;p&gt;향이 좋은 향초&lt;/p&gt; &lt;ul&gt; &lt;li&gt;라벤더 향초&lt;/li&gt; &lt;li&gt;파우더 향초&lt;/li&gt; &lt;li&gt;바디솜 향초&lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;내정보&lt;/h2&gt; &lt;article&gt; &lt;h3&gt;사용자정보&lt;/h3&gt; &lt;p&gt;ID/PW&lt;/p&gt; &lt;/article&gt; &lt;article&gt; &lt;h3&gt;배송지주소&lt;/h3&gt; &lt;p&gt;경기도 성남시&lt;/p&gt; &lt;/article&gt; &lt;/section&gt; &lt;/main&gt; &lt;aside&gt; &lt;h3&gt;광고&lt;/h3&gt; &lt;p&gt;광고 내용&lt;/p&gt; &lt;/aside&gt; &lt;footer&gt; &lt;p&gt;상호명&lt;/p&gt; &lt;p&gt;고객센터 전화번호&lt;/p&gt; &lt;/footer&gt; &lt;/body&gt; &lt;/html&gt; 시맨틱 태그 예제 출력물 See the Pen 시맨틱 태그 by mon node (@mon-node) on CodePen. 서식태그 서식태그는 단어나 문자의 서식을 결정하며 다양한 태그를 활용하여 가독성을 높일 수 있다 서식태그의 종류 서식태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 &lt;!doctype html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;서식태그 예제&lt;/title&gt; &lt;style type=text/css&gt; .leftdiv { background-color:yellow; float: left; } .middlediv { float: left; background-color:gray } .rightdiv { float: left; } div{ padding : 1%; color: black; background-color: 009900; width: 30%; border: solid black; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;hr&gt; &lt;!--제목태그 --&gt; &lt;h1&gt;제목 1&lt;/h1&gt; &lt;h2&gt;제목 2&lt;/h2&gt; &lt;h3&gt;제목 3&lt;/h3&gt; &lt;h4&gt;제목 4&lt;/h4&gt; &lt;h5&gt;제목 5&lt;/h5&gt; &lt;h6&gt;제목 6&lt;/h6&gt; &lt;hr&gt; &lt;!-- 문단태그 --&gt; &lt;p style=&quot;background-color:powderblue;&quot;&gt;p 문단 1&lt;/p&gt; &lt;p style=&quot;background-color:#D2E556;&quot;&gt;p 문단 2&lt;/p&gt; &lt;hr&gt; &lt;!-- 그룹지정태그 --&gt; &lt;div class=&quot;leftdiv&quot;&gt; &lt;h1&gt;div 1&lt;/h1&gt; &lt;p&gt;p 문단 1&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;middlediv&quot;&gt; &lt;h1&gt;div 2&lt;/h1&gt; &lt;p&gt;p 문단 2&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;rightdiv&quot;&gt; &lt;h1&gt;div 3&lt;/h1&gt; &lt;p&gt;p 문단 3&lt;/p&gt; &lt;/div&gt; &lt;!-- 강조 태그 예제 --&gt; &lt;hr&gt; &lt;strong&gt;강력한 strong!&lt;/strong&gt;&lt;br&gt; &lt;em&gt;최근에는 안쓰는 em!&lt;/em&gt;&lt;br&gt; &lt;hr&gt; &lt;!-- a 태그 예제 --&gt; &lt;a href=&quot;http://www.naver.com&quot;&gt;나는야 하이퍼링크(클릭시 네이버이동)&lt;/a&gt; &lt;hr&gt; &lt;!-- 두꺼운 글씨체 태그 --&gt; &lt;b&gt;bold text&lt;/b&gt; &lt;hr&gt; &lt;!-- span 예제 --&gt; &lt;span style=&quot;background-color:red&quot;&gt;span1&lt;/span&gt; &lt;span style=&quot;background-color:blue&quot;&gt;span2&lt;/span&gt; &lt;span style=&quot;background-color:green&quot;&gt;span3&lt;/span&gt; &lt;hr&gt; &lt;!-- img 태그 --&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;이미지 태그&quot; border=&quot;0&quot; width=&quot;100&quot;/&gt; 이미지 태그 &lt;hr&gt; &lt;!-- 줄바꿈 태그 --&gt; 고생했어,&lt;br&gt; 오늘 하루도 &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 목록 태그 텍스트나 이미지등을 목록화 및 리스트화하여 카테고리 등을 표현하기 위해 사용되는 태그 목록Tag 설명 &lt;ul&gt;,&lt;li&gt; 순서가 없는 목록(unorder list)을 만들 때 사용 &lt;ol&gt;,&lt;li&gt; 순서가 있는 목록을 만들 때 사용 &lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt; 제목과 설명이 한 쌍인 설명 목록을 만들 때 사용 목록 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 &lt;!DOCTYPE&gt; &lt;html&gt; &lt;head&gt; &lt;/head&gt; &lt;body&gt; &lt;ul&gt; &lt;순서가 없는 목록&gt; &lt;li&gt;HTML&lt;/li&gt; &lt;li&gt;CSS&lt;/li&gt; &lt;li&gt;JAVASCRIPT&lt;/li&gt; &lt;li&gt;JAVA&lt;/li&gt; &lt;li&gt;JSP&lt;/li&gt; &lt;li&gt;ORACLE&lt;/li&gt; &lt;/ul&gt; &lt;hr&gt; &lt;ol type=&quot;A&quot;&gt;&lt;순서가 있는 목록&gt; &lt;li&gt;variable&lt;/li&gt; &lt;li&gt;operator&lt;/li&gt; &lt;li&gt;data type&lt;/li&gt; &lt;li&gt;control statement&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt; &lt;정의형 목록&gt; &lt;dl&gt; &lt;dt&gt;HTML&lt;/dt&gt; &lt;dd&gt;HyperText Markup Language&lt;/dd&gt; &lt;dd&gt;웹페이지를 위한 지배적 마크업 언어&lt;/dd&gt; &lt;dt&gt;JAVA&lt;/dt&gt; &lt;dd&gt;객체지향 프로그래밍 언어&lt;/dd&gt; &lt;dd&gt;웹 애플리케이션 등 가장 많이 사용되는 언어&lt;/dd&gt; &lt;dt&gt;Python&lt;/dt&gt; &lt;dd&gt; 파이썬(Python)은 1990년 암스테르담의 귀도 반 로섬(Guido Van Rossum)이 개발한 인터프리터 언어&lt;/dd&gt; &lt;/dl&gt; &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 폼(Form) 태그 폼은 사용자로부터 데이터를 입력받아 서버로 전송한다 전송한 데이터는 웹 서버가 처리하고 결과에 따른 또 다른 웹 페이지를 출력한다 input 태그 input 태그는 type 속성을 다르게 지정하여 다양하게 사용자로부터 데이터를 입력 받을 수 있다 input 태그에서 사용가능한 속성 [TCP School 참고] input 예제 See the Pen Untitled by mon node (@mon-node) on CodePen. 멀티미디어 태그 HTML5에서 추가된 멀티미디어 요소인 video와 audio등을 말하며 현재에 웹에서 동영상을 시청하고 음악을 듣는데 지장이 없다고 생각할 수 있다 하지만 각종 플러그인과 ActiveX라는 불편함과 보안위협에 노출되어 있으며 그런 이유로 브라우저 자체에서 동영상을 재생하게끔 멀티미디어 태그가 필요하게 된 것이다 Audio 태그 음악 컨텐츠를 사용하기 위해 구현 가능한 태그 [Audio 태그에서 사용 가능한 파일] 확장자 설명 wav IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식 mp3 대부분의 음원에서 사용되며 Moving Picture Experts Group에 의해 개발됨, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식이다 ogg Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식, 라이센스 없이 무료이므로 게임등에서 많이 사용한다 [Audio 태그에서 사용할 수 있는 속성] 속성 설명 controls 웹 화면에 컨트롤 막대를 표시하고 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 autoplay 오디오를 자동 재생한다 loop 오디오를 반복해서 재생한다 muted 오디오는 재생하지만 소리는 자동 음소거된다 preload 재생 버튼을 눌러 재생하기 전에 오디오 파일을 다운로드해서 준비한다 Audio 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls autoplay&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls loop&gt;&lt;/audio&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. Video 태그 비디오 컨텐츠를 사용하기 위해 구현 가능한 태그 [video 태그에서 사용 가능한 속성] 속성 설명 controls 영상 컨트롤 막대를 표시하며 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 width, height 화면에 표시되는 영상의 크기를 조절한다 autoplay 영상을 자동 재생 loop 영상을 반복해서 재생 muted 영상은 재생하지만 소리는 음소거됨 preload 영상을 재생하기 전에 미디어 파일을 다운로드 함 poster 브라우저나 인터넷 문제등으로 영상을 재생못하는 경우 표시함 video 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; controls width=&quot;300&quot; height=&quot;200&quot;&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls autoplay&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls loop&gt; &lt;/video&gt; See the Pen video 태그 by mon node (@mon-node) on CodePen. ###웹" />
+<meta property="og:description" content="UI &amp; UX UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등) UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분) HTML, CSS, 자바스크립트란 예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다 웹 개발에 있어서 필요한 도구 웹 브라우저 웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한다 웹 브라우저는 다양하며 현재 Chrome 브라우저가 점유율 최상위를 차지하고 있다 Chrome 설치 : https://www.google.co.kr/chrome/ 웹 에디터 웹 개발을 위해 효율적인 코드를 작성 할 수 있도록 도와주는 웹 에디터 (IDE)가 필요하다 종류가 다양하며 대표적으로 Editplus, Notepad++, ATOM Editor, VisualStudio등이 존재한다 VisualStudio설치 : https://code.visualstudio.com 태그란 [태그는 브라우저가 웹 문서를 잘 이해할 수 있도록 콘텐츠를 목적에 맞게 분류한 규칙] 부모 태그와 자식 태그 : 태그의 기본 문법은 부모 태그 안에 자식태그가 존재하는 형태이며 Tab으로 들여쓰기를 하여 자식 태그를 분리한다 [Ex] 1 2 3 4 5 6 7 &lt;html&gt; =&gt; 부모 태그 &lt;head&gt; =&gt; 자식 태그 &lt;/head&gt; =&gt; 자식 태그 &lt;body&gt; =&gt; 자식 태그 &lt;/body&gt; =&gt; 자식 태그 &lt;/html&gt; =&gt; 부모 태그 HTML의 기본 구조 HTML의 구성은 문서 타입을 지정해 주는 &lt;!DOCTYPE&gt;, &lt;html&gt;태그로 구성되며 &lt;html&gt; 태그 안에는 다시 &lt;head&gt; 와 &lt;body&gt;태그 영역으로 분리된다 [TCP School 참고] &lt;!DOCTYPE html&gt; : 현재 웹 문서가 HTML5 문서임을 명시하는 영역 &lt;html&gt; : HTML 문서의 루트 요소(주요 핵심) 내용을 담고 있는 영역 &lt;head&gt; : HTML 문서의 메타데이터(metadata)를 갖고있는 영역이며 페이지에서 보이지 않는 문서 설정 또는 css, 자바스크립트와 같은 외부 파일을 연결하는 영역이다 &lt;body&gt;: 웹 브라우저에 출력 할 주요 콘텐츠를 갖고있는 영역 시맨틱 태그 HTML에서의 body안에 기본 구조를 형식에 맞게 구현해주는 형식 태그 시맨틱(semantic)이라는 ‘의미의’, ‘의미론적인’라는 뜻을 가진 형용사 즉 시맨틱 태그는 의미를 부여한 태그라는 뜻이되며&lt;header&gt;나 &lt;footer&gt; 같은 태그들이 있다 이 태그들은 이름만 봐도 상단과 하단이라는 것을 알 수 있으며 이렇게 시맨틱 태그의 등장으로 인해 태그만 보고도 문서를 더 쉽게 이해할 수 있게 된다 시맨틱Tag 설명   &lt;header&gt; 사이트의 머리부분에 사용   &lt;main&gt; 메인 콘텐츠를 나타내는데 사용   &lt;section&gt; 제목별로 나눌 수 있는 문서의 콘텐츠 영역을 구성하는 요소   &lt;article&gt; 개별 콘텐츠를 나타내는 요소   &lt;aside&gt; 좌우측의 사이드 영역   &lt;footer&gt; 사이트의 바닥부분, 주로 연락처나 제작자 정보등을 기술하는 부분   &lt;hgroup&gt; 제목과 부제목을 묶어서 나타내는 요소   &lt;nav&gt; 웹 페이지 메뉴를 만들 때 사용   시맨틱 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Jogyejin의 시맨틱 태그 연습&lt;/title&gt; &lt;style&gt; /* 전체 스타일링 */ body { font-family: sans-serif; margin: 0; padding: 0; background-color: skyblue; } /* 헤더 스타일링 */ header { background-color: #333; color: #fff; padding: 1em; display: flex; align-items: center; justify-content: space-between; } header h1 { margin: 0; } /* 네비게이션 스타일링 */ nav { background-color: orange; padding: 0.5em; } nav ul { list-style: none; margin: 0; padding: 0; display: flex; } nav li { margin-right: 1em; } nav a { color: #333; text-decoration: none; padding: 0.5em; } nav a:hover { background-color: #333; color: #fff; } /* 메인 스타일링 */ main { display: flex; flex-wrap: wrap; margin: 1em; } section { margin-right: 1em; flex: 1 1 300px; background-color: #fff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); margin-bottom: 1em; padding: 1em; } section:last-child { margin-right: 0; } section h2 { margin: 0; } article { margin-top: 1em; } article h3 { margin: 0; } /* 사이드바 스타일링 */ aside { background-color: #fab1a0; padding: 1em; margin-right: 1em; flex: 0 0 300px; } aside h3 { margin: 0; } /* 바닥글 스타일링 */ footer { background-color: #1abc9c; color: #fff; padding: 1em; text-align: center; } footer p { margin: 0; padding: 0.5em; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;header&gt; &lt;h1&gt;Jogyejin의 시맨틱 태그 연습&lt;/h1&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;default-avatar&quot; border=&quot;0&quot; width=&quot;100&quot;&gt; &lt;/header&gt; &lt;nav&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;홈&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;상품정보&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;내정보&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/nav&gt; &lt;main&gt; &lt;section&gt; &lt;h2&gt;상품정보&lt;/h2&gt; &lt;p&gt;향이 좋은 향초&lt;/p&gt; &lt;ul&gt; &lt;li&gt;라벤더 향초&lt;/li&gt; &lt;li&gt;파우더 향초&lt;/li&gt; &lt;li&gt;바디솜 향초&lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;내정보&lt;/h2&gt; &lt;article&gt; &lt;h3&gt;사용자정보&lt;/h3&gt; &lt;p&gt;ID/PW&lt;/p&gt; &lt;/article&gt; &lt;article&gt; &lt;h3&gt;배송지주소&lt;/h3&gt; &lt;p&gt;경기도 성남시&lt;/p&gt; &lt;/article&gt; &lt;/section&gt; &lt;/main&gt; &lt;aside&gt; &lt;h3&gt;광고&lt;/h3&gt; &lt;p&gt;광고 내용&lt;/p&gt; &lt;/aside&gt; &lt;footer&gt; &lt;p&gt;상호명&lt;/p&gt; &lt;p&gt;고객센터 전화번호&lt;/p&gt; &lt;/footer&gt; &lt;/body&gt; &lt;/html&gt; 시맨틱 태그 예제 출력물 See the Pen 시맨틱 태그 by mon node (@mon-node) on CodePen. 서식태그 서식태그는 단어나 문자의 서식을 결정하며 다양한 태그를 활용하여 가독성을 높일 수 있다 서식태그의 종류 서식태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 &lt;!doctype html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;서식태그 예제&lt;/title&gt; &lt;style type=text/css&gt; .leftdiv { background-color:yellow; float: left; } .middlediv { float: left; background-color:gray } .rightdiv { float: left; } div{ padding : 1%; color: black; background-color: 009900; width: 30%; border: solid black; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;hr&gt; &lt;!--제목태그 --&gt; &lt;h1&gt;제목 1&lt;/h1&gt; &lt;h2&gt;제목 2&lt;/h2&gt; &lt;h3&gt;제목 3&lt;/h3&gt; &lt;h4&gt;제목 4&lt;/h4&gt; &lt;h5&gt;제목 5&lt;/h5&gt; &lt;h6&gt;제목 6&lt;/h6&gt; &lt;hr&gt; &lt;!-- 문단태그 --&gt; &lt;p style=&quot;background-color:powderblue;&quot;&gt;p 문단 1&lt;/p&gt; &lt;p style=&quot;background-color:#D2E556;&quot;&gt;p 문단 2&lt;/p&gt; &lt;hr&gt; &lt;!-- 그룹지정태그 --&gt; &lt;div class=&quot;leftdiv&quot;&gt; &lt;h1&gt;div 1&lt;/h1&gt; &lt;p&gt;p 문단 1&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;middlediv&quot;&gt; &lt;h1&gt;div 2&lt;/h1&gt; &lt;p&gt;p 문단 2&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;rightdiv&quot;&gt; &lt;h1&gt;div 3&lt;/h1&gt; &lt;p&gt;p 문단 3&lt;/p&gt; &lt;/div&gt; &lt;!-- 강조 태그 예제 --&gt; &lt;hr&gt; &lt;strong&gt;강력한 strong!&lt;/strong&gt;&lt;br&gt; &lt;em&gt;최근에는 안쓰는 em!&lt;/em&gt;&lt;br&gt; &lt;hr&gt; &lt;!-- a 태그 예제 --&gt; &lt;a href=&quot;http://www.naver.com&quot;&gt;나는야 하이퍼링크(클릭시 네이버이동)&lt;/a&gt; &lt;hr&gt; &lt;!-- 두꺼운 글씨체 태그 --&gt; &lt;b&gt;bold text&lt;/b&gt; &lt;hr&gt; &lt;!-- span 예제 --&gt; &lt;span style=&quot;background-color:red&quot;&gt;span1&lt;/span&gt; &lt;span style=&quot;background-color:blue&quot;&gt;span2&lt;/span&gt; &lt;span style=&quot;background-color:green&quot;&gt;span3&lt;/span&gt; &lt;hr&gt; &lt;!-- img 태그 --&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;이미지 태그&quot; border=&quot;0&quot; width=&quot;100&quot;/&gt; 이미지 태그 &lt;hr&gt; &lt;!-- 줄바꿈 태그 --&gt; 고생했어,&lt;br&gt; 오늘 하루도 &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 목록 태그 텍스트나 이미지등을 목록화 및 리스트화하여 카테고리 등을 표현하기 위해 사용되는 태그 목록Tag 설명 &lt;ul&gt;,&lt;li&gt; 순서가 없는 목록(unorder list)을 만들 때 사용 &lt;ol&gt;,&lt;li&gt; 순서가 있는 목록을 만들 때 사용 &lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt; 제목과 설명이 한 쌍인 설명 목록을 만들 때 사용 목록 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 &lt;!DOCTYPE&gt; &lt;html&gt; &lt;head&gt; &lt;/head&gt; &lt;body&gt; &lt;ul&gt; &lt;순서가 없는 목록&gt; &lt;li&gt;HTML&lt;/li&gt; &lt;li&gt;CSS&lt;/li&gt; &lt;li&gt;JAVASCRIPT&lt;/li&gt; &lt;li&gt;JAVA&lt;/li&gt; &lt;li&gt;JSP&lt;/li&gt; &lt;li&gt;ORACLE&lt;/li&gt; &lt;/ul&gt; &lt;hr&gt; &lt;ol type=&quot;A&quot;&gt;&lt;순서가 있는 목록&gt; &lt;li&gt;variable&lt;/li&gt; &lt;li&gt;operator&lt;/li&gt; &lt;li&gt;data type&lt;/li&gt; &lt;li&gt;control statement&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt; &lt;정의형 목록&gt; &lt;dl&gt; &lt;dt&gt;HTML&lt;/dt&gt; &lt;dd&gt;HyperText Markup Language&lt;/dd&gt; &lt;dd&gt;웹페이지를 위한 지배적 마크업 언어&lt;/dd&gt; &lt;dt&gt;JAVA&lt;/dt&gt; &lt;dd&gt;객체지향 프로그래밍 언어&lt;/dd&gt; &lt;dd&gt;웹 애플리케이션 등 가장 많이 사용되는 언어&lt;/dd&gt; &lt;dt&gt;Python&lt;/dt&gt; &lt;dd&gt; 파이썬(Python)은 1990년 암스테르담의 귀도 반 로섬(Guido Van Rossum)이 개발한 인터프리터 언어&lt;/dd&gt; &lt;/dl&gt; &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 폼(Form) 태그 폼은 사용자로부터 데이터를 입력받아 서버로 전송한다 전송한 데이터는 웹 서버가 처리하고 결과에 따른 또 다른 웹 페이지를 출력한다 input 태그 input 태그는 type 속성을 다르게 지정하여 다양하게 사용자로부터 데이터를 입력 받을 수 있다 input 태그에서 사용가능한 속성 [TCP School 참고] input 예제 See the Pen Untitled by mon node (@mon-node) on CodePen. 멀티미디어 태그 HTML5에서 추가된 멀티미디어 요소인 video와 audio등을 말하며 현재에 웹에서 동영상을 시청하고 음악을 듣는데 지장이 없다고 생각할 수 있다 하지만 각종 플러그인과 ActiveX라는 불편함과 보안위협에 노출되어 있으며 그런 이유로 브라우저 자체에서 동영상을 재생하게끔 멀티미디어 태그가 필요하게 된 것이다 Audio 태그 음악 컨텐츠를 사용하기 위해 구현 가능한 태그 [Audio 태그에서 사용 가능한 파일] 확장자 설명 wav IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식 mp3 대부분의 음원에서 사용되며 Moving Picture Experts Group에 의해 개발됨, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식이다 ogg Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식, 라이센스 없이 무료이므로 게임등에서 많이 사용한다 [Audio 태그에서 사용할 수 있는 속성] 속성 설명 controls 웹 화면에 컨트롤 막대를 표시하고 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 autoplay 오디오를 자동 재생한다 loop 오디오를 반복해서 재생한다 muted 오디오는 재생하지만 소리는 자동 음소거된다 preload 재생 버튼을 눌러 재생하기 전에 오디오 파일을 다운로드해서 준비한다 Audio 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls autoplay&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls loop&gt;&lt;/audio&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. Video 태그 비디오 컨텐츠를 사용하기 위해 구현 가능한 태그 [video 태그에서 사용 가능한 속성] 속성 설명 controls 영상 컨트롤 막대를 표시하며 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 width, height 화면에 표시되는 영상의 크기를 조절한다 autoplay 영상을 자동 재생 loop 영상을 반복해서 재생 muted 영상은 재생하지만 소리는 음소거됨 preload 영상을 재생하기 전에 미디어 파일을 다운로드 함 poster 브라우저나 인터넷 문제등으로 영상을 재생못하는 경우 표시함 video 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; controls width=&quot;300&quot; height=&quot;200&quot;&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls autoplay&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls loop&gt; &lt;/video&gt; See the Pen video 태그 by mon node (@mon-node) on CodePen. ###웹" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/chap1/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/chap1/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-12T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(인터랙티브 웹 페이지 만들기) Chapter1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-12T12:33:00+09:00","datePublished":"2023-09-12T12:33:00+09:00","description":"UI &amp; UX UI는 User Interface의 약자이며 사용자가 콘텐츠를 직접 접하는 부분 사용자 환경을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등) UX는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 사용자의 경험을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분) HTML, CSS, 자바스크립트란 예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다 웹 개발에 있어서 필요한 도구 웹 브라우저 웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한다 웹 브라우저는 다양하며 현재 Chrome 브라우저가 점유율 최상위를 차지하고 있다 Chrome 설치 : https://www.google.co.kr/chrome/ 웹 에디터 웹 개발을 위해 효율적인 코드를 작성 할 수 있도록 도와주는 웹 에디터 (IDE)가 필요하다 종류가 다양하며 대표적으로 Editplus, Notepad++, ATOM Editor, VisualStudio등이 존재한다 VisualStudio설치 : https://code.visualstudio.com 태그란 [태그는 브라우저가 웹 문서를 잘 이해할 수 있도록 콘텐츠를 목적에 맞게 분류한 규칙] 부모 태그와 자식 태그 : 태그의 기본 문법은 부모 태그 안에 자식태그가 존재하는 형태이며 Tab으로 들여쓰기를 하여 자식 태그를 분리한다 [Ex] 1 2 3 4 5 6 7 &lt;html&gt; =&gt; 부모 태그 &lt;head&gt; =&gt; 자식 태그 &lt;/head&gt; =&gt; 자식 태그 &lt;body&gt; =&gt; 자식 태그 &lt;/body&gt; =&gt; 자식 태그 &lt;/html&gt; =&gt; 부모 태그 HTML의 기본 구조 HTML의 구성은 문서 타입을 지정해 주는 &lt;!DOCTYPE&gt;, &lt;html&gt;태그로 구성되며 &lt;html&gt; 태그 안에는 다시 &lt;head&gt; 와 &lt;body&gt;태그 영역으로 분리된다 [TCP School 참고] &lt;!DOCTYPE html&gt; : 현재 웹 문서가 HTML5 문서임을 명시하는 영역 &lt;html&gt; : HTML 문서의 루트 요소(주요 핵심) 내용을 담고 있는 영역 &lt;head&gt; : HTML 문서의 메타데이터(metadata)를 갖고있는 영역이며 페이지에서 보이지 않는 문서 설정 또는 css, 자바스크립트와 같은 외부 파일을 연결하는 영역이다 &lt;body&gt;: 웹 브라우저에 출력 할 주요 콘텐츠를 갖고있는 영역 시맨틱 태그 HTML에서의 body안에 기본 구조를 형식에 맞게 구현해주는 형식 태그 시맨틱(semantic)이라는 ‘의미의’, ‘의미론적인’라는 뜻을 가진 형용사 즉 시맨틱 태그는 의미를 부여한 태그라는 뜻이되며&lt;header&gt;나 &lt;footer&gt; 같은 태그들이 있다 이 태그들은 이름만 봐도 상단과 하단이라는 것을 알 수 있으며 이렇게 시맨틱 태그의 등장으로 인해 태그만 보고도 문서를 더 쉽게 이해할 수 있게 된다 시맨틱Tag 설명   &lt;header&gt; 사이트의 머리부분에 사용   &lt;main&gt; 메인 콘텐츠를 나타내는데 사용   &lt;section&gt; 제목별로 나눌 수 있는 문서의 콘텐츠 영역을 구성하는 요소   &lt;article&gt; 개별 콘텐츠를 나타내는 요소   &lt;aside&gt; 좌우측의 사이드 영역   &lt;footer&gt; 사이트의 바닥부분, 주로 연락처나 제작자 정보등을 기술하는 부분   &lt;hgroup&gt; 제목과 부제목을 묶어서 나타내는 요소   &lt;nav&gt; 웹 페이지 메뉴를 만들 때 사용   시맨틱 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Jogyejin의 시맨틱 태그 연습&lt;/title&gt; &lt;style&gt; /* 전체 스타일링 */ body { font-family: sans-serif; margin: 0; padding: 0; background-color: skyblue; } /* 헤더 스타일링 */ header { background-color: #333; color: #fff; padding: 1em; display: flex; align-items: center; justify-content: space-between; } header h1 { margin: 0; } /* 네비게이션 스타일링 */ nav { background-color: orange; padding: 0.5em; } nav ul { list-style: none; margin: 0; padding: 0; display: flex; } nav li { margin-right: 1em; } nav a { color: #333; text-decoration: none; padding: 0.5em; } nav a:hover { background-color: #333; color: #fff; } /* 메인 스타일링 */ main { display: flex; flex-wrap: wrap; margin: 1em; } section { margin-right: 1em; flex: 1 1 300px; background-color: #fff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); margin-bottom: 1em; padding: 1em; } section:last-child { margin-right: 0; } section h2 { margin: 0; } article { margin-top: 1em; } article h3 { margin: 0; } /* 사이드바 스타일링 */ aside { background-color: #fab1a0; padding: 1em; margin-right: 1em; flex: 0 0 300px; } aside h3 { margin: 0; } /* 바닥글 스타일링 */ footer { background-color: #1abc9c; color: #fff; padding: 1em; text-align: center; } footer p { margin: 0; padding: 0.5em; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;header&gt; &lt;h1&gt;Jogyejin의 시맨틱 태그 연습&lt;/h1&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;default-avatar&quot; border=&quot;0&quot; width=&quot;100&quot;&gt; &lt;/header&gt; &lt;nav&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;홈&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;상품정보&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;내정보&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/nav&gt; &lt;main&gt; &lt;section&gt; &lt;h2&gt;상품정보&lt;/h2&gt; &lt;p&gt;향이 좋은 향초&lt;/p&gt; &lt;ul&gt; &lt;li&gt;라벤더 향초&lt;/li&gt; &lt;li&gt;파우더 향초&lt;/li&gt; &lt;li&gt;바디솜 향초&lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;내정보&lt;/h2&gt; &lt;article&gt; &lt;h3&gt;사용자정보&lt;/h3&gt; &lt;p&gt;ID/PW&lt;/p&gt; &lt;/article&gt; &lt;article&gt; &lt;h3&gt;배송지주소&lt;/h3&gt; &lt;p&gt;경기도 성남시&lt;/p&gt; &lt;/article&gt; &lt;/section&gt; &lt;/main&gt; &lt;aside&gt; &lt;h3&gt;광고&lt;/h3&gt; &lt;p&gt;광고 내용&lt;/p&gt; &lt;/aside&gt; &lt;footer&gt; &lt;p&gt;상호명&lt;/p&gt; &lt;p&gt;고객센터 전화번호&lt;/p&gt; &lt;/footer&gt; &lt;/body&gt; &lt;/html&gt; 시맨틱 태그 예제 출력물 See the Pen 시맨틱 태그 by mon node (@mon-node) on CodePen. 서식태그 서식태그는 단어나 문자의 서식을 결정하며 다양한 태그를 활용하여 가독성을 높일 수 있다 서식태그의 종류 서식태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 &lt;!doctype html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;서식태그 예제&lt;/title&gt; &lt;style type=text/css&gt; .leftdiv { background-color:yellow; float: left; } .middlediv { float: left; background-color:gray } .rightdiv { float: left; } div{ padding : 1%; color: black; background-color: 009900; width: 30%; border: solid black; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;hr&gt; &lt;!--제목태그 --&gt; &lt;h1&gt;제목 1&lt;/h1&gt; &lt;h2&gt;제목 2&lt;/h2&gt; &lt;h3&gt;제목 3&lt;/h3&gt; &lt;h4&gt;제목 4&lt;/h4&gt; &lt;h5&gt;제목 5&lt;/h5&gt; &lt;h6&gt;제목 6&lt;/h6&gt; &lt;hr&gt; &lt;!-- 문단태그 --&gt; &lt;p style=&quot;background-color:powderblue;&quot;&gt;p 문단 1&lt;/p&gt; &lt;p style=&quot;background-color:#D2E556;&quot;&gt;p 문단 2&lt;/p&gt; &lt;hr&gt; &lt;!-- 그룹지정태그 --&gt; &lt;div class=&quot;leftdiv&quot;&gt; &lt;h1&gt;div 1&lt;/h1&gt; &lt;p&gt;p 문단 1&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;middlediv&quot;&gt; &lt;h1&gt;div 2&lt;/h1&gt; &lt;p&gt;p 문단 2&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;rightdiv&quot;&gt; &lt;h1&gt;div 3&lt;/h1&gt; &lt;p&gt;p 문단 3&lt;/p&gt; &lt;/div&gt; &lt;!-- 강조 태그 예제 --&gt; &lt;hr&gt; &lt;strong&gt;강력한 strong!&lt;/strong&gt;&lt;br&gt; &lt;em&gt;최근에는 안쓰는 em!&lt;/em&gt;&lt;br&gt; &lt;hr&gt; &lt;!-- a 태그 예제 --&gt; &lt;a href=&quot;http://www.naver.com&quot;&gt;나는야 하이퍼링크(클릭시 네이버이동)&lt;/a&gt; &lt;hr&gt; &lt;!-- 두꺼운 글씨체 태그 --&gt; &lt;b&gt;bold text&lt;/b&gt; &lt;hr&gt; &lt;!-- span 예제 --&gt; &lt;span style=&quot;background-color:red&quot;&gt;span1&lt;/span&gt; &lt;span style=&quot;background-color:blue&quot;&gt;span2&lt;/span&gt; &lt;span style=&quot;background-color:green&quot;&gt;span3&lt;/span&gt; &lt;hr&gt; &lt;!-- img 태그 --&gt; &lt;img src=&quot;https://i.ibb.co/bb7kRP4/default-avatar.jpg&quot; alt=&quot;이미지 태그&quot; border=&quot;0&quot; width=&quot;100&quot;/&gt; 이미지 태그 &lt;hr&gt; &lt;!-- 줄바꿈 태그 --&gt; 고생했어,&lt;br&gt; 오늘 하루도 &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 목록 태그 텍스트나 이미지등을 목록화 및 리스트화하여 카테고리 등을 표현하기 위해 사용되는 태그 목록Tag 설명 &lt;ul&gt;,&lt;li&gt; 순서가 없는 목록(unorder list)을 만들 때 사용 &lt;ol&gt;,&lt;li&gt; 순서가 있는 목록을 만들 때 사용 &lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt; 제목과 설명이 한 쌍인 설명 목록을 만들 때 사용 목록 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 &lt;!DOCTYPE&gt; &lt;html&gt; &lt;head&gt; &lt;/head&gt; &lt;body&gt; &lt;ul&gt; &lt;순서가 없는 목록&gt; &lt;li&gt;HTML&lt;/li&gt; &lt;li&gt;CSS&lt;/li&gt; &lt;li&gt;JAVASCRIPT&lt;/li&gt; &lt;li&gt;JAVA&lt;/li&gt; &lt;li&gt;JSP&lt;/li&gt; &lt;li&gt;ORACLE&lt;/li&gt; &lt;/ul&gt; &lt;hr&gt; &lt;ol type=&quot;A&quot;&gt;&lt;순서가 있는 목록&gt; &lt;li&gt;variable&lt;/li&gt; &lt;li&gt;operator&lt;/li&gt; &lt;li&gt;data type&lt;/li&gt; &lt;li&gt;control statement&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt; &lt;정의형 목록&gt; &lt;dl&gt; &lt;dt&gt;HTML&lt;/dt&gt; &lt;dd&gt;HyperText Markup Language&lt;/dd&gt; &lt;dd&gt;웹페이지를 위한 지배적 마크업 언어&lt;/dd&gt; &lt;dt&gt;JAVA&lt;/dt&gt; &lt;dd&gt;객체지향 프로그래밍 언어&lt;/dd&gt; &lt;dd&gt;웹 애플리케이션 등 가장 많이 사용되는 언어&lt;/dd&gt; &lt;dt&gt;Python&lt;/dt&gt; &lt;dd&gt; 파이썬(Python)은 1990년 암스테르담의 귀도 반 로섬(Guido Van Rossum)이 개발한 인터프리터 언어&lt;/dd&gt; &lt;/dl&gt; &lt;/body&gt; &lt;/html&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. 폼(Form) 태그 폼은 사용자로부터 데이터를 입력받아 서버로 전송한다 전송한 데이터는 웹 서버가 처리하고 결과에 따른 또 다른 웹 페이지를 출력한다 input 태그 input 태그는 type 속성을 다르게 지정하여 다양하게 사용자로부터 데이터를 입력 받을 수 있다 input 태그에서 사용가능한 속성 [TCP School 참고] input 예제 See the Pen Untitled by mon node (@mon-node) on CodePen. 멀티미디어 태그 HTML5에서 추가된 멀티미디어 요소인 video와 audio등을 말하며 현재에 웹에서 동영상을 시청하고 음악을 듣는데 지장이 없다고 생각할 수 있다 하지만 각종 플러그인과 ActiveX라는 불편함과 보안위협에 노출되어 있으며 그런 이유로 브라우저 자체에서 동영상을 재생하게끔 멀티미디어 태그가 필요하게 된 것이다 Audio 태그 음악 컨텐츠를 사용하기 위해 구현 가능한 태그 [Audio 태그에서 사용 가능한 파일] 확장자 설명 wav IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식 mp3 대부분의 음원에서 사용되며 Moving Picture Experts Group에 의해 개발됨, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식이다 ogg Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식, 라이센스 없이 무료이므로 게임등에서 많이 사용한다 [Audio 태그에서 사용할 수 있는 속성] 속성 설명 controls 웹 화면에 컨트롤 막대를 표시하고 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 autoplay 오디오를 자동 재생한다 loop 오디오를 반복해서 재생한다 muted 오디오는 재생하지만 소리는 자동 음소거된다 preload 재생 버튼을 눌러 재생하기 전에 오디오 파일을 다운로드해서 준비한다 Audio 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls autoplay&gt;&lt;/audio&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;audio src=&quot;https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3&quot; controls loop&gt;&lt;/audio&gt; See the Pen Untitled by mon node (@mon-node) on CodePen. Video 태그 비디오 컨텐츠를 사용하기 위해 구현 가능한 태그 [video 태그에서 사용 가능한 속성] 속성 설명 controls 영상 컨트롤 막대를 표시하며 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다 width, height 화면에 표시되는 영상의 크기를 조절한다 autoplay 영상을 자동 재생 loop 영상을 반복해서 재생 muted 영상은 재생하지만 소리는 음소거됨 preload 영상을 재생하기 전에 미디어 파일을 다운로드 함 poster 브라우저나 인터넷 문제등으로 영상을 재생못하는 경우 표시함 video 태그 예제 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;!--일반 재생--&gt; [일반 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; controls width=&quot;300&quot; height=&quot;200&quot;&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--자동 재생--&gt; [자동 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls autoplay&gt; &lt;/video&gt; &lt;hr&gt; &lt;!--반복 재생--&gt; [반복 재생] &lt;br&gt; &lt;video src=&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot; width=&quot;300&quot; controls loop&gt; &lt;/video&gt; See the Pen video 태그 by mon node (@mon-node) on CodePen. ###웹","headline":"(인터랙티브 웹 페이지 만들기) Chapter1","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/chap1/"},"url":"http://0.0.0.0:4000/posts/chap1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>(인터랙티브 웹 페이지 만들기) Chapter1 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>(인터랙티브 웹 페이지 만들기) Chapter1</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>(인터랙티브 웹 페이지 만들기) Chapter1</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1694489580"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Sep 12, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="{width=" class="popup img-link  shimmer"><img src="{"width"= loading="lazy"></a>800, "height"=>500}" class="preview-img" alt="Preview Image" w="1200" h="630" ></div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="3165 words"
+>
+  <em>17 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <hr />
+
+<h2 id="ui--ux"><span class="me-2">UI &amp; UX</span><a href="#ui--ux" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote>
+
+  <ul>
+    <li><span style="color:orange">UI</span>는 User Interface의 약자이며 <span style="color:orange">사용자가 콘텐츠를 직접 접하는 부분 사용자 환경</span>을 의미한다(ex: 바탕화면 아이콘, 모바일 화면 등)</li>
+    <li><span style="color:orange">UX</span>는 User experience의 약자이며 사용자가 UI를 사용하면서 느낄 수 있는 <span style="color:orange">사용자의 경험</span>을 의미한다(ex: 트리구조의 게시판 접근등 사용성의 전반적인 부분)</li>
+  </ul>
+</blockquote>
+
+<h2 id="html-css-자바스크립트란"><span class="me-2">HTML, CSS, 자바스크립트란</span><a href="#html-css-자바스크립트란" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<ul>
+  <li>예로 HTML은 그림의 연필로 그린 도면이고 CSS는 도면에 색칠을 하는것이고 자바스크립트는 해당 그림에 생명을 불어넣어 살아 움직이게 하는것과 같다</li>
+</ul>
+
+<h3 id="웹-개발에-있어서-필요한-도구"><span class="me-2">웹 개발에 있어서 필요한 도구</span><a href="#웹-개발에-있어서-필요한-도구" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<ul>
+  <li>웹 브라우저
+    <blockquote>
+      <p>웹 페이지를 개발하고 확인하기 위해서는 웹 브라우저라는 프로그램을 필요로 한다 웹 브라우저는 다양하며 현재 Chrome 브라우저가 점유율 최상위를 차지하고 있다</p>
+    </blockquote>
+    <ul>
+      <li>Chrome 설치 : https://www.google.co.kr/chrome/</li>
+    </ul>
+  </li>
+  <li>웹 에디터
+    <blockquote>
+      <p>웹 개발을 위해 효율적인 코드를 작성 할 수 있도록 도와주는 웹 에디터 (IDE)가 필요하다 종류가 다양하며 대표적으로 Editplus, Notepad++, ATOM Editor, VisualStudio등이 존재한다</p>
+    </blockquote>
+    <ul>
+      <li>VisualStudio설치 : https://code.visualstudio.com</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="태그란"><span class="me-2">태그란</span><a href="#태그란" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p><span style="color:orange"> [태그는 브라우저가 웹 문서를 잘 이해할 수 있도록 콘텐츠를 목적에 맞게 분류한 규칙]</span>
+<br />
+부모 태그와 자식 태그 : 태그의 기본 문법은 부모 태그 안에 자식태그가 존재하는 형태이며 Tab으로 들여쓰기를 하여 자식 태그를 분리한다<br />
+[Ex]<br /></p>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;html&gt;</span> =&gt; 부모 태그
+    <span class="nt">&lt;head&gt;</span> =&gt; 자식 태그
+    <span class="nt">&lt;/head&gt;</span> =&gt; 자식 태그
+    
+    <span class="nt">&lt;body&gt;</span> =&gt; 자식 태그
+    <span class="nt">&lt;/body&gt;</span> =&gt; 자식 태그
+<span class="nt">&lt;/html&gt;</span> =&gt; 부모 태그
+</pre></td></tr></tbody></table></code></div></div>
+<h2 id="html의-기본-구조"><span class="me-2">HTML의 기본 구조</span><a href="#html의-기본-구조" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>HTML의 구성은 문서 타입을 지정해 주는 <code class="language-plaintext highlighter-rouge">&lt;!DOCTYPE&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code>태그로 구성되며 <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> 태그 안에는 다시 <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> 와 <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>태그 영역으로 분리된다</p>
+
+<p>[TCP School 참고]
+<a href="https://i.ibb.co/VBrVGt6/image.png" class="popup img-link  shimmer"><img src="https://i.ibb.co/VBrVGt6/image.png" alt="image" border="0" loading="lazy"></a></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">&lt;!DOCTYPE html&gt;</code> : 현재 웹 문서가 HTML5 문서임을 명시하는 영역<br />
+<code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> : HTML 문서의 루트 요소(주요 핵심) 내용을 담고 있는 영역<br />
+<code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> : HTML 문서의 메타데이터(metadata)를 갖고있는 영역이며 페이지에서 보이지 않는 문서 설정 또는 css, 자바스크립트와 같은 외부 파일을 연결하는 영역이다<br />
+<code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>: 웹 브라우저에 출력 할 주요 콘텐츠를 갖고있는 영역</p>
+</blockquote>
+
+<h2 id="시맨틱-태그"><span class="me-2">시맨틱 태그</span><a href="#시맨틱-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote>
+  <p>HTML에서의 body안에 기본 구조를 형식에 맞게 구현해주는 형식 태그</p>
+</blockquote>
+
+<p>시맨틱(semantic)이라는 <span style="color:skyblue">‘의미의’, ‘의미론적인’라는 뜻을 가진 형용사</span> <br /> 즉 시맨틱 태그는 의미를 부여한 태그라는 뜻이되며<span style="color:orange">&lt;header&gt;나 &lt;footer&gt; </span> 같은 태그들이 있다<br /> 이 태그들은 이름만 봐도 상단과 하단이라는 것을 알 수 있으며 이렇게 시맨틱 태그의 등장으로 인해 태그만 보고도 문서를 더 쉽게 이해할 수 있게 된다</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>시맨틱Tag</th>
+      <th style="text-align: center">설명</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;header&gt;</code></td>
+      <td style="text-align: center">사이트의 머리부분에 사용</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;main&gt;</code></td>
+      <td style="text-align: center">메인 콘텐츠를 나타내는데 사용</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;section&gt;</code></td>
+      <td style="text-align: center">제목별로 나눌 수 있는 문서의 콘텐츠 영역을 구성하는 요소</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;article&gt;</code></td>
+      <td style="text-align: center">개별 콘텐츠를 나타내는 요소</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;aside&gt;</code></td>
+      <td style="text-align: center">좌우측의 사이드 영역</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;footer&gt;</code></td>
+      <td style="text-align: center">사이트의 바닥부분, 주로 연락처나 제작자 정보등을 기술하는 부분</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;hgroup&gt;</code></td>
+      <td style="text-align: center">제목과 부제목을 묶어서 나타내는 요소</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;nav&gt;</code></td>
+      <td style="text-align: center">웹 페이지 메뉴를 만들 때 사용</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h3 id="시맨틱-태그-예제"><span class="me-2">시맨틱 태그 예제</span><a href="#시맨틱-태그-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Jogyejin의 시맨틱 태그 연습<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="c">/* 전체 스타일링 */</span>
+      <span class="nt">body</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c">/* 헤더 스타일링 */</span>
+      <span class="nt">header</span> <span class="p">{</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+        <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+        <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c">/* 네비게이션 스타일링 */</span>
+      <span class="nt">nav</span> <span class="p">{</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="no">orange</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
+        <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
+        <span class="nl">margin-right</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">nav</span> <span class="nt">a</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
+        <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">nav</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c">/* 메인 스타일링 */</span>
+      <span class="nt">main</span> <span class="p">{</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+        <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">section</span> <span class="p">{</span>
+        <span class="nl">margin-right</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span> <span class="m">1</span> <span class="m">300px</span><span class="p">;</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+        <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">5px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>
+        <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">section</span><span class="nd">:last-child</span> <span class="p">{</span>
+        <span class="nl">margin-right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">section</span> <span class="nt">h2</span> <span class="p">{</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">article</span> <span class="p">{</span>
+        <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">article</span> <span class="nt">h3</span> <span class="p">{</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c">/* 사이드바 스타일링 */</span>
+      <span class="nt">aside</span> <span class="p">{</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fab1a0</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">margin-right</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">300px</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">aside</span> <span class="nt">h3</span> <span class="p">{</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c">/* 바닥글 스타일링 */</span>
+      <span class="nt">footer</span> <span class="p">{</span>
+        <span class="nl">background-color</span><span class="p">:</span> <span class="m">#1abc9c</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">footer</span> <span class="nt">p</span> <span class="p">{</span>
+        <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nl">padding</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>Jogyejin의 시맨틱 태그 연습<span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://i.ibb.co/bb7kRP4/default-avatar.jpg"</span> <span class="na">alt=</span><span class="s">"default-avatar"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;nav&gt;</span>
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>홈<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>상품정보<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>내정보<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+    <span class="nt">&lt;main&gt;</span>
+      <span class="nt">&lt;section&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>상품정보<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;p&gt;</span>향이 좋은 향초<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+          <span class="nt">&lt;li&gt;</span>라벤더 향초<span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span>파우더 향초<span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span>바디솜 향초<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/section&gt;</span>
+      <span class="nt">&lt;section&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>내정보<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;article&gt;</span>
+          <span class="nt">&lt;h3&gt;</span>사용자정보<span class="nt">&lt;/h3&gt;</span>
+          <span class="nt">&lt;p&gt;</span>ID/PW<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/article&gt;</span>
+        <span class="nt">&lt;article&gt;</span>
+          <span class="nt">&lt;h3&gt;</span>배송지주소<span class="nt">&lt;/h3&gt;</span>
+          <span class="nt">&lt;p&gt;</span>경기도 성남시<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/article&gt;</span>
+      <span class="nt">&lt;/section&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+    <span class="nt">&lt;aside&gt;</span>
+      <span class="nt">&lt;h3&gt;</span>광고<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;p&gt;</span>광고 내용<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/aside&gt;</span>
+    <span class="nt">&lt;footer&gt;</span>
+      <span class="nt">&lt;p&gt;</span>상호명<span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>고객센터 전화번호<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+<h3 id="시맨틱-태그-예제-출력물"><span class="me-2">시맨틱 태그 예제 출력물</span><a href="#시맨틱-태그-예제-출력물" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p class="codepen" data-height="600" data-default-tab="html" data-slug-hash="xxmPbNR" data-editable="true" data-user="mon-node" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/xxmPbNR">
+  시맨틱 태그</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="서식태그"><span class="me-2">서식태그</span><a href="#서식태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<blockquote>
+  <p>서식태그는 단어나 문자의 서식을 결정하며 다양한 태그를 활용하여 가독성을 높일 수 있다</p>
+</blockquote>
+
+<h3 id="서식태그의-종류"><span class="me-2">서식태그의 종류</span><a href="#서식태그의-종류" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p><a href="https://i.ibb.co/k1r1nQ2/image.png" class="popup img-link  shimmer"><img src="https://i.ibb.co/k1r1nQ2/image.png" alt="image" border="0" loading="lazy"></a></p>
+
+<h3 id="서식태그-예제"><span class="me-2">서식태그 예제</span><a href="#서식태그-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span> 
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>서식태그 예제<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">text/css</span><span class="nt">&gt;</span> 
+          <span class="nc">.leftdiv</span> 
+          <span class="p">{</span> 
+            <span class="nl">background-color</span><span class="p">:</span><span class="no">yellow</span><span class="p">;</span> 
+            <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> 
+          <span class="p">}</span> 
+          <span class="nc">.middlediv</span> 
+          <span class="p">{</span> 
+            <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> 
+            <span class="nl">background-color</span><span class="p">:</span><span class="no">gray</span> 
+          <span class="p">}</span> 
+          <span class="nc">.rightdiv</span> 
+          <span class="p">{</span> 
+            <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> 
+          <span class="p">}</span> 
+          <span class="nt">div</span><span class="p">{</span> 
+            <span class="nl">padding</span> <span class="p">:</span> <span class="m">1%</span><span class="p">;</span> 
+            <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span> 
+            <span class="nl">background-color</span><span class="p">:</span> <span class="m">009900</span><span class="p">;</span> 
+            <span class="nl">width</span><span class="p">:</span> <span class="m">30%</span><span class="p">;</span> 
+            <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span> 
+          <span class="p">}</span> 
+        <span class="nt">&lt;/style&gt;</span> 
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;hr&gt;</span>
+      <span class="c">&lt;!--제목태그 --&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>제목 1<span class="nt">&lt;/h1&gt;</span> 
+      <span class="nt">&lt;h2&gt;</span>제목 2<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;h3&gt;</span>제목 3<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;h4&gt;</span>제목 4<span class="nt">&lt;/h4&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>제목 5<span class="nt">&lt;/h5&gt;</span>
+      <span class="nt">&lt;h6&gt;</span>제목 6<span class="nt">&lt;/h6&gt;</span>
+      
+      <span class="nt">&lt;hr&gt;</span>
+      
+      <span class="c">&lt;!-- 문단태그 --&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"background-color:powderblue;"</span><span class="nt">&gt;</span>p 문단 1<span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"background-color:#D2E556;"</span><span class="nt">&gt;</span>p 문단 2<span class="nt">&lt;/p&gt;</span>
+   
+      <span class="nt">&lt;hr&gt;</span>
+      
+      <span class="c">&lt;!-- 그룹지정태그 --&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"leftdiv"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;h1&gt;</span>div 1<span class="nt">&lt;/h1&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>p 문단 1<span class="nt">&lt;/p&gt;</span> 
+      <span class="nt">&lt;/div&gt;</span> 
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"middlediv"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;h1&gt;</span>div 2<span class="nt">&lt;/h1&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>p 문단 2<span class="nt">&lt;/p&gt;</span> 
+      <span class="nt">&lt;/div&gt;</span> 
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rightdiv"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;h1&gt;</span>div 3<span class="nt">&lt;/h1&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>p 문단 3<span class="nt">&lt;/p&gt;</span> 
+      <span class="nt">&lt;/div&gt;</span> 
+      
+      <span class="c">&lt;!-- 강조 태그 예제 --&gt;</span>      
+      <span class="nt">&lt;hr&gt;</span>
+      <span class="nt">&lt;strong&gt;</span>강력한 strong!<span class="nt">&lt;/strong&gt;&lt;br&gt;</span>
+      <span class="nt">&lt;em&gt;</span>최근에는 안쓰는 em!<span class="nt">&lt;/em&gt;&lt;br&gt;</span>
+      <span class="nt">&lt;hr&gt;</span>
+      
+      <span class="c">&lt;!-- a 태그 예제 --&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.naver.com"</span><span class="nt">&gt;</span>나는야 하이퍼링크(클릭시 네이버이동)<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;hr&gt;</span>
+      <span class="c">&lt;!-- 두꺼운 글씨체 태그 --&gt;</span>
+      <span class="nt">&lt;b&gt;</span>bold text<span class="nt">&lt;/b&gt;</span>
+      <span class="nt">&lt;hr&gt;</span>
+      
+      <span class="c">&lt;!-- span 예제 --&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"background-color:red"</span><span class="nt">&gt;</span>span1<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"background-color:blue"</span><span class="nt">&gt;</span>span2<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"background-color:green"</span><span class="nt">&gt;</span>span3<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;hr&gt;</span>
+      
+      <span class="c">&lt;!-- img 태그 --&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://i.ibb.co/bb7kRP4/default-avatar.jpg"</span> <span class="na">alt=</span><span class="s">"이미지 태그"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"100"</span><span class="nt">/&gt;</span>
+      이미지 태그
+      
+      <span class="nt">&lt;hr&gt;</span>
+      <span class="c">&lt;!-- 줄바꿈 태그 --&gt;</span>
+      고생했어,<span class="nt">&lt;br&gt;</span>
+      오늘 하루도
+        
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+<p class="codepen" data-height="600" data-default-tab="html" data-slug-hash="poqWeMv" data-editable="true" data-user="mon-node" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/poqWeMv">
+  Untitled</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="목록-태그"><span class="me-2">목록 태그</span><a href="#목록-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>텍스트나 이미지등을 목록화 및 리스트화하여 카테고리 등을 표현하기 위해 사용되는 태그</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>목록Tag</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;ul&gt;,&lt;li&gt;</code></td>
+      <td style="text-align: center">순서가 없는 목록(unorder list)을 만들 때 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;ol&gt;,&lt;li&gt;</code></td>
+      <td style="text-align: center">순서가 있는 목록을 만들 때 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt;</code></td>
+      <td style="text-align: center">제목과 설명이 한 쌍인 설명 목록을 만들 때 사용</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h3 id="목록-태그-예제"><span class="me-2">목록 태그 예제</span><a href="#목록-태그-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;</span><span class="err">!</span><span class="na">DOCTYPE</span><span class="nt">&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+       <span class="nt">&lt;ul&gt;</span> <span class="nt">&lt;순서가</span> <span class="na">없는</span> <span class="na">목록</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;li&gt;</span>HTML<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>CSS<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>JAVASCRIPT<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>JAVA<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>JSP<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>ORACLE<span class="nt">&lt;/li&gt;</span>
+       <span class="nt">&lt;/ul&gt;</span>
+       <span class="nt">&lt;hr&gt;</span>
+       <span class="nt">&lt;ol</span> <span class="na">type=</span><span class="s">"A"</span><span class="nt">&gt;&lt;순서가</span> <span class="na">있는</span> <span class="na">목록</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;li&gt;</span>variable<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>operator<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>data type<span class="nt">&lt;/li&gt;</span>
+           <span class="nt">&lt;li&gt;</span>control statement<span class="nt">&lt;/li&gt;</span>
+       <span class="nt">&lt;/ol&gt;</span>
+        <span class="nt">&lt;hr&gt;</span>
+            <span class="nt">&lt;정의형</span> <span class="na">목록</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;dl&gt;</span>
+           <span class="nt">&lt;dt&gt;</span>HTML<span class="nt">&lt;/dt&gt;</span>
+           <span class="nt">&lt;dd&gt;</span>HyperText Markup Language<span class="nt">&lt;/dd&gt;</span>
+           <span class="nt">&lt;dd&gt;</span>웹페이지를 위한 지배적 마크업 언어<span class="nt">&lt;/dd&gt;</span>
+           <span class="nt">&lt;dt&gt;</span>JAVA<span class="nt">&lt;/dt&gt;</span>
+           <span class="nt">&lt;dd&gt;</span>객체지향 프로그래밍 언어<span class="nt">&lt;/dd&gt;</span>
+           <span class="nt">&lt;dd&gt;</span>웹 애플리케이션 등 가장 많이 사용되는 언어<span class="nt">&lt;/dd&gt;</span>
+           <span class="nt">&lt;dt&gt;</span>Python<span class="nt">&lt;/dt&gt;</span>
+         <span class="nt">&lt;dd&gt;</span> 파이썬(Python)은 1990년 암스테르담의 귀도 반 로섬(Guido Van Rossum)이 개발한 인터프리터 언어<span class="nt">&lt;/dd&gt;</span>
+         <span class="nt">&lt;/dl&gt;</span>     
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+<p class="codepen" data-height="600" data-default-tab="html" data-slug-hash="poqdJxb" data-editable="true" data-user="mon-node" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/poqdJxb">
+  Untitled</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="폼form-태그"><span class="me-2">폼(Form) 태그</span><a href="#폼form-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>폼은 사용자로부터 데이터를 입력받아 서버로 전송한다 전송한 데이터는 웹 서버가 처리하고 결과에 따른 또 다른 웹 페이지를 출력한다</p>
+
+<h3 id="input-태그"><span class="me-2">input 태그</span><a href="#input-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<ul>
+  <li>
+    <p>input 태그는 type 속성을 다르게 지정하여 다양하게 사용자로부터 데이터를 입력 받을 수 있다</p>
+  </li>
+  <li>
+    <p>input 태그에서 사용가능한 속성 [TCP School 참고]
+<a href="https://i.ibb.co/2nLhdb8/image.png" class="popup img-link  shimmer"><img src="https://i.ibb.co/2nLhdb8/image.png" alt="image" border="0" loading="lazy"></a></p>
+  </li>
+</ul>
+
+<h3 id="input-예제"><span class="me-2">input 예제</span><a href="#input-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p class="codepen" data-height="450" data-default-tab="html" data-slug-hash="JjwOYbe" data-editable="true" data-user="mon-node" style="height: 450px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/JjwOYbe">
+  Untitled</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="멀티미디어-태그"><span class="me-2">멀티미디어 태그</span><a href="#멀티미디어-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>HTML5에서 추가된 멀티미디어 요소인 video와 audio등을 말하며 현재에 웹에서 동영상을 시청하고 음악을 듣는데 지장이 없다고 생각할 수 있다 하지만 각종 플러그인과 ActiveX라는 불편함과 보안위협에 노출되어 있으며 그런 이유로 브라우저 자체에서 동영상을 재생하게끔 멀티미디어 태그가 필요하게 된 것이다</p>
+
+<h3 id="audio-태그"><span class="me-2">Audio 태그</span><a href="#audio-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote>
+  <p>음악 컨텐츠를 사용하기 위해 구현 가능한 태그</p>
+</blockquote>
+
+<p><strong>[Audio 태그에서 사용 가능한 파일] </strong></p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>확장자</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">wav</code></td>
+      <td style="text-align: center">IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mp3</code></td>
+      <td style="text-align: center">대부분의 음원에서 사용되며 Moving Picture Experts Group에 의해 개발됨, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식이다</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ogg</code></td>
+      <td style="text-align: center">Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식, 라이센스 없이 무료이므로 게임등에서 많이 사용한다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><strong>[Audio 태그에서 사용할 수 있는 속성] </strong></p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>속성</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>controls</td>
+      <td style="text-align: center">웹 화면에 컨트롤 막대를 표시하고 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다</td>
+    </tr>
+    <tr>
+      <td>autoplay</td>
+      <td style="text-align: center">오디오를 자동 재생한다</td>
+    </tr>
+    <tr>
+      <td>loop</td>
+      <td style="text-align: center">오디오를 반복해서 재생한다</td>
+    </tr>
+    <tr>
+      <td>muted</td>
+      <td style="text-align: center">오디오는 재생하지만 소리는 자동 음소거된다</td>
+    </tr>
+    <tr>
+      <td>preload</td>
+      <td style="text-align: center">재생 버튼을 눌러 재생하기 전에 오디오 파일을 다운로드해서 준비한다</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h4 id="audio-태그-예제"><span class="me-2">Audio 태그 예제</span><a href="#audio-태그-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c">&lt;!--일반 재생--&gt;</span>
+[일반 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"</span> <span class="na">controls</span><span class="nt">&gt;&lt;/audio&gt;</span>
+<span class="nt">&lt;hr&gt;</span>
+<span class="c">&lt;!--자동 재생--&gt;</span>
+[자동 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="nt">&gt;&lt;/audio&gt;</span>
+<span class="nt">&lt;hr&gt;</span>
+<span class="c">&lt;!--반복 재생--&gt;</span>
+[반복 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">src=</span><span class="s">"https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"</span> <span class="na">controls</span> <span class="na">loop</span><span class="nt">&gt;&lt;/audio&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+<p class="codepen" data-height="300" data-default-tab="html" data-slug-hash="YzdEyOP" data-editable="true" data-user="mon-node" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/YzdEyOP">
+  Untitled</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="video-태그"><span class="me-2">Video 태그</span><a href="#video-태그" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote>
+  <p>비디오 컨텐츠를 사용하기 위해 구현 가능한 태그</p>
+</blockquote>
+
+<p><strong>[video 태그에서 사용 가능한 속성] </strong></p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>속성</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">controls</code></td>
+      <td style="text-align: center">영상 컨트롤 막대를 표시하며 컨트롤 막대에는 재생/멈춤, 진행바, 볼륨 등이 있다</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">width, height</code></td>
+      <td style="text-align: center">화면에 표시되는 영상의 크기를 조절한다</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">autoplay</code></td>
+      <td style="text-align: center">영상을 자동 재생</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loop</code></td>
+      <td style="text-align: center">영상을 반복해서 재생</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">muted</code></td>
+      <td style="text-align: center">영상은 재생하지만 소리는 음소거됨</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">preload</code></td>
+      <td style="text-align: center">영상을 재생하기 전에 미디어 파일을 다운로드 함</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">poster</code></td>
+      <td style="text-align: center">브라우저나 인터넷 문제등으로 영상을 재생못하는 경우 표시함</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h4 id="video-태그-예제"><span class="me-2">video 태그 예제</span><a href="#video-태그-예제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre>
+<span class="c">&lt;!--일반 재생--&gt;</span>
+[일반 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"</span> <span class="na">controls</span> <span class="na">width=</span><span class="s">"300"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/video&gt;</span>
+<span class="nt">&lt;hr&gt;</span>
+<span class="c">&lt;!--자동 재생--&gt;</span>
+[자동 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"</span> <span class="na">width=</span><span class="s">"300"</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/video&gt;</span>
+<span class="nt">&lt;hr&gt;</span>
+<span class="c">&lt;!--반복 재생--&gt;</span>
+[반복 재생]
+<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"</span> <span class="na">width=</span><span class="s">"300"</span> <span class="na">controls</span> <span class="na">loop</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/video&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+<p class="codepen" data-height="300" data-default-tab="html" data-slug-hash="abPVdVO" data-editable="true" data-user="mon-node" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/mon-node/pen/abPVdVO">
+  video 태그</a> by mon node (<a href="https://codepen.io/mon-node">@mon-node</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>###웹</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/develop/">Develop</a>,
+          <a href="/categories/javascript/">Javascript</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/javascript/"
+            class="post-tag no-text-decoration"
+          >Javascript</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter1%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter1%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap1%2F&text=(%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C%20%EC%9B%B9%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%A7%8C%EB%93%A4%EA%B8%B0)%20Chapter1%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fchap1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/jsp01/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1705462380"
+  data-df="ll"
+  
+>
+  Jan 17, 2024
+</time>
+
+              <h4 class="pt-0 my-2">JSP 자바 웹 프로그래밍 Chap1</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  [실습을 위한 도구들]
+
+
+  OpenJDK 17 : 자바 프로그램을 컴파일하고 실행해주는 기본 도구
+  Tomcat 10.1.x : JSP와 서블릿을 실행하기 위한 웹 서버
+  이클립스 : 전체 도구를 아우르는 통합 개발 환경(IDE)
+  Oracle 21c Express Edition : 데이터 베이스 관리 시스템
+  SQL Developer : ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_spread_rest/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1708831980"
+  data-df="ll"
+  
+>
+  Feb 25, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Spread와 Rest Parameters</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Spread Operator
+
+전개 연산자는 ES6이후부터 사용할 수 있는 문법으로 배열 또는 객체를 하나하나 넘기는 용도로 사용된다
+
+배열, 문자열과 같은 반복 가능한(iterable) 요소 앞에 사용해서 배열의 개별 요소를 다른 배열이나 함수의 인자로 펼쳐서 넘기는게 가능하다 객체에 대해 전개 연산자를 사용하면 객체의 속성을 넘기는 것도 가능하며 ...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/javascript_map/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712028780"
+  data-df="ll"
+  
+>
+  Apr  2, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Javascript Map함수</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  Map 함수란
+
+Map함수는  콜백 함수를 이용해 각각의 요소에 호출해서 그 값을 변환할 수 있게 해준다. 다시 말하자면 콜백 함수는 배열의 각 요소에 실행된다
+
+예를들어 간단한 예제 코드를 보도록한다
+
+먼저 다음과 같은 배열 요소가 있다고 가정해본다
+
+[단순한 Javascript 배열]
+
+1
+2
+  //배열 arr을 만들고 1~5 까지 숫자를 넣어둔...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/subnet/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>(Network) Subnet과 Subnetting</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/chap2/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>(인터랙티브 웹 페이지 만들기) Chapter2</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

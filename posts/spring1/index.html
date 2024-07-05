@@ -1,0 +1,3371 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko" data-mode="light">
+  <!-- The Head -->
+
+<head>
+  <link rel="alternate" type="application/rss+xml" href="http://0.0.0.0:4000/feed.xml">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  <!-- it's a local file path -->
+
+  
+  
+  
+
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="(코딩 자율학습 스프링 부트3) 1,2장" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Part1. 스프링 부트 시작 스프링 부트란? 스프링 부트(Spring Boot)는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다 스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다 스프링 부트 개발 환경 설정하기 스프링 부트 개발 환경 설정에는 3단계로 이루어진다 1단계 : JDK설치하기2단계 : IDE설치하기3단계 : 스프링 부트 프로젝트 만들기 JDK 다운로드 및 설치버전 확인하기 JDK란: 자바 개발 키드(Java Development Kit, JDK)는 개발자들이 JVM과 JRE에 의해 실행되고 구동될 수 있는 자바 프로그램을 생성할 수 있게 해준다 JDK 17버전 설치: JDK 다운로드 페이지 버전확인: CMD 터미널 창을 열고 java -version 입력하기 IDE 설치 IDE란: 통합 개발 환경(Integrated Development Environment, IDE)는 개발자가 생산성을 높이기 위해 사용하며 코드를 효율적으로 개발하도록 도와주는 소프트웨어이다 IntelliJ IDE설치: IDE 다운로드 페이지 스프링 부트 프로젝트만들기 스프링 부트 프로젝트는 IDE를 통해서 만들 수 있지만 Spring Initializr 사이트를 통해서 조금 더 쉽게 프로젝트를 생성할 수 있다 Spring Initializr 페이지 Gradle(그래이들)과 IntelliJ IDEA Gradle는 Groovy를 이용한 오픈 소스 빌드 자동화 시스템이다 즉 빌드 도구라할 수 있는데 빠른 기간동안 계속해서 늘어나는 라이브러리의 추가 또는 프로젝트를 진행하며 수많은 라이브러리의 버전을 쉽게 동기화 하기 위해 등장한 것이다IntelliJ IDEA는 인텔리제이 자체에서 제공하는 빌드 자동화 도구이다 차이점 : IntelliJ IDEA는 증분 빌드이며 Gradle은 증분 빌드가 아니다 증분 빌드란 변경된 부분만 빌드를 하는 방식으로 변경되지 않은 것에 대해서는 건너뛰고 빌드를 진행해서 빠른 빌드를 원할 경우 선택하는 방법이다 (단, 정확한 빌드가 되지 않는 경우가 있어서 정확한 빌드를 원한다면 Gradle 빌드 방식을 사용할 것을 추천한다) Gradle(그래이들)의 핵심 기능 Compile - Java 파일의 소스 코드를 컴퓨터가 이해할 수 있도록 바이트 코드로 변환 Test - 유닛 테스트, UI 테스트 Packaging - 스프링 코드를 패키징 해 .jar 파일이나 .war 파일로 생성 Deploy &amp; Run - 서버 실행 뷰 템플릿 뷰 템플릿 이란 화면을 담당하는 기술로, 웹 페이지(view)를 하나의 틀(Template)로 만들고 여기에 데이터 변수를 삽입해 서로 다른 페이지를 보여 준다 머스테치(Mustache)라는 도구를 사용하면 인텔리제이에서 바로 뷰 템플릿을 생성할 수 있다 MVC 패턴 화면을 담당하는게 위와 같이 뷰(View)였다면 뷰는 컨트롤러와 모델이라는 두 동료가 있다컨트롤러(Controller)는 클라이언트의 요청에 따라 서버에서 이를 처리하는 역할이고,모델(Model)은 데이터를 관리하는 역할을 한다 웹 페이치를 화면에 보여준다(View) 클라이언트의 요청을 받아 처리한다(Controller) 데이터를 관리한다(Model) 위와 같이 역할을 나누는 기법을 MVC(Model-View-Controller)패턴이라고한다 어노테이션(annotation) 소스 코드에 추가해 사용하는 메타 데이터의 일종으로 메타 데이터는 프로그램에서 처리해야 할 데이터가 아니라 컴파일 및 실행 과정에서 코드를 어떻게 처리해야 할지 알려주는 추가 정보이다" />
+<meta property="og:description" content="Part1. 스프링 부트 시작 스프링 부트란? 스프링 부트(Spring Boot)는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다 스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다 스프링 부트 개발 환경 설정하기 스프링 부트 개발 환경 설정에는 3단계로 이루어진다 1단계 : JDK설치하기2단계 : IDE설치하기3단계 : 스프링 부트 프로젝트 만들기 JDK 다운로드 및 설치버전 확인하기 JDK란: 자바 개발 키드(Java Development Kit, JDK)는 개발자들이 JVM과 JRE에 의해 실행되고 구동될 수 있는 자바 프로그램을 생성할 수 있게 해준다 JDK 17버전 설치: JDK 다운로드 페이지 버전확인: CMD 터미널 창을 열고 java -version 입력하기 IDE 설치 IDE란: 통합 개발 환경(Integrated Development Environment, IDE)는 개발자가 생산성을 높이기 위해 사용하며 코드를 효율적으로 개발하도록 도와주는 소프트웨어이다 IntelliJ IDE설치: IDE 다운로드 페이지 스프링 부트 프로젝트만들기 스프링 부트 프로젝트는 IDE를 통해서 만들 수 있지만 Spring Initializr 사이트를 통해서 조금 더 쉽게 프로젝트를 생성할 수 있다 Spring Initializr 페이지 Gradle(그래이들)과 IntelliJ IDEA Gradle는 Groovy를 이용한 오픈 소스 빌드 자동화 시스템이다 즉 빌드 도구라할 수 있는데 빠른 기간동안 계속해서 늘어나는 라이브러리의 추가 또는 프로젝트를 진행하며 수많은 라이브러리의 버전을 쉽게 동기화 하기 위해 등장한 것이다IntelliJ IDEA는 인텔리제이 자체에서 제공하는 빌드 자동화 도구이다 차이점 : IntelliJ IDEA는 증분 빌드이며 Gradle은 증분 빌드가 아니다 증분 빌드란 변경된 부분만 빌드를 하는 방식으로 변경되지 않은 것에 대해서는 건너뛰고 빌드를 진행해서 빠른 빌드를 원할 경우 선택하는 방법이다 (단, 정확한 빌드가 되지 않는 경우가 있어서 정확한 빌드를 원한다면 Gradle 빌드 방식을 사용할 것을 추천한다) Gradle(그래이들)의 핵심 기능 Compile - Java 파일의 소스 코드를 컴퓨터가 이해할 수 있도록 바이트 코드로 변환 Test - 유닛 테스트, UI 테스트 Packaging - 스프링 코드를 패키징 해 .jar 파일이나 .war 파일로 생성 Deploy &amp; Run - 서버 실행 뷰 템플릿 뷰 템플릿 이란 화면을 담당하는 기술로, 웹 페이지(view)를 하나의 틀(Template)로 만들고 여기에 데이터 변수를 삽입해 서로 다른 페이지를 보여 준다 머스테치(Mustache)라는 도구를 사용하면 인텔리제이에서 바로 뷰 템플릿을 생성할 수 있다 MVC 패턴 화면을 담당하는게 위와 같이 뷰(View)였다면 뷰는 컨트롤러와 모델이라는 두 동료가 있다컨트롤러(Controller)는 클라이언트의 요청에 따라 서버에서 이를 처리하는 역할이고,모델(Model)은 데이터를 관리하는 역할을 한다 웹 페이치를 화면에 보여준다(View) 클라이언트의 요청을 받아 처리한다(Controller) 데이터를 관리한다(Model) 위와 같이 역할을 나누는 기법을 MVC(Model-View-Controller)패턴이라고한다 어노테이션(annotation) 소스 코드에 추가해 사용하는 메타 데이터의 일종으로 메타 데이터는 프로그램에서 처리해야 할 데이터가 아니라 컴파일 및 실행 과정에서 코드를 어떻게 처리해야 할지 알려주는 추가 정보이다" />
+<link rel="canonical" href="http://0.0.0.0:4000/posts/spring1/" />
+<meta property="og:url" content="http://0.0.0.0:4000/posts/spring1/" />
+<meta property="og:site_name" content="Jogyejin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-11T12:33:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(코딩 자율학습 스프링 부트3) 1,2장" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-11T12:33:00+09:00","datePublished":"2023-11-11T12:33:00+09:00","description":"Part1. 스프링 부트 시작 스프링 부트란? 스프링 부트(Spring Boot)는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다 스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다 스프링 부트 개발 환경 설정하기 스프링 부트 개발 환경 설정에는 3단계로 이루어진다 1단계 : JDK설치하기2단계 : IDE설치하기3단계 : 스프링 부트 프로젝트 만들기 JDK 다운로드 및 설치버전 확인하기 JDK란: 자바 개발 키드(Java Development Kit, JDK)는 개발자들이 JVM과 JRE에 의해 실행되고 구동될 수 있는 자바 프로그램을 생성할 수 있게 해준다 JDK 17버전 설치: JDK 다운로드 페이지 버전확인: CMD 터미널 창을 열고 java -version 입력하기 IDE 설치 IDE란: 통합 개발 환경(Integrated Development Environment, IDE)는 개발자가 생산성을 높이기 위해 사용하며 코드를 효율적으로 개발하도록 도와주는 소프트웨어이다 IntelliJ IDE설치: IDE 다운로드 페이지 스프링 부트 프로젝트만들기 스프링 부트 프로젝트는 IDE를 통해서 만들 수 있지만 Spring Initializr 사이트를 통해서 조금 더 쉽게 프로젝트를 생성할 수 있다 Spring Initializr 페이지 Gradle(그래이들)과 IntelliJ IDEA Gradle는 Groovy를 이용한 오픈 소스 빌드 자동화 시스템이다 즉 빌드 도구라할 수 있는데 빠른 기간동안 계속해서 늘어나는 라이브러리의 추가 또는 프로젝트를 진행하며 수많은 라이브러리의 버전을 쉽게 동기화 하기 위해 등장한 것이다IntelliJ IDEA는 인텔리제이 자체에서 제공하는 빌드 자동화 도구이다 차이점 : IntelliJ IDEA는 증분 빌드이며 Gradle은 증분 빌드가 아니다 증분 빌드란 변경된 부분만 빌드를 하는 방식으로 변경되지 않은 것에 대해서는 건너뛰고 빌드를 진행해서 빠른 빌드를 원할 경우 선택하는 방법이다 (단, 정확한 빌드가 되지 않는 경우가 있어서 정확한 빌드를 원한다면 Gradle 빌드 방식을 사용할 것을 추천한다) Gradle(그래이들)의 핵심 기능 Compile - Java 파일의 소스 코드를 컴퓨터가 이해할 수 있도록 바이트 코드로 변환 Test - 유닛 테스트, UI 테스트 Packaging - 스프링 코드를 패키징 해 .jar 파일이나 .war 파일로 생성 Deploy &amp; Run - 서버 실행 뷰 템플릿 뷰 템플릿 이란 화면을 담당하는 기술로, 웹 페이지(view)를 하나의 틀(Template)로 만들고 여기에 데이터 변수를 삽입해 서로 다른 페이지를 보여 준다 머스테치(Mustache)라는 도구를 사용하면 인텔리제이에서 바로 뷰 템플릿을 생성할 수 있다 MVC 패턴 화면을 담당하는게 위와 같이 뷰(View)였다면 뷰는 컨트롤러와 모델이라는 두 동료가 있다컨트롤러(Controller)는 클라이언트의 요청에 따라 서버에서 이를 처리하는 역할이고,모델(Model)은 데이터를 관리하는 역할을 한다 웹 페이치를 화면에 보여준다(View) 클라이언트의 요청을 받아 처리한다(Controller) 데이터를 관리한다(Model) 위와 같이 역할을 나누는 기법을 MVC(Model-View-Controller)패턴이라고한다 어노테이션(annotation) 소스 코드에 추가해 사용하는 메타 데이터의 일종으로 메타 데이터는 프로그램에서 처리해야 할 데이터가 아니라 컴파일 및 실행 과정에서 코드를 어떻게 처리해야 할지 알려주는 추가 정보이다","headline":"(코딩 자율학습 스프링 부트3) 1,2장","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/posts/spring1/"},"url":"http://0.0.0.0:4000/posts/spring1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <title>(코딩 자율학습 스프링 부트3) 1,2장 | Jogyejin
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jogyejin">
+<meta name="application-name" content="Jogyejin">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+  
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+  
+
+  <!-- GA -->
+  
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  
+
+  <!-- JavaScript -->
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+
+    <a href="/" id="avatar" class="rounded-circle">
+      
+      
+      <img src="/assets/img/avatar.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      
+    </a>
+
+    <h1 class="site-title">
+      <a href="/">Jogyejin</a>
+    </h1>
+    <p class="site-subtitle fst-italic mb-0">기술블로그 && 프로젝트공유</p>
+
+  </header>
+  <!-- .profile-wrapper -->
+  </div>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+      <li class="nav-item">
+        <a href="/categories/" class="nav-link">
+          <i class="fa-fw fas fa-stream"></i>
+          
+          
+          <span>CATEGORIES</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/tags/" class="nav-link">
+          <i class="fa-fw fas fa-tags"></i>
+          
+          
+          <span>TAGS</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/activity/" class="nav-link">
+          <i class="fa-fw fas fa-archive"></i>
+          
+          
+          <span>ACTIVITY</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+      <li class="nav-item">
+        <a href="/about/" class="nav-link">
+          <i class="fa-fw fas fa-info-circle"></i>
+          
+          
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <a href="https://hits.seeyoufarm.com">
+      <img
+        
+        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgyejindev.github.io&count_bg=%23A48A65&title_bg=%23A48A65&icon=protocols-dot-io.svg&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=false"
+        alt="Visitors" />
+    </a>
+  </div>
+  <!-- .sidebar-badge -->
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+
+    
+    
+
+    
+    <a href="https://github.com/gyejindev" aria-label="github"  
+      target="_blank"    
+      rel="noopener noreferrer" >
+      <i class="fab fa-github"></i>
+    </a>
+    
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+
+<!-- #sidebar -->
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">
+                Home
+              </a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>(코딩 자율학습 스프링 부트3) 1,2장</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Post
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+<article class="px-1">
+  <header>
+    <h1 data-toc-skip>(코딩 자율학습 스프링 부트3) 1,2장</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1699673580"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Nov 11, 2023
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="{width=" class="popup img-link  shimmer"><img src="{"width"= loading="lazy"></a>800, "height"=>500}" class="preview-img" alt="Preview Image" w="1200" h="630" ></div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/gyejindev">Jogyejin</a>
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1041 words"
+>
+  <em>5 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <hr />
+
+<h2 id="part1-스프링-부트-시작"><span class="me-2">Part1. 스프링 부트 시작</span><a href="#part1-스프링-부트-시작" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<h3 id="스프링-부트란"><span class="me-2">스프링 부트란?</span><a href="#스프링-부트란" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><span style="color:orange">스프링 부트(Spring Boot)</span>는 자바 웹 프로그램을 더욱 쉽고 빠르게 만들기 위한 도구이다<br />
+스프링 부트에는 자바 웹 프로그램을 만들기 위한 기능과 도구가 모여 있다</p>
+</blockquote>
+
+<h3 id="스프링-부트-개발-환경-설정하기"><span class="me-2">스프링 부트 개발 환경 설정하기</span><a href="#스프링-부트-개발-환경-설정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>스프링 부트 개발 환경 설정에는 3단계로 이루어진다
+<strong><br />1단계 : JDK설치하기<br />2단계 : IDE설치하기<br />3단계 : 스프링 부트 프로젝트 만들기</strong></p>
+
+<h3 id="jdk-다운로드-및-설치버전-확인하기"><span class="me-2">JDK 다운로드 및 설치버전 확인하기</span><a href="#jdk-다운로드-및-설치버전-확인하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<ul>
+  <li>JDK란: <code class="language-plaintext highlighter-rouge">자바 개발 키드(Java Development Kit, JDK)</code>는 개발자들이 JVM과 JRE에 의해 실행되고 구동될 수 있는 자바 프로그램을 생성할 수 있게 해준다</li>
+  <li>
+    <p>JDK 17버전 설치:
+<a href="https://adoptium.net/temurin/releases/" target="_blank">JDK 다운로드 페이지</a></p>
+  </li>
+  <li>버전확인: CMD 터미널 창을 열고 <code class="language-plaintext highlighter-rouge">java -version</code> 입력하기</li>
+</ul>
+
+<h3 id="ide-설치"><span class="me-2">IDE 설치</span><a href="#ide-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<ul>
+  <li>IDE란: <code class="language-plaintext highlighter-rouge">통합 개발 환경(Integrated Development Environment, IDE)</code>는 개발자가 생산성을 높이기 위해 사용하며 코드를 효율적으로 개발하도록 도와주는 소프트웨어이다</li>
+  <li>IntelliJ IDE설치:
+<a href="https://www.jetbrains.com/ko-kr/idea/download/?section=windows" target="_blank"> IDE 다운로드 페이지</a></li>
+</ul>
+
+<h3 id="스프링-부트-프로젝트만들기"><span class="me-2">스프링 부트 프로젝트만들기</span><a href="#스프링-부트-프로젝트만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>스프링 부트 프로젝트는 IDE를 통해서 만들 수 있지만 Spring Initializr 사이트를 통해서 조금 더 쉽게 프로젝트를 생성할 수 있다
+<a href="https://start.spring.io/" target="_blank"> Spring Initializr 페이지</a></p>
+
+<h3 id="gradle그래이들과-intellij-idea"><span class="me-2">Gradle(그래이들)과 IntelliJ IDEA</span><a href="#gradle그래이들과-intellij-idea" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<blockquote class="prompt-tip">
+  <p><span style="color:orange">Gradle</span>는 Groovy를 이용한 오픈 소스 빌드 자동화 시스템이다 즉 빌드 도구라할 수 있는데 빠른 기간동안 계속해서 늘어나는 라이브러리의 추가 또는 프로젝트를 진행하며 수많은 라이브러리의 버전을 쉽게 동기화 하기 위해 등장한 것이다<br /><span style="color:orange">IntelliJ IDEA</span>는 인텔리제이 자체에서 제공하는 빌드 자동화 도구이다</p>
+  <ul>
+    <li>차이점 : IntelliJ IDEA는 <code class="language-plaintext highlighter-rouge">증분 빌드</code>이며 Gradle은 <code class="language-plaintext highlighter-rouge">증분 빌드</code>가 아니다 <br /><code class="language-plaintext highlighter-rouge">증분 빌드란</code> 변경된 부분만 빌드를 하는 방식으로 변경되지 않은 것에 대해서는 건너뛰고 빌드를 진행해서 빠른 빌드를 원할 경우 선택하는 방법이다 (단, 정확한 빌드가 되지 않는 경우가 있어서 정확한 빌드를 원한다면 Gradle 빌드 방식을 사용할 것을 추천한다)</li>
+  </ul>
+</blockquote>
+
+<h4>Gradle(그래이들)의 핵심 기능</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Compile</code> - Java 파일의 소스 코드를 컴퓨터가 이해할 수 있도록 바이트 코드로 변환</li>
+  <li><code class="language-plaintext highlighter-rouge">Test</code> - 유닛 테스트, UI 테스트</li>
+  <li><code class="language-plaintext highlighter-rouge">Packaging</code> - 스프링 코드를 패키징 해 .jar 파일이나 .war 파일로 생성</li>
+  <li><code class="language-plaintext highlighter-rouge">Deploy &amp; Run</code> - 서버 실행</li>
+</ul>
+
+<h3 id="뷰-템플릿"><span class="me-2">뷰 템플릿</span><a href="#뷰-템플릿" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p><code class="language-plaintext highlighter-rouge">뷰 템플릿</code> 이란 화면을 담당하는 기술로, 웹 페이지(view)를 하나의 틀(Template)로 만들고 여기에 데이터 변수를 삽입해 서로 다른 페이지를 보여 준다
+<code class="language-plaintext highlighter-rouge">머스테치(Mustache)</code>라는 도구를 사용하면 인텔리제이에서 바로 뷰 템플릿을 생성할 수 있다</p>
+
+<h3 id="mvc-패턴"><span class="me-2">MVC 패턴</span><a href="#mvc-패턴" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>화면을 담당하는게 위와 같이 뷰(View)였다면 뷰는 컨트롤러와 모델이라는 두 동료가 있다<br /><code class="language-plaintext highlighter-rouge">컨트롤러(Controller)</code>는 클라이언트의 요청에 따라 서버에서 이를 처리하는 역할이고,<br /><code class="language-plaintext highlighter-rouge">모델(Model)</code>은 데이터를 관리하는 역할을 한다<br /></p>
+<ol>
+  <li>웹 페이치를 화면에 보여준다(View)</li>
+  <li>클라이언트의 요청을 받아 처리한다(Controller)</li>
+  <li>데이터를 관리한다(Model)<br />
+<strong><code class="language-plaintext highlighter-rouge">위와 같이 역할을 나누는 기법을 MVC(Model-View-Controller)패턴이라고한다</code></strong></li>
+</ol>
+
+<!-- <a href="http://somensomes.iptime.org:7777/springboot_part1/event.jpg" class="popup img-link  shimmer"><img src="http://somensomes.iptime.org:7777/springboot_part1/event.jpg" alt="image" border="0" loading="lazy"></a>
+
+<video autoplay controls muted loop>
+<source src="http://somensomes.iptime.org:7777/springboot_part1/video.mp4" type="video/mp4">
+</video> -->
+
+<h3 id="어노테이션annotation"><span class="me-2">어노테이션(annotation)</span><a href="#어노테이션annotation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>소스 코드에 추가해 사용하는 메타 데이터의 일종으로 메타 데이터는 프로그램에서 처리해야 할 데이터가 아니라 컴파일 및 실행 과정에서 코드를 어떻게 처리해야 할지 알려주는 추가 정보이다</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/framework/">Framework</a>,
+          <a href="/categories/springboot/">SpringBoot</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/springboot/"
+            class="post-tag no-text-decoration"
+          >SpringBoot</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted me-1">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+      
+      <a
+        href="https://twitter.com/intent/tweet?text=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%201,2%EC%9E%A5%20-%20Jogyejin&url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Twitter"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?title=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%201,2%EC%9E%A5%20-%20Jogyejin&u=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+      
+      <a
+        href="https://t.me/share/url?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring1%2F&text=(%EC%BD%94%EB%94%A9%20%EC%9E%90%EC%9C%A8%ED%95%99%EC%8A%B5%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B83)%201,2%EC%9E%A5%20-%20Jogyejin"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Telegram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Telegram"
+      >
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+      
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2F0.0.0.0%3A4000%2Fposts%2Fspring1%2F"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Linkedin"
+      >
+        <i class="fa-fw fab fa-linkedin"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
+            <div class="access">
+              <!-- Get the last 5 posts from lastmod list. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+            </div>
+
+            
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/spring2/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1700105580"
+  data-df="ll"
+  
+>
+  Nov 16, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 3장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+Part2. 스프링 부트 시작
+
+게시판 만들고 새 글 작성하기: Create
+폼 데이터
+
+  폼 데이터는 HTML 요소인 &amp;lt;form&amp;gt; 태그에 실려 전송되는 데이터를 말하며 웹 브라우저에서 서버로 데이터를 전송할 때 사용한다, &amp;lt;form&amp;gt;태그에 실어 보낸 데이터는 서버의 컨트롤러가 객체에 담아 받는데 이 데이터를 DTO(Data...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/spring9/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1700969580"
+  data-df="ll"
+  
+>
+  Nov 26, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 4장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+
+
+게시글 Update
+게시판에 작성한 글을 수정하기 위해서는 해당 글을 불러와 수정할 수 있는 입력 상태로 만들어야 한다 이후 내용을 입력하고 다시 전송하면 DB에 반영돼 최종적으로 수정된다
+
+[수정 단계]
+
+  &amp;lt;상세 페이지&amp;gt;에서 [Edit] 버튼을 클릭한다
+  요청을 받은 컨트롤러는 해당 글의 id로 DB에서 데이터를 찾아 가져온다...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/spring11/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1702265580"
+  data-df="ll"
+  
+>
+  Dec 11, 2023
+</time>
+
+              <h4 class="pt-0 my-2">(코딩 자율학습 스프링 부트3) 11장</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  
+
+
+
+REST API와 JSAON의 등장 배경
+웹 서비스를 사용하는 클라이언트는 매우 다양하다 스마트폰, 스마트워치, 태블릿등 서버는 이러한 모든 클라이언트의 요청에 응답해야한다 따라서 효율적인 서버 자원 사용을 위해서 나타난 기술이 REST API(Representational State Transfer API)이다
+REST API 방식에서는 HT...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/class/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>클래스와 인스턴스</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/spring2/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>(코딩 자율학습 스프링 부트3) 3장</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script type="text/javascript">
+  (function () {
+    const origin = 'https://giscus.app';
+    const iframe = 'iframe.giscus-frame';
+    const lightTheme = 'light';
+    const darkTheme = 'dark_dimmed';
+
+    let initTheme = lightTheme;
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') &&
+        html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = darkTheme;
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'gyejindev/gyejindev.github.io',
+      'data-repo-id': 'R_kgDOJ6T-3Q',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOJ6T-3c4Cgk6I',
+      'data-mapping': 'pathname',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': 'ko',
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusScript = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+    document.getElementById('tail-wrapper').appendChild(giscusScript);
+
+    addEventListener('message', (event) => {
+      if (
+        event.source === window &&
+        event.data &&
+        event.data.direction === ModeToggle.ID
+      ) {
+        /* global theme mode changed */
+        const mode = event.data.message;
+        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
+
+        const message = {
+          setConfig: {
+            theme: theme
+          }
+        };
+
+        const giscus = document.querySelector(iframe).contentWindow;
+        giscus.postMessage({ giscus: message }, origin);
+      }
+    });
+  })();
+</script>
+
+
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <!-- <p>
+    ©
+    <time>2024</time>
+    <a href="https://github.com/gyejindev">Jogyejin</a>.
+    
+    <span data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+    
+  </p> -->
+
+  <!-- <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  </p> -->
+</footer>
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  <section>
+    <h2 class="panel-heading">Trending Tags</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/reatnative/">ReatNative</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/javascript/">Javascript</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/vue/">Vue</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/springboot/">SpringBoot</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/access/">access</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/react/">React</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/linux/">Linux</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/network/">Network</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/debian/">Debian</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typescript/">Typescript</a>
+      
+    </div>
+  </section>
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    
+      <aside
+  id="notification"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  data-bs-animation="true"
+  data-bs-autohide="false"
+>
+  <div class="toast-header">
+    <button
+      type="button"
+      class="btn-close ms-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">A new version of content is available.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      Update
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- JavaScripts -->
+
+    <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/ko.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script>
+    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+    MathJax = {
+      tex: {
+        /* start/end delimiter pairs for in-line math */
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        /* start/end delimiter pairs for display math */
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+
+
+
+
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/js/data/search.json',
+    searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
+    noResultsText: '<p class="mt-5"></p>',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+
