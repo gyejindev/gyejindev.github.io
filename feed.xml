@@ -4,7 +4,7 @@
   <id>http://0.0.0.0:4000/</id>
   <title>Jogyejin</title>
   <subtitle>기술블로그 &amp;&amp; 프로젝트공유</subtitle>
-  <updated>2024-07-05T15:09:59+09:00</updated>
+  <updated>2024-07-06T20:42:19+09:00</updated>
   <author>
     <name>Jogyejin</name>
     <uri>http://0.0.0.0:4000/</uri>
@@ -17,6 +17,61 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Git(깃) 여러대 PC에서 동기화하는방법</title>
+    <link href="http://0.0.0.0:4000/posts/usegit02/" rel="alternate" type="text/html" title="Git(깃) 여러대 PC에서 동기화하는방법" />
+    <published>2024-06-30T12:33:00+09:00</published>
+  
+    <updated>2024-06-30T12:33:00+09:00</updated>
+  
+    <id>http://0.0.0.0:4000/posts/usegit02/</id>
+    <content src="http://0.0.0.0:4000/posts/usegit02/" />
+    <author>
+      <name>Jogyejin</name>
+    </author>
+
+  
+    
+    <category term="Utils" />
+    
+    <category term="Git" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      과정
+여러대의 PC가 존재하고 모든 PC는 하나의 레포지스터리를 바라보고 업데이트를 한다고 과정한다
+
+방법
+** PC에 Git 설치하는 방법과 레포지스터리 생성 방법은 생략 **
+
+Step01. 맨 처음 업로드하는 pc작업
+
+# git 사용 계정 등록
+$git config --global user.name "gyejindev"
+$git config --global user.email "gyejin.dev@gmail.com"
+
+# git에 반영할 폴더로 이동
+$cd myapp
+
+#git 폴더 생성 및 초기화
+$git init
+
+#git 레포지스터리 연결(링크는 레포지스토리 생성하면 얻을 수 있는 git 링크)
+$git remote add origin https://github.com/gyejindev/g...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -233,52 +288,6 @@ interface Marker {
 EncryptStorage 설치 및 편의설정
 
 RefreshToken을 저장하기 위해 EncryptStorage 를...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Step5 React State와 Lifecycle</title>
-    <link href="http://0.0.0.0:4000/posts/react05/" rel="alternate" type="text/html" title="Step5 React State와 Lifecycle" />
-    <published>2024-05-05T12:33:00+09:00</published>
-  
-    <updated>2024-05-05T12:33:00+09:00</updated>
-  
-    <id>http://0.0.0.0:4000/posts/react05/</id>
-    <content src="http://0.0.0.0:4000/posts/react05/" />
-    <author>
-      <name>Jogyejin</name>
-    </author>
-
-  
-    
-    <category term="Framework" />
-    
-    <category term="React" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      State개요
-
-
-  
-    React에서의 State는 단언 뜻 그대로 상태를 뜻하며 Props처럼 JavaScript의 객체로 구성되어있다. 두 객체 모두 렌더링 결과물에 영향을 주는 정보를 갖고 있는데 중요한 차이가 있다 Props는 함수의 매개변수처럼 컴포넌트에 전달되는 반면에 state는 함수 내의 선언된 변수처럼 컴포넌트 안에서 관리된다는 점이다.
-  
-  
-    React는 지역변수, 전역변수의 값이 변경된다해서 컴포넌트를 다시 렌더링 하지 않는다 state를 사용하여 데이터를 관리하는 이유이다 (state 값이 변하면 관련 있는 컴포넌트들이 재렌더링되어 화면이 바뀐다)
-  
-  
-    일반적으로 리액트에서는 유동적인 데이터는 변수에 담아서 사용하지 않고 useState()라는 리액트...
     </summary>
   
 

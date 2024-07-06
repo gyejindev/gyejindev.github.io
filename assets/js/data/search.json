@@ -1,6 +1,23 @@
 [
   
   {
+    "title": "Git(깃) 여러대 PC에서 동기화하는방법",
+    "url": "/posts/usegit02/",
+    "categories": "Utils, Git",
+    "tags": "Git",
+    "date": "2024-06-30 12:33:00 +0900",
+    
+
+
+
+
+
+    
+    "snippet": "과정여러대의 PC가 존재하고 모든 PC는 하나의 레포지스터리를 바라보고 업데이트를 한다고 과정한다방법** PC에 Git 설치하는 방법과 레포지스터리 생성 방법은 생략 **Step01. 맨 처음 업로드하는 pc작업# git 사용 계정 등록$git config --global user.name \"gyejindev\"$git config --global us...",
+    "content": "과정여러대의 PC가 존재하고 모든 PC는 하나의 레포지스터리를 바라보고 업데이트를 한다고 과정한다방법** PC에 Git 설치하는 방법과 레포지스터리 생성 방법은 생략 **Step01. 맨 처음 업로드하는 pc작업# git 사용 계정 등록$git config --global user.name \"gyejindev\"$git config --global user.email \"gyejin.dev@gmail.com\"# git에 반영할 폴더로 이동$cd myapp#git 폴더 생성 및 초기화$git init#git 레포지스터리 연결(링크는 레포지스토리 생성하면 얻을 수 있는 git 링크)$git remote add origin https://github.com/gyejindev/gyejindev_blog.git#git 브랜치를 메인으로 변경$git branch -M main#git에 올리기 위한 스테이지 업로드$git add .#스테이지 commit 진행$git commit -m \"gitblog업데이트\"#git 레포지토리에 업로드 진행$git push -u origin mainStep02. 이후 다른 pc들에서 동기화 및 업로드하는 방법# git 사용 계정 등록$git config --global user.name \"gyejindev\"$git config --global user.email \"gyejin.dev@gmail.com\"# git에 동기화할 폴더로 이동$cd myapp#git 폴더 생성 및 초기화$git init#git 레포지토리 연결(링크는 레포지토리 생성하면 얻을 수 있는 git 링크)$git remote add origin https://github.com/gyejindev/gyejindev_blog.git#git 브랜치를 메인으로 변경$git branch -M main#git 레포지토리에 업로드되어있는 파일들을 해당 폴더에 내려받아서 최신화하기#만약 내파일과 레포지의 파일을 비교하고 싶다면 $git diff 실행$git pull#파일 수정후 git에 올리기 위한 스테이지 업로드 $git add .#스테이지 commit 진행$git commit -m \"gitblog업데이트\"#git 레포지토리에 업로드 진행$git push -u origin main"
+  },
+  
+  {
     "title": "vscode prettier 설정 및 오류 해결방법",
     "url": "/posts/vscode_prettier/",
     "categories": "Utils, Vscode",
